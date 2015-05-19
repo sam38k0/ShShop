@@ -1,0 +1,87 @@
+@charset "UTF-8";
+
+#m_login {
+	width: 500px;
+	height: 350px;
+	background-color: cadetblue;
+	text-align: center
+}
+
+#m_join {
+	width: 500px;
+	height: 500px;
+	background-color: firebrick;
+	text-align: center
+}
+
+#m_password {
+	width: 500px;
+	height: 230px;
+	background-color: cadetblue;
+	text-align: center
+}
+
+.closeBtn {
+	float: right;
+	margin-top: 10px;
+	margin-right: 10px
+}
+
+.m_logo {
+	clear: both;
+	width: 100% height:110px;
+	margin: 0 auto;
+	margin-top: 25px;
+	font-size: 30px;
+	font-weight: bold;
+	background-color: fuchsia
+}
+
+.m_info {
+	width: 450px;
+	margin: 0 auto;
+	padding: 0;
+	margin-top: 20px;
+	background-color: beige
+}
+
+.m_info li {
+	height: 50px;
+	line-height: 50px
+}
+
+.m_info span {
+	display: inline-block;
+	width: 170px;
+	font-size: 20px;
+	font-weight: bold
+}
+
+.m_info input[type="text"], [type="password"] {
+	width: 270px;
+	height: 30px;
+	text-indent: 1em;
+	border-radius: 10px
+}
+
+.m_submit {
+	width: 150px;
+	height: 50px;
+	font-size: 20px;
+	font-weight: bold;
+	margin-top: 20px
+}
+
+.m_notlogin {
+	width: 265px;
+	height: 30px;
+	line-height: 30px;
+	margin: 0 auto;
+	margin-top: 30px;
+	background-color: antiquewhite
+}
+
+.m_notlogin li {
+	float: left;
+	margin: 0 15px
+}

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.shshop.mapper.ProductOptionMapper'>
+ 	
+ 	<select id='getOptionCount' resultType='int'>
+		SELECT COUNT(`id_option`) as count FROM `ps_option`;
+	</select>
+	
+	<select id='getOptionById' resultMap='ProductOption'>							
+		SELECT * FROM `ps_option` WHERE `id_option`=${id_option};			
+	</select>
+	
+	<select id='getChildrenOptions' parameterType='${ProductOptionType}' resultMap='ProductOption'>							
+		SELECT * FROM `ps_option` WHERE `id_option_type_parent`= ${id_option};				
+	</select>
+ 
+	<delete id='deleteOption'>
+		DELETE FROM `ps_option` WHERE `id_option`=${id_option}
+	</delete>
+	
+	<update id='updateOption' parameterType='${ProductOptionType}'>
+		UPDATE `ps_option`
+		<set>
+			<if test="${id_option_type_parent} != null"> `id_option_type_parent`=${id_option_type_parent}, </if>
+			<if test="${option_name} != null"> `option_name`=${option_name}, </if>
+		</set>
+		WHERE `id_option`=${id_option}
+	</update>
+	
+	<insert id='insertOption' parameterType='${ProductOptionType}' useGeneratedKeys='true' keyProperty='${id_option}'>
+		INSERT INTO `ps_option` (`id_option_type_parent`,`option_name`)
+		VALUES (${id_option_type_parent}, ${option_name});
+	</insert>
+	
+	<resultMap id='ProductOption' type='${ProductOptionType}' >
+		<id property='optionId' column='id_option' />
+		<result property='optionTypeParentId' column='id_option_type_parent'/>
+		<result property='optionName' column='option_name'/>
+	</resultMap>
+ 
+</mapper>

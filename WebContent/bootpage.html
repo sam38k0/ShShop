@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>중고거래사이트</title>
+	<link rel="stylesheet" href="content/css/command.css">
+</head>
+<body>
+	<div class="wrap">
+		<div id="bootlogo">
+			<img src="content/image/ben.jpg">
+		</div>
+		<div id="bootsearch">
+			<select>
+				<option>전체</option>
+				<option>의류</option>
+				<option>장난감</option>
+				<option>가전</option>
+				<option>악세서리</option>
+			</select> 
+			<form id="searchForm" name="searchForm" method="post" action="action/search">
+				<input type="text"> 
+				<input type="submit" value="검색">
+			</form>
+		</div>
+		<div id="bootlink">
+		<form id="viewMainForm" name="viewMainForm" method="post" action="action/viewMain">
+			<input type="submit" value="메인페이지 바로가기">
+		</form>
+		<form id="insertProductForm" name="insertProductForm" method="post" action="action/insertProductView">
+			<input class="bootbtn" type="submit" value="판매등록"> 
+		</form>
+		<form id="insertHopeProductForm" name="insertHopeProductForm" method="post" action="action/insertHopeProductView">
+			<input type="submit" value="구매등록">
+		</form>
+		</div>
+	</div>
+</body>
+
+</html>

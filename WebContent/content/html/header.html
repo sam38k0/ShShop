@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+		
+		<link rel="stylesheet" href="content/css/command.css">
+        <link rel="stylesheet" href="content/css/user.css" />
+        <style> input.error{border:1px dashed red;} </style> 
+        
+		<script src="content/js/jquery-1.9.1.js"></script>
+        <script src="content/js/checklogin.js"></script>
+        <script src="content/js/modal.js"></script>
+		<script src="content/js/user.js"></script>
+        <!--
+       	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="content/js/join.js"></script>
+        <script src="content/js/modal.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+
+		<script>
+            $(document).ready(function() {
+                $(".gnb_after_login").hide();
+                
+                $("#join_form").submit(function(event) {
+                    var form = $(this);
+                    $.ajax({
+                        url: form.attr('action'),
+                        data: form.serialize(),
+                        type: "get",
+                        dataType: "text",
+
+                        success: function() {
+                          alert("회원가입 완료");
+                          $(this).parent().hide();
+                        }
+                    });
+                    event.preventDefault();
+                }); 
+		    });
+		</script>
+		 -->
+
+    </head>
+    <body>
+        <div class="headwrap">
+            <!-- 헤더 시작 -->
+            <div id="header">
+                <!-- 전체 카테고리 시작 -->
+                <div id="category">
+                    <span>카테고리 선택</span>
+                    <ul class="allcategory">
+                        <li><a href="#" class="choice">의류</a>
+                            <ul class="allcategory">
+                                <li><a href="#">상의</a></li>
+                                <li><a href="#">하의</a></li>
+                                <li><a href="#">외투</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">장난감</a></li>
+                        <li><a href="#">가전</a></li>
+                        <li><a href="#">아동용품</a></li>
+                        <li><a href="#">기타</a></li>
+                    </ul>
+                </div> 
+                <!-- 전체 카테고리 종료 -->
+                <!-- 검색바 시작 -->
+                <div id="search">
+                    <select>
+                        <option> 전체 </option>
+                        <option> 의류 </option>
+                        <option> 장난감 </option>
+                        <option> 가전 </option>
+                        <option> 악세서리 </option>
+                    </select>
+                    <input type="text">
+                    <input type="submit" value="검색">
+                </div>
+                <!-- 검색바 종료 -->
+                <!-- 상품등록버튼 시작 -->
+                <div id="link">
+                    <input type="button" value="판매등록">
+                    <input type="button" value="구매등록">
+                </div>
+                <!-- 상품등록버튼 종료 -->
+ 
+                <!-- 로그인 전 서브 메뉴 시작 -->
+                <ul class="gnb_before_login">
+                    <li><a href="header.html">홈</a></li>
+                    <li>|</li>
+                    <li><div id="loginDiv"><a><img src="content/image/login.png" title="로그인" width="30" height="30" alt="Share icon" /> </a></div></li>
+                    <li>|</li>
+                    <li><div id="registerUserDiv"><a><img src="content/image/addUser.png" title="회원가입" width="30" height="30" alt="Share icon" /> </a></div></li>
+                    <!-- <li><a href="#" class="join_btn">회원가입</a></li>  -->
+                </ul>
+                
+				<ul class="gnb_after_login">
+                    <li><a href="header.html">홈</a></li>
+                    <li>|</li>
+                    <li><div id="share_logout"><a href="header.html"><img src="content/image/logout.png" title="로그아웃" width="30" height="30" alt="Share icon" /> </a></div></li>
+                    <li>|</li>
+                    <li><a href="#">마이페이지</a></li>
+                    <li>|</li>
+                    <li><a href="#">장바구니</a></li>
+                </ul>
+ 
+                <!-- 로그인 후 서브 메뉴 종료 -->
+                
+            </div>
+            <!-- 헤더 종료 -->
+        </div>
+        
+        <!--- 로그인--->
+        <div class="m_login">
+		    <div id="login-options"> 
+		            <form id="loginForm" name="loginForm">
+		                <div class="two-thirds column" id="main">
+		                    <fieldset>
+		                        <legend>Login</legend>
+		                        <label for="email">Email:</label>
+		                        <input type="email" id="email" name="email" placeholder="you@yourdomain.com" required />
+		                        <label for="pwd">Password:</label>
+		                        <input type="password" id="pwd" name="pwd" value="" required />
+		                        <br/>
+		                        <input type="checkbox" id="showPwd">
+		                        <label for="showPwd">show password</label>
+		                        <input id="cancel" type="button" value="Back" />
+		                        <input type='button' id='loginBtn' value="Login" /> 
+		                        <!--  <input type="submit" id='loginBtn' value="Login" />-->
+		                        <div id="message"></div>
+		                    </fieldset>
+		                </div>
+		            </form>
+ 
+		    </div>
+		    <!-- share-options -->
+		</div>
+        
+        <!--- 회원가입 
+	    <div id="m_join">
+	        <div class="closeBtn">
+	            <a href="#"><img src="content/image/login_close.png" alt="닫기">
+	            </a>
+	        </div>
+	        <div class="m_logo">회원가입</div>
+	        <form action="action/join" method="get" id="join_form" name="joinForm" onsubmit="return formCheck();">
+	            <ul class="m_info">
+	                <li><span>E-mail</span>
+	                    <input type="text" id="join_mail" name="email" title="" required>
+	                    <div class="join_error"></div>
+	                </li>
+	                <li><span>비밀번호</span>
+	                    <input type="password" id="join_pass" name="password" title="필수 입력" required>
+	                    <div class="join_error">영문 숫자포함 8자 이상 입력해주세요.</div>
+	                </li>
+	                <li><span>비밀번호 재확인</span>
+	                    <input type="password" id="join_lepass" name="repass" title="필수 입력" required>
+	                    <div class="join_error"></div>
+	                </li>
+	                <li><span>이름</span>
+	                    <input type="text" id="join_name" name="name">
+	                </li>
+	                <li><span>Phone</span>
+	                    <input type="text" id="join_phone" name="phone">
+	                </li>
+	                <li><span>카톡아이디</span>
+	                    <input type="text" id="join_ktalk" name="ktalk">
+	                </li>
+	            </ul>
+	            <button type="submit" class="m_submit">회원가입</button>
+	        </form>
+	    </div>--->
+	    <div id="m_join">
+	        <div id="register_options">
+		        <form id="registerForm" name="register">
+		            <div class="one-third column">
+		                <img src="content/image/registerUser.png" alt="logo" id="logo" />
+		                <h2 class="welcome">Become a Member</h2>
+		                <p class="intro"> ShShop 에 오신것을 환영합니다. ShShop 에서 다양한 중고 아이템들을 만나보세요. 
+		                                  다양한 중고 상품과 실시간으로 크고 작은 이벤트, 해택 및 안전한 거래를 하실 수 있습니다.
+		                </p>
+		            </div>
+		            <div class="one-third column">
+		                <h2>Settings</h2>
+		                <br/>
+		                <div class="name">
+		                    <label for="name">Name:</label>
+		                    <input type="text" placeholder="Enter your name" name="name" id="name-reg">
+		                </div>
+		                <div class="email">
+		                    <label for="email" class="required">Email:</label>
+		                    <input type="email" placeholder="you@example.com" name="email" id="email-reg" required>
+		                </div>
+		                <div class="password">
+		                    <label for="password" class="required">Password: (min 8 characters)</label>
+		                    <input type="password" name="password" id="password-reg" required>
+		                </div>
+		                <div class="password">
+		                    <label for="conf-password" class="required">Confirm password:</label>
+		                    <input type="password" name="conf-password" id="conf-password-reg" required>
+		                </div>
+		                <div class="ktalk">
+		                    <label for="ktalk">Kakao Talk ID:</label>
+		                    <input type="text" placeholder="Enter your Ktalk ID" name="ktalk" id="ktalk-reg">
+		                </div>
+		                <div class="phone">
+		                    <label for="phone">Phone Number:</label>
+		                    <input type="number" placeholder="Enter your Phone Num" name="phone" id="phone-reg">
+		                </div>
+		            </div>
+		            <div class="one-third column">
+		                <h2>Profile</h2>
+		                <br/>
+		                <div class="birthday">
+		                    <label for="birthday">Birthday:</label>
+		                    <input type="date" name="birthday" id="birthday-reg" placeholder="yyyy-mm-dd">
+		                </div>
+		                <div class="bio">
+		                    <label for="bio">Short Bio (max 140 characters):</label>
+		                    <textarea name="bio" id="bio-reg" rows="5" cols="30"></textarea>
+		                </div>
+		                <div class="register">
+		                    <input type="submit" value="Register"><br/>
+		                    <input id="cancelReg" type="button" value="Back" /> 
+					</div>
+		                <div id="message-reg"></div>
+		            </div>
+		        </form>
+    		</div>
+	    </div>
+	        
+        <!--- 비밀번호찾기 --->
+        <div id="m_password">
+            <div class="closeBtn"><a href="#"><img src="content/image/login_close.png" alt="닫기"></a></div>
+            <div class="m_logo">비밀번호찾기</div>
+            <div class="pass m_info">
+                <span>E-mail</span>
+                <input type="text">
+            </div>
+            <button type="submit" class="m_submit">임시 비밀번호 발송</button>
+        </div>
+        
+
+    </body>
+</html>

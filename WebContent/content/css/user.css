@@ -1,0 +1,314 @@
+@charset "utf-8";
+
+/* ------------- MODAL STYLE -----------------*/
+.modal {
+    position: absolute; 
+    z-index: 1000; 
+    width:100%;
+    height:100%;
+    background-color:rgba(255, 0, 0, .5);
+}
+
+.modal-close {
+    cursor: pointer;
+}
+
+#window {
+    background: #858585;
+    text-align: center;
+}
+
+/* ------------- Login Form STYLE -----------------*/
+
+#login-options form {
+    max-width: 1000px;
+    margin: 0 auto 0 auto;
+}
+
+#login-options .one-third,
+#login-options .two-thirds {
+    background-color: #f8584a;
+    border: 12px solid #fff;
+    float: left;
+    padding: 10px;
+    margin: 10px;
+    color: #fff;
+    overflow: hidden;
+}
+
+#login-options .one-third {
+    width: 268px;
+}
+
+#login-options .two-thirds {
+    width: 530px;
+}
+
+#login-options .one-third fieldset {
+    border: none;
+    margin: 0.5em;
+}
+
+#login-options .two-thirds fieldset {
+    border: none;
+    margin: 2.5em;
+}
+
+#login-options .container .one-third,
+#login-options .container .two-thirds {
+    height: 35em;
+}
+
+#login-options .login .one-third,
+#login-options .login .two-thirds {
+    height: 20em;
+}
+
+#login-options legend {
+    font-size: 160%;
+    position: relative;
+    color: #fff;
+}
+
+#login-options .one-third legend {
+    top: -0.2em;
+    left: -0.6em;
+}
+
+#login-options .two-thirds legend {
+    top: -1em;
+    left: -1em;
+}
+
+#login-options label {
+    width: 100%;
+    display: block;
+}
+
+#login-options label[for="showPwd"] {
+    display: inline;
+}
+
+#login-options input {
+    border: none;
+    padding: 8px;
+    line-height: 1.2em;
+    margin-bottom: 1.4em;
+    font-size: 1.2em;
+}
+
+#login-options input[type="text"],
+#login-options input[type="email"],
+#login-options input[type="password"] {
+    width: 90%;
+}
+
+#login-options input[type="text"],
+#login-options input[type="email"],
+#login-options input[type="password"] {
+    box-shadow: inset 0 2px 2px #000;
+    border-radius: 5px;
+    outline: 0;
+}
+
+#login-options input[type="submit"],
+#login-options input[type="button"] {
+    background-color: #000;
+    border-radius: 5px;
+    color: #fff;
+    display: block;
+    float: right;
+    font-family: trocchi, georgia, times, serif;
+    font-size: 1.2em;
+    margin-right: 1.4em;
+}
+
+#login-options input[type="submit"]:hover,
+#login-options input[type="button"]:hover {
+    background-color: #666;
+    cursor: pointer;
+    text-shadow: 2px 2px 2px #000;
+    box-shadow: inset 0 2px 2px #000;
+}
+
+
+ /* ------------- Regiser User Form STYLE -----------------*/
+ 
+#register_options .one-third,
+#register_container .two-thirds {
+    background-color: #f8584a;
+    border: 12px solid #fff;
+    float: left;
+    padding: 10px;
+    margin: 10px;
+    color: #fff;
+    overflow: hidden;
+}
+
+#register_options form {
+    max-width: 1000px;
+    margin: 0 auto 0 auto;
+}
+
+#register_options .one-third {
+    width: 268px;
+}
+
+#register_options .two-thirds {
+    width: 530px;
+}
+
+#register_options .one-third fieldset {
+    border: none;
+    margin: 0.5em;
+}
+
+#register_options .two-thirds fieldset {
+    border: none;
+    margin: 2.5em;
+}
+
+#register_options .one-third,
+#register_options .two-thirds {
+    height: 40em;
+}
+
+#register_options #logo {
+    width: 220px;
+    height: 220px;
+    margin: 1em auto 2em auto;
+    display: block;
+}
+
+#register_options h2 {
+    font-weight: normal;
+    margin: 0;
+}
+
+#register_options p {
+    font-size: 0.8em;
+    line-height: 1.6em;
+    margin: 1em;
+}
+
+#register_options .welcome {
+    text-align: center;
+}
+
+#register_options p.intro {
+    margin: 2em;
+}
+/* FORM STYLES */
+
+#register_options legend {
+    font-size: 160%;
+    position: relative;
+    color: #fff;
+}
+
+#register_options .one-third legend {
+    top: -0.2em;
+    left: -0.6em;
+}
+
+#register_options .two-thirds legend {
+    top: -1em;
+    left: -1em;
+}
+
+#register_options label {
+    width: 100%;
+    display: block;
+}
+
+#register_options input {
+    border: none;
+    padding: 8px;
+    line-height: 1.2em;
+    margin-bottom: 1.4em;
+    font-size: 1.2em;
+}
+
+#register_options .register input[type="submit"] {
+    margin: 1em 0 0 0;
+}
+
+#register_options input[type="text"],
+#register_options input[type="email"],
+#register_options input[type="password"],
+#register_options input[type="date"],
+#register_options input[type="color"],
+#register_options input[type="number"] {
+    width: 90%;
+}
+
+#register_options input[type="text"],
+#register_options input[type="email"],
+#register_options input[type="number"],
+#register_options input[type="password"],
+#register_options input[type="date"],
+#register_options input[type="color"],
+#register_options #bio {
+    box-shadow: inset 0 2px 2px #000;
+    outline: 0;
+}
+
+#register_options input[type="submit"],
+#register_options input[type="button"] {
+    background-color: #000;
+    border-radius: 5px;
+    color: #fff;
+    display: block;
+    float: right;
+    font-size: 1.2em;
+    margin-right: 0.3em;
+}
+
+#register_options input[type="submit"]:hover,
+#register_options input[type="button"]:hover {
+    background-color: #666;
+    cursor: pointer;
+    text-shadow: 2px 2px 2px #000;
+    box-shadow: inset 0 2px 2px #000;
+}
+
+#register_options input[type="submit"] 
+#register_options input[type="button"] {
+    margin: 1em 0 0 0;
+}
+
+#register_options textarea {
+    width: 100%;
+    height: 5em;
+    clear: left;
+    border: none;
+}
+
+#register_options .req {
+    color: #000;
+    font-size: 0.6em;
+    position: relative;
+    top: -0.5em;
+}
+
+#register_options .hide {
+    display: none;
+}
+
+#register_options .fail,
+#register_options .pass {
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+#register_options span.error {
+  padding-top: 1px;
+  margin-top: -1.4em;
+  margin-bottom: 1.4em;
+  display: block;
+  padding-left: 20px;
+  color: #242424;
+  background-image: url("../image/icon-warning.png");
+  background-position: left 3px;
+  background-repeat: no-repeat;
+  }
