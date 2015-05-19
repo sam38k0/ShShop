@@ -64,7 +64,7 @@
 
                 <!-- 로그인 전 서브 메뉴 시작 -->
                 <ul class="gnb_before_login">
-                    <li><a href="action/viewMain">홈</a></li>
+                    <li><a href="viewMain">홈</a></li>
                     <li>|</li>
                     <li><div id="loginDiv"><a><img src="../content/image/login.png" title="로그인" width="30" height="30" alt="Share icon" /> </a></div></li>
                     <li>|</li>
@@ -73,9 +73,9 @@
                 </ul>
                 
 				<ul class="gnb_after_login">
-                    <li><a href="action/viewMain">홈</a></li>
+                    <li><a href="viewMain">홈</a></li>
                     <li>|</li>
-                    <li><div id="share_logout"><a href="action/viewMain"><img src="../content/image/logout.png" title="로그아웃" width="30" height="30" alt="Share icon" /> </a></div></li>
+                    <li><div id="share_logout"><a href="viewMain"><img src="../content/image/logout.png" title="로그아웃" width="30" height="30" alt="Share icon" /> </a></div></li>
                     <li>|</li>
                     <li><a href="#">마이페이지</a></li>
                     <li>|</li>
