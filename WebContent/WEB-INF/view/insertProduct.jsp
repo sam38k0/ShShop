@@ -40,9 +40,8 @@
         <center>
             <hr width=1000>
             <h3>상품 등록</h3>
-            <hr width=1000>
-
-            <form id="insertProductForm" name="insertProductForm" enctype="multipart/form-data" action="action/insertProduct">
+            <hr width=1000> 
+            <form id="insertProductForm" name="insertProductForm"  method="post" enctype="multipart/form-data" action="insertProduct">
                 <table class="flat-table">
                     <tr>
                         <td><b>카테고리선택</b>
@@ -111,7 +110,6 @@
                         </td>
                         <td align=left>
                             <div class="alert alert-info">
-
                                 <input type="file" name="file" style="visibility:hidden;" id="fileId1" />
                                 <label>최대 5개까지 등록하실 수 있습니다.</label>
                                 <div class="input-append">
@@ -185,8 +183,8 @@
                     </tr>
                     <tr>
                         <td colspan=2 align="center">
-                            <input type=submit value="Back">
-                            <input type="button" value="Register">
+                            <input type=button value="Back">
+                            <input type="submit" value="Register">
                         </td>
                     </tr>
                 </table>

@@ -5,6 +5,7 @@ public class Constant {
 	public static final String login = "/login";
 	public static final String logout = "/logout";
 	public static final String join = "/join";
+	public static final String insertProductView = "/insertProductView";
 	public static final String insertProduct = "/insertProduct";
 	public static final String search = "/search";
 	public static final String viewMain = "/viewMain";
@@ -16,6 +17,10 @@ public class Constant {
 	public static final String attrUser = "user";
 	public static final String attrEmail = "email";
 	public static final String attrPassword = "password";
+	
+	//DD Parameter
+	public static final String paramFileUpload = "file-upload";
+	public static final String paramFileUploadRepository = "file-upload-repository";
 	
 	//ContentType
 	public static final String textHtml = "text/html;charset=UTF-8";

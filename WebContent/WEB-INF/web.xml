@@ -41,6 +41,14 @@
     <param-name>file-upload</param-name> 
     <param-value>
          D:\projectManagement\WebProjects\ShShop\WebContent\data\
+    </param-value> 
+	</context-param>
+	
+	<context-param> 
+    <description>File upload factory repository location to store uploaded file temporary</description> 
+    <param-name>file-upload-repository</param-name> 
+    <param-value>
+         C:\Temp\
      </param-value> 
 	</context-param>
 

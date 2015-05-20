@@ -57,10 +57,10 @@
                 <!-- 검색바 종료 -->
                 <!-- 상품등록버튼 시작 -->
                 <div id="link">
-                    <form id="insertProductForm" name="insertProductForm" method="post" action="insertProduct">
+                    <form id="insertProductForm" name="insertProductForm" method="post" action="insertProductView">
 						<input type="submit" value="판매등록"> 
 					</form>
-					<form id="insertHopeProductForm" name="insertHopeProductForm" method="post" action="insertHopeProduct">
+					<form id="insertHopeProductForm" name="insertHopeProductForm" method="post" action="insertHopeProductView">
 						<input type="submit" value="구매등록">
 					</form>
                 </div>

@@ -104,4 +104,13 @@ public class UserMapperTest {
 		int countAfter = userMapper.getUserCount();
 		assertEquals("testAddUser", countBefore + 1, countAfter);
 	}
+	
+//	@Test
+//	public void testAddUser() {
+//		int countBefore = userMapper.getUserCount();
+//		userMapper.insertUserByEmail(new User("aaaa", "1234"));
+//		userMapper.insertUserByEmail(new User("bbbb", "11111"));
+//		int countAfter = userMapper.getUserCount();
+//		assertEquals("testAddUser", countBefore + 2, countAfter);
+//	}
 }

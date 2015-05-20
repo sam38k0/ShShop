@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.shshop.mapper.ProductImageMapper'>
+ 	
+ 	<select id='getProductImageCount' resultType='int'>
+		SELECT COUNT(`id_image`) as count FROM `ps_image`;
+	</select>
+	
+	<select id='getImageById' resultMap='ProductImage'>							
+		SELECT * FROM `ps_image` WHERE `id_image`=${id_image};			
+	</select>
+	
+ 	<select id='getProductImages' resultMap='ProductImage'>
+		SELECT * FROM `ps_image` WHERE `id_product`= ${id_product};
+	</select>
+	
+	<insert id='insertImage' parameterType='${ProductImageType}' useGeneratedKeys='true' keyProperty='${id_image}'>
+		INSERT INTO `ps_image` (`id_product`,`path`)
+		VALUES (${id_product}, ${path});
+	</insert>
+	
+	<update id='updateImage' parameterType='${ProductImageType}'>
+		UPDATE `ps_image`
+		<set>
+			<if test="${id_product} != null"> `id_product`=${id_product}, </if>
+			<if test="${path} != null"> `path`=${path}, </if>
+		</set>
+		WHERE `id_image`=${id_image}
+	</update>
+	
+	<delete id='deleteImage'>
+		DELETE FROM `ps_image` WHERE `id_image`=${id_image}
+	</delete>
+	
+	<resultMap id='ProductImage' type='${ProductImageType}' >
+		<id property='imageId' column='id_image' />
+		<result property='productId' column='id_product'/>
+		<result property='imagePath' column='path'/>
+	</resultMap>
+ 
+</mapper>
