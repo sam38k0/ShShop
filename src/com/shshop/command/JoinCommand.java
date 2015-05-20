@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.shshop.control.CommandResult;
 import com.shshop.domain.User;
 import com.shshop.service.AuthenticatorService;
-import com.shshop.util.SqlDataUtil;
+import com.shshop.util.Format;
 
 public class JoinCommand implements Command {
 
@@ -20,7 +20,7 @@ public class JoinCommand implements Command {
 		String ktalk = request.getParameter("ktalk");
 		String birthday = request.getParameter("birthday");
 		String bio = request.getParameter("bio"); 
-		java.sql.Date birthdaySqlDate = SqlDataUtil.getSqlDate(birthday);
+		java.sql.Date birthdaySqlDate = Format.getSqlDate(birthday);
  
 		return new AuthenticatorService(request,response)
 					.registerUser(new User(email, password, name, phone, ktalk, bio, birthdaySqlDate));

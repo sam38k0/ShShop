@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.shshop.constant.Constant;
+
 @WebServlet("/ajax/checklogin")
 public class CheckLoginState extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -17,7 +19,7 @@ public class CheckLoginState extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		HttpSession session = request.getSession(false);
-		if( session != null && session.getAttribute( "user") != null)
+		if( session != null && session.getAttribute( Constant.attrUser) != null)
 			response.getWriter().write("onLogin");
 	}
 

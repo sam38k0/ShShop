@@ -13,8 +13,8 @@ import org.junit.Test;
 import com.shshop.domain.Product;
 import com.shshop.domain.User;
 import com.shshop.mapper.UserMapper;
+import com.shshop.util.Format;
 import com.shshop.util.MyBatisUtil;
-import com.shshop.util.SqlDataUtil;
 
 public class UserMapperTest {
 
@@ -97,7 +97,7 @@ public class UserMapperTest {
 		String ktalk = "ktalk";
 		String birthday = "20011019";
 		String bio = "biobio";
-		java.sql.Date birthdaySqlDate = SqlDataUtil.getSqlDate(birthday);
+		java.sql.Date birthdaySqlDate = Format.getSqlDate(birthday);
 		
 		int countBefore = userMapper.getUserCount();
 		userMapper.insertUserByEmail(new User(email, password, name, phone, ktalk, bio, birthdaySqlDate)); 

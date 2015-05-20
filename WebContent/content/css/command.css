@@ -41,7 +41,7 @@ body{width: 100%; margin: 0;padding: 0;background-color: aquamarine}
 
 /* 헤더 > 상품등록 버튼 */
 #link{float: left;margin-top: 100px;margin-left: 30px}
-#link input[type="button"]{width: 100px; height: 32px}
+#link input[type="submit"]{width: 100px; height: 32px}
 
 /* 헤더 > gnb 영역 */
 .gnb_before_login{position: absolute;top: 15px; right: 15px;margin: 0}

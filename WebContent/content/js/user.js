@@ -13,7 +13,7 @@ $(document).ready(function()
 		    
 		    $.ajax({
 		        type: "POST",
-		        url: "action/login",
+		        url: "login",
 		        data: form_data,
 		        success: function (text) {
 		        	response = text;
@@ -22,11 +22,15 @@ $(document).ready(function()
 		            	$("#pwd").val(''); 
 		            	$("#message").val('');
 		                $(".gnb_before_login").hide()
-		                $(".gnb_after_login").show().fadeIn("slow");
+		                $(".gnb_after_login").show();
+		                $("#link").show();
 		                modal.close();
 		            } else {
 		            	$("#email").val('');
 		            	$("#pwd").val(''); 
+		                $(".gnb_before_login").show()
+		                $(".gnb_after_login").hide();
+		                $("#link").hide();
 		                $("#message").html("<p style='color:white'> 아이디 또는 비밀번호가 잘못되었습니다.</p>");
 		            }
 		        },
@@ -46,7 +50,7 @@ $(document).ready(function()
 		$("#share_logout").on('click', function() { 
 		    $.ajax({
 		        type: "POST",
-		        url: "action/logout",
+		        url: "logout",
 		        success: function (text) {
 		        	response = text;
 		            if (response == 'Success') { 
@@ -122,7 +126,7 @@ $(document).ready(function()
 			    
 		    $.ajax({
 		           type: "POST",
-		           url: "action/join",
+		           url: "join",
 		           data: form_data,
 			       success: function (text) {
 			        	response = text;

@@ -1,9 +1,6 @@
 package com.shshop.service;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.shshop.constant.Constant;
 import com.shshop.control.CommandResult;
 import com.shshop.domain.Product;
 import com.shshop.domain.User;
@@ -32,42 +30,51 @@ public class AuthenticatorService {
 
 	public CommandResult doLoginProcess() throws IOException {
 
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
+		CommandResult result = null;
 
-		boolean hasValidEmail = false;
-		boolean hasPassword = false;
+		try {
+			String email = request.getParameter(Constant.attrEmail);
+			String password = request.getParameter(Constant.attrPassword);
 
-		if (email != null && email.trim().length() > 0
-				&& RegExpressionUtil.isValidEmail(email)) {
-			hasValidEmail = true;
+			boolean hasValidEmail = false;
+			boolean hasPassword = false;
+
+			if (email != null && email.trim().length() > 0
+					&& RegExpressionUtil.isValidEmail(email)) {
+				hasValidEmail = true;
+			}
+
+			if (password != null && password.trim().length() > 0) {
+				hasPassword = true;
+			}
+
+			if (!hasValidEmail) {
+				return new CommandResult(Constant.textHtml, Constant.wrongEmail);
+			}
+
+			if (!hasPassword) {
+				return new CommandResult(Constant.textHtml, Constant.noPassword);
+			}
+
+			User user = getExistsUser(email, password);
+
+			if (user == null) {
+				return new CommandResult(Constant.textHtml, Constant.noUser);
+			}
+
+			HttpSession session = request.getSession();
+
+			synchronized (session) {
+				session.setAttribute(Constant.attrUser, user);
+			}
+
+			return new CommandResult(Constant.textHtml, Constant.Success);
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
-		if (password != null && password.trim().length() > 0) {
-			hasPassword = true;
-		}
-
-		if (!hasValidEmail) {
-			return new CommandResult("text/html","이메일 입력 형식 정보가 잘못 되었습니다.");
-		}
-
-		if (!hasPassword) {
-			return new CommandResult("text/html","패스워드를 입력하시지 않았습니다.");
-		}
-
-		User user = getExistsUser(email, password);
-
-		if (user == null) {
-			return new CommandResult("text/html","사용자 정보를 찾을 수 없습니다.");
-		}
-
-		HttpSession session = request.getSession();
- 
-		synchronized (session) {
-			session.setAttribute("user", user);
-		}
-		
-		return new CommandResult("text/html","Success");
+		return result;
 	}
 
 	public boolean canLogin(String email, String password) {
@@ -81,6 +88,9 @@ public class AuthenticatorService {
 				loginResult = true;
 			}
 
+		} catch (Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
 		} finally {
 			sqlSession.close();
 		}
@@ -97,6 +107,9 @@ public class AuthenticatorService {
 			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 			user = userMapper.getUserByEmail(email, password);
 
+		} catch (Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
 		} finally {
 			sqlSession.close();
 		}
@@ -119,20 +132,25 @@ public class AuthenticatorService {
 
 	public CommandResult registerUser(User user) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+
+		int countBefore = 0, countAfter = 0;
 		
-		int countBefore,countAfter;
 		try {
 			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 			countBefore = userMapper.getUserCount();
 			userMapper.insertUser(user);
 			countAfter = userMapper.getUserCount();
 			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
 		} finally {
 			sqlSession.close();
 		}
-		if(countAfter == countBefore + 1)
-			return new CommandResult("text/plain;charset=UTF-8", "Success");
+		
+		if (countAfter == countBefore + 1)
+			return new CommandResult(Constant.textPlain, Constant.Success);
 		else
-			return new CommandResult("text/plain;charset=UTF-8", "Failed");
+			return new CommandResult(Constant.textPlain, Constant.Failed);
 	}
 }

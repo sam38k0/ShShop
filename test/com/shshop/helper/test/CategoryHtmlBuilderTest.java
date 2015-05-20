@@ -2,11 +2,15 @@ package com.shshop.helper.test;
 
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.shshop.helper.CategoryHtmlBuilder;
+import com.shshop.util.Format;
 
 public class CategoryHtmlBuilderTest {
 

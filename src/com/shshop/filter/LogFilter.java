@@ -23,10 +23,9 @@ public class LogFilter implements Filter
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) 
 			throws java.io.IOException, ServletException 
 	{
-		String ipAddress = request.getRemoteAddr();
-		System.out.println("IP " + ipAddress + ", Time " + new Date().toString());
-
-		// Request 를 다른 필터로 던진다.
+		//String ipAddress = request.getRemoteAddr();
+		//System.out.println("IP " + ipAddress + ", Time " + new Date().toString());
+ 
 		chain.doFilter(request, response);
 	}
 
