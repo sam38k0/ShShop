@@ -15,8 +15,7 @@ public class AdminBean implements Serializable {
 	private String headerPage;
 	private String footerPage;
 	private String contentPage;
-	private String pageTitle;
-	private String contextPath = Constant.contextPath;
+	private String contextPath;
 
 	public AdminBean() {
 	
@@ -65,14 +64,6 @@ public class AdminBean implements Serializable {
 
 	public void setFooterPage(String footerPage) {
 		this.footerPage = footerPage;
-	}
-
-	public String getPageTitle() {
-		return pageTitle;
-	}
-
-	public void setPageTitle(String pageTitle) {
-		this.pageTitle = pageTitle;
 	}
 
 	public String getContextPath() {

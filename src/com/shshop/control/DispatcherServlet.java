@@ -8,8 +8,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.shshop.command.Command;
+import com.shshop.constant.Constant;
+import com.shshop.system.AdminBean;
 
 public class DispatcherServlet extends HttpServlet {
 	private static final long serialVersionUID = 2335728773164645554L;
@@ -24,6 +27,8 @@ public class DispatcherServlet extends HttpServlet {
 	public void processRequest(HttpServletRequest request, HttpServletResponse response )
 			throws ServletException, IOException {
 		 
+		setAdminBean(request);
+		
 		CommandResult result = null;
 		Command command =  getCommand(request);
 		if(command != null)
@@ -67,5 +72,15 @@ public class DispatcherServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		processRequest(request, response);
+	}
+	
+	private void setAdminBean(HttpServletRequest request) {
+		AdminBean adminBean = new AdminBean(request); 
+		
+		HttpSession session = request.getSession();
+		
+		synchronized (session) {
+			session.setAttribute(Constant.attrAdmin, adminBean);
+		}
 	}
 }

@@ -13,15 +13,7 @@ public class viewMainCommand implements Command {
 	@Override
 	public CommandResult execute(HttpServletRequest request,
 			HttpServletResponse response) {
-		
-		AdminBean adminBean = new AdminBean(request); 
-		
-		HttpSession session = request.getSession();
-		
-		synchronized (session) {
-			session.setAttribute(Constant.attrAdmin, adminBean);
-		}
-		
+
 		return new CommandResult("/WEB-INF/view/main.jsp");
 	}
 }
