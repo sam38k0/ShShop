@@ -1,3 +1,4 @@
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/view/error.jsp=UTF-8
+encoding//WebContent/WEB-INF/view/mainBody.jsp=UTF-8
 encoding//src/com/shshop/command/JoinCommand.java=UTF-8

@@ -22,8 +22,8 @@
 	<mappers>
 		<mapper resource='com/shshop/mapper/UserMapper.xml'/>
 		<mapper resource='com/shshop/mapper/CategoryMapper.xml' />
-		<mapper resource='com/shshop/mapper/ProductMapper.xml' />	
-		<mapper resource='com/shshop/mapper/ProductOptionMapper.xml' />	
+		<mapper resource='com/shshop/mapper/ProductMapper.xml' />
+		<mapper resource='com/shshop/mapper/ProductOptionMapper.xml' />
 		<mapper resource='com/shshop/mapper/ProductImageMapper.xml' />	
 	</mappers>
 	

@@ -23,7 +23,7 @@ public class CategoryControlService {
 
 		try {
 			CategoryMapper categoryMapper = getCategoryMapper();
-			CategoryHtmlBuilder categoryHtmlBuilderRoot = new CategoryHtmlBuilder("전체");
+			CategoryHtmlBuilder categoryHtmlBuilderRoot = new CategoryHtmlBuilder("allcategory");
 			
 			List<Category> rootCategories = categoryMapper.getRootCategories();
 			Iterator<Category> iter = rootCategories.iterator();

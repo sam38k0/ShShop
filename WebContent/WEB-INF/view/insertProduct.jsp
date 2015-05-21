@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page session= "true" import ="java.util.*, com.shshop.command.*" %>
+<%@page session= "true" import ="java.util.*, com.shshop.command.*, com.shshop.service.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -8,6 +8,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
 	<title>insertProduct</title>
+	<link rel="stylesheet" href="../content/css/command.css" type="text/css" />
 	<link rel="stylesheet" href="../content/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="../content/css/product.css" type="text/css" />
     <script src="../content/js/jquery_1.9.js"></script>
@@ -47,30 +48,17 @@
                         <td><b>카테고리선택</b>
                         </td>
                         <td align=left>
+                        	
                             <div id="category">
-                                <span>s</span>
+                            	<span>Category</span>
                                 <ul class="allcategory">
-                                    <li><a href="#" class="choice">의류</a>
-                                        <ul class="allcategory">
-                                            <li><a href="#">상의</a>
-                                            </li>
-                                            <li><a href="#">하의</a>
-                                            </li>
-                                            <li><a href="#">외투</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">장난감</a>
-                                    </li>
-                                    <li><a href="#">가전</a>
-                                    </li>
-                                    <li><a href="#">아동용품</a>
-                                    </li>
-                                    <li><a href="#">기타</a>
-                                    </li>
+                               	 <%
+                            		CategoryControlService categoryControlService = new CategoryControlService();
+                            		out.print(categoryControlService.buildHtml());
+                            	 %>
                                 </ul>
-                                <input type="text" name="miniCategory" size=50 value="여성의류 > 부츠/레인부츠 > 가죽롱부츠 > 로우힐">
                             </div>
+                             <input type="text" name="miniCategory" size=50 value="여성의류 > 부츠/레인부츠 > 가죽롱부츠 > 로우힐">
                         </td>
                     </tr>
                     <tr>
@@ -147,7 +135,7 @@
                             </div>
                         </td>
                     </tr>
-
+					<%--
                     <tr>
                         <td><b>옵션 선택</b>
                         </td>
@@ -159,6 +147,7 @@
                             </select>
                         </td>
                     </tr>
+                     --%>
                     <tr>
                         <td><b>상품 설명</b>
                         </td>

@@ -17,6 +17,7 @@ public class Constant {
 	public static final String attrUser = "user";
 	public static final String attrEmail = "email";
 	public static final String attrPassword = "password";
+	public static final String attrAdmin = "adminBean";
 	
 	//DD Parameter
 	public static final String paramFileUpload = "file-upload";
@@ -35,4 +36,7 @@ public class Constant {
 	public static final String Success = "Success";
 	public static final String Failed = "Failed"; 
 	public static final String onLogin = "onLogin";
+	
+	//Path
+	public static final String contextPath = "/ShShop/WebContent";
 }
