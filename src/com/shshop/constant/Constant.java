@@ -31,12 +31,10 @@ public class Constant {
 	public static final String wrongEmail = "이메일 입력 형식 정보가 잘못 되었습니다.";
 	public static final String noPassword = "패스워드를 입력하시지 않았습니다.";
 	public static final String noUser = "사용자 정보를 찾을 수 없습니다.";
+	public static final String productInsertionError = "상품 등록시 에러가 발생하였습니다.";
 	
 	//Ajax
 	public static final String Success = "Success";
 	public static final String Failed = "Failed"; 
 	public static final String onLogin = "onLogin";
-	
-	//Path
-	public static final String contextPath = "/ShShop/WebContent";
 }

@@ -11,6 +11,10 @@
 	<select id='getCategoryById' resultMap='Category'>							
 		SELECT * FROM `ps_category` WHERE `id_category` = ${id_category};				
 	</select>
+	
+	<select id='getCategoryByName' resultMap='Category'>							
+		SELECT * FROM `ps_category` WHERE `name` = ${name};				
+	</select>
 
 	<select id='getChildrenCategories' parameterType='${CategoryType}' resultMap='Category'>							
 		SELECT * FROM `ps_category` WHERE `id_category_parent`= ${id_category};				

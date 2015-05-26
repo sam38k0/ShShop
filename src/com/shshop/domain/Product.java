@@ -38,6 +38,23 @@ public class Product implements Serializable {
 		this.description = description;
 		this.searchingCount = searchingCount;
 	}
+	
+    @Override
+    public boolean equals(Object object)
+    {
+        boolean sameSame = false;
+
+        if (object != null && object instanceof Product)
+        {
+        	Product product = (Product) object;
+        	
+            sameSame = (this.getName().equalsIgnoreCase(product.getName()) &&
+            			this.getUserId().equals(product.getUserId()) &&
+            			this.getPrice() == product.getPrice());
+        }
+
+        return sameSame;
+    }
 
 	public String getName() {
 		return name;

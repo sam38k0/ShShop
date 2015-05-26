@@ -12,6 +12,8 @@ public interface CategoryMapper {
 	
 	public Category getCategoryById(@Param("categoryId") int categoryId);
 	
+	public Category getCategoryByName(@Param("name") String name);
+	
 	public List<Category> getChildrenCategories(Category category);
 	
 	public List<Category> getRootCategories();

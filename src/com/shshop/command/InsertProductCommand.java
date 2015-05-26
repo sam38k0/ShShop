@@ -2,6 +2,7 @@ package com.shshop.command;
 
 import java.io.IOException;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,15 +13,17 @@ public class InsertProductCommand implements Command {
 
 	@Override
 	public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
-		ProductService service = new ProductService(request,response);
+		ProductService productService = new ProductService(request,response);
 		
 		try {
-			service.insertProduct();
+			return productService.insertProduct();
+			
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ServletException e) {
 			e.printStackTrace();
 		}
 		
 		return null;
 	}
-
 }

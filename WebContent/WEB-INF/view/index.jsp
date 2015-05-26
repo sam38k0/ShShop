@@ -7,15 +7,22 @@
     <head>
     	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
         <title><c:out value='${pageTitle}'/></title>
-        <link href="../content/css/command.css" rel="stylesheet">
-		<link href="../content/css/user.css" rel="stylesheet">
+		
+		<!-- Each Style -->
+		<c:if test="${pageTitle eq 'Insert Product'}">
+     		<link href="${adminBean.contextPath}/content/css/bootstrap.min.css" rel="stylesheet" >
+     		<link href="${adminBean.contextPath}/content/css/bootstrap-tagsinput.css" rel="stylesheet" >
+	  		<link href="${adminBean.contextPath}/content/css/jquery.fileupload.css" rel="stylesheet" >
+	  		<link href="${adminBean.contextPath}/content/css/product.css" rel="stylesheet" type="text/css">
+	 	</c:if>
+	 	
+		<!-- Basic Style -->
+		<link href="${adminBean.contextPath}/content/css/command.css" rel="stylesheet" type="text/css">
+		<link href="${adminBean.contextPath}/content/css/user.css" rel="stylesheet" type="text/css">
 		<style> input.error{border:1px dashed red;} </style> 
-        
-		<script src="../content/js/jquery-1.9.1.js"></script>
-		<script src="../content/js/checklogin.js"></script>
-		<script src="../content/js/modal.js"></script>
-		<script src="../content/js/user.js"></script>
+
     </head>
+    
     <body>
         <div class="wrap">
             <div class="header_area">
@@ -28,5 +35,21 @@
                 <jsp:include page= '<%= adminBean.getFooterPage() %>'/>
             </div>
         </div>
+        
+        <!-- Basic JS -->        
+		<script src="${adminBean.contextPath}/content/js/jquery-1.9.1.js"></script>
+		<script src="${adminBean.contextPath}/content/js/initialize.js"></script>
+		<script src="${adminBean.contextPath}/content/js/user.js"></script>
+		
+        <!-- Each JS -->     
+		<c:if test="${pageTitle eq 'Insert Product'}">
+	  		<jsp:include page="insertProductJs.jsp" />
+	 	</c:if>
     </body>
+    
 </html>
+
+ 
+
+    
+    

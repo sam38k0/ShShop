@@ -1,5 +1,8 @@
 $(document).ready(function()
 {
+	$("#m_join").hide();
+	$("#m_login").hide();
+	
 	$.ajax({ 
 		type: "POST",
 		url: "checklogin", 

@@ -32,7 +32,9 @@
 				<option>장난감</option>
 				<option>가전</option>
 				<option>악세서리</option>
-			</select> <input type="text"> <input type="submit" value="검색">
+			</select> 
+			<input type="text"> 
+			<input type="submit" value="검색">
 		</div>
 		<!-- 검색바 종료 -->
 		<!-- 상품등록버튼 시작 -->
