@@ -7,17 +7,16 @@ import javax.servlet.http.HttpSession;
 import com.shshop.constant.Constant;
 import com.shshop.control.CommandResult;
 
-public class InsertProductViewCommand implements Command {
+public class ShowDetailViewCommand implements Command {
 
 	@Override
-	public CommandResult execute(HttpServletRequest request,
-			HttpServletResponse response) {
+	public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession(false);
 
 		if (session == null && session.getAttribute(Constant.attrUser) == null)
 			return null;
 
-		CommandResult commandResult = new CommandResult("/WEB-INF/view/product/insertProduct.jsp");
+		CommandResult commandResult = new CommandResult("/WEB-INF/view/detailView/detailView.jsp");
 
 		return commandResult;
 	}

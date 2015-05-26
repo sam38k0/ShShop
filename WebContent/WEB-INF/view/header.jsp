@@ -45,6 +45,9 @@
 			<form id="insertHopeProductForm" name="insertHopeProductForm" method="post" action="insertHopeProductView">
 				<input type="submit" value="구매등록">
 			</form>
+			<form id="showDetailViewForm" name="showDetailViewForm" method="post" action="showDetailView">
+				<input type="submit" value="디테일뷰 테스트">
+			</form>
 		</div>
 		<!-- 상품등록버튼 종료 -->
 
@@ -103,6 +106,7 @@
 	<!-- share-options -->
 </div>
 
+<!--- 회원가입 --->
 <div id="m_join">
 	<div id="register_options">
 		<form id="registerForm" name="register">
@@ -160,7 +164,7 @@
 	</div>
 </div>
 
-<!--- 비밀번호찾기 --->
+<!--- 비밀번호찾기 
 <div id="m_password">
 	<div class="closeBtn">
 		<a href="#"><img src="${adminBean.contextPath}/content/image/login_close.png" alt="닫기"></a>
@@ -171,3 +175,4 @@
 	</div>
 	<button type="submit" class="m_submit">임시 비밀번호 발송</button>
 </div>
+--->

@@ -7,7 +7,8 @@ import com.shshop.command.InsertProductViewCommand;
 import com.shshop.command.JoinCommand;
 import com.shshop.command.LoginCommand;
 import com.shshop.command.LogoutCommand;
-import com.shshop.command.viewMainCommand;
+import com.shshop.command.ShowDetailViewCommand;
+import com.shshop.command.MainViewCommand;
 import com.shshop.constant.Constant;
 
 public class CommandFactory {
@@ -32,7 +33,10 @@ public class CommandFactory {
 			return new InsertProductCommand();
 			
 		case Constant.viewMain:
-			return new viewMainCommand();
+			return new MainViewCommand();
+			
+		case Constant.showDetailView:
+			return new ShowDetailViewCommand();
 			
 		case Constant.insertHopeProductView:
 			return null;

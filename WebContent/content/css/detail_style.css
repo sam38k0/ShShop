@@ -1,0 +1,90 @@
+@import "detail_reset.css";
+@charset "utf-8";
+ 
+
+/* --------------------------------------------------------------------------------  
+기본 스타일
+    1. 자식 요소가 부모 요소를 overflow 시에 레이아웃이 흐트러지지 않도록 scroll 을 보이도록 함
+    2. body 요소의 글꼴을 웹 폰트로 함
+    3. 배경 이미지 및 위치 설정
+    4. 바디와 링크 요소의 글자색을 흰색으로 설정
+-------------------------------------------------------------------------------- */
+
+html {
+    overflow-y: scroll; 
+}
+
+body {
+    font-family: 'NanumGothicWeb';
+    background: #77807f center top;
+    color: #fff; /*글자색은 흰색*/
+}
+
+a:link,
+a:visited {
+    color: #fff; 
+}
+
+
+/* -------------------------------------------------------------------------------- 
+디자인 전체 영역 ( #page-wrap ) 스타일링
+	1. page-wrap 의 가로 폭은 740 으로 설정
+    2. top, bottom 은 100 px, left, right 는 auto 로 마진 값을 설정하여 가운데 정렬
+-------------------------------------------------------------------------------- */
+
+#page-wrap {
+    width: 1000px;
+    height: 300px;
+    margin: 10px auto;
+}
+
+
+/* ///////////////////////////////////////// 
+	=.no-js
+///////////////////////////////////////// */
+
+.no-js #tab_design {
+    overflow: hidden;
+    padding: 2em;
+    background: #fff;
+    color: #333;
+}
+
+.no-js #tab_design li {
+    float: left;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+.no-js #tab_design a {
+    color: #333;
+}
+
+.no-js #tab_design img {
+    vertical-align: bottom;
+}
+/* ///////////////////////////////////////// 
+	=.Global Classes
+///////////////////////////////////////// */
+
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.ie6 .clearfix {
+    height: 1px;
+}
+
+.ie7 .clearfix {
+    min-height: 1px;
+}
+
+.blind {
+    visibility: hidden;
+    position: absolute;
+    top: -10000px;
+    height: 1px;
+    width: 1px;
+}

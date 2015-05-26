@@ -10,11 +10,12 @@
 		
 		<!-- Each Style -->
 		<c:if test="${pageTitle eq 'Insert Product'}">
-     		<link href="${adminBean.contextPath}/content/css/bootstrap.min.css" rel="stylesheet" >
-     		<link href="${adminBean.contextPath}/content/css/bootstrap-tagsinput.css" rel="stylesheet" >
-	  		<link href="${adminBean.contextPath}/content/css/jquery.fileupload.css" rel="stylesheet" >
-	  		<link href="${adminBean.contextPath}/content/css/product.css" rel="stylesheet" type="text/css">
-	 	</c:if>
+			<jsp:include page="product/insertProductStyle.jsp" />
+		</c:if>
+     	<c:if test="${pageTitle eq 'Detail View'}">
+     		<jsp:include page="detailView/detailViewStyle.jsp" />
+     	</c:if>
+	 	
 	 	
 		<!-- Basic Style -->
 		<link href="${adminBean.contextPath}/content/css/command.css" rel="stylesheet" type="text/css">
@@ -43,7 +44,10 @@
 		
         <!-- Each JS -->     
 		<c:if test="${pageTitle eq 'Insert Product'}">
-	  		<jsp:include page="insertProductJs.jsp" />
+	  		<jsp:include page="product/insertProductScript.jsp" />
+	 	</c:if>
+	 	<c:if test="${pageTitle eq 'Detail View'}">
+	  		<jsp:include page="detailView/detailViewScript.jsp" />
 	 	</c:if>
     </body>
     

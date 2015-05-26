@@ -8,12 +8,12 @@ import com.shshop.constant.Constant;
 import com.shshop.control.CommandResult;
 import com.shshop.system.AdminBean;
 
-public class viewMainCommand implements Command {
+public class MainViewCommand implements Command {
 
 	@Override
 	public CommandResult execute(HttpServletRequest request,
 			HttpServletResponse response) {
 
-		return new CommandResult("/WEB-INF/view/main.jsp");
+		return new CommandResult("/WEB-INF/view/mainView/main.jsp");
 	}
 }

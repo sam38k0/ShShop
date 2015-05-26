@@ -12,6 +12,7 @@ public class Constant {
 	public static final String insertHopeProductView = "/insertHopeProduct";
 	public static final String headerView = "/headerView";
 	public static final String checklogin = "/checklogin";
+	public static final String showDetailView = "/showDetailView";
 
 	//Attribute
 	public static final String attrUser = "user";
