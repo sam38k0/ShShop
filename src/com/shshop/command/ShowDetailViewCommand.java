@@ -6,15 +6,24 @@ import javax.servlet.http.HttpSession;
 
 import com.shshop.constant.Constant;
 import com.shshop.control.CommandResult;
+import com.shshop.domain.ProductDetail;
+import com.shshop.service.ProductService;
 
 public class ShowDetailViewCommand implements Command {
 
 	@Override
 	public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession(false);
 
-		if (session == null && session.getAttribute(Constant.attrUser) == null)
+		ProductService service = new ProductService(request, response);
+		ProductDetail productDetail = service.getProductInformation(1);
+		if (productDetail == null)
 			return null;
+
+		HttpSession session = request.getSession();
+
+		synchronized (session) {
+			session.setAttribute(Constant.attrProductDetail, productDetail);
+		}
 
 		CommandResult commandResult = new CommandResult("/WEB-INF/view/detailView/detailView.jsp");
 

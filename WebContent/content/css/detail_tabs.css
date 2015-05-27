@@ -1,7 +1,6 @@
 .tabs .tab_menu li {
     position: relative;
     float: left;
-    margin-right: 2px;
 }
 
 .tabs .tab_menu li a {
@@ -49,36 +48,25 @@
     opacity: 1;
     left: 6px;
 }
-/* ///////////////////////////////////////// 
-	=.tab_contents
-///////////////////////////////////////// */
+
+/* tab_contents  */
 
 .tabs .tab_contents {
     position: relative;
-    min-height: 215px;
-    padding: 2em;
+    min-height: 250px;
     color: #607291;
     background: #f9f9f9;
-    -webkit-box-shadow: 2px 2px 2px #5c5c5c;
-    -moz-box-shadow: 2px 2px 2px #5c5c5c;
-    box-shadow: 2px 2px 2px #5c5c5c;
 }
 
 
-.tabs .tab_contents li {
-    min-height: 215px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ededed;
+.tabs .tab_contents li { 
     background: #f9f9f9;
 }
 
 .js .tabs .tab_contents li {
     position: absolute;
     top: 35px;
-    left: 15px;
-    width: 95%;
-    margin-bottom: 0;
-    border-bottom: 0;
+    left: 15px;  
 }
 
 .js .tabs .tab_contents li.active {

@@ -7,3 +7,4 @@
 <link rel="stylesheet" href="${adminBean.contextPath}/content/css/detail_tabs.css" />
 <link rel="stylesheet" href="${adminBean.contextPath}/content/css/detail_photo-viewer.css" />
 <link rel="stylesheet" href="${adminBean.contextPath}/content/css/detail_accordion.css" />
+

@@ -1,21 +1,5 @@
 package com.shshop.service;
 
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.shshop.constant.Constant;
-import com.shshop.control.CommandResult;
-import com.shshop.domain.Category;
-import com.shshop.domain.Product;
-import com.shshop.domain.ProductCategory;
-import com.shshop.domain.ProductImage;
-import com.shshop.domain.User;
-import com.shshop.mapper.CategoryMapper;
-import com.shshop.mapper.ProductCategoryMapper;
-import com.shshop.mapper.ProductImageMapper;
-import com.shshop.mapper.ProductMapper;
-import com.shshop.mapper.UserMapper;
-import com.shshop.util.MyBatisUtil;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,6 +16,22 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.ibatis.session.SqlSession;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.shshop.constant.Constant;
+import com.shshop.control.CommandResult;
+import com.shshop.domain.Category;
+import com.shshop.domain.Product;
+import com.shshop.domain.ProductCategory;
+import com.shshop.domain.ProductImage;
+import com.shshop.domain.ProductDetail;
+import com.shshop.domain.User;
+import com.shshop.mapper.CategoryMapper;
+import com.shshop.mapper.ProductCategoryMapper;
+import com.shshop.mapper.ProductImageMapper;
+import com.shshop.mapper.ProductMapper;
+import com.shshop.mapper.UserMapper;
+import com.shshop.util.MyBatisUtil;
 
 @SuppressWarnings("unused")
 public class ProductService {
@@ -70,7 +70,7 @@ public class ProductService {
 				sqlSession.rollback();
 				return new CommandResult(Constant.textPlain, Constant.productInsertionError);
 			}
-			
+
 		} finally {
 			sqlSession.commit();
 			sqlSession.close();
@@ -156,7 +156,9 @@ public class ProductService {
 		File file;
 		int maxFileSize = 500 * 1024;
 		int maxMemSize = 10 * 1024; // ÃÖ´ë 1MB
-		String filePath = request.getServletContext().getInitParameter(Constant.paramFileUpload);
+
+		String fileUploadPath = request.getServletContext().getInitParameter(Constant.paramFileUpload);
+		String filePath = request.getServletContext().getRealPath(request.getContextPath()) + fileUploadPath;
 		String repositoryPath = request.getServletContext().getInitParameter(Constant.paramFileUploadRepository);
 
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
@@ -185,14 +187,18 @@ public class ProductService {
 					if (fileName.equals("") || fileName == null)
 						continue;
 
+					if (fileName.lastIndexOf("\\") >= 0) {
+						fileName = fileName.substring(fileName.lastIndexOf("\\"));
+					} else {
+						fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
+					}
+
+					String fileRelativePath = "";
+					fileRelativePath = fileUploadPath + fileName;
+					uploadedFilePaths.add(fileRelativePath);
+
 					String fileFullPath = "";
-					if (fileName.lastIndexOf("\\") >= 0)
-						fileFullPath = filePath + fileName.substring(fileName.lastIndexOf("\\"));
-					else
-						fileFullPath = filePath + fileName.substring(fileName.lastIndexOf("\\") + 1);
-
-					uploadedFilePaths.add(fileFullPath);
-
+					fileFullPath = filePath + fileName;
 					file = new File(fileFullPath);
 
 					fileItem.write(file);
@@ -204,5 +210,36 @@ public class ProductService {
 		}
 
 		return uploadedFilePaths;
+	}
+
+	public ProductDetail getProductInformation(Integer productId) {
+
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+
+		try {
+			ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+			Product product = productMapper.getProductById(productId);
+			if (product == null)
+				return null;
+
+			ProductDetail productInfo = new ProductDetail();
+			productInfo.setProduct(product);
+
+			ProductImageMapper imageMapper = sqlSession.getMapper(ProductImageMapper.class);
+			List<ProductImage> images = imageMapper.getProductImages(productId);
+
+			String contextPath = request.getContextPath();
+
+			if (images != null) {
+				for (int i = 0; i < images.size(); i++) {
+					productInfo.addImagePath(contextPath + images.get(i).getImagePath());
+				}
+			}
+
+			return productInfo;
+
+		} finally {
+			sqlSession.close();
+		}
 	}
 }

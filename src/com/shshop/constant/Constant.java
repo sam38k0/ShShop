@@ -19,6 +19,7 @@ public class Constant {
 	public static final String attrEmail = "email";
 	public static final String attrPassword = "password";
 	public static final String attrAdmin = "adminBean";
+	public static final String attrProductDetail = "productDetail";
 	
 	//DD Parameter
 	public static final String paramFileUpload = "file-upload";

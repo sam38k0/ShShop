@@ -10,8 +10,7 @@ import com.shshop.control.CommandResult;
 public class InsertProductViewCommand implements Command {
 
 	@Override
-	public CommandResult execute(HttpServletRequest request,
-			HttpServletResponse response) {
+	public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession(false);
 
 		if (session == null && session.getAttribute(Constant.attrUser) == null)

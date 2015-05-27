@@ -1,90 +1,234 @@
 @import "detail_reset.css";
-@charset "utf-8";
- 
 
-/* --------------------------------------------------------------------------------  
-기본 스타일
-    1. 자식 요소가 부모 요소를 overflow 시에 레이아웃이 흐트러지지 않도록 scroll 을 보이도록 함
-    2. body 요소의 글꼴을 웹 폰트로 함
-    3. 배경 이미지 및 위치 설정
-    4. 바디와 링크 요소의 글자색을 흰색으로 설정
--------------------------------------------------------------------------------- */
+@charset "utf-8";
 
 html {
-    overflow-y: scroll; 
+	overflow-y: scroll;
 }
 
 body {
-    font-family: 'NanumGothicWeb';
-    background: #77807f center top;
-    color: #fff; /*글자색은 흰색*/
+	background: #77807f center top;
+	color: #fff;
 }
 
-a:link,
-a:visited {
-    color: #fff; 
+a:link, a:visited {
+	color: #fff;
 }
-
-
-/* -------------------------------------------------------------------------------- 
-디자인 전체 영역 ( #page-wrap ) 스타일링
-	1. page-wrap 의 가로 폭은 740 으로 설정
-    2. top, bottom 은 100 px, left, right 는 auto 로 마진 값을 설정하여 가운데 정렬
--------------------------------------------------------------------------------- */
 
 #page-wrap {
-    width: 1000px;
-    height: 300px;
-    margin: 10px auto;
+	width: 1000px;
+	height: 300px;
+	margin: 10px auto;
 }
 
-
-/* ///////////////////////////////////////// 
-	=.no-js
-///////////////////////////////////////// */
-
 .no-js #tab_design {
-    overflow: hidden;
-    padding: 2em;
-    background: #fff;
-    color: #333;
+	overflow: hidden;
+	padding: 2em;
+	background: #fff;
+	color: #333;
 }
 
 .no-js #tab_design li {
-    float: left;
-    margin-right: 20px;
-    margin-top: 20px;
+	float: left;
+	height:100px;
 }
 
 .no-js #tab_design a {
-    color: #333;
+	color: #333;
 }
 
 .no-js #tab_design img {
-    vertical-align: bottom;
+	vertical-align: bottom;
 }
-/* ///////////////////////////////////////// 
-	=.Global Classes
-///////////////////////////////////////// */
 
 .clearfix:after {
-    content: "";
-    display: block;
-    clear: both;
+	content: "";
+	display: block;
+	clear: both;
 }
 
 .ie6 .clearfix {
-    height: 1px;
+	height: 1px;
 }
 
 .ie7 .clearfix {
-    min-height: 1px;
+	min-height: 1px;
 }
 
 .blind {
-    visibility: hidden;
-    position: absolute;
-    top: -10000px;
-    height: 1px;
-    width: 1px;
+	visibility: hidden;
+	position: absolute;
+	top: -10000px;
+	height: 1px;
+	width: 1px;
+}
+
+/* ----------------�����ǰ ����--------------- */
+
+ol, ul, dl, li, dt, dd {
+	list-style: none;
+}
+
+h4 {
+	visibility: hidden;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 0;
+	font-size: 0;
+	line-height: 0;
+}
+
+div.h3_title div.h3_titleIn {
+	position: absolute;
+	top: -23px;
+	width: 100%;
+}
+
+div.h3_title {
+	position: relative;
+	margin: 45px 0 0 0;
+}
+
+div.h3_title, div.h3_title_lineBig {
+	width: 100%;
+	height: 1px;
+	border: solid 1px #3796c2;
+	background-color: #4fbaeb;
+}
+
+div.h3_title h3.similar {
+	width: 180px;
+	background-position: 0 -480px;
+}
+
+div.graybox {
+	clear: both;
+	position: relative;
+	overflow: hidden;
+	width: 998px;
+	border-left: solid 1px #d5d5d5;
+	border-right: solid 1px #d5d5d5;
+	border-bottom: solid 1px #d5d5d5;
+	background-color: #f5f5f5;
+}
+
+div.graybox div.horizontal_box {
+	position: relative;
+	overflow: hidden;
+	width: 948px;
+	margin: 0 0 0 27px;
+}
+
+div.graybox div.itembox {
+	position: relative;
+	display: inline-block;
+}
+
+div.graybox div.itembox ul {
+	float: left;
+	width: 945px;
+	padding: 20px 0 0 0;
+}
+
+div.graybox div.itembox li {
+	position: relative;
+	float: left;
+	display: inline; 
+	width: 110px;
+	height: 162px;
+	text-align: center;
+	padding: 0 0 11px 0;
+	margin: 4px;
+}
+
+ 
+div.graybox div.itembox li p {
+	float: left;
+	background: url(//image.hellomarket.com/common/bg_itembox.gif) no-repeat;
+	background-size:cover;
+	padding: 12px 12px 0 12px;
+	width: 86px;
+	border-style: solid;
+    border-width: 1px;
+}
+
+div.graybox div.itembox li p a {
+	color: #333;
+	text-decoration: none;
+	cursor: pointer;
+	width: 86px;
+	height:86px;
+}
+
+div.graybox div.itembox li p strong {
+	display: block;
+	padding: 7px 0 0 0;
+	font-size: 11px;
+	letter-spacing: -1px;
+	font-weight: normal;
+}
+
+div.graybox div.itembox li p span.price {
+	padding: 3px 0 0 0;
+	font-size: 11px;
+}
+
+div.graybox div.itembox li p span.time {
+	font-size: 11px;
+	padding: 4px 0 0 0;
+}
+
+p.moveBtn {
+	width: 90px;
+	height: 27px;
+	margin: 0 auto;
+	padding: 3px 0 0 0;
+}
+
+a.movepreB {
+	float: left;
+	background-position: -78px 0;
+	width: 22px;
+	height: 22px;
+	text-indent: -1000em;
+  	overflow: hidden;
+  	display: inline-block;
+  	background: url(//image.hellomarket.com/btn/all_btn_20130923.png) no-repeat;
+}
+
+a.movenextB {
+  	text-indent: -1000em;
+  	overflow: hidden;
+  	display: inline-block;
+  	background: url(//image.hellomarket.com/btn/all_btn_20130923.png) no-repeat;
+}
+
+p.moveBtn span {
+	float: left;
+	width: 45px;
+	color: #999;
+	letter-spacing: 2px;
+	text-align: center;
+	padding: 4px 0 0 0;
+}
+
+p.moveBtn span strong {
+	color: #333;
+}
+
+a.movepreB {
+	float: left;
+	background-position: -78px 0;
+	width: 22px;
+	height: 22px;
+}
+
+a.movenextB {
+	float: left;
+	background-position: -103px 0;
+	width: 22px;
+	height: 22px;
 }

@@ -21,6 +21,7 @@
     top: 50%;
     left: 50%;
 }
+
 /********** THUMBNAILS **********/
 
 #thumbnails {
@@ -49,15 +50,37 @@ a.active {
 
 .psTitle {
     margin: 0;
-    font-size: 20px;
+    font-size: 17px;
+    align: left;
 }
 
 .psDesc {
     margin: 0;
     font-size: 15px;
+    align: left;
 }
-/********** BUY BUTTON **********/
 
+.psSubDesc {
+    margin: 0;
+    font-size: 15px;
+    align: left;
+    color: #c0c0c0;
+} 
+
+.description ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	text-align: left;
+	width: 400px;
+}
+
+.description li {
+	padding-right: .6em;
+	margin: 1em 0;
+}
+
+/********** BUY BUTTON **********/
 a#buy {
     background-color: #ed8e6c;
     color: #ffffff;

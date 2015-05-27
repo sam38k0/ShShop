@@ -13,17 +13,17 @@ public class InsertProductCommand implements Command {
 
 	@Override
 	public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
+		CommandResult result = null;
 		ProductService productService = new ProductService(request,response);
 		
 		try {
-			return productService.insertProduct();
-			
+			result = productService.insertProduct();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ServletException e) {
 			e.printStackTrace();
 		}
 		
-		return null;
+		return result;
 	}
 }
