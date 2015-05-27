@@ -23,6 +23,7 @@ public class Constant {
 	
 	//DD Parameter
 	public static final String paramFileUpload = "file-upload";
+	public static final String paramFileUploadAbsolutePath = "file-upload-absolute";
 	public static final String paramFileUploadRepository = "file-upload-repository";
 	
 	//ContentType

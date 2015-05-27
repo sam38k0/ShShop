@@ -32,8 +32,8 @@
 					<td><b>거래방법</b></td>
 					<td align=left><select id="transactionType" name="transactionType">
 							<option value="choose">거래 방법을 선택하세요</option>
-							<option value="key 1">안전결제</option>
-							<option value="key 2">택배</option>
+							<option value="1">안전결제</option>
+							<option value="2">택배</option>
 					</select></td>
 				</tr>
 				<tr>

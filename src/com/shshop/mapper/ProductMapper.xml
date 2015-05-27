@@ -21,8 +21,8 @@
 	</select>
 	
 	<insert id='insertProduct' parameterType='${ProductType}' useGeneratedKeys='true' keyProperty='${id_product}'>
-		INSERT INTO  `ps_product`(`id_user`,`name`,`price`,`stock`,`on_sale`,`on_open`,`tag`,`out_of_stock`,`description`,`searching_count`)
-		VALUES(${id_user}, ${name}, ${price}, ${stock}, ${on_sale}, ${on_open}, ${tag}, ${out_of_stock}, ${description}, ${searching_count})
+		INSERT INTO  `ps_product`(`id_user`,`name`,`price`,`stock`,`translation`,`connection`,`on_sale`,`on_open`,`tag`,`out_of_stock`,`description`,`searching_count`)
+		VALUES(${id_user}, ${name}, ${price}, ${stock}, ${translation}, ${connection}, ${on_sale}, ${on_open}, ${tag}, ${out_of_stock}, ${description}, ${searching_count})
 	</insert>
 	
     <update id='updateProduct' parameterType='${ProductType}'>
@@ -31,6 +31,8 @@
 			<if test="${name} != null"> `name`=${name}, </if>
 			<if test="${price} != null"> `price`=${price}, </if>
 			<if test="${stock} != null"> `stock`=${stock}, </if>
+			<if test="${translation} != null"> `translation`=${translation}, </if>
+			<if test="${connection} != null"> `connection`=${connection}, </if>	
 			<if test="${on_sale} != null"> `on_sale`=${on_sale}, </if>
 			<if test="${on_open} != null"> `on_open`=${on_open}, </if>
 			<if test="${tag} != null"> `tag`=${tag}, </if>
@@ -51,6 +53,8 @@
 		<result property='name' column='name' />
 		<result property='price' column='price' />
 		<result property='stock' column='stock' />
+		<result property='translation' column='translation' />
+		<result property='connection' column='connection' />
 		<result property='onSale' column='on_sale' />
 		<result property='onOpen' column='on_open' />
 		<result property='tag' column='tag' />

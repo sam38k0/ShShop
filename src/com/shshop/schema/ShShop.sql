@@ -66,6 +66,8 @@ CREATE TABLE `ps_product` (
 	`name`            VARCHAR(50)  NOT NULL, -- 제품이름
 	`price`           INTEGER      NOT NULL, -- 제품가격
 	`stock`           INTEGER      NOT NULL, -- 제고량
+	`translation`	  TINYINT(2)   NOT NULL, -- 거래방법 ( 1:안전결재 , 2:택배, 생기면 더 추가 )
+    `connection`	  SMALLINT     NOT NULL, -- 희망연락방법 (직접통화,SMS,카톡,이메일,쪽지,채팅,댓글)
 	`on_sale`         TINYINT(1)   NOT NULL, -- 세일중인지여부
 	`on_open`         TINYINT(1)   NOT NULL, -- 공개설정
 	`tag`             VARCHAR(128) NULL,     -- 태그
@@ -199,47 +201,79 @@ VALUES
 INSERT INTO `ps_category` 
 (`id_category_parent`, `name`, `description`, `link`, `is_root_category`)
 VALUES 
-(null, 'category1', 'category1_desc', 'category1_link', true),
-(null, 'category2', 'category2_desc', 'category2_link', true),
-(null, 'category3', 'category3_desc', 'category3_link', true),
-(null, 'category4', 'category4_desc', 'category4_link', true),
-(null, 'category5', 'category5_desc', 'category5_link', true),
-(1, 'category11', 'category11_desc', 'category11_link', true),
-(1, 'category12', 'category12_desc', 'category12_link', true),
-(1, 'category13', 'category13_desc', 'category13_link', true),
-(1, 'category14', 'category14_desc', 'category14_link', true),
-(1, 'category15', 'category15_desc', 'category15_link', true),
-(2, 'category21', 'category21_desc', 'category21_link', true),
-(2, 'category22', 'category22_desc', 'category22_link', true),
-(2, 'category23', 'category23_desc', 'category23_link', true),
-(2, 'category24', 'category24_desc', 'category24_link', true),
-(2, 'category25', 'category25_desc', 'category25_link', true),
-(3, 'category31', 'category31_desc', 'category31_link', true),
-(3, 'category32', 'category32_desc', 'category32_link', true),
-(3, 'category33', 'category33_desc', 'category33_link', true),
-(3, 'category34', 'category34_desc', 'category34_link', true),
-(3, 'category35', 'category35_desc', 'category35_link', true),
-(4, 'category41', 'category41_desc', 'category41_link', true),
-(4, 'category42', 'category42_desc', 'category42_link', true),
-(4, 'category43', 'category43_desc', 'category43_link', true),
-(4, 'category44', 'category44_desc', 'category44_link', true),
-(4, 'category45', 'category45_desc', 'category45_link', true),
-(5, 'category51', 'category51_desc', 'category51_link', true),
-(5, 'category52', 'category52_desc', 'category52_link', true),
-(5, 'category53', 'category53_desc', 'category53_link', true),
-(5, 'category54', 'category54_desc', 'category54_link', true),
-(5, 'category55', 'category55_desc', 'category55_link', true);
- 
+(null, '여성의류', 'category1_desc', 'category1_link', true),
+(null, '남성의류', 'category2_desc', 'category2_link', true),
+(null, '잡화', 'category3_desc', 'category3_link', true),
+(null, '뷰티', 'category4_desc', 'category4_link', true),
+(null, '출산,아동', 'category5_desc', 'category5_link', true),
+(null, '가전', 'category6_desc', 'category6_link', true),
+(null, '모바일', 'category7_desc', 'category7_link', true),
+(null, '도서', 'category8_desc', 'category8_link', true),
+(null, '자동차,오토바이', 'category9_desc', 'category9_link', true), 
+(1, '여성티셔츠', 'category11_desc', 'category11_link', true),
+(1, '여성니트류', 'category12_desc', 'category12_link', true),
+(1, '여성조끼류', 'category13_desc', 'category13_link', true),
+(1, '남방,블라우스', 'category14_desc', 'category14_link', true),
+(1, '여성바지류', 'category15_desc', 'category15_link', true),
+(1, '스커트,치마', 'category11_desc', 'category11_link', true),
+(1, '여성자켓', 'category12_desc', 'category12_link', true),
+(1, '코드,패딩', 'category13_desc', 'category13_link', true),
+(1, '원피스,정장', 'category14_desc', 'category14_link', true),
+(1, '여성속옷', 'category15_desc', 'category15_link', true),
+(2, '남성티셔츠', 'category21_desc', 'category21_link', true),
+(2, '남성니트류', 'category22_desc', 'category22_link', true),
+(2, '남성남방류', 'category23_desc', 'category23_link', true),
+(2, '남성바지류', 'category24_desc', 'category24_link', true),
+(2, '남성자켓', 'category25_desc', 'category25_link', true),
+(2, '남성정장', 'category21_desc', 'category21_link', true),
+(2, '남성속옷', 'category22_desc', 'category22_link', true),
+(2, '기타남성복', 'category23_desc', 'category23_link', true),
+(2, '남성트레이닝복', 'category24_desc', 'category24_link', true), 
+(3, '가방', 'category31_desc', 'category31_link', true),
+(3, '지갑,벨트', 'category32_desc', 'category32_link', true),
+(3, '모자,안경', 'category33_desc', 'category33_link', true),
+(3, '시계,보석', 'category34_desc', 'category34_link', true),
+(3, '기타잡화', 'category35_desc', 'category35_link', true),
+(4, '여성화장품', 'category41_desc', 'category41_link', true),
+(4, '메이크업', 'category42_desc', 'category42_link', true),
+(4, '헤어,바디케어', 'category43_desc', 'category43_link', true),
+(4, '남성화장품', 'category44_desc', 'category44_link', true),
+(4, '향수,아로마', 'category45_desc', 'category45_link', true),
+(5, '신생아의류', 'category51_desc', 'category51_link', true),
+(5, '유아의류', 'category52_desc', 'category52_link', true),
+(5, '유아생활용품', 'category53_desc', 'category53_link', true),
+(5, '유아도서', 'category54_desc', 'category54_link', true),
+(5, '아동완구', 'category55_desc', 'category55_link', true),
+(6, 'TV', 'category61_desc', 'category61_link', true),
+(6, '냉장고', 'category62_desc', 'category62_link', true),
+(6, '세탁기', 'category63_desc', 'category63_link', true),
+(6, '청소기', 'category64_desc', 'category64_link', true),
+(6, '기타가전제품', 'category65_desc', 'category65_link', true),
+(7, 'SKT', 'category71_desc', 'category71_link', true),
+(7, 'KT', 'category72_desc', 'category72_link', true),
+(7, 'LGU+', 'category73_desc', 'category73_link', true),
+(7, '휴대폰주변기기', 'category74_desc', 'category74_link', true),
+(7, '휴대폰액세서리', 'category75_desc', 'category75_link', true),
+(8, '대학교제', 'category81_desc', 'category81_link', true),
+(8, '외국어,학습', 'category82_desc', 'category82_link', true),
+(8, '소설,문학', 'category83_desc', 'category83_link', true),
+(8, '경영,경제', 'category84_desc', 'category84_link', true),
+(8, '인문,사회', 'category85_desc', 'category85_link', true),
+(9, '수입차', 'category91_desc', 'category91_link', true),
+(9, '경차', 'category92_desc', 'category92_link', true),
+(9, '중,대형차', 'category93_desc', 'category93_link', true),
+(9, '버스,화물차', 'category94_desc', 'category94_link', true),
+(9, '자동차용품', 'category95_desc', 'category95_link', true);
  
 INSERT INTO `ps_product` 
-(`id_user`,`name`,`price`,`stock`,`on_sale`,`on_open`,`tag`,`out_of_stock`,`description`,`searching_count`)
+(`id_user`,`name`,`price`,`stock`,`translation`,`connection`,`on_sale`,`on_open`,`tag`,`out_of_stock`,`description`,`searching_count`)
 VALUES
-(1, 'product1', '10', '10', true, true, 'tag1', false, 'description1',0),
-(1, 'product2', '20', '20', true, true, 'tag2', false, 'description2',0),
-(2, 'product3', '30', '30', true, true, 'tag3', false, 'description3',0),
-(2, 'product4', '40', '40', true, true, 'tag4', false, 'description4',0),
-(3, 'product5', '50', '50', true, true, 'tag5', false, 'description5',0),
-(3, 'product6', '60', '60', true, true, 'tag6', false, 'description6',0);
+(1, 'product1', '10', '10',1, 1, true, true, 'tag1', false, 'description1',0),
+(1, 'product2', '20', '20',1, 3, true, true, 'tag2', false, 'description2',0),
+(2, 'product3', '30', '30',1, 7, true, true, 'tag3', false, 'description3',0),
+(2, 'product4', '40', '40',1, 15, true, true, 'tag4', false, 'description4',0),
+(3, 'product5', '50', '50',1, 12, true, true, 'tag5', false, 'description5',0),
+(3, 'product6', '60', '60',1, 204, true, true, 'tag6', false, 'description6',0);
  
  
 INSERT INTO `ps_product_category` 
@@ -307,33 +341,22 @@ VALUES
 
 INSERT INTO `ps_image` (`id_product`, `path`)
 VALUES
-(1, './content/productImage/1.png'),
-(1, './content/productImage/2.png'),
-(1, './content/productImage/3.png'),
-(1, './content/productImage/4.png'),
-(1, './content/productImage/5.png'), 
-(2, './content/productImage/11.png'),
-(2, './content/productImage/12.png'),
-(2, './content/productImage/13.png'),
-(2, './content/productImage/14.png'),
-(2, './content/productImage/15.png'),
-(2, './content/productImage/16.png'),
-(2, './content/productImage/17.png'),
-(2, './content/productImage/18.png'),
-(2, './content/productImage/19.png'),
-(2, './content/productImage/20.png'), 
-(3, './content/productImage/31.png'),
-(4, './content/productImage/41.png'),
-(4, './content/productImage/42.png'),
-(4, './content/productImage/43.png'),
-(4, './content/productImage/44.png'),
-(4, './content/productImage/45.png'),
-(4, './content/productImage/46.png'),
-(4, './content/productImage/47.png'),
-(4, './content/productImage/48.png'),
-(4, './content/productImage/49.png'),
-(4, './content/productImage/50.png');
-
+(1, '/content/image/product_image/sample1.jpg'),
+(1, '/content/image/product_image/sample2.jpg'),
+(1, '/content/image/product_image/sample3.jpg'),
+(1, '/content/image/product_image/sample4.jpg'),
+(2, '/content/image/product_image/sample1.jpg'),
+(2, '/content/image/product_image/sample2.jpg'),
+(2, '/content/image/product_image/sample3.jpg'),
+(2, '/content/image/product_image/sample4.jpg'),
+(3, '/content/image/product_image/sample1.jpg'),
+(3, '/content/image/product_image/sample2.jpg'),
+(3, '/content/image/product_image/sample3.jpg'),
+(3, '/content/image/product_image/sample4.jpg'),
+(4, '/content/image/product_image/sample1.jpg'),
+(4, '/content/image/product_image/sample2.jpg'),
+(4, '/content/image/product_image/sample3.jpg'),
+(4, '/content/image/product_image/sample4.jpg');
  
  -- Confirm ----------------------------------------------------------------------------------
  BEGIN;
@@ -387,5 +410,16 @@ SELECT COUNT(`id_category`) as count FROM `ps_category`;
 SELECT COUNT(`id_category`) as count FROM `ps_product_category`;
 SELECT * FROM `ps_category`;
 SELECT * FROM `ps_product_category`;
+
+
+-- getProductOptions
+SELECT o.*
+FROM `ps_product` p
+	INNER JOIN `ps_product_option` po USING(`id_product`) 
+	INNER JOIN `ps_option` o USING(`id_option`)
+WHERE p.`id_product` = 1;
+
+
+SELECT * FROM `ps_image` WHERE `id_product`= 1;
 
 ROLLBACK;

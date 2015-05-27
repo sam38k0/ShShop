@@ -35,9 +35,10 @@ import com.shshop.util.MyBatisUtil;
 
 @SuppressWarnings("unused")
 public class ProductService {
-	private SqlSession sqlSession = null;
 	private HttpServletRequest request = null;
 	private HttpServletResponse response = null;
+	private SqlSession sqlSession = null;
+	private MultipartRequest multi = null;
 
 	public ProductService(HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;
@@ -51,6 +52,9 @@ public class ProductService {
 		if (user == null)
 			return new CommandResult(Constant.textPlain, Constant.noUser);
 
+		String filePath = request.getServletContext().getInitParameter(Constant.paramFileUploadAbsolutePath);  
+		multi = new MultipartRequest(request, filePath, 500 * 1024, "utf-8", new DefaultFileRenamePolicy());
+		
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 
 		try {
@@ -82,19 +86,18 @@ public class ProductService {
 	private Product insertProduct(User user) throws IOException {
 		Product product = null;
 
-		String filePath = request.getServletContext().getInitParameter(Constant.paramFileUpload);
-		MultipartRequest multi = new MultipartRequest(request, filePath, 500 * 1024, "utf-8", new DefaultFileRenamePolicy());
-
 		String productName = multi.getParameter("productname");
 		String price = multi.getParameter("price");
 		String stock = multi.getParameter("stock");
 		String description = multi.getParameter("description");
 		String tags = multi.getParameter("tagsinput");
 		String category = multi.getParameter("miniCategory");
+		String transactionType = multi.getParameter("transactionType");
+		//String connectionType = multi.getParameter("connectionType");
 
 		ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
-		product = new Product(user.getUserId(), productName, Integer.parseInt(price), Integer.parseInt(stock), false, true, tags, false, description,
-				0);
+		product = new Product(user.getUserId(), productName, Integer.parseInt(price), Integer.parseInt(stock),
+							  Integer.parseInt(transactionType), 204, false, true, tags, false, description,0);
 		productMapper.insertProduct(product);
 
 		return product;
@@ -130,19 +133,19 @@ public class ProductService {
 	}
 
 	private boolean insertCategoryOfProudct(Product product) throws IOException {
-		String filePath = request.getServletContext().getInitParameter(Constant.paramFileUpload);
-		MultipartRequest multi = new MultipartRequest(request, filePath, 500 * 1024, "utf-8", new DefaultFileRenamePolicy());
 		String categoryName = multi.getParameter("miniCategory");
 
 		if (categoryName == "" || categoryName == null)
 			return false;
 
-		String[] categorySplited = categoryName.split("categoryName");
+		String[] categorySplited = categoryName.split(">");
 
-		String categoryLastName = categorySplited[categorySplited.length - 1];
+		String categoryLastName = categorySplited[categorySplited.length - 1].trim();
 
 		CategoryMapper categoryMapper = sqlSession.getMapper(CategoryMapper.class);
 		Category category = categoryMapper.getCategoryByName(categoryLastName);
+		if(category == null)
+			return false;
 
 		ProductCategoryMapper productCategoryMapper = sqlSession.getMapper(ProductCategoryMapper.class);
 		ProductCategory productAndCategory = new ProductCategory(category.getCategoryId(), product.getProductId());

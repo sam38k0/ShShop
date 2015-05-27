@@ -10,6 +10,8 @@ public class Product implements Serializable {
 	private String name;
 	private Integer price;
 	private Integer stock;
+	private int translation; //거래방법 ( 1:안전결재 , 2:택배, 생기면 더 추가 )
+	private int connection; //희망연락방법 (직접통화,SMS,카톡,이메일,쪽지,채팅,댓글) > 2진수 변환저장값
 	private boolean onSale;
 	private boolean onOpen;
 	private String tag;
@@ -24,7 +26,7 @@ public class Product implements Serializable {
 
 	}
 	 
-	public Product(Integer userId, String name, int price, int stock, 
+	public Product(Integer userId, String name, int price, int stock, int translation, int connection,
 				   boolean onSale, boolean onOpen, String tag, boolean outOfStock, 
 				   String description, int searchingCount) {
 		this.userId = userId;
@@ -63,7 +65,7 @@ public class Product implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-//
+
 	public int getPrice() {
 		return price;
 	}
@@ -166,5 +168,21 @@ public class Product implements Serializable {
 
 	public void setUserId(Integer userId) {
 		this.userId = userId;
+	}
+
+	public int getTranslation() {
+		return translation;
+	}
+
+	public void setTranslation(int translation) {
+		this.translation = translation;
+	}
+
+	public int getConnection() {
+		return connection;
+	}
+
+	public void setConnection(int connection) {
+		this.connection = connection;
 	}
 }
