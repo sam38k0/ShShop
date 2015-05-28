@@ -2,6 +2,7 @@ package com.shshop.mapper.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import java.util.List;
 
@@ -74,18 +75,19 @@ public class UserMapperTest {
 
 	@Test
 	public void testUpdateNameByEmail() {
-		User user = userMapper.getUserById(1);
-		user.setUserId(1);
-		user.setBankName("bank");
-		user.setBankNum("1111-111-1111");
-		user.setPhone("aaa-aaa-aaaa");
-		userMapper.updateUser(user);
-
-		User user2 = userMapper.getUserById(1);
-		assertEquals("testUpdateNameByEmail1", user2.getBankName(), "bank");
-		assertEquals("testUpdateNameByEmail2", user2.getBankNum(),
-				"1111-111-1111");
-		assertEquals("testUpdateNameByEmail3", user2.getPhone(), "aaa-aaa-aaaa");
+	//		User user = userMapper.getUserById(1);
+	//		user.setUserId(1);
+	//		user.setBankName("bank");
+	//		user.setBankNum("1111-111-1111");
+	//		user.setPhone("aaa-aaa-aaaa");
+	//		userMapper.updateUser(user);
+	//
+	//		User user2 = userMapper.getUserById(1);
+	//		assertEquals("testUpdateNameByEmail1", user2.getBankName(), "bank");
+	//		assertEquals("testUpdateNameByEmail2", user2.getBankNum(),
+	//				"1111-111-1111");
+	//		assertEquals("testUpdateNameByEmail3", user2.getPhone(), "aaa-aaa-aaaa");
+		fail("testUpdateNameByEmail");
 	}
 
 	@Test

@@ -92,13 +92,13 @@ CREATE INDEX `PK_ps_product_name`ON `ps_product` (`name` ASC);
 -- ps_product_category ----------------------------------------------------------------------------------
  
 CREATE TABLE `ps_product_category` (
+	`id_product_category` SMALLINT     UNSIGNED NOT NULL AUTO_INCREMENT, 
 	`id_category` SMALLINT UNSIGNED NOT NULL, -- id_category
 	`id_product`  SMALLINT UNSIGNED NOT NULL, -- id_product
-    
-    -- compound key
-	CONSTRAINT `PK_ps_product_category` 
-		PRIMARY KEY (`id_category`, `id_product`),
-        
+ 
+      CONSTRAINT `PK_ps_product_category_id_product_category` 
+		PRIMARY KEY (`id_product_category`),
+		
 	-- ps_category -> ps_product_category
 	CONSTRAINT `FK_ps_category_TO_ps_product_category` 
 		FOREIGN KEY (`id_category`)
@@ -111,12 +111,7 @@ CREATE TABLE `ps_product_category` (
 		REFERENCES `ps_product` ( `id_product` )
 		ON DELETE CASCADE
 );
-
-CREATE UNIQUE INDEX `PK_ps_product_category`ON `ps_product_category` 
-( 
-	`id_category` ASC, -- id_category
-	`id_product`  ASC  -- id_product
-);
+ 
  
  
 -- ps_option ---------------------------------------------------------------------------------------

@@ -30,7 +30,13 @@ public class ProductCategoryMapperTest {
 	@Test
 	public void testInsertProductCategory() {
 		ProductCategory productAndCategory = new ProductCategory(1,1);
-		productCategoryMapper.insertProductCategory(productAndCategory);
+		try{
+			productCategoryMapper.insertProductCategory(productAndCategory);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		fail("testInsertProductCategory");
 	} 
 }

@@ -3,13 +3,14 @@
   'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 
 <mapper namespace='com.shshop.mapper.ProductCategoryMapper'>
-	<insert id='insertProductCategory' parameterType='${ProductCategoryType}'>
+	<insert id='insertProductCategory' parameterType='${ProductCategoryType}' useGeneratedKeys='true' keyProperty='${id_product_category}'>
 		INSERT INTO `ps_product_category` (`id_category`,`id_product`)
 		VALUES (${id_category}, ${id_product});
 	</insert>
  
 	<resultMap id='ProductCategory' type='${ProductCategoryType}' >
-		<id property='categoryId' column='id_category'/>
-		<id property='productId' column='id_product'/>
+		<id property='productCategoryId' column='id_product_category'/>
+		<result property='categoryId' column='id_category'/>
+		<result property='productId' column='id_product'/>
 	</resultMap>
 </mapper> 

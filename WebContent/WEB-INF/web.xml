@@ -60,7 +60,7 @@
     <description>File upload factory repository location to store uploaded file temporary</description> 
     <param-name>file-upload-repository</param-name> 
     <param-value>
-         C:/
+         C:/temp
      </param-value> 
 	</context-param>
 
