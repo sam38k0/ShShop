@@ -2,8 +2,6 @@
 <%@page session="true" import="com.shshop.service.*"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<jsp:useBean id="adminBean" class="com.shshop.system.AdminBean" scope="session" />
-
 <div class="wrap">
 	<center>
 		<section class="page panel">
@@ -59,7 +57,7 @@
 									<ul>
 										<li><a href="#producer_info"><img src="${adminBean.contextPath}/content/image/detailview_image/faill-icon-24.png" alt="">판매자정보</a></li>
 										<li><a href="#ask_reply_info"><img src="${adminBean.contextPath}/content/image/detailview_image/oh-u-icon-24.png" alt="">묻고답하기</a></li>
-										<li><a href="#order_reply_info"><img src="${adminBean.contextPath}/content/detailview_image/image/high-icon-24.png" alt="">구매후기</a></li>
+										<li><a href="#order_reply_info"><img src="${adminBean.contextPath}/content/image/detailview_image/high-icon-24.png" alt="">구매후기</a></li>
 									</ul>
 								</nav>
 								<div class="tab_contents">

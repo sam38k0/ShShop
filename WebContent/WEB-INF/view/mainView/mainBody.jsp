@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<jsp:useBean id ="adminBean" class ="com.shshop.system.AdminBean" scope ="session"/>
-
 <div id="banner">
 	<img src="${adminBean.contextPath}/content/image/ben.jpg" alt="베너1">
 	<div class="control">

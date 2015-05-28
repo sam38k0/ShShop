@@ -17,7 +17,7 @@
 							<ul class="allcategory" id="CategoryItems">
 								<%
                             		CategoryControlService categoryControlService = new CategoryControlService();
-                            		out.print(categoryControlService.buildHtml());
+                            		out.print(categoryControlService.buildHtml(false));
                             	%>
 							</ul>
 						</div> 
@@ -30,11 +30,28 @@
 				</tr>
 				<tr>
 					<td><b>거래방법</b></td>
-					<td align=left><select id="transactionType" name="transactionType">
-							<option value="choose">거래 방법을 선택하세요</option>
+					<td align=left>
+						<select id="transactionType" name="transactionType" required>
+							<option value="">거래 방법을 선택하세요</option>
 							<option value="1">안전결제</option>
 							<option value="2">택배</option>
-					</select></td>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><b>연락방법</b></td>
+					<td>
+					    <fieldset>
+			            <label><input type="checkbox" value="all" id="all"> All </label>
+			            <label><input type="checkbox" id="connection1" value="1"> 직접통화 </label>
+			            <label><input type="checkbox" id="connection2" value="2"> SMS </label>
+			            <label><input type="checkbox" id="connection3" value="4"> 카톡 </label>
+			            <label><input type="checkbox" id="connection4" value="8"> 이메일 </label>
+			            <label><input type="checkbox" id="connection5" value="16"> 쪽지 </label>
+			            <label><input type="checkbox" id="connection6" value="32"> 채팅 </label>
+			            <label><input type="checkbox" id="connection7" value="64"> 댓글 </label>
+			            </fieldset>
+					</td>
 				</tr>
 				<tr>
 					<td><b>판매가격</b></td>

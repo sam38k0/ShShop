@@ -15,6 +15,8 @@ public class AdminBean implements Serializable {
 	private String headerPage;
 	private String footerPage;
 	private String contentPage;
+	private String scriptPage;
+	private String stylePage;
 	private String contextPath;
 
 	public AdminBean() {
@@ -72,5 +74,21 @@ public class AdminBean implements Serializable {
 
 	public void setContextPath(String contextPath) {
 		this.contextPath = contextPath;
+	}
+
+	public String getScriptPage() {
+		return scriptPage;
+	}
+
+	public void setScriptPage(String scriptPage) {
+		this.scriptPage = scriptPage;
+	}
+
+	public String getStylePage() {
+		return stylePage;
+	}
+
+	public void setStylePage(String stylePage) {
+		this.stylePage = stylePage;
 	}
 }

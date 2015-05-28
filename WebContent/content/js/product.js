@@ -97,14 +97,42 @@ function removeErrorMessage(el) {
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
+(function() {
+	  var options = {};
+	  options[0]  = document.getElementById('connection1');                  
+	  options[1]  = document.getElementById('connection2');        
+	  options[2]  = document.getElementById('connection3');                  
+	  options[3]  = document.getElementById('connection4');  
+	  options[4]  = document.getElementById('connection5');        
+	  options[5]  = document.getElementById('connection6');                  
+	  options[6]  = document.getElementById('connection7');    
+	  var all      = document.getElementById('all');
+
+	  function updateAll() {
+	    for (var i = 0; i < 7; i++) {
+	      options[i].checked = all.checked;
+	    }
+	  }
+	  addEvent(all, 'change', updateAll);
+
+	  function clearAllOption(e) {
+	    var target = e.target || e.srcElement;
+	    if (!target.checked) {
+	      all.checked = false;
+	    }
+	  }
+	  for (var i = 0; i < 7; i++) {         
+	    addEvent(options[i], 'change', clearAllOption);
+	  }
+
+	}());
+
 $(document).ready(function() {
 
-	// 상품등록 > 기본 유효성 검사를 자바스크립트로 처리
-	//
-	document.forms.insertProductForm.noValidate = true;
-	
 	(function() {
-		$('#insertProductForm').submit(function(e) {
+		document.forms.insertProductForm.noValidate = true;
+		
+		$('#insertProductForm').on('submit', function(e) {
 			var elements = this.elements;
 			var valid = {};
 			var isValid;
@@ -183,6 +211,7 @@ $(document).ready(function() {
 			}
 		}());
 	}());
+
 
 	var categoryResultElem = document.getElementById('categoryResult');
 	var subFileElem1 = document.getElementById('subfile1');
@@ -269,5 +298,4 @@ $(document).ready(function() {
 		$('#categoryResult').val(result);
 		categoryResultElem.readOnly = true;
 	});
-
 });

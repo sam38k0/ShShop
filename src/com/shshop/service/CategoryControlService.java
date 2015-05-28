@@ -13,12 +13,23 @@ import com.shshop.util.MyBatisUtil;
 public class CategoryControlService {
 	private SqlSession sqlSession = null;
 	private CategoryMapper categoryMapper = null;
-
+	private static String buildHtmlResult = "";
 	public CategoryControlService() {
 
 	}
 
-	public String buildHtml() {
+	public String buildHtml(boolean forceOperation) {
+		if (!forceOperation) {
+			try {
+				while (getBuildHtmlResult().equals(""))
+					Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			return getBuildHtmlResult();
+		}
+	
 		String result = "";
 
 		try {
@@ -39,6 +50,8 @@ public class CategoryControlService {
 			closeMapper();
 		}
 
+		setBuildHtmlResult(result);
+		
 		return result;
 	}
 
@@ -68,5 +81,13 @@ public class CategoryControlService {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 
 		return sqlSession.getMapper(CategoryMapper.class);
+	}
+
+	public static String getBuildHtmlResult() {
+		return buildHtmlResult;
+	}
+
+	public static void setBuildHtmlResult(String buildHtmlResult) {
+		CategoryControlService.buildHtmlResult = buildHtmlResult;
 	}
 }
