@@ -21,23 +21,7 @@ a:link, a:visited {
 	margin: 10px auto;
 }
 
-.no-js #tab_design {
-	overflow: hidden;
-	padding: 2em;
-	background: #fff;
-	color: #333;
-}
-
-.no-js #tab_design li {
-	float: left;
-	height:100px;
-}
-
-.no-js #tab_design a {
-	color: #333;
-}
-
-.no-js #tab_design img {
+#tab_design img {
 	vertical-align: bottom;
 }
 

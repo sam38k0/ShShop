@@ -45,46 +45,6 @@ public class InsertProductParams {
 			if (pramValue != null)
 				setConnectionOpt(getConnectionOpt() + Integer.parseInt(pramValue));
 		}
-
-		System.out.println(getConnectOption(getConnectionOpt()));
-	}
-
-	private String getConnectOption(int connectionOpt) {
-		int opt1 = 0x00000001;
-		int opt2 = 0x00000002;
-		int opt3 = 0x00000004;
-		int opt4 = 0x00000008;
-		int opt5 = 0x00000010;
-		int opt6 = 0x00000100;
-		int opt7 = 0x00001000;
-
-		String strResult = "";
-		String strOpt1 = "직접통화 ,";
-		String strOpt2 = "SMS ,";
-		String strOpt3 = "카톡 ,";
-		String strOpt4 = "이메일 ,";
-		String strOpt5 = "쪽지 ,";
-		String strOpt6 = "채팅 ,";
-		String strOpt7 = "댓글 ,";
-
-		if ((connectionOpt & opt1) > 0)
-			strResult += strOpt1;
-		if ((connectionOpt & opt2) > 0)
-			strResult += strOpt2;
-		if ((connectionOpt & opt3) > 0)
-			strResult += strOpt3;
-		if ((connectionOpt & opt4) > 0)
-			strResult += strOpt4;
-		if ((connectionOpt & opt5) > 0)
-			strResult += strOpt5;
-		if ((connectionOpt & opt6) > 0)
-			strResult += strOpt6;
-		if ((connectionOpt & opt7) > 0)
-			strResult += strOpt7;
-		if (!strResult.equals(""))
-			strResult = strResult.substring(0, strResult.length() - 2);
-
-		return strResult;
 	}
 
 	public String getProductName() {

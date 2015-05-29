@@ -310,3 +310,11 @@
   background-position: left 3px;
   background-repeat: no-repeat;
   }
+
+.blind {
+	visibility: hidden;
+	position: absolute;
+	top: -10000px;
+	height: 1px;
+	width: 1px;
+}

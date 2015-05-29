@@ -34,11 +34,21 @@
 					<p class="psTitle"><strong>상품설명</strong></p>
 					</br>
 					<p class="psDesc"><span>${sessionScope.productDetail.product.description}</span></p>
-				</li>			
-				<li>
-					<p class="psSubDesc">(ShShop 에서는 중고 상품을 쉽고, 빠르게 찾아볼 수 있습니다. 
-					상품의 궁금한 모든 상항을 편리하게 확인하시기 바랍니다.)</p>
-				</li>
+				</li>	
+				<c:if test="${sessionScope.productDetail.product.connection > 0}">
+					<li>
+						<p class="psTitle"><strong>연락방법</strong></p>
+						</br>
+						<p class="psDesc"><span>${sessionScope.productDetail.product.connectOptionComment}</span></p>
+					</li>
+				</c:if>	
+				<c:if test="${sessionScope.productDetail.product.translation > 0}">
+					<li>
+						<p class="psTitle"><strong>거래방법</strong></p>
+						</br>
+						<p class="psDesc"><span>${sessionScope.productDetail.product.translationComment}</span></p>
+					</li>
+				</c:if>
 				<li>
 					<a href="" id="buy">Buy now</a> 
 				</li>
@@ -62,17 +72,37 @@
 								</nav>
 								<div class="tab_contents">
 									<ul>
-										<li id="producer_info"><img src="${adminBean.contextPath}/content/image/detailview_image/faill-icon-128.png" alt="" width="128"
-											height="128" />
-											<h3>판매자정보</h3>
-											<p>판매자 정보를 출력한다.</p>
+										<li id="producer_info">
+											
+											<img src="${adminBean.contextPath}/content/image/detailview_image/faill-icon-128.png" alt="" />
+											<div class="DetailTable">
+											<table>
+												<tr>
+													<td width=30%><strong>판매자명</strong></td>
+													<td width=70%>${sessionScope.user.name}</td>
+												</tr>
+												<tr>
+													<td width=30%><strong>카카오톡 아이디</strong></td>
+													<td width=70%>${sessionScope.user.ktalkId}</td>
+												</tr>
+												<tr>
+													<td width=30%><strong>이메일</strong></td>
+													<td width=70%>${sessionScope.user.email}</td>
+												</tr>
+												<tr>
+													<td width=30%><strong>전화번호</strong></td>
+													<td width=70%>${sessionScope.user.phone}</td>
+												</tr>
+											</table>
+											</div>
 										</li>
-										<li id="ask_reply_info"><img src="${adminBean.contextPath}/content/image/detailview_image/oh-u-icon-128.png" alt="" width="128"
-											height="128" />
+										<li id="ask_reply_info">
+											<img src="${adminBean.contextPath}/content/image/detailview_image/oh-u-icon-128.png" alt="" width="128" height="128" />
 											<h3>묻고 답하기</h3>
 											<p>묻고 답하기에 대한 내용을 출력한다.</p>
 										</li>
-										<li id="order_reply_info"><img src="${adminBean.contextPath}/content/image/detailview_image/high-icon-128.png" alt="" width="128" height="128" />
+										<li id="order_reply_info">
+											<img src="${adminBean.contextPath}/content/image/detailview_image/high-icon-128.png" alt="" width="128" height="128" />
 											<h3>구매후기</h3>
 											<p>구매후기에 대한 내용 출력한다.</p>
 										</li>

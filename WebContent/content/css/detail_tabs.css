@@ -60,22 +60,139 @@
     background: #f9f9f9;
 }
 
-
 .tabs .tab_contents li { 
     background: #f9f9f9;
 }
 
-.js .tabs .tab_contents li {
+.tabs .tab_contents li img{
+    position: absolute;
+    top: 60px;
+    left: 40px;  
+    z-index: -1;
+    background: #f9f9f9;
+}
+
+.tabs .tab_contents li.active table{
+    z-index: 1;
+}
+
+.tabs .tab_contents li.active img{
+    z-index: 1;
+}
+
+.DetailTable {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    border: 1px solid #000000;
+    -moz-border-radius-bottomleft: 12px;
+    -webkit-border-bottom-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    -moz-border-radius-bottomright: 12px;
+    -webkit-border-bottom-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    -moz-border-radius-topright: 12px;
+    -webkit-border-top-right-radius: 12px;
+    border-top-right-radius: 12px;
+    -moz-border-radius-topleft: 12px;
+    -webkit-border-top-left-radius: 12px;
+    border-top-left-radius: 12px;
+}
+
+.DetailTable table {
     position: absolute;
     top: 35px;
-    left: 15px;  
+    left: 250px; 
+    width: 700px; 
+    z-index: -1;
+    background: #f9f9f9;
+    border-collapse: collapse;
+    border-spacing: 0; 
+    margin: 0px;
+    padding: 0px;
 }
 
-.js .tabs .tab_contents li.active {
-    z-index: 10;
+.DetailTable table.active { 
+    z-index: 1;
 }
 
-.tabs .tab_contents img {
-    float: left;
-    margin-right: 10px;
+.DetailTable tr:last-child td:last-child {
+    -moz-border-radius-bottomright: 12px;
+    -webkit-border-bottom-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.DetailTable table tr:first-child td:first-child {
+    -moz-border-radius-topleft: 12px;
+    -webkit-border-top-left-radius: 12px;
+    border-top-left-radius: 12px;
+}
+
+.DetailTable table tr:first-child td:last-child {
+    -moz-border-radius-topright: 12px;
+    -webkit-border-top-right-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.DetailTable tr:last-child td:first-child {
+    -moz-border-radius-bottomleft: 12px;
+    -webkit-border-bottom-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.DetailTable tr:hover td {}
+
+.DetailTable tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.DetailTable tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.DetailTable td {
+    vertical-align: middle;
+    border: 1px solid #000000;
+    border-width: 0px 1px 1px 0px;
+    text-align: left;
+    padding: 14px;
+    font-size: 14px;
+    font-weight: normal;
+    color: #000000;
+}
+
+.DetailTable tr:last-child td {
+    border-width: 0px 1px 0px 0px;
+}
+
+.DetailTable tr td:last-child {
+    border-width: 0px 0px 1px 0px;
+}
+
+.DetailTable tr:last-child td:last-child {
+    border-width: 0px 0px 0px 0px;
+}
+
+
+.DetailTable tr:first-child td:first-child {
+    border-width: 0px 0px 1px 0px;
+}
+
+.DetailTable tr:first-child td:last-child {
+    border-width: 0px 0px 1px 1px;
+}
+
+.DetailTable tr td:first-child {
+    background: -o-linear-gradient(bottom, #005fbf 5%, #005fbf 100%);
+    background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #005fbf), color-stop(1, #005fbf));
+    background: -moz-linear-gradient( center top, #005fbf 5%, #005fbf 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#005fbf", endColorstr="#005fbf");
+    background: -o-linear-gradient(top, #005fbf, 005fbf);
+    background-color: #808080;
+    border: 0px solid #000000;
+    text-align: center;
+    border-width: 0px 0px 1px 1px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
 }

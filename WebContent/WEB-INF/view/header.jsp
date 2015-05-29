@@ -84,6 +84,7 @@
 </div>
 
 <!--- 로그인--->
+<div class="blind">
 <div class="m_login">
 	<div id="login-options">
 		<form id="loginForm" name="loginForm">
@@ -162,6 +163,7 @@
 			</div>
 		</form>
 	</div>
+</div>
 </div>
 
 <!--- 비밀번호찾기 
