@@ -13,7 +13,7 @@ public class ProductCategory implements Serializable {
 
 	}
 
-	public ProductCategory(Integer productId, Integer categoryId) {
+	public ProductCategory(Integer categoryId, Integer productId) {
 		this.productId = productId;
 		this.categoryId = categoryId;
 	}

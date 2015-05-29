@@ -27,9 +27,9 @@ public class Product implements Serializable {
 
 	}
 	 
-	public Product(Integer userId, String name, int price, int stock, int translation, int connection,
-				   boolean onSale, boolean onOpen, String tag, boolean outOfStock, 
-				   String description, int searchingCount) {
+	public Product(Integer userId, String name, int price, int stock, int translation, int connection, 
+				   String tag, String description, int searchingCount,
+				   boolean onSale, boolean onOpen, boolean outOfStock) {
 		this.userId = userId;
 		this.name = name;
 		this.price = price;

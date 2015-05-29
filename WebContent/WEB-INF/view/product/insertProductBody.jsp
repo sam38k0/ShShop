@@ -42,14 +42,18 @@
 					<td><b>연락방법</b></td>
 					<td>
 					    <fieldset>
-			            <label><input type="checkbox" value="all" id="all"> All </label>
-			            <label><input type="checkbox" id="connection1" value="1"> 직접통화 </label>
-			            <label><input type="checkbox" id="connection2" value="2"> SMS </label>
-			            <label><input type="checkbox" id="connection3" value="4"> 카톡 </label>
-			            <label><input type="checkbox" id="connection4" value="8"> 이메일 </label>
-			            <label><input type="checkbox" id="connection5" value="16"> 쪽지 </label>
-			            <label><input type="checkbox" id="connection6" value="32"> 채팅 </label>
-			            <label><input type="checkbox" id="connection7" value="64"> 댓글 </label>
+					    	<div class="connectionList">
+						    	<label><input type="checkbox" value="all" id="all"> All </label>
+						    	<ul>
+						    		<li><input type="checkbox" id="connection1" value="1" name="connectionOpt1"> 직접통화</li>
+						    		<li><input type="checkbox" id="connection2" value="2" name="connectionOpt2"> SMS</li>
+						    		<li><input type="checkbox" id="connection3" value="4" name="connectionOpt3"> 카톡</li>
+						    		<li><input type="checkbox" id="connection4" value="8" name="connectionOpt4"> 이메일</li>
+						    		<li><input type="checkbox" id="connection5" value="16" name="connectionOpt5"> 쪽지</li>
+						    		<li><input type="checkbox" id="connection6" value="32" name="connectionOpt6"> 채팅</li>
+						    		<li><input type="checkbox" id="connection7" value="64" name="connectionOpt7"> 댓글</li>
+						    	</ul>
+					    	</div>
 			            </fieldset>
 					</td>
 				</tr>

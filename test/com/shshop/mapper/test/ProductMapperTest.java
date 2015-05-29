@@ -42,8 +42,8 @@ public class ProductMapperTest {
 	@Test
 	public void testInsertProduct() {
 		int countBefore = productMapper.getProductCount();
-		productMapper.insertProduct(new Product(3, "product6", 60, 60, 1, 204, true, true, "tag8", false, "description6", 0));
-		productMapper.insertProduct(new Product(1, "product7", 70, 70, 2, 3, true, false, null, false, "description7", 10));
+		productMapper.insertProduct(new Product(3, "product6", 60, 60, 1, 204, "tag8", "description6", 0, true, true, false));
+		productMapper.insertProduct(new Product(1, "product7", 70, 70, 2, 3, null, "description7", 10, true, false, false));
 
 		int countAfter = productMapper.getProductCount();
 		assertEquals("testInsertProduct", countBefore + 2, countAfter);

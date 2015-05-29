@@ -21,6 +21,7 @@ import com.shshop.domain.ProductCategory;
 import com.shshop.domain.ProductDetail;
 import com.shshop.domain.ProductImage;
 import com.shshop.domain.User;
+import com.shshop.helper.InsertProductParams;
 import com.shshop.helper.TimestampFileRenamePolicy;
 import com.shshop.mapper.CategoryMapper;
 import com.shshop.mapper.ProductCategoryMapper;
@@ -47,7 +48,6 @@ public class ProductService {
 		User user = (User) session.getAttribute(Constant.attrUser);
 		if (user == null)
 			return new CommandResult(Constant.textPlain, Constant.noUser);
-
 
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 
@@ -83,8 +83,8 @@ public class ProductService {
 		String filePath = request.getServletContext().getInitParameter(Constant.paramFileUploadAbsolutePath);
 
 		TimestampFileRenamePolicy fileRenamePolicy = new TimestampFileRenamePolicy();
-		if(getMulti() == null)
-			setMulti(new MultipartRequest(request, filePath, 500 * 1024, "UTF-8", fileRenamePolicy) );
+		if (getMulti() == null)
+			setMulti(new MultipartRequest(request, filePath, 500 * 1024, "UTF-8", fileRenamePolicy));
 
 		List<String> uploadedFilePaths = new ArrayList<>();
 		List<String> newFileNames = fileRenamePolicy.getNewFileNames();
@@ -99,19 +99,11 @@ public class ProductService {
 
 	private Product insertProduct(User user) throws IOException {
 		Product product = null;
-
-		String productName = multi.getParameter("productname");
-		String price = multi.getParameter("price");
-		String stock = multi.getParameter("stock");
-		String description = multi.getParameter("description");
-		String tags = multi.getParameter("tagsinput");
-		String category = multi.getParameter("miniCategory");
-		String transactionType = multi.getParameter("transactionType");
-		// String connectionType = multi.getParameter("connectionType");
-
+		InsertProductParams psParam = new InsertProductParams(multi);
 		ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
-		product = new Product(user.getUserId(), productName, Integer.parseInt(price), Integer.parseInt(stock), Integer.parseInt(transactionType),
-				204, false, true, tags, false, description, 0);
+		product = new Product(user.getUserId(), psParam.getProductName(), psParam.getPrice(), psParam.getStock(),
+							  psParam.getTransactionType(), psParam.getConnectionOpt() ,psParam.getTags() ,psParam.getDescription(), 
+							  0, false, true, false);
 		productMapper.insertProduct(product);
 
 		return product;
