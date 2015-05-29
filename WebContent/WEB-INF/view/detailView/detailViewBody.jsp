@@ -75,7 +75,7 @@
 										<li id="producer_info">
 											
 											<img src="${adminBean.contextPath}/content/image/detailview_image/faill-icon-128.png" alt="" />
-											<div class="DetailTable">
+											<div class="UserDetailTable">
 											<table>
 												<tr>
 													<td width=30%><strong>판매자명</strong></td>
