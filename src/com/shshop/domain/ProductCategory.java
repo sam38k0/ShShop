@@ -1,6 +1,10 @@
 package com.shshop.domain;
 
-public class ProductCategory {
+import java.io.Serializable;
+
+public class ProductCategory implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private Integer productCategoryId;
 	private Integer productId;
 	private Integer categoryId;

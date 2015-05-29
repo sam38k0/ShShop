@@ -13,8 +13,8 @@ import org.junit.Test;
 
 import com.shshop.domain.Product;
 import com.shshop.domain.User;
+import com.shshop.helper.Format;
 import com.shshop.mapper.UserMapper;
-import com.shshop.util.Format;
 import com.shshop.util.MyBatisUtil;
 
 public class UserMapperTest {

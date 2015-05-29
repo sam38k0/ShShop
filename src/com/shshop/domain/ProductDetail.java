@@ -1,9 +1,12 @@
 package com.shshop.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDetail {
+public class ProductDetail implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	private Product product = null;
 	private List<String> imagePaths = new ArrayList<>();
 

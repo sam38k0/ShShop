@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.shshop.helper.CategoryHtmlBuilder;
-import com.shshop.util.Format;
+import com.shshop.helper.Format;
 
 public class CategoryHtmlBuilderTest {
 

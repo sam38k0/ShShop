@@ -5,8 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.shshop.control.CommandResult;
 import com.shshop.domain.User;
+import com.shshop.helper.Format;
 import com.shshop.service.AuthenticatorService;
-import com.shshop.util.Format;
 
 public class JoinCommand implements Command {
 

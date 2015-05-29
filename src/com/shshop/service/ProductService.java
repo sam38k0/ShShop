@@ -21,13 +21,13 @@ import com.shshop.domain.ProductCategory;
 import com.shshop.domain.ProductDetail;
 import com.shshop.domain.ProductImage;
 import com.shshop.domain.User;
+import com.shshop.helper.TimestampFileRenamePolicy;
 import com.shshop.mapper.CategoryMapper;
 import com.shshop.mapper.ProductCategoryMapper;
 import com.shshop.mapper.ProductImageMapper;
 import com.shshop.mapper.ProductMapper;
 import com.shshop.mapper.UserMapper;
 import com.shshop.util.MyBatisUtil;
-import com.shshop.util.TimestampFileRenamePolicy;
 
 @SuppressWarnings("unused")
 public class ProductService {
@@ -76,14 +76,15 @@ public class ProductService {
 			sqlSession.close();
 		}
 
-		return new CommandResult("/WEB-INF/view/main.jsp");
+		return new CommandResult("/WEB-INF/view/mainView/main.jsp");
 	}
 
 	private List<String> uploadFiles() throws IOException {
 		String filePath = request.getServletContext().getInitParameter(Constant.paramFileUploadAbsolutePath);
 
 		TimestampFileRenamePolicy fileRenamePolicy = new TimestampFileRenamePolicy();
-		multi = new MultipartRequest(request, filePath, 500 * 1024, "UTF-8", fileRenamePolicy);
+		if(getMulti() == null)
+			setMulti(new MultipartRequest(request, filePath, 500 * 1024, "UTF-8", fileRenamePolicy) );
 
 		List<String> uploadedFilePaths = new ArrayList<>();
 		List<String> newFileNames = fileRenamePolicy.getNewFileNames();
@@ -194,5 +195,13 @@ public class ProductService {
 		} finally {
 			sqlSession.close();
 		}
+	}
+
+	public MultipartRequest getMulti() {
+		return multi;
+	}
+
+	public void setMulti(MultipartRequest multi) {
+		this.multi = multi;
 	}
 }
