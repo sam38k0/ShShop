@@ -1,0 +1,310 @@
+#searchContentArea html,
+#searchContentArea body,
+#searchContentArea div,
+#searchContentArea span,
+#searchContentArea iframe,
+#searchContentArea h1,
+#searchContentArea h2,
+#searchContentArea h3,
+#searchContentArea h4,
+#searchContentArea h5,
+#searchContentArea h6,
+#searchContentArea p,
+#searchContentArea blockquote,
+#searchContentArea pre,
+#searchContentArea address,
+#searchContentArea em,
+#searchContentArea img,
+#searchContentArea strong,
+#searchContentArea sub,
+#searchContentArea sup,
+#searchContentArea b,
+#searchContentArea i,
+#searchContentArea dl,
+#searchContentArea dt,
+#searchContentArea dd,
+#searchContentArea ol,
+#searchContentArea ul,
+#searchContentArea li,
+#searchContentArea fieldset,
+#searchContentArea form,
+#searchContentArea label,
+#searchContentArea legend,
+#searchContentArea table,
+#searchContentArea caption,
+#searchContentArea tbody,
+#searchContentArea thead,
+#searchContentArea tr,
+#searchContentArea th,
+#searchContentArea td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+}
+
+#searchContentArea ol,
+#searchContentArea ul,
+#searchContentArea dl,
+#searchContentArea li,
+#searchContentArea dt,
+#searchContentArea dd {
+    list-style: none;
+}
+
+#searchContentArea body {
+  width: 100%;
+  height: 100%;
+  background-color: #EEE;
+}
+
+#searchContentArea table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-spacing: 2px;
+    border-color: grey;
+}
+
+#searchContentArea colgroup {
+    display: table-column-group;
+}
+
+#searchContentArea col {
+    display: table-column;
+}
+
+#searchContentArea thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+    height: 16px;
+}
+
+#searchContentArea tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+#searchContentArea tr {
+    display: table-row;
+    vertical-align: middle;
+    border-color: inherit;
+    border: 0; 
+	border-width: 0;
+    border-bottom: solid 1px #cbcbcb;
+}
+
+#searchContentArea th {
+    font-weight: normal;
+    vertical-align: middle;
+    padding: 0;
+}
+
+#searchContentArea a {
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#searchContentArea input {
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+}
+
+#searchContentArea input {
+    border: solid 1px #cbcbcb;
+    padding: 3px;
+    height: 15px;
+    outline: medium;
+}
+
+#searchContentArea input,
+#searchContentArea select,
+#searchContentArea button {
+    vertical-align: middle;
+    color: #333;
+}
+
+#searchContentArea table.itemList tbody td {
+    padding: 10px 0;
+    text-align: center;
+    color: #666;
+}
+
+#searchContentArea #searchContentArea  {
+    position: relative;
+    min-width: 1000px;
+    width: 100%;
+    background-color: #FFF;
+}
+
+#searchContentArea #section {
+    width: 100%;
+    padding: 0 0 40px 0;
+}
+
+#searchContentArea #section #contents {
+    width: 1000px;
+    margin: 0 auto;
+    min-height: 350px;
+    _height: 350px;
+}
+
+#searchContentArea .name,
+#searchContentArea .name a {
+    color: #209cd4!important;
+}
+
+#searchContentArea div.srcinResult_title {
+    position: relative;
+    height: 12px;
+}
+
+#searchContentArea div.srcinResult_title {
+    position: relative;
+    height: 12px;
+}
+
+#searchContentArea div.srcinResultBox {
+    overflow: hidden;
+    width: 993px;
+    margin: 6px 0 20px 0;
+    padding: 7px 0 7px 5px;
+    border: solid 1px #cbcbcb;
+    color: #555;
+}
+
+#searchContentArea div.srcinResultBox div.srcinResultBox_min {
+    width: 985px;
+    overflow: hidden;
+}
+
+#searchContentArea div.srcinResultBox div.srcinResultBox_min div.priceArea {
+    float: left;
+    position: relative;
+    margin: 3px 15px 0 0;
+    width: 425px;
+}
+
+#searchContentArea div.srcinResultBox div.srcinResultBox_min div.priceArea p {
+    float: left;
+    padding: 4px 10px 0 0;
+    font-weight: bold;
+}
+
+#searchContentArea div.itemListTop {
+    clear: both;
+    width: 1000px;
+}
+
+#searchContentArea div.itemListTop h3 {
+    text-indent: 0;
+    background: 0;
+    font-weight: bold;
+    color: #000;
+    margin: 0 0 6px 0;
+}
+
+#searchContentArea div.srcinResult_title {
+  position: relative;
+  height: 12px;
+}
+
+#searchContentArea div.itemListTop div.sortBar {
+    clear: both;
+    background-repeat: repeat-x;
+    background-image: url("../image/searchview_image/bg_sorting.gif");
+    height: 33px;
+    border-left: solid 1px #3796c2;
+    border-right: solid 1px #3796c2;
+}
+
+#searchContentArea div.itemListTop div.sortBar ul.sortLeft {
+    float: left;
+}
+
+#searchContentArea div.itemListTop div.sortBar ul.sortLeft li.on,
+#searchContentArea div.itemListTop div.sortBar ul.sortLeft li:hover {
+    background: #1d5c9f;
+    border: solid 1px #06407d;
+    height: 30px;
+    line-height: 31px;
+    cursor: pointer;
+    margin: 0 0 0 -1px;
+    padding: 0 10px 1px 10px;
+}
+
+#searchContentArea div.itemListTop div.sortBar ul.sortLeft li {
+    float: left;
+    display: block;
+    background-position: right -60px;
+    padding: 0 11px 0 10px;
+    height: 30px;
+    line-height: 33px;
+    font-weight: bold;
+    color: #FFF;
+}
+
+#searchContentArea div.itemListTable {
+    width: 1000px;
+    overflow: hidden;
+    border-top: solid 1px #e0e0e0;
+    padding: 5px 0 0 0;
+}
+
+
+#searchContentArea table.itemList {
+    width: 100%;
+    background-repeat: repeat-x;
+    background-image: url("../image/searchview_image/bg_tablehead.gif");
+}
+
+#searchContentArea table.itemList tbody td {
+    padding: 10px 0;
+    text-align: center;
+    color: #666;
+    height: 120px;
+}
+
+#searchContentArea table.itemList tbody td div.outline {
+    position: relative;
+    float: left;
+    width: 100px;
+    height: 100px;
+    border: 1px solid #cecece;
+    overflow: hidden;
+}
+
+#searchContentArea table.itemList tbody td div.outline img {
+    border: 1px solid #6f6f6f;
+    width: 90px;
+    height: 90px;
+    z-index: 10;
+    margin: 4px;
+    vertical-align: middle;
+}
+
+#searchContentArea table.itemList tbody td.itemCnt {
+    text-align: left;
+    padding-right: 5px;
+}
+
+#searchContentArea table.itemList tbody td div.itemInfo {
+    clear: both;
+}
+
+#searchContentArea table.itemList tbody td div.itemInfo p.title {
+    font-weight: bold;
+    padding-bottom: 3px;
+}
+
+#searchContentArea table.itemList tbody td div.itemInfo p.location {
+    color: #999;
+    padding-bottom: 3px;
+}
+
+#searchContentArea table.itemList tbody td.price {
+    font-weight: bold;
+}

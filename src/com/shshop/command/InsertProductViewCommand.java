@@ -16,7 +16,7 @@ public class InsertProductViewCommand implements Command {
 		if (session == null && session.getAttribute(Constant.attrUser) == null)
 			return null;
 
-		CommandResult commandResult = new CommandResult("/WEB-INF/view/product/insertProduct.jsp");
+		CommandResult commandResult = new CommandResult("/WEB-INF/view/insertProductView/insertProduct.jsp");
 
 		return commandResult;
 	}

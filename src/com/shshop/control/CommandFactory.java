@@ -7,8 +7,10 @@ import com.shshop.command.InsertProductViewCommand;
 import com.shshop.command.JoinCommand;
 import com.shshop.command.LoginCommand;
 import com.shshop.command.LogoutCommand;
-import com.shshop.command.ShowDetailViewCommand;
 import com.shshop.command.MainViewCommand;
+import com.shshop.command.SearchActionCommand;
+import com.shshop.command.SearchViewCommand;
+import com.shshop.command.ShowDetailViewCommand;
 import com.shshop.constant.Constant;
 
 public class CommandFactory {
@@ -41,8 +43,11 @@ public class CommandFactory {
 		case Constant.insertHopeProductView:
 			return null;
 			
-		case Constant.search:
-			return null;
+		case Constant.searchView:
+			return new SearchViewCommand();
+		
+		case Constant.searchAction:
+			return new SearchActionCommand();
 			
 		default:
 			return null;

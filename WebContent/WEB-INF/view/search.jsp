@@ -3,22 +3,43 @@
 <%@page session= "true" import ="java.util.*, com.shshop.command.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%
+	final int ROWSIZE = 10; //한페이지에 보일 게시물 수
+	final int BLOCK = 5; // 아래에 보일 페이지 최대개수 1~5/ 5~10/ 11~15 이런식
+
+	int pg = 1;//기본페이지값
+	
+	if(request.getParameter("pg")!=null) {  //받아온 pg값이 있을때, 다른페이지일때
+		pg = Integer.parseInt(request.getParameter("pg"));  // pg값을 저장
+	}
+	
+	int start = (pg*ROWSIZE) - (ROWSIZE-1);
+	int end = (pg*ROWSIZE);
+	
+	int allPage = 0;
+	
+	int startPage = ((pg-1)/BLOCK*BLOCK)+1;
+	int endPage = ((pg-1)/BLOCK*BLOCK)+BLOCK;
+
+%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
         <title>search</title>
         <link rel="stylesheet" href="../content/css/command.css">
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     </head>
     <body>
         <div class="wrap">
             <div class="header_area">
                 <!--헤더 인크루트 영역-->
             </div>
-            
+
             <!---- search 영역 ---->
             <div id="search_area">
-                <!---- 서브 카테고리 영역 ---->  
+                <!---- 서브 카테고리 영역 ---->   
                 <div id="sub_catagory">
                     <ul class="sub_ctg">
                         <li>▶</li>
@@ -36,7 +57,7 @@
                 <div id="search_type">
                     <ul id="search_round">
                         <li><a href="#">최신순</a></li>
-                        <li><a href="#">댓글순</a></li>
+                        <li><a href="#">댓글순</a></li>      
                         <li><a href="#">고가순</a></li>
                         <li><a href="#">저가순</a></li>
                     </ul>
@@ -66,17 +87,22 @@
                                 <li>등록일</li>
                             </ul>
                         </div>
+                        <c:forEach var="products" items = "${search}" >
                         <div class="text_list text_body">
                             <ul>
-                                <li>123123</li>
+                                <li>${products.productId}</li> 
                                 <li class="text_detail"><img src="http://placehold.it/100x100" alt="상품이미지">
-                                    <span>상품제목</span>
-                                <li>2000 <span>택포</span></li>
+                                    <span>${products.name}</span>
+                                <li>${products.price} <span>택포</span></li>
                                 <li class="payment"><img src="http://placehold.it/100x100" alt="안전결제여부"></li>
-                                <li class="certify">아이디<span>인증유무</span></li>
-                                <li>1시간전</li>
+                                <li class="certify">${products.userId}<span>인증유무</span></li>
+                                <li>${products.dateCreated}</li>
                             </ul>
                         </div>
+                        </c:forEach>
+		</td>
+		</tr>        
+		</table>
                     </div>
                     <!---- 게시판 + 이미지형 테이블 ---->
                     <div id="search_img_text">
@@ -96,7 +122,7 @@
                             <img src="http://placehold.it/200x200" alt="">
                             <p>상품제목</p>
                             <em>상품 가격</em><br>
-                            <span>등록 경과 시간(일자)</span>
+                            <span>등록 경과 시간(일자)</span>				 
                         </div>
                         <div class="img_text_grid">
                             <img src="http://placehold.it/200x200" alt="">

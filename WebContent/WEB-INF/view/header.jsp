@@ -1,40 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page session="true" import="java.util.*, com.shshop.command.*"%>
+<%@page session= "true" import ="com.shshop.service.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:useBean id="adminBean" class="com.shshop.system.AdminBean" scope="session" />
 
 <div class="headwrap">
+	<!-- 테스트용 > 개발 끝나고 지워야 함 -->
+	<div id="test">
+		<form id="showDetailViewForm" name="showDetailViewForm" method="post" action="showDetailView">
+			<input type="submit" value="TestDetailView">
+		</form>
+	</div>
+	
 	<!-- 헤더 시작 -->
 	<div id="header">
 		<!-- 전체 카테고리 시작 -->
 		<div id="category">
 			<span>카테고리 선택</span>
 			<ul class="allcategory">
-				<li><a href="#" class="choice">의류</a>
-					<ul class="allcategory">
-						<li><a href="#">상의</a></li>
-						<li><a href="#">하의</a></li>
-						<li><a href="#">외투</a></li>
-					</ul></li>
-				<li><a href="#">장난감</a></li>
-				<li><a href="#">가전</a></li>
-				<li><a href="#">아동용품</a></li>
-				<li><a href="#">기타</a></li>
+			<%
+                CategoryControlService categoryControlService = new CategoryControlService();
+                out.print(categoryControlService.buildHtml(false));
+             %>
 			</ul>
 		</div>
 		<!-- 전체 카테고리 종료 -->
 		<!-- 검색바 시작 -->
 		<div id="search">
-			<select>
-				<option>전체</option>
-				<option>의류</option>
-				<option>장난감</option>
-				<option>가전</option>
-				<option>악세서리</option>
-			</select> 
-			<input type="text"> 
-			<input type="submit" value="검색">
+			<form action="searchView" method="get">
+				<select>
+					<option>전체</option>
+					<option>의류</option>
+					<option>장난감</option>
+					<option>가전</option>
+					<option>악세서리</option>
+				</select> <input type="text" name='keywords'>
+				<button type="submit" value="Submit">검색</button>
+			</form>
 		</div>
 		<!-- 검색바 종료 -->
 		<!-- 상품등록버튼 시작 -->
@@ -45,10 +48,8 @@
 			<form id="insertHopeProductForm" name="insertHopeProductForm" method="post" action="insertHopeProductView">
 				<input type="submit" value="구매등록">
 			</form>
-			<form id="showDetailViewForm" name="showDetailViewForm" method="post" action="showDetailView">
-				<input type="submit" value="디테일뷰 테스트">
-			</form>
 		</div>
+		
 		<!-- 상품등록버튼 종료 -->
 
 		<!-- 로그인 전 서브 메뉴 시작 -->

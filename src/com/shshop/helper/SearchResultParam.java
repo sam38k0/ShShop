@@ -1,0 +1,111 @@
+package com.shshop.helper;
+
+import com.shshop.domain.Product;
+import com.shshop.domain.ProductImage;
+import com.shshop.domain.User;
+
+public class SearchResultParam {
+	private String id = "";
+	private String userName = "";
+	private String productName = "";
+	private int price = 0;
+	private String dataCreated = "";
+	private boolean safeOrder = false;
+	private String imageUrl = "";
+	private String location = "";
+	private String userLevel = "";
+
+	public SearchResultParam() {
+
+	}
+	public SearchResultParam(String id, String userName, String productName, int price, String dataCreated, boolean safeOrder,
+							 String imageUrl, String location, String userLevel){
+		this.id = id;
+		this.userName = userName;
+		this.productName = productName;
+		this.price = price;
+		this.dataCreated = dataCreated;
+		this.safeOrder = safeOrder;
+		this.imageUrl = imageUrl;
+		this.location = location;
+		this.userLevel = userLevel;
+	}
+
+	public SearchResultParam(User user, Product product, String imageUrl) {
+		this.setUserName(user.getName());
+		this.setProductName(product.getName());
+		this.setPrice(product.getPrice());
+		this.setDataCreated(product.getDateCreated().toString());
+		this.setImageUrl(imageUrl);
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public String getDataCreated() {
+		return dataCreated;
+	}
+
+	public void setDataCreated(String dataCreated) {
+		this.dataCreated = dataCreated;
+	}
+
+	public boolean isSafeOrder() {
+		return safeOrder;
+	}
+
+	public void setSafeOrder(boolean safeOrder) {
+		this.safeOrder = safeOrder;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getUserLevel() {
+		return userLevel;
+	}
+
+	public void setUserLevel(String userLevel) {
+		this.userLevel = userLevel;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+}

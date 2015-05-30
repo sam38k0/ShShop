@@ -7,7 +7,8 @@ public class Constant {
 	public static final String join = "/join";
 	public static final String insertProductView = "/insertProductView";
 	public static final String insertProduct = "/insertProduct";
-	public static final String search = "/search";
+	public static final String searchView = "/searchView";
+	public static final String searchAction ="/searchAction";
 	public static final String viewMain = "/viewMain";
 	public static final String insertHopeProductView = "/insertHopeProduct";
 	public static final String headerView = "/headerView";
@@ -40,4 +41,5 @@ public class Constant {
 	public static final String Success = "Success";
 	public static final String Failed = "Failed"; 
 	public static final String onLogin = "onLogin";
+	public static final String attrKeywords = "keywords";
 }

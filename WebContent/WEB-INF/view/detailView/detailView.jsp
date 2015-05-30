@@ -3,7 +3,7 @@
 <%@page session= "true" import ="com.shshop.command.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  
-<c:set var= "pageTitle" scope ="request" value= "Detail View"/>
+<c:set var= "pageTitle" scope ="request" value= "ShShop"/>
 <jsp:setProperty name= "adminBean" property ="headerPage" value="/WEB-INF/view/header.jsp" />
 <jsp:setProperty name= "adminBean" property ="stylePage" value="/WEB-INF/view/detailView/detailViewStyle.jsp" />
 <jsp:setProperty name= "adminBean" property ="contentPage" value="/WEB-INF/view/detailView/detailViewBody.jsp" />
