@@ -12,10 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.shshop.command.Command;
 import com.shshop.constant.Constant;
-import com.shshop.service.CategoryControlService;
 import com.shshop.system.AdminBean;
-import com.shshop.threading.AleadyClosedException;
-import com.shshop.threading.ThreadPool;
 
 public class DispatcherServlet extends HttpServlet {
 	private static final long serialVersionUID = 2335728773164645554L;

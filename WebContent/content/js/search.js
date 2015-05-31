@@ -2,22 +2,26 @@ function pageSet(text) {
 	response = text;
 	response = $.parseJSON(response);
 
-	// Total Row Count
+	// Set Total Row Count
+	//
 	var totalCount = response.totalSearchingCount;
 	$('#itemListCount').empty();
 	$('#itemListCount').append(totalCount);
 
-	// Total Page Count
+	// Set Total Page Count
+	//
 	var totalPageCount = response.totalPageCount;
 	$('#totalPageCount').empty();
 	$('#totalPageCount').append(totalPageCount);
 
-	// Total Size
+	// Set Total Size
+	//
 	var keywords = response.keywords;
 	$('#keywords').val(keywords);
 	$('#searchKeyWords').text(keywords);
 
-	// Table Result
+	// Create Table Result Elements
+	//
 	var trHTML = '';
 	$.each(response.searchResults, function(i, item) {
 		trHTML += '<tr>' + '<td><div id= \"' + item.id + '\" class=\"outline\"><a href= \"#\"><img src= \"' + item.imageUrl
@@ -30,7 +34,8 @@ function pageSet(text) {
 	$('tbody').empty();
 	$('tbody').append(trHTML);
 
-	// Paging
+	// Create Paging Elements
+	//
 	var aHTML = '';
 	var currentPage = response.currentPage;
 	var startPage = parseInt(currentPage / 10) * 10 + 1;
@@ -55,7 +60,8 @@ function pageSet(text) {
 
 	$('#pagingSearchResults').empty();
 	$('#pagingSearchResults').append(aHTML);
-
+	
+	//Page
 	$("#pagingSearchResults a").each(function(idx) {
 		$(this).click(function(event) {
 			event.preventDefault();
@@ -81,12 +87,17 @@ function pageSet(text) {
 
 $(document).ready(
 function() {
+ 
 	$.ajax({
 		type : "POST",
 		url : "searchAction",
+		data : {
+			"keywords":  '<c:out value="${param.keywords}"/>',
+			"data-page": '<c:out value="${param.data-page}"/>'
+			},
 		success : pageSet,
+
 		error : function(ajaxContext) {
-			alert(ajaxContext.responseText)
 		}
 	});
 });

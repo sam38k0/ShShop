@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.shshop.constant.Constant;
 import com.shshop.domain.User;
 
 public class AdminBean implements Serializable {

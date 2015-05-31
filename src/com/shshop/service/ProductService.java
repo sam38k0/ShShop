@@ -203,22 +203,13 @@ public class ProductService {
 
 		String keywords = request.getParameter(Constant.attrKeywords);
 		String dataPage = request.getParameter(Constant.attrDataPage);
-		
+		if(dataPage == null || dataPage.equals(""))
+			dataPage = "1";
+
 		HttpSession session = request.getSession();
-		
-		if(keywords == null) {
-			keywords = (String)session.getAttribute(Constant.attrKeywords);
-			dataPage = (String)session.getAttribute(Constant.attrDataPage);
-		}
-		
 		SearchResult searchResult = (SearchResult) session.getAttribute(Constant.attrSearchResult);
 		
-		synchronized(session) {
-			session.setAttribute(Constant.attrKeywords, "");
-			session.setAttribute(Constant.attrDataPage, "");
-		}
-		
-		if(keywords == null || keywords == "" || dataPage == null)
+		if(keywords == null || keywords == "")
 			return null;
 		
 		if (searchResult == null || !searchResult.getKeywords().equals(keywords) ) {

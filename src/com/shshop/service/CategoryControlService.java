@@ -12,7 +12,6 @@ import com.shshop.util.MyBatisUtil;
 
 public class CategoryControlService {
 	private SqlSession sqlSession = null;
-	private CategoryMapper categoryMapper = null;
 	private static String buildHtmlResult = "";
 	public CategoryControlService() {
 

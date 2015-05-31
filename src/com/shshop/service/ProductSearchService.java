@@ -10,7 +10,6 @@ import com.shshop.util.MyBatisUtil;
 
 public class ProductSearchService {
 	private SqlSession sqlSession = null;
-	private SearchMapper searchMapper = null;
 	
 	public ProductSearchService(){
 		
