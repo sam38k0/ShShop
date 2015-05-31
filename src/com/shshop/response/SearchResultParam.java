@@ -1,4 +1,4 @@
-package com.shshop.helper;
+package com.shshop.response;
 
 import com.shshop.domain.Product;
 import com.shshop.domain.ProductImage;

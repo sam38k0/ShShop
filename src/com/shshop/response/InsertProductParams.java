@@ -1,4 +1,4 @@
-package com.shshop.helper;
+package com.shshop.response;
 
 import java.util.ArrayList;
 import java.util.List;

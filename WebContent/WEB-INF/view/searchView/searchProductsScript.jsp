@@ -2,4 +2,4 @@
 
 <jsp:useBean id="adminBean" class="com.shshop.system.AdminBean" scope="session" />
 
-<script src="${adminBean.contextPath}/content/js/searchload.js"></script>
+<script src="${adminBean.contextPath}/content/js/search.js"></script>

@@ -315,3 +315,54 @@
   color: #777;
   text-align: center;
 }
+
+#searchContentArea div.paginationFooter {
+  clear: both;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  margin: 20px 0 0 0;
+  font-weight: bold;
+}
+
+#searchContentArea div.paginationFooter {
+  clear: both;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  margin: 20px 0 0 0;
+  font-weight: bold;
+}
+
+#searchContentArea div.page a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#searchContentArea div.page a, 
+#searchContentArea div.page span {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  color: #333;
+  border: 1px solid #CCC;
+  padding: 5px 8px;
+  height: 12px;
+  font-size: 11px;
+  margin: 0 1px;
+}
+
+#searchContentArea div.page span {
+  background-color: #4fbaeb;
+  color: #FFF;
+  border: 1px solid #3796c2;
+  font-size: 13px;
+}
+
+#searchContentArea div.page a.arrow {
+  background-color: #BBB;
+  border: solid 1px #999;
+  color: #FFF;
+  margin: 0 2px;
+  font-size: 13px;
+}

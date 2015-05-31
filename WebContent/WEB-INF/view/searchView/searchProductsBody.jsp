@@ -30,7 +30,7 @@
 			<!-- 정렬 조건 -->
 			<div class="itemListTop">
 				<h3>
-					‘뷰티’ 결과 : <span id="itemListCount"></span>
+					<span id="searchKeyWords"><%-- [DataNeed!!] --%></span>결과 : <span id="itemListCount"><%-- [DataNeed!!] --%></span>
 				</h3>
 				<div class="sortBar">
 					<ul id="list_sort" class="sortLeft">
@@ -66,19 +66,19 @@
 						</tr>
 					</thead>
 					<tbody>
-					<%--
+					 <%-- [Ajax Load]
 						<tr>
 							<td>
 								<div id="7939615" class="outline">
-									<a href="/item/7939615?cid=HAD0000&amp;cnm=뷰티"> 
-										<img src="//img.hellomarket.com/images5/2015/item/s3/05/25/14/5102_7939615_1.jpg" width="90" height="90">
+									<a href="#"> 
+										<img src="//14/5102_7939615_1.jpg" width="90" height="90">
 									</a>
 								</div>
 							</td>
 							<td class="itemCnt">
 								<div class="itemInfo">
 									<p class="title">
-										<a href="/item/7939615?cid=HAD0000&amp;cnm=뷰티">에센스</a>
+										<a href="#">에센스</a>
 									</p>
 									<p class="location">군포시</p>
 								</div>
@@ -95,6 +95,28 @@
 			</div>
 			<!-- //결과뷰 -->
 			
+			<!-- 페이징 -->
+			<div class="paginationFooter">
+			    <div class="page">
+			    	<div id="pagingSearchResults">
+			    		<%--
+	                    <a href="#" class="arrow" data-page="10">&lt;</a>
+	                    <span>1</span>
+	                    <a href="#" data-page="2">2</a>
+	                    <a href="#" data-page="3">3</a>
+	                    <a href="#" data-page="4">4</a> 
+	                    <a href="#" data-page="5">5</a> 
+	                    <a href="#" data-page="6">6</a> 
+	                    <a href="#" data-page="7">7</a> 
+	                    <a href="#" data-page="8">8</a> 
+	                    <a href="#" data-page="9">9</a> 
+	                    <a href="#" data-page="10">10</a> 
+	                    <a href="#" class="arrow" data-page="21">&gt;</a> 
+	                     --%>
+			    	</div>
+                </div>
+            </div>
+			<!-- 페이징 -->
 		</div>
 	</div>
 </div>

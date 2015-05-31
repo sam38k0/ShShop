@@ -3,8 +3,11 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <json:object>
-	<json:property name="totalSearchingCount" value="${totalSearchingCount}" />
-	<json:array name="searchResults" var="item" items="${searchResults}">
+	<json:property name="keywords" value="${searchResult.keywords}" />
+	<json:property name="totalSearchingCount" value="${searchResult.totalSize}" />
+	<json:property name="totalPageCount" value="${searchResult.totalPageCount}" />
+	<json:property name="currentPage" value="${searchResult.currentPage}" />
+	<json:array name="searchResults" var="item" items="${searchResult.currentPageResult}">
 		<json:object>
 			<json:property name="id" value="${item.id}" />
 			<json:property name="userName" value="${item.userName}" />
@@ -15,6 +18,8 @@
  			<json:property name="imageUrl" value="${item.imageUrl}" />
  			<json:property name="location" value="${item.location}" />
  			<json:property name="userLevel" value="${item.userLevel}" />
+ 			<json:property name="totalPageNum" value="${totalPageNum}" />
 		</json:object>
 	</json:array>
 </json:object>
+

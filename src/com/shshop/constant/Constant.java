@@ -21,6 +21,9 @@ public class Constant {
 	public static final String attrPassword = "password";
 	public static final String attrAdmin = "adminBean";
 	public static final String attrProductDetail = "productDetail";
+	public static final String attrSearchResult = "searchResult";
+	public static final String attrKeywords = "keywords";
+	public static final String attrDataPage = "data-page";
 	
 	//DD Parameter
 	public static final String paramFileUpload = "file-upload";
@@ -41,5 +44,4 @@ public class Constant {
 	public static final String Success = "Success";
 	public static final String Failed = "Failed"; 
 	public static final String onLogin = "onLogin";
-	public static final String attrKeywords = "keywords";
 }

@@ -35,7 +35,7 @@
 					<option>장난감</option>
 					<option>가전</option>
 					<option>악세서리</option>
-				</select> <input type="text" name='keywords'>
+				</select> <input type="text" id="keywords", name="keywords">
 				<button type="submit" value="Submit">검색</button>
 			</form>
 		</div>
