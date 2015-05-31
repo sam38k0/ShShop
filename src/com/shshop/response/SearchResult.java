@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchResult {
-	private int pageDivNum = 10;
+	private int pageDivNum = 2;
 	private int currentPage = 0;
 	private List<SearchResultParam> searchResults = null;
 	private String keywords = "";

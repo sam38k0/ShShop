@@ -201,12 +201,16 @@ public class ProductService {
 	public CommandResult setSearchedProductDatas() {
 		// [TODO]: 데이터 쿼리하는 코드 필요. ( 현재는 그냥 샘플 사용 )
 
-		HttpSession session = request.getSession(false);
-		if(session == null)
-			return null;
+		String keywords = request.getParameter(Constant.attrKeywords);
+		String dataPage = request.getParameter(Constant.attrDataPage);
 		
-		String keywords = (String)session.getAttribute(Constant.attrKeywords);
-		String dataPage = (String)session.getAttribute(Constant.attrDataPage);
+		HttpSession session = request.getSession();
+		
+		if(keywords == null) {
+			keywords = (String)session.getAttribute(Constant.attrKeywords);
+			dataPage = (String)session.getAttribute(Constant.attrDataPage);
+		}
+		
 		SearchResult searchResult = (SearchResult) session.getAttribute(Constant.attrSearchResult);
 		
 		synchronized(session) {
@@ -217,7 +221,7 @@ public class ProductService {
 		if(keywords == null || keywords == "" || dataPage == null)
 			return null;
 		
-		if (searchResult == null || searchResult.getKeywords() != keywords) {
+		if (searchResult == null || !searchResult.getKeywords().equals(keywords) ) {
 			// 결과를 쿼리 한다.
 			List<SearchResultParam> searchResults = new ArrayList<>();
 			searchResults.add(new SearchResultParam("product$Id1", "a", "ps1", 100, "20000001", false, "C:/1.png", "location1", "1"));
@@ -245,6 +249,44 @@ public class ProductService {
 			searchResults.add(new SearchResultParam("product$Id23", "w", "ps23", 2300, "20000023", false, "C:/23.png", "location23", "1"));
 			searchResults.add(new SearchResultParam("product$Id24", "x", "ps24", 2400, "20000024", false, "C:/24.png", "location24", "2"));
 			searchResults.add(new SearchResultParam("product$Id25", "y", "ps25", 2500, "20000025", false, "C:/25.png", "location25", "3"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
+			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
 			searchResults.add(new SearchResultParam("product$Id26", "z", "ps26", 2600, "20000026", false, "C:/26.png", "location26", "1"));
 			
 			searchResult = new SearchResult(Integer.parseInt(dataPage),keywords,searchResults);
