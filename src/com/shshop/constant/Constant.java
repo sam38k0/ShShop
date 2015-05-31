@@ -24,6 +24,7 @@ public class Constant {
 	public static final String attrSearchResult = "searchResult";
 	public static final String attrKeywords = "keywords";
 	public static final String attrDataPage = "data-page";
+	public static final String attrSort = "sort";
 	
 	//DD Parameter
 	public static final String paramFileUpload = "file-upload";

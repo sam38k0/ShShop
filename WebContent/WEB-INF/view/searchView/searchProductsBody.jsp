@@ -34,10 +34,10 @@
 				</h3>
 				<div class="sortBar">
 					<ul id="list_sort" class="sortLeft">
-						<li rel="st1" class="on">최신순</li>
-						<li rel="st2">인기순</li>
-						<li rel="st3">고가순</li>
-						<li rel="st4">저가순</li>
+						<li sort="1" id="sortByDate" class="on">최신순</li>
+						<li sort="2" id="sortByHit">인기순</li>
+						<li sort="3" id="sortByHighPrice">고가순</li>
+						<li sort="4" id="sortByLowPrice">저가순</li>
 					</ul>
 				</div>
 			</div>
@@ -66,12 +66,12 @@
 						</tr>
 					</thead>
 					<tbody>
-					 <%-- [Ajax Load]
+					 <%-- 아래 형식을 따름
 						<tr>
 							<td>
-								<div id="7939615" class="outline">
+								<div id="..." class="outline">
 									<a href="#"> 
-										<img src="//14/5102_7939615_1.jpg" width="90" height="90">
+										<img src="/xxxx.jpg" width="90" height="90">
 									</a>
 								</div>
 							</td>
@@ -99,7 +99,7 @@
 			<div class="paginationFooter">
 			    <div class="page">
 			    	<div id="pagingSearchResults">
-			    		<%--
+			    		<%-- 아래 형식을 따름
 	                    <a href="#" class="arrow" data-page="10">&lt;</a>
 	                    <span>1</span>
 	                    <a href="#" data-page="2">2</a>
