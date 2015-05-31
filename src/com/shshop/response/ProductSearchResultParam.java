@@ -1,25 +1,27 @@
 package com.shshop.response;
 
+import java.sql.Date;
+
 import com.shshop.domain.Product;
-import com.shshop.domain.ProductImage;
 import com.shshop.domain.User;
 
-public class SearchResultParam {
+public class ProductSearchResultParam {
 	private String id = "";
 	private String userName = "";
 	private String productName = "";
 	private int price = 0;
-	private String dataCreated = "";
+	private String dataCreated = null;
 	private boolean safeOrder = false;
 	private String imageUrl = "";
 	private String location = "";
 	private String userLevel = "";
+	private int hitCount = 0;
 
-	public SearchResultParam() {
+	public ProductSearchResultParam() {
 
 	}
-	public SearchResultParam(String id, String userName, String productName, int price, String dataCreated, boolean safeOrder,
-							 String imageUrl, String location, String userLevel){
+	public ProductSearchResultParam(String id, String userName, String productName, int price, String dataCreated, boolean safeOrder,
+							 String imageUrl, String location, String userLevel, int hitCount){
 		this.id = id;
 		this.userName = userName;
 		this.productName = productName;
@@ -29,14 +31,16 @@ public class SearchResultParam {
 		this.imageUrl = imageUrl;
 		this.location = location;
 		this.userLevel = userLevel;
+		this.hitCount = hitCount;
 	}
 
-	public SearchResultParam(User user, Product product, String imageUrl) {
+	public ProductSearchResultParam(User user, Product product, String imageUrl) {
 		this.setUserName(user.getName());
 		this.setProductName(product.getName());
 		this.setPrice(product.getPrice());
 		this.setDataCreated(product.getDateCreated().toString());
 		this.setImageUrl(imageUrl);
+		this.setHitCount(product.getSearchingCount());
 	}
 
 	public String getUserName() {
@@ -107,5 +111,11 @@ public class SearchResultParam {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public int getHitCount() {
+		return hitCount;
+	}
+	public void setHitCount(int hitCount) {
+		this.hitCount = hitCount;
 	}
 }

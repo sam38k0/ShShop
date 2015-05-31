@@ -12,10 +12,10 @@ import com.shshop.constant.Constant;
 import com.shshop.control.CommandResult;
 import com.shshop.domain.Product;
 import com.shshop.domain.User;
+import com.shshop.helper.RegExpressionHelper;
 import com.shshop.mapper.ProductMapper;
 import com.shshop.mapper.UserMapper;
 import com.shshop.util.MyBatisUtil;
-import com.shshop.util.RegExpressionUtil;
 
 public class AuthenticatorService {
 	private SqlSession sqlSession = null;
@@ -40,7 +40,7 @@ public class AuthenticatorService {
 			boolean hasPassword = false;
 
 			if (email != null && email.trim().length() > 0
-					&& RegExpressionUtil.isValidEmail(email)) {
+					&& RegExpressionHelper.isValidEmail(email)) {
 				hasValidEmail = true;
 			}
 

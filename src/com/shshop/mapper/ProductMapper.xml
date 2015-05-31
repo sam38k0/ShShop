@@ -20,6 +20,12 @@
 		WHERE p.`id_product` = ${id_product};
 	</select>
 	
+	<select id = 'getSearchedProducts' resultMap='${ProductResultMap}'>
+		SELECT * FROM `ps_product` WHERE `name` REGEXP #{keywords} or 
+										 `description` REGEXP #{keywords} or  
+										 `tag` REGEXP #{keywords};
+ 	</select>
+	
 	<insert id='insertProduct' parameterType='${ProductType}' useGeneratedKeys='true' keyProperty='${id_product}'>
 		INSERT INTO  `ps_product`(`id_user`,`name`,`price`,`stock`,`translation`,`connection`,`on_sale`,`on_open`,`tag`,`out_of_stock`,`description`,`searching_count`)
 		VALUES(${id_user}, ${name}, ${price}, ${stock}, ${translation}, ${connection}, ${on_sale}, ${on_open}, ${tag}, ${out_of_stock}, ${description}, ${searching_count})

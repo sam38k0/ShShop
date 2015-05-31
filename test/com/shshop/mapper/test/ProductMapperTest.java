@@ -72,4 +72,16 @@ public class ProductMapperTest {
 		
 		assertTrue("testUpdateProduct", productOpts.size() > 0 );
 	}
+	
+	@Test
+	public void testGetSearchedProducts() {
+		productMapper.insertProduct(new Product(3, "JJJJregNameJJJJ", 60, 60, 1, 204, "tag8", "description6", 0, true, true, false));
+		productMapper.insertProduct(new Product(1, "product7", 70, 70, 2, 3, null, "regTagSSSSS", 10, true, false, false));
+		productMapper.insertProduct(new Product(3, "product6", 60, 60, 1, 204, "tag8", "RRRRRregDesc", 0, true, true, false));
+		productMapper.insertProduct(new Product(1, "asdfasdfasdf±è´ë¿õasdfasdfafd", 70, 70, 2, 3, null, "description7", 10, true, false, false));
+
+		List<Product> results = productMapper.getSearchedProducts("regName|regTag|regDesc|±è´ë¿õ");
+		
+		assertEquals("testGetSearchedProducts", results.size(), 4);
+	}
 }

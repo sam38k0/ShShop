@@ -6,7 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.shshop.util.RegExpressionUtil;
+import com.shshop.helper.RegExpressionHelper;
 
 public class RegExpressionUtilTest {
 
@@ -20,12 +20,12 @@ public class RegExpressionUtilTest {
 
 	@Test
 	public void emailAddressValidationTest() {
-		assertTrue(RegExpressionUtil.isValidEmail("xxxxx@naver.com"));
+		assertTrue(RegExpressionHelper.isValidEmail("xxxxx@naver.com"));
 	}
 	
 	@Test
 	public void emailAddressValidationTest2() {
-		assertTrue(!RegExpressionUtil.isValidEmail("xxxxx@naver"));
+		assertTrue(!RegExpressionHelper.isValidEmail("xxxxx@naver"));
 	}
 
 }

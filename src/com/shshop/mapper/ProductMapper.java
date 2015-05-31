@@ -21,4 +21,6 @@ public interface ProductMapper {
 	
 	public void deleteProduct(@Param("productId") Integer productId);
 	
+	public List<Product> getSearchedProducts(@Param("keywords") String keywords);
+	
 }

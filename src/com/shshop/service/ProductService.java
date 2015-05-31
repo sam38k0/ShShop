@@ -21,6 +21,7 @@ import com.shshop.domain.ProductCategory;
 import com.shshop.domain.ProductDetail;
 import com.shshop.domain.ProductImage;
 import com.shshop.domain.User;
+import com.shshop.helper.Format;
 import com.shshop.helper.TimestampFileRenamePolicy;
 import com.shshop.mapper.CategoryMapper;
 import com.shshop.mapper.ProductCategoryMapper;
@@ -28,8 +29,8 @@ import com.shshop.mapper.ProductImageMapper;
 import com.shshop.mapper.ProductMapper;
 import com.shshop.mapper.UserMapper;
 import com.shshop.response.InsertProductParams;
-import com.shshop.response.SearchResult;
-import com.shshop.response.SearchResultParam;
+import com.shshop.response.ProductSearchResult;
+import com.shshop.response.ProductSearchResultParam;
 import com.shshop.util.MyBatisUtil;
 
 @SuppressWarnings("unused")
@@ -197,9 +198,9 @@ public class ProductService {
 	public void setMulti(MultipartRequest multi) {
 		this.multi = multi;
 	}
-
+	    
 	public CommandResult setSearchedProductDatas() {
-		// [TODO]: 데이터 쿼리하는 코드 필요. ( 현재는 그냥 샘플 사용 )
+		// [TODO]: 실제 데이터를 사용해야 한다.
 
 		String keywords = request.getParameter(Constant.attrKeywords);
 		String dataPage = request.getParameter(Constant.attrDataPage);
@@ -214,21 +215,21 @@ public class ProductService {
 		}
 
 		HttpSession session = request.getSession();
-		SearchResult searchResult = (SearchResult) session.getAttribute(Constant.attrSearchResult);
+		ProductSearchResult searchResult = (ProductSearchResult) session.getAttribute(Constant.attrSearchResult);
 
 		if (keywords == null || keywords == "")
 			return null;
 
 		if (searchResult == null || !searchResult.getKeywords().equals(keywords)) {
  
-			List<SearchResultParam> searchResults = new ArrayList<>();
-
-			for (int i = 0; i < 67; i++) {
-				searchResults.add(new SearchResultParam("product$Id" + i, "name" + i, "products" + i, 100 * (i + 1), "200000" + i, false, "C:/" + i
-						+ ".png", "location" + i, "" + i));
+			List<ProductSearchResultParam> searchResults = new ArrayList<>();
+			int totalCount = Format.randInt(100,1000);
+			for (int i = 0; i < totalCount; i++) {
+				searchResults.add( new ProductSearchResultParam("product$Id" + i, "name" + i, "products" + i, 100 * (i + 1), Format.randDate(), false, 
+													 			"C:/temp/" + i + ".png", "location" + i, "" + i, Format.randInt(10,10000)));
 			}
 
-			searchResult = new SearchResult(Integer.parseInt(dataPage), keywords, Integer.parseInt(sortCondition), searchResults);
+			searchResult = new ProductSearchResult(Integer.parseInt(dataPage), keywords, Integer.parseInt(sortCondition), searchResults);
 			session.setAttribute(Constant.attrSearchResult, searchResult);
 
 		} else {

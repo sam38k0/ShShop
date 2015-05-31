@@ -30,7 +30,7 @@
 			<!-- 정렬 조건 -->
 			<div class="itemListTop">
 				<h3>
-					<span id="searchKeyWords"><%-- [DataNeed!!] --%></span>결과 : <span id="itemListCount"><%-- [DataNeed!!] --%></span>
+					"<span id="searchKeyWords"><%-- [DataNeed!!] --%></span>" 결과 : <span id="itemListCount"><%-- [DataNeed!!] --%></span>(개)
 				</h3>
 				<div class="sortBar">
 					<ul id="list_sort" class="sortLeft">
