@@ -7,13 +7,14 @@
     	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
         <title><c:out value='${pageTitle}'/></title>
 		
-		<!-- Each Style -->
-     	<jsp:include page= '${sessionScope.adminBean.stylePage}'/>
-     	
 		<!-- Basic Style -->
 		<link href="${adminBean.contextPath}/content/css/command.css" rel="stylesheet" type="text/css">
 		<link href="${adminBean.contextPath}/content/css/user.css" rel="stylesheet" type="text/css">
 		<style> input.error{border:1px dashed red;} </style> 
+		
+		<!-- Each Style -->
+     	<jsp:include page= '${sessionScope.adminBean.stylePage}'/>
+     	
     </head>
     
     <body>

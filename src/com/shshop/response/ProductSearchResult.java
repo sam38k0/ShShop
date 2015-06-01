@@ -18,6 +18,8 @@ public class ProductSearchResult {
 	private List<ProductSearchResultParam> searchResults = null;
 	private String keywords = "";
 	private int sortCondition = sortByDate;
+	private int priceFrom = 0;
+	private int priceTo = 1000000000;
 
 	public ProductSearchResult(int currentPage, String keyword, int sortCondition, List<ProductSearchResultParam> searchResults) {
 		this.currentPage = currentPage;
@@ -25,13 +27,26 @@ public class ProductSearchResult {
 		this.searchResults = searchResults;
 		setSortCondition(sortCondition);
 	}
+	
+	public List<ProductSearchResultParam> getSearchResultsByPriceFromTo() {
+		List<ProductSearchResultParam> filterResult = new ArrayList<>();
+		
+		for(int i = 0; i<searchResults.size(); i++)
+		{
+			ProductSearchResultParam resultSet = searchResults.get(i);
+			int price = resultSet.getPrice();
+			if(price >= priceFrom &&  price <= priceTo)
+				filterResult.add(searchResults.get(i));
+		}
+		return filterResult;
+	}
 
 	public int getTotalSize() {
-		return searchResults.size();
+		return getSearchResultsByPriceFromTo().size();
 	}
 
 	public int getTotalPageCount() {
-		return (searchResults.size() / pageDivNum) + 1;
+		return (getSearchResultsByPriceFromTo().size() / pageDivNum) + 1;
 	}
 
 	public void setCurrentPage(int currentPage) {
@@ -44,14 +59,15 @@ public class ProductSearchResult {
 
 	public List<ProductSearchResultParam> getCurrentPageResult() {
 		List<ProductSearchResultParam> currentResult = new ArrayList<>();
-
+		List<ProductSearchResultParam> filterdResult = getSearchResultsByPriceFromTo();
+		
 		int startIndex = (currentPage - 1) * pageDivNum;
 		int lastIndex = currentPage * pageDivNum;
-		if (searchResults.size() < lastIndex)
-			lastIndex = searchResults.size();
+		if (filterdResult.size() < lastIndex)
+			lastIndex = filterdResult.size();
 
 		for (int i = startIndex; i < lastIndex; i++) {
-			currentResult.add(searchResults.get(i));
+			currentResult.add(filterdResult.get(i));
 		}
 
 		return currentResult;
@@ -92,6 +108,22 @@ public class ProductSearchResult {
 		case sortByLowPrice:
 			searchResults.sort(ProductSearchResult.sortByLowPriceComp);
 		}
+	}
+
+	public int getPriceFrom() {
+		return priceFrom;
+	}
+
+	public void setPriceFrom(int priceFrom) {
+		this.priceFrom = priceFrom;
+	}
+
+	public int getPriceTo() {
+		return priceTo;
+	}
+
+	public void setPriceTo(int priceTo) {
+		this.priceTo = priceTo;
 	}
 
 	public static Comparator<ProductSearchResultParam> sortByDateComp = new Comparator<ProductSearchResultParam>() {
