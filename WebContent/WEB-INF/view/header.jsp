@@ -73,7 +73,7 @@
 					<a href="viewMain"><img src="${adminBean.contextPath}/content/image/logout.png" title="로그아웃" width="30" height="30" alt="Share icon" /> </a>
 				</div></li>
 			<li>|</li>
-			<li><a href="#">마이페이지</a></li>
+			<li><a href="mypage">마이페이지</a></li>
 			<li>|</li>
 			<li><a href="#">장바구니</a></li>
 		</ul>
