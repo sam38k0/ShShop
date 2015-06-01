@@ -22,5 +22,7 @@ public interface ProductMapper {
 	public void deleteProduct(@Param("productId") Integer productId);
 	
 	public List<Product> getSearchedProducts(@Param("keywords") String keywords);
+	public List<Product> selectMainCount();
 	
+	public List<Product> selectMainDate();
 }

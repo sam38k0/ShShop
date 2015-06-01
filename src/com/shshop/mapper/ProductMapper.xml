@@ -53,6 +53,14 @@
 		DELETE FROM `ps_product` WHERE `id_product`=${id_product}
 	</delete>
 	
+	<select id='selectMainCount' resultMap='Product'>
+		SELECT * FROM `ps_product` ORDER BY `searching_count` DESC;
+	</select>
+	
+	<select id='selectMainDate' resultMap='Product'>
+		SELECT * FROM `ps_product` ORDER BY `date_created` DESC;
+	</select>
+	
 	<resultMap id='Product' type='${ProductType}' >
 		<id property='productId' column='id_product' />
 		<result property='userId' column='id_user' />

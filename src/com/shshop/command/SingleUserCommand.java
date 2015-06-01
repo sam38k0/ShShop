@@ -1,33 +1,34 @@
 package com.shshop.command;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.shshop.constant.Constant;
 import com.shshop.control.CommandResult;
-import com.shshop.domain.Product;
+import com.shshop.domain.User;
 import com.shshop.service.AuthenticatorService;
-import com.shshop.system.AdminBean;
 
-public class viewMainCommand implements Command {
-
+public class SingleUserCommand implements Command{
+	
 	@Override
 	public CommandResult execute(HttpServletRequest request,
 			HttpServletResponse response) {
 		
-		HttpSession httpSession = request.getSession();
+		CommandResult comm = null;
+		HttpSession session = request.getSession(false);
+		
+		if(session == null)
+			return null;
+		
+		User user = (User) session.getAttribute(Constant.attrUser);
 		
 		AuthenticatorService attService = new AuthenticatorService(request, response);
 		
-		List<Product> productsC = attService.getProductTypeCount();
+		request.setAttribute("user", attService.getViewSingleUser(user.getUserId()));
 		
-		List<Product> productsD = attService.getProductTypeDate();
-		request.setAttribute("productsC", productsC);
-		request.setAttribute("productsD", productsD);
+		comm = new CommandResult("/WEB-INF/view/mypage.jsp");
 		
-		 return new CommandResult("/WEB-INF/view/mainView/main.jsp");
+		return comm;
 	}
 }

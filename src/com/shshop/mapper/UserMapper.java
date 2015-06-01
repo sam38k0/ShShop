@@ -15,6 +15,10 @@ public interface UserMapper {
 	public User getUserByEmail(@Param("email") String email, @Param("password") String password);
 	
 	public List<User> getAllUsers();
+	
+	public User getSelectUserId(@Param("email") String email);
+	
+	public User getSingleUser(@Param("userId") int userId);
 
 	public void insertUserByEmail(User user);
 	

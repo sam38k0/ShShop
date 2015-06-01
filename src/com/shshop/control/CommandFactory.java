@@ -11,6 +11,8 @@ import com.shshop.command.MainViewCommand;
 import com.shshop.command.SearchActionCommand;
 import com.shshop.command.SearchViewCommand;
 import com.shshop.command.ShowDetailViewCommand;
+import com.shshop.command.SingleUserCommand;
+import com.shshop.command.UserDataChangeCommand;
 import com.shshop.constant.Constant;
 
 public class CommandFactory {
@@ -48,6 +50,12 @@ public class CommandFactory {
 		
 		case Constant.searchAction:
 			return new SearchActionCommand();
+			
+		case Constant.mypage:
+			return new SingleUserCommand();
+			
+		case Constant.userUpdate:
+			return new UserDataChangeCommand();
 			
 		default:
 			return null;

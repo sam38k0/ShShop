@@ -1,10 +1,12 @@
 package com.shshop.service;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -152,5 +154,74 @@ public class AuthenticatorService {
 			return new CommandResult(Constant.textPlain, Constant.Success);
 		else
 			return new CommandResult(Constant.textPlain, Constant.Failed);
+	}
+	
+	public User getViewSingleUser(Integer userId) {
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		
+		User user = null;
+		
+		try {
+			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+			user = userMapper.getSingleUser(userId);
+		} finally {
+			sqlSession.close();
+		}
+		return user;
+	}
+	
+	public User getSelectUserId(String email) {
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		
+		User user;
+		try {
+			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+			user = userMapper.getSelectUserId(email);
+		} finally {
+			sqlSession.close();
+		}
+		
+		return user;
+	}
+	
+	public void userDataUpdate(User user) {
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		
+		try {
+			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+			userMapper.updateUser(user);
+			sqlSession.commit();
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public List<Product> getProductTypeCount() {
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		List<Product> product;
+		
+		try {
+			ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+			product = productMapper.selectMainCount();
+			
+		} finally {
+			sqlSession.close();
+		}
+		
+		return product;
+	}
+	
+	public List<Product> getProductTypeDate() {
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		List<Product> product;
+		
+		try {
+			ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+			product = productMapper.selectMainDate();
+		} finally {
+			sqlSession.close();
+		}
+		
+		return product;
 	}
 }

@@ -9,11 +9,14 @@ public class Constant {
 	public static final String insertProduct = "/insertProduct";
 	public static final String searchView = "/searchView";
 	public static final String searchAction ="/searchAction";
+	public static final String search = "/search";
 	public static final String viewMain = "/viewMain";
 	public static final String insertHopeProductView = "/insertHopeProduct";
 	public static final String headerView = "/headerView";
 	public static final String checklogin = "/checklogin";
 	public static final String showDetailView = "/showDetailView";
+	public static final String mypage = "/mypage";
+	public static final String userUpdate = "/userUpdate";
 
 	//Attribute
 	public static final String attrUser = "user";
@@ -36,13 +39,16 @@ public class Constant {
 	public static final String textPlain = "text/plain;charset=UTF-8";
 	
 	//Message
-	public static final String wrongEmail = "이메일 입력 형식 정보가 잘못 되었습니다.";
-	public static final String noPassword = "패스워드를 입력하시지 않았습니다.";
-	public static final String noUser = "사용자 정보를 찾을 수 없습니다.";
-	public static final String productInsertionError = "상품 등록시 에러가 발생하였습니다.";
-	
+    public static final String wrongEmail = "Please, check email information.";
+    public static final String noPassword = "Please, put a password.";
+    public static final String noUser = "There is no user information.";
+    public static final String productInsertionError = "Product Insertion Error Occured.";
+
 	//Ajax
 	public static final String Success = "Success";
 	public static final String Failed = "Failed"; 
 	public static final String onLogin = "onLogin";
+	
+	//Path
+	public static final String contextPath = "/ShShop/WebContent";
 }

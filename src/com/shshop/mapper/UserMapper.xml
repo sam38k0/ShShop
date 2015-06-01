@@ -19,6 +19,14 @@
 	<select id='getAllUsers' resultMap='User'>
 		SELECT * FROM `cr_user`
 	</select>
+	
+	<select id="getSelectUserId" resultMap="User">
+		SELECT * FROM `cr_user` WHERE `email` = ${email}
+	</select>
+	
+	<select id='getSingleUser' resultMap='User'>
+		SELECT * FROM `cr_user` WHERE `id_user`=${id_user}
+	</select>
 
 	<select id='getAllProducts' resultMap='${ProductResultMap}'>
 		SELECT * FROM `ps_product` WHERE `id_user`= ${id_user};
