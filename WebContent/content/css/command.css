@@ -88,25 +88,29 @@ body{width: 100%; margin: 0;padding: 0;background-color: aquamarine}
 
 /* 메인 영역*/
 /* 메인 상단 베너 영역*/
-#main_body{position: relative; width: 100%; margin-top: 150px}
-#banner{position: relative; width: 100%;height: 200px}
+#main_body{position: relative; width: 100%}
+#banner{position: relative; width: 100%;height: 200px; overflow: hidden}
 #banner img{width: 100%;height: 100%}
 .control{position: absolute;top: 45%;left: 0; width: 100%}
 .control #prevBtn{float: left; width: 23px; height: 38px;margin-left: 15px}
 .control #nextBtn{float: right; width: 23px; height: 38px;margin-right: 15px}
+.show_banner{positon:absolute; width: 3000px;}
+.show_banner li{float: left;width: 1000px;}
+.show_banner li img{width: 100%}
 
 /* 메인 좌측 상품 영역*/
-#main_listarea{position: relative; float: left; width: 80%; padding: 5px 15px; box-sizing: border-box}
+#main_listarea{position: relative; float: left; width:980px; padding: 5px 15px;margin-left: 10px; box-sizing: border-box}
 #main_listarea li{float: left}
 #main_listarea ul,p{clear: both;padding: 0;margin: 0}
-.main_content{position: relative; width: 100%; height: 235px; margin: 40px 0;background-color: fuchsia}
+.main_content{position: relative; width: 100%; height: 450px; margin: 40px 0;background-color: fuchsia}
 .main_content p{font-size: 23px;font-weight: bold;margin-bottom: 15px;margin-left: 15px}
-.main_content .item_area{width: 95%; height: 170px; margin-left:2.5%; padding: 20px 20px; box-sizing: border-box; background-color:  darkseagreen}
-.item_area ul{width: 100%;height: 130px;background-color: burlywood}
-.item_area li {width: 110px; height: 110px; margin-left: 20px;margin-top: 10px;}
+.main_content .hot_item_area{width: 100%;height: 370px; margin-left:2.5%; padding: 20px 20px; box-sizing: border-box; background-color:  darkseagreen}
+.main_content .new_item_area{width: 100%;height: 370px; margin-left:2.5%; padding: 20px 20px; box-sizing: border-box; background-color:  darkseagreen}
+.hot_item_area li{width: 110px; margin-left: 20px;margin-top: 10px;}
+.new_item_area li{width: 110px; margin-left: 20px;margin-top: 10px;}
 
 /* 메인 우측 온,오프 영역*/
-#main_rightbox{position: relative; float: right; width: 20%; height: 510px; padding: 5px 10px; box-sizing: border-box; margin-top: 45px; text-align: center; background-color: beige}
+#main_rightbox{position: relative; float: right; width: 20%; height: 510px; padding: 5px 10px; box-sizing: border-box; margin-top: 45px; text-align: center; background-color: beige;display:none}
 #on_off_btn{position: absolute;width: 30px; height: 50px; text-align: center; top: 225px;margin-left: -10px;background-color: white}
 #on_off_btn img{margin-top: 5px}
 #main_rightbox ul{margin-top: 20px}

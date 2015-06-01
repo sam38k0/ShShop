@@ -14,9 +14,6 @@
 		<link href="${adminBean.contextPath}/content/css/command.css" rel="stylesheet" type="text/css">
 		<link href="${adminBean.contextPath}/content/css/user.css" rel="stylesheet" type="text/css">
 		<style> input.error{border:1px dashed red;} </style> 
-		
-
-	 	
     </head>
     
     <body>
