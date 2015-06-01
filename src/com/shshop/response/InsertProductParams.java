@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.oreilly.servlet.MultipartRequest;
-import com.shshop.domain.Product;
 
 public class InsertProductParams {
 	private MultipartRequest multi = null;

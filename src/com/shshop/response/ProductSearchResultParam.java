@@ -1,7 +1,5 @@
 package com.shshop.response;
 
-import java.sql.Date;
-
 import com.shshop.domain.Product;
 import com.shshop.domain.User;
 
@@ -106,15 +104,19 @@ public class ProductSearchResultParam {
 	public void setUserLevel(String userLevel) {
 		this.userLevel = userLevel;
 	}
+	
 	public String getId() {
 		return id;
 	}
+	
 	public void setId(String id) {
 		this.id = id;
 	}
+	
 	public int getHitCount() {
 		return hitCount;
 	}
+	
 	public void setHitCount(int hitCount) {
 		this.hitCount = hitCount;
 	}

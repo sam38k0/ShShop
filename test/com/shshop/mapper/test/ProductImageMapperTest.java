@@ -10,7 +10,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.shshop.domain.Category;
 import com.shshop.domain.ProductImage;
 import com.shshop.mapper.ProductImageMapper;
 import com.shshop.util.MyBatisUtil;

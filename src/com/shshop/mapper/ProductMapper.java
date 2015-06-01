@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.shshop.domain.Product;
-import com.shshop.domain.ProductImage;
 import com.shshop.domain.ProductOption;
 
 public interface ProductMapper {

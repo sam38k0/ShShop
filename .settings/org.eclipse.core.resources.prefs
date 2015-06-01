@@ -3,4 +3,5 @@ encoding//WebContent/WEB-INF/view/error.jsp=UTF-8
 encoding//WebContent/WEB-INF/view/insertProductView/insertProductBody.jsp=UTF-8
 encoding//WebContent/WEB-INF/view/mainView/mainBody.jsp=UTF-8
 encoding//src/com/shshop/command/JoinCommand.java=UTF-8
+encoding//src/com/shshop/command/UserDataChangeCommand.java=UTF-8
 encoding//src/com/shshop/response/ProductSearchResult.java=UTF-8
