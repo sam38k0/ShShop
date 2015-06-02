@@ -29,7 +29,7 @@
 	<insert id='insertProduct' parameterType='${ProductType}' useGeneratedKeys='true' keyProperty='${id_product}'>
 		INSERT INTO  `ps_product`(`id_user`,`name`,`price`,`stock`,`translation`,`connection`,`on_sale`,`on_open`,`tag`,`out_of_stock`,`description`,`searching_count`)
 		VALUES(${id_user}, ${name}, ${price}, ${stock}, ${translation}, ${connection}, ${on_sale}, ${on_open}, ${tag}, ${out_of_stock}, ${description}, ${searching_count})
-	</insert>
+	</insert>	
 	
     <update id='updateProduct' parameterType='${ProductType}'>
 		UPDATE `ps_product`
@@ -60,6 +60,12 @@
 	<select id='selectMainDate' resultMap='Product'>
 		SELECT * FROM `ps_product` ORDER BY `date_created` DESC;
 	</select>
+		
+	<insert id="insertProductProc" parameterType='${ProductProcType}' statementType="CALLABLE">
+    {
+        call proc_insert_product(${id_user}, ${id_category}, ${name}, ${price}, ${stock}, ${translation}, ${connection}, ${on_sale}, ${on_open}, ${tag}, ${out_of_stock}, ${description}, ${searching_count}, #{imagePaths})
+    }
+	</insert>
 	
 	<resultMap id='Product' type='${ProductType}' >
 		<id property='productId' column='id_product' />

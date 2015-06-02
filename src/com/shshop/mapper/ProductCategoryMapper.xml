@@ -3,6 +3,11 @@
   'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 
 <mapper namespace='com.shshop.mapper.ProductCategoryMapper'>
+
+ 	<select id='getProductCategoryCount' resultType='int'>
+		SELECT COUNT(`id_product_category`) as count FROM `ps_product_category`;
+	</select>
+	
 	<insert id='insertProductCategory' parameterType='${ProductCategoryType}' useGeneratedKeys='true' keyProperty='${id_product_category}'>
 		INSERT INTO `ps_product_category` (`id_category`,`id_product`)
 		VALUES (${id_category}, ${id_product});
