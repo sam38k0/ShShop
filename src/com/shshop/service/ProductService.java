@@ -75,10 +75,8 @@ public class ProductService {
 				return new CommandResult(Constant.textPlain, Constant.productInsertionError);
 			}
 			
-			int test = 0;
-			if(test<0)
-				System.out.println("ttt");
-
+			System.out.println("test");
+			
 		} finally {
 			sqlSession.commit();
 			sqlSession.close();
