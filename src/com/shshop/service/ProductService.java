@@ -74,6 +74,8 @@ public class ProductService {
 				sqlSession.rollback();
 				return new CommandResult(Constant.textPlain, Constant.productInsertionError);
 			}
+			
+			System.out.println("test");
 
 		} finally {
 			sqlSession.commit();
