@@ -62,6 +62,7 @@ public class ProductService {
 				sqlSession.rollback();
 				return new CommandResult(Constant.textPlain, Constant.productInsertionError);
 			}
+			
 
 			product = insertImageOfProduct(user, product, uploadedFilePaths);
 			if (product == null) {
@@ -73,6 +74,10 @@ public class ProductService {
 				sqlSession.rollback();
 				return new CommandResult(Constant.textPlain, Constant.productInsertionError);
 			}
+			
+			int test = 0;
+			if(test<0)
+				System.out.println("ttt");
 
 		} finally {
 			sqlSession.commit();
