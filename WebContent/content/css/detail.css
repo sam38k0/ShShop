@@ -1,0 +1,786 @@
+@charset "utf-8";
+
+
+html, body, div, span, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, address, em, img, strong, sub, sup, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  font-family: "돋움",dotum,"굴림",gulim,arial;
+  color: #333;
+}
+
+
+body {
+  width: 100%;
+  height: 100%;
+  font-size: 12px;
+  background-color: #EEE;
+}
+
+div {
+  display: block;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+ol, ul, dl, li, dt, dd {
+  list-style: none;
+}
+
+dl {
+  display: block;
+  -webkit-margin-before: 1em;
+  -webkit-margin-after: 1em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+}
+
+dt {
+  display: block;
+}
+
+h1, h2, h3, h4, h5, h6, strong {
+  font-weight: bold;
+}
+
+li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
+
+img {
+  vertical-align: top;
+}
+
+ul, menu, dir {
+  display: block;
+  list-style-type: disc;
+  -webkit-margin-before: 1em;
+  -webkit-margin-after: 1em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 40px;
+}
+
+textarea {
+  font-size: 12px!important;
+  letter-spacing: 0!important;
+  line-height: 14px;
+  color: #333;
+  padding: 3px;
+  border: solid 1px #cbcbcb;
+  font-family: "돋움",dotum,"굴림",gulim;
+  resize: none;
+  overflow: hidden;
+}
+
+h4 {
+	visibility: hidden;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 0;
+	font-size: 0;
+	line-height: 0;
+}
+
+.clearfix:before, .clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+
+a.btnShop {
+  display: inline-block;
+  background-position: 0 -631px;
+  width: 103px;
+  line-height: 21px;
+  font-size: 11px;
+  letter-spacing: -1px;
+  color: #666;
+  padding: 0 0 0 7px;
+}
+
+div.viewTopArea div.leftArea a.btn_gray2 {
+  float: left;
+  width: 65px;
+  text-align: center;
+}
+
+a.btn_gray2 {
+  float: left;
+  padding-right: 10px;
+  background: url(//image.hellomarket.com/btn/btn_pack.gif) no-repeat 100% -261px;
+  line-height: 26px;
+  white-space: nowrap;
+  font-weight: bold;
+  color: #FFF;
+  vertical-align: middle;
+}
+
+a.btn_gray2 span {
+  display: block;
+  padding: 0 0 0 10px;
+  background: url(//image.hellomarket.com/btn/btn_pack.gif) no-repeat 0 -261px;
+}
+
+
+.price {
+  color: #f46200!important;
+}
+
+.name, .name a {
+  color: #209cd4!important;
+}
+
+#wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-width: 1000px;
+}
+
+#contentArea {
+  width: 100%;
+  background-color: #FFF;
+}
+
+#section {
+  width: 100%;
+  padding: 0 0 40px 0;
+}
+
+#section #contents {
+  width: 1000px;
+  margin: 0 auto;
+  min-height: 350px;
+  _height: 350px;
+}
+
+div.viewTopArea {
+  width: 100%;
+  height: 33px;
+}
+
+div.viewTopArea div.leftArea {
+  float: left;
+}
+
+div.viewTopArea div.rightArea {
+  float: right;
+}
+
+div.viewTopArea div.leftArea a.btn_gray2 {
+  float: left;
+  width: 65px;
+  text-align: center;
+}
+
+
+div.viewTopArea div.rightArea span.date {
+  display: inline-block;
+  color: #999;
+  padding: 8px 0 0 0;
+}
+
+div.page_navi {
+  margin: 15px 0 0 0;
+  height: 30px;
+}
+
+div.page_navi div.location {
+  float: left;
+  background-position: 0 0;
+  padding: 0 0 0 17px;
+  color: #666;
+  line-height: 12px;
+}
+
+div.page_navi div.location a {
+  color: #666;
+}
+
+div.page_navi div.location span {
+  color: #a6a6a6;
+}
+
+div.detailView {
+  position: relative;
+  width: 1000px;
+  margin: 0 auto;
+  background: url(//image.hellomarket.com/common/bg_category_bt.gif) repeat-x bottom;
+  background-color: #FFF;
+  padding: 0 0 3px 0;
+}
+
+div.detailView div.detailBox {
+  overflow: hidden;
+  width: 998px;
+  min-height: 100px;
+  border-top: solid 1px #d5d5d5;
+  border-left: solid 1px #d5d5d5;
+  border-right: solid 1px #d5d5d5;
+}
+
+div.photoArea {
+  float: left;
+  position: relative;
+  overflow: hidden;
+  padding: 20px 35px;
+}
+
+div.photoArea div.bigPhoto img {
+  width: 425px;
+  height: 425px;
+  border: solid 1px #666;
+}
+
+div.photoArea div.text {
+  position: absolute;
+  z-index: 10;
+  top: 420px;
+  left: 35px;
+  width: 426px;
+  height: 20px;
+  padding: 7px 0 0 0;
+  text-align: center;
+  background-color: #000;
+  filter: Alpha(opacity=50);
+  opacity: .5;
+  color: #FFF;
+}
+
+div.photoArea div.photoMap {
+  border: solid 1px #e6930e;
+  width: 425px;
+  height: 425px;
+}
+
+div.photoArea div.photoMap ul {
+  width: 425px;
+  height: 24px;
+}
+
+div.photoArea div.photoMap ul li {
+  float: left;
+  width: 212px;
+  font-weight: bold;
+  line-height: 24px;
+  text-align: center;
+}
+
+div.photoArea div.photoMap ul li.on {
+  width: 213px;
+  background-color: #eb790a;
+}
+
+div.photoArea div.photoMap ul li a {
+  color: #eb790a;
+}
+
+div.photoArea div.photoMap ul li.on a {
+  color: #FFF;
+}
+
+div.photoArea ul.miniPhoto {
+  padding: 10px 0 0 0;
+}
+
+div.photoArea ul.miniPhoto li {
+  float: left;
+  padding: 0 3px 0 0;
+  cursor: pointer;
+}
+
+div.photoArea ul.miniPhoto li img {
+  width: 36px;
+  height: 36px;
+  border: solid 1px #c6c6c6;
+  padding: 1px;
+}
+
+div.photoArea ul.miniPhoto li img:hover, div.photoArea ul.miniPhoto li img.on {
+  border: solid 2px #219cd4;
+  padding: 0;
+}
+
+div.photoArea ul.miniPhoto li img {
+  width: 36px;
+  height: 36px;
+  border: solid 1px #c6c6c6;
+  padding: 1px;
+}
+
+div.detailArea {
+  float: left;
+  position: relative;
+  width: 450px;
+  border-left: solid 1px #d5d5d5;
+  padding: 20px 0 20px 36px;
+}
+
+div.detailArea div.functionBtn {
+  clear: both;
+  position: relative;
+  width: 430px;
+  height: 18px;
+  padding: 32px 0 15px 0;
+}
+
+div.detailArea div.functionBtn ul {
+  float: left;
+}
+
+div.detailArea div.functionBtn ul li {
+  float: left;
+}
+
+div.detailArea div.functionBtn ul li a {
+  float: left;
+  background-position: 0 0;
+  height: 20px;
+  line-height: 20px;
+  margin: 0 20px 0 0;
+}
+
+div.detailArea div.detailInfo {
+  width: 425px;
+  min-height: 223px;
+  _height: 223px;
+  overflow: hidden;
+  margin: 0 0 10px 0;
+}
+
+div.detailArea div.title {
+  width: 425px;
+  padding: 0 25px 15px 0;
+  float: left;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+  line-height: 22px;
+}
+
+div.detailArea div.title img {
+  margin: 1px 3px 0 0;
+}
+
+div.detailArea div.info {
+  width: 430px;
+  overflow: hidden;
+}
+
+div.detailArea div.info dl {
+  width: 430px;
+  color: #222;
+  line-height: 16px;
+  overflow: hidden;
+}
+
+div.detailArea div.info dl dt {
+  float: left;
+  width: 110px;
+  padding: 4px 0 4px 7px;
+  background-position: left -298px;
+}
+
+div.detailArea div.info dl dd {
+  float: left;
+  width: 312px;
+  padding: 4px 0 4px 0;
+}
+
+div.detailArea div.info dl dd img {
+  vertical-align: middle;
+  margin: 0 5px 0 0;
+}
+
+div.detailArea div.info dl dd span.price img {
+  margin: -2px 0 0 5px;
+}
+
+div.detailArea div.userBox {
+  width: 398px;
+  overflow: hidden;
+  border: solid 1px #d9d9d9;
+  padding: 5px 15px;
+}
+
+div.detailArea div.userBox div.userInfo {
+  overflow: hidden;
+  padding: 0 0 7px 0;
+}
+
+div.detailArea div.userBox div.userInfo div.userName {
+  float: left;
+  width: 280px;
+  padding: 4px 0 0 0;
+}
+
+div.detailArea div.userBox div.userInfo div.userName p.name {
+  float: left;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 1px 10px 0 0;
+}
+
+ul.userLevel {
+  display: inline;
+  margin: 7px 0 0 0;
+}
+
+div.detailArea div.userBox div.userList {
+  width: 390px;
+  padding: 10px 0 0 0;
+}
+
+div.detailArea div.userBox div.userList div.snsNo {
+  margin: 6px 0 0 0;
+}
+
+div.detailArea div.userBox div.userList div.snsNo p img {
+  width: 70px!important;
+  height: 70px!important;
+  border: solid 1px #666;
+}
+
+div.detailArea div.userBox div.userList div.userPhoto {
+  float: left;
+}
+
+div.detailArea div.userBox div.userList div.userPhoto p img {
+  width: 62px;
+  height: 62px;
+  border: solid 1px #666;
+}
+
+div.detailArea div.userBox div.userList ul.userArticle {
+  float: left;
+  margin: 2px 0 4px 10px;
+}
+
+div.detailArea div.userBox div.userList ul.userArticle li {
+  background-position: left -233px;
+  padding: 0 0 0 7px;
+  line-height: 21px;
+  font-size: 11px;
+  color: #666;
+  letter-spacing: -1px;
+}
+
+div.openBox {
+  clear: both;
+  position: relative;
+  width: 428px;
+  border: solid 1px #D9D9D9;
+  margin: 10px 0;
+}
+
+a.cnt_close {
+  text-indent: -1000em;
+  overflow: hidden;
+  display: inline-block;
+  background: url(//image.hellomarket.com/btn/all_png.png) 0 -281px no-repeat;
+  width: 14px;
+  height: 14px;
+}
+
+
+div.openBox a.cnt_close {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  z-index: 1;
+}
+
+div.openBox div.phone {
+  font-size: 12px;
+  font-weight: bold;
+  color: #333;
+  padding: 7px 10px 7px 20px;
+  line-height: 18px;
+}
+
+div.detailCnt {
+  overflow: hidden;
+  padding: 20px 0 0 0;
+}
+
+div.detailCnt div.detailCntL {
+  float: left;
+  width: 600px;
+}
+
+.h3_icon {
+  text-indent: 0;
+  background: url(//image.hellomarket.com/common/all_icon.png) no-repeat 0 -13px;
+  padding: 0 0 0 10px;
+  color: #000;
+  margin: 0 0 7px 0;
+}
+
+div.detailCnt div.cntView {
+  clear: left;
+  line-height: 16px;
+  padding: 0 0 30px 0;
+}
+
+div.detailCnt div.cmtView {
+  clear: left;
+}
+
+div.cmtView div.cmtAll {
+  clear: both;
+  background-color: #e2f0f9;
+  padding: 8px 8px 0 8px;
+  border: solid 1px #c1d7e6;
+  height: 20px;
+}
+
+div.cmtView div.cmtAll span {
+  float: right;
+}
+
+
+div {
+  display: block;
+}
+
+div.openBox {
+  clear: both;
+  position: relative;
+  width: 428px;
+  border: solid 1px #eb940a;
+  margin: 10px 0;
+}
+
+div.cmtWrite {
+  clear: both;
+  overflow: hidden;
+  background-color: #e2f0f9;
+  border: solid 1px #c1d7e6;
+  padding: 5px;
+  font-size: 11px;
+  color: #666;
+  letter-spacing: -1px;
+  margin: 5px 0 0 0;
+}
+
+div.cmtWrite textarea {
+  border: solid 1px #d9d9d9;
+}
+ 
+.functionBtn a {
+    background-color: #ed8e6c;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 7px 10px 9px 10px;
+    margin: 5px 0 20px 0;
+    float: right;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.functionBtn a:hover {
+    background-color: #ed612f;
+}
+
+
+
+/*--accordion--*/
+
+.accordion {
+    overflow: hidden;
+    width: 1000px; 
+}
+
+.accordion li {
+    list-style-type: none;
+    width: 1000px;
+}
+
+.accordion-control {
+    background-color: #666;
+    color: #fff;
+    display: block;
+    width: 100%;
+    height: 30px;
+}
+
+.accordion-panel {
+    min-height: 300px;
+}
+.accordion-panel img {
+    display: block;
+    clear: left;
+}
+
+
+ 
+/* ----------------유사상품 보기--------------- */
+
+div.h3_title div.h3_titleIn {
+	position: absolute;
+	top: -23px;
+	width: 100%;
+}
+
+div.h3_title {
+	position: relative;
+	margin: 45px 0 0 0;
+}
+
+div.h3_title, div.h3_title_lineBig {
+	width: 100%;
+	height: 1px;
+	border: solid 1px #3796c2;
+	background-color: #4fbaeb;
+}
+
+div.h3_title h3.similar {
+	width: 180px;
+	background-position: 0 -480px;
+}
+
+div.graybox {
+	clear: both;
+	position: relative;
+	overflow: hidden;
+	width: 998px;
+	border-left: solid 1px;
+	border-right: solid 1px;
+	border-bottom: solid 1px;
+	background-color: #f5f5f5;
+}
+
+div.graybox div.horizontal_box {
+	position: relative;
+	overflow: hidden;
+	width: 948px;
+	margin: 0 0 0 27px;
+}
+
+div.graybox div.itembox {
+	position: relative;
+	display: inline-block;
+}
+
+div.graybox div.itembox ul {
+	float: left;
+	width: 945px;
+	padding: 20px 0 0 0;
+}
+
+div.graybox div.itembox li {
+	position: relative;
+	float: left;
+	display: inline; 
+	width: 110px;
+	height: 162px;
+	text-align: center;
+	padding: 0 0 11px 0;
+	margin: 4px;
+}
+
+ 
+div.graybox div.itembox li p {
+	float: left;
+	background: url(//image.hellomarket.com/common/bg_itembox.gif) no-repeat;
+	background-size:cover;
+	padding: 12px 12px 0 12px;
+	width: 86px;
+	border-style: solid;
+    border-width: 1px;
+}
+
+div.graybox div.itembox li p a {
+	color: #333;
+	text-decoration: none;
+	cursor: pointer;
+	width: 86px;
+	height:86px;
+}
+
+div.graybox div.itembox li p strong {
+	display: block;
+	padding: 7px 0 0 0;
+	font-size: 11px;
+	letter-spacing: -1px;
+	font-weight: normal;
+}
+
+div.graybox div.itembox li p span.price {
+	padding: 3px 0 0 0;
+	font-size: 11px;
+}
+
+div.graybox div.itembox li p span.time {
+	font-size: 11px;
+	padding: 4px 0 0 0;
+}
+
+p.moveBtn {
+	width: 90px;
+	height: 27px;
+	margin: 0 auto;
+	padding: 3px 0 0 0;
+}
+
+a.movepreB {
+	float: left;
+	background-position: -78px 0;
+	width: 22px;
+	height: 22px;
+	text-indent: -1000em;
+  	overflow: hidden;
+  	display: inline-block;
+  	background: url(//image.hellomarket.com/btn/all_btn_20130923.png) no-repeat;
+}
+
+a.movenextB {
+  	text-indent: -1000em;
+  	overflow: hidden;
+  	display: inline-block;
+  	background: url(//image.hellomarket.com/btn/all_btn_20130923.png) no-repeat;
+}
+
+p.moveBtn span {
+	float: left;
+	width: 45px;
+	color: #999;
+	letter-spacing: 2px;
+	text-align: center;
+	padding: 4px 0 0 0;
+}
+
+p.moveBtn span strong {
+	color: #333;
+}
+
+a.movepreB {
+	float: left;
+	background-position: -78px 0;
+	width: 22px;
+	height: 22px;
+}
+
+a.movenextB {
+	float: left;
+	background-position: -103px 0;
+	width: 22px;
+	height: 22px;
+}
