@@ -8,6 +8,8 @@ public class ProductDetail implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Product product = null;
+	private User productOwner = null;
+	
 	private List<String> imagePaths = new ArrayList<>();
 
 	public Product getProduct() {
@@ -32,6 +34,14 @@ public class ProductDetail implements Serializable{
 
 	public void setImagePaths(List<String> imagePaths) {
 		this.imagePaths = imagePaths;
+	}
+
+	public User getProductOwner() {
+		return productOwner;
+	}
+
+	public void setProductOwner(User productOwner) {
+		this.productOwner = productOwner;
 	}
 
 }

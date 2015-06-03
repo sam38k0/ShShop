@@ -89,11 +89,11 @@
 									<div class="userName">
 										<p class="name">
 											<c:choose>
-												<c:when test="${sessionScope.user.name == '' || sessionScope.user.name == null }">
+												<c:when test="${sessionScope.productDetail.productOwner.name == '' || sessionScope.productDetail.productOwner.name == null }">
 										       		<a href="#" data-midx="358549" data-domain="@1469660" data-nick="이름없음">이름없음</a>
 												</c:when>
 												<c:otherwise>
-										    		<a href="#" data-midx="358549" data-domain="@1469660" data-nick="${sessionScope.user.name}">${sessionScope.user.name}</a>
+										    		<a href="#" data-midx="358549" data-domain="@1469660" data-nick="${sessionScope.productDetail.productOwner.name}">${sessionScope.productDetail.productOwner.name}</a>
 												</c:otherwise>
 											</c:choose>
 										</p>
@@ -125,29 +125,29 @@
 							<div id="item_view_phone_layer" class="openBox hide" style="display: block;">
 								<div class="phone">
 									<c:choose>
-									    <c:when test="${sessionScope.user.phone == '' || sessionScope.user.phone == null }">
+									    <c:when test="${sessionScope.productDetail.productOwner.phone == '' || sessionScope.productDetail.productOwner.phone == null }">
 									       	휴대폰 번호 : 없음
 									    </c:when> 
 									    <c:otherwise>
-									               휴대폰 번호 :  ${sessionScope.user.phone}
+									               휴대폰 번호 :  ${sessionScope.productDetail.productOwner.phone}
 									    </c:otherwise>
 									</c:choose> 
 									<br>
 									<c:choose>
-									    <c:when test="${sessionScope.user.ktalkId == '' || sessionScope.user.ktalkId == null }">
+									    <c:when test="${sessionScope.productDetail.productOwner.ktalkId == '' || sessionScope.productDetail.productOwner.ktalkId == null }">
 									       	카카오톡 ID : 없음
 									    </c:when> 
 									    <c:otherwise>
-									      	  카카오톡 ID : ${sessionScope.user.ktalkId}
+									      	  카카오톡 ID : ${sessionScope.productDetail.productOwner.ktalkId}
 									    </c:otherwise>
 									</c:choose>
 									<br>
 									<c:choose>
-									    <c:when test="${sessionScope.user.email == '' || sessionScope.user.email == null }">
+									    <c:when test="${sessionScope.productDetail.productOwner.email == '' || sessionScope.productDetail.productOwner.email == null }">
 									       	이메일 : 없음
 									    </c:when> 
 									    <c:otherwise>
-									      	  이메일 :  ${sessionScope.user.email}
+									      	  이메일 :  ${sessionScope.productDetail.productOwner.email}
 									    </c:otherwise>
 									</c:choose>
 								</div>

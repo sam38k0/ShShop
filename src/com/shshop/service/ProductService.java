@@ -184,6 +184,11 @@ public class ProductService {
 					productInfo.addImagePath(contextPath + images.get(i).getImagePath());
 				}
 			}
+			
+			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+			User user = userMapper.getUserById(product.getUserId());
+			if(user!=null)
+				productInfo.setProductOwner(user);
 
 			return productInfo;
 
