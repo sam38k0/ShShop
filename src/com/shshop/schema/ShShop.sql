@@ -180,18 +180,20 @@ CREATE TABLE `ps_image` (
  -- Insert User ----------------------------------------------------------------------------------
  
 INSERT INTO `cr_user` 
-(`email`, `password`) 
+(`email`, `password`, `ktalk_id`, `phone`) 
 VALUES 
-('name1@gmail.com', '1111'),
-('name2@gmail.com', '2222'),
-('name3@gmail.com', '3333'),
-('name4@gmail.com', '4444'),
-('name4@gmail.com', '5555'),
-('name4@gmail.com', '6666'),
-('name4@gmail.com', '7777'),
-('name4@gmail.com', '8888'),
-('name4@gmail.com', '9999');
+('name1@gmail.com', '1111', 'ktalk1', '111-111-1111'),
+('name2@gmail.com', '2222', 'ktalk2', '222-222-2222'),
+('name3@gmail.com', '3333', 'ktalk3', '333-333-3333'),
+('name4@gmail.com', '4444', 'ktalk4', '444-444-4444'),
+('name4@gmail.com', '5555', 'ktalk5', '555-555-5555'),
+('name4@gmail.com', '6666', 'ktalk6', '666-666-6666'),
+('name4@gmail.com', '7777', 'ktalk7', '777-777-7777'),
+('name4@gmail.com', '8888', 'ktalk8', '888-888-8888'),
+('name4@gmail.com', '9999', 'ktalk9', '999-999-9999');
+ 
 
+ 
  -- Insert Category ----------------------------------------------------------------------------------
  
 INSERT INTO `ps_category` 
