@@ -10,6 +10,8 @@ function sorting(event) {
 	var keywords = $('#keywords').val();
 	var dataPage = $('#currentPage').text();
 	var sort = $(this).attr('sort');
+	var priceFrom = $('#price_from').val();
+	var priceTo = $('#price_to').val();
 
 	$.ajax({
 		type : "POST",
@@ -17,7 +19,9 @@ function sorting(event) {
 		data : {
 			"keywords" : keywords,
 			"data-page" : dataPage,
-			"sort" : sort
+			"sort" : sort,
+			"price_from" : priceFrom,
+			"price_to" : priceTo
 		},
 		success : pageSet,
 		error : function(ajaxContext) {
@@ -25,6 +29,32 @@ function sorting(event) {
 	});
 
 	return;
+}
+
+function pageReset(event) {
+	event.preventDefault();
+
+	var keywords = $('#keywords').val();
+	var dataPage = $(this).attr('data-page');
+	var sort = $("ul.sortLeft li.on").attr("sort");
+	var priceFrom = $('#price_from').val();
+	var priceTo = $('#price_to').val();
+
+	$.ajax({
+		type : "POST",
+		url : "searchAction",
+		data : {
+			"keywords" : keywords,
+			"data-page" : dataPage,
+			"sort" : sort,
+			"price_from" : priceFrom,
+			"price_to" : priceTo
+		},
+		success : pageSet,
+		error : function(ajaxContext) {
+		}
+	});
+	return false;
 }
 
 function pageSet(text) {
@@ -90,37 +120,13 @@ function pageSet(text) {
 	$('#pagingSearchResults').empty();
 	$('#pagingSearchResults').append(aHTML);
 
-	//Page
-	$("#pagingSearchResults a").each(function(idx) {
-		$(this).click(function(event) {
-			event.preventDefault();
-
-			var keywords = $('#keywords').val();
-			var dataPage = $(this).attr('data-page');
-			var sort = $("ul.sortLeft li.on").attr("sort");
-
-			$.ajax({
-				type : "POST",
-				url : "searchAction",
-				data : {
-					"keywords" : keywords,
-					"data-page" : dataPage,
-					"sort" : sort
-				},
-				success : pageSet,
-				error : function(ajaxContext) {
-				}
-			});
-			return false;
-		});
-
-		//Sorting 
-		$("#sortByDate").click(sorting);
-		$("#sortByHit").click(sorting);
-		$("#sortByHighPrice").click(sorting);
-		$("#sortByLowPrice").click(sorting);
- 
-	});
+	$("#pagingSearchResults a").each(function(idx) {$(this).click(pageReset);});
+	$('#btn_visible_search').click(pageReset);
+	 
+	$("#sortByDate").click(sorting);
+	$("#sortByHit").click(sorting);
+	$("#sortByHighPrice").click(sorting);
+	$("#sortByLowPrice").click(sorting);
 }
 
 $(document).ready(function() {
@@ -131,10 +137,11 @@ $(document).ready(function() {
 		data : {
 			"keywords" : "tt",
 			"data-page" : "1",
-			"sort" : "1"
+			"sort" : "1",
+			"price_from" : "1000",
+			"price_to" : "10000"
 		},
 		success : pageSet,
-
 		error : function(ajaxContext) {
 		}
 	});

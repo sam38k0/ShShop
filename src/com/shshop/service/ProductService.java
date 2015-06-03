@@ -62,6 +62,7 @@ public class ProductService {
 				sqlSession.rollback();
 				return new CommandResult(Constant.textPlain, Constant.productInsertionError);
 			}
+			
 
 			product = insertImageOfProduct(user, product, uploadedFilePaths);
 			if (product == null) {
@@ -73,7 +74,7 @@ public class ProductService {
 				sqlSession.rollback();
 				return new CommandResult(Constant.textPlain, Constant.productInsertionError);
 			}
-
+			
 		} finally {
 			sqlSession.commit();
 			sqlSession.close();
@@ -205,6 +206,8 @@ public class ProductService {
 		String keywords = request.getParameter(Constant.attrKeywords);
 		String dataPage = request.getParameter(Constant.attrDataPage);
 		String sortCondition = request.getParameter(Constant.attrSort);
+		String priceFrom = request.getParameter(Constant.attrPriceFrom);
+		String priceTo = request.getParameter(Constant.attrPriceTo);
 
 		if (dataPage == null || dataPage.equals("")) {
 			dataPage = "1";
@@ -212,6 +215,14 @@ public class ProductService {
 
 		if (sortCondition == null || sortCondition.equals("")) {
 			sortCondition = "1";
+		}
+		
+		if(priceFrom == null || priceFrom.equals("")) {
+			priceFrom = "0";
+		}
+		
+		if(priceTo == null || priceTo.equals("")) {
+			priceTo = "100000000";
 		}
 
 		HttpSession session = request.getSession();
@@ -223,9 +234,9 @@ public class ProductService {
 		if (searchResult == null || !searchResult.getKeywords().equals(keywords)) {
  
 			List<ProductSearchResultParam> searchResults = new ArrayList<>();
-			int totalCount = Format.randInt(100,1000);
+			int totalCount = 200;
 			for (int i = 0; i < totalCount; i++) {
-				searchResults.add( new ProductSearchResultParam("product$Id" + i, "name" + i, "products" + i, 100 * (i + 1), Format.randDate(), false, 
+					searchResults.add( new ProductSearchResultParam("product$Id" + i, "name" + i, "products" + i, 100 * (i + 1), Format.randDate(), false, 
 													 			"C:/temp/" + i + ".png", "location" + i, "" + i, Format.randInt(10,10000)));
 			}
 
@@ -236,6 +247,8 @@ public class ProductService {
 			searchResult.setKeywords(keywords);
 			searchResult.setCurrentPage(Integer.parseInt(dataPage));
 			searchResult.setSortCondition(Integer.parseInt(sortCondition));
+			searchResult.setPriceFrom(Integer.parseInt(priceFrom));
+			searchResult.setPriceTo(Integer.parseInt(priceTo));
 		}
 
 		return new CommandResult("/WEB-INF/view/searchView/searchActionJsonData.jsp");

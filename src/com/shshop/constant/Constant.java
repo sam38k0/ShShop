@@ -28,6 +28,8 @@ public class Constant {
 	public static final String attrKeywords = "keywords";
 	public static final String attrDataPage = "data-page";
 	public static final String attrSort = "sort";
+	public static final String attrPriceFrom = "price_from";
+	public static final String attrPriceTo = "price_to";
 	
 	//DD Parameter
 	public static final String paramFileUpload = "file-upload";

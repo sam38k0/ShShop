@@ -56,7 +56,7 @@ CREATE TABLE `ps_category` (
 		ON UPDATE CASCADE
 );
 
-CREATE INDEX `PK_ps_category_name`ON `ps_category` (`name` ASC);
+CREATE INDEX `PK_ps_category_name` ON `ps_category` (`name` ASC);
 
 -- ps_product ----------------------------------------------------------------------------------
 
@@ -98,7 +98,6 @@ CREATE TABLE `ps_product_category` (
  
       CONSTRAINT `PK_ps_product_category_id_product_category` 
 		PRIMARY KEY (`id_product_category`),
-		
 	-- ps_category -> ps_product_category
 	CONSTRAINT `FK_ps_category_TO_ps_product_category` 
 		FOREIGN KEY (`id_category`)
@@ -111,7 +110,6 @@ CREATE TABLE `ps_product_category` (
 		REFERENCES `ps_product` ( `id_product` )
 		ON DELETE CASCADE
 );
- 
  
  
 -- ps_option ---------------------------------------------------------------------------------------
@@ -179,10 +177,7 @@ CREATE TABLE `ps_image` (
 		ON UPDATE CASCADE
 );
 
-CREATE UNIQUE INDEX `PK_ps_image` ON `ps_image` (`id_image` ASC);
-
-
- -- Insert ----------------------------------------------------------------------------------
+ -- Insert User ----------------------------------------------------------------------------------
  
 INSERT INTO `cr_user` 
 (`email`, `password`) 
@@ -190,8 +185,14 @@ VALUES
 ('name1@gmail.com', '1111'),
 ('name2@gmail.com', '2222'),
 ('name3@gmail.com', '3333'),
-('name4@gmail.com', '4444');
+('name4@gmail.com', '4444'),
+('name4@gmail.com', '5555'),
+('name4@gmail.com', '6666'),
+('name4@gmail.com', '7777'),
+('name4@gmail.com', '8888'),
+('name4@gmail.com', '9999');
 
+ -- Insert Category ----------------------------------------------------------------------------------
  
 INSERT INTO `ps_category` 
 (`id_category_parent`, `name`, `description`, `link`, `is_root_category`)
@@ -210,20 +211,10 @@ VALUES
 (1, '여성조끼류', 'category13_desc', 'category13_link', true),
 (1, '남방,블라우스', 'category14_desc', 'category14_link', true),
 (1, '여성바지류', 'category15_desc', 'category15_link', true),
-(1, '스커트,치마', 'category11_desc', 'category11_link', true),
-(1, '여성자켓', 'category12_desc', 'category12_link', true),
-(1, '코드,패딩', 'category13_desc', 'category13_link', true),
-(1, '원피스,정장', 'category14_desc', 'category14_link', true),
-(1, '여성속옷', 'category15_desc', 'category15_link', true),
 (2, '남성티셔츠', 'category21_desc', 'category21_link', true),
-(2, '남성니트류', 'category22_desc', 'category22_link', true),
-(2, '남성남방류', 'category23_desc', 'category23_link', true),
-(2, '남성바지류', 'category24_desc', 'category24_link', true),
-(2, '남성자켓', 'category25_desc', 'category25_link', true),
+(2, '남성니트류', 'category22_desc', 'category22_link', true), 
 (2, '남성정장', 'category21_desc', 'category21_link', true),
-(2, '남성속옷', 'category22_desc', 'category22_link', true),
-(2, '기타남성복', 'category23_desc', 'category23_link', true),
-(2, '남성트레이닝복', 'category24_desc', 'category24_link', true), 
+(2, '남성속옷', 'category22_desc', 'category22_link', true), 
 (3, '가방', 'category31_desc', 'category31_link', true),
 (3, '지갑,벨트', 'category32_desc', 'category32_link', true),
 (3, '모자,안경', 'category33_desc', 'category33_link', true),
@@ -259,28 +250,76 @@ VALUES
 (9, '중,대형차', 'category93_desc', 'category93_link', true),
 (9, '버스,화물차', 'category94_desc', 'category94_link', true),
 (9, '자동차용품', 'category95_desc', 'category95_link', true);
- 
-INSERT INTO `ps_product` 
-(`id_user`,`name`,`price`,`stock`,`translation`,`connection`,`on_sale`,`on_open`,`tag`,`out_of_stock`,`description`,`searching_count`)
-VALUES
-(1, 'product1', '10', '10',1, 1, true, true, 'tag1', false, 'description1',0),
-(1, 'product2', '20', '20',1, 3, true, true, 'tag2', false, 'description2',0),
-(2, 'product3', '30', '30',1, 7, true, true, 'tag3', false, 'description3',0),
-(2, 'product4', '40', '40',1, 15, true, true, 'tag4', false, 'description4',0),
-(3, 'product5', '50', '50',1, 12, true, true, 'tag5', false, 'description5',0),
-(3, 'product6', '60', '60',1, 204, true, true, 'tag6', false, 'description6',0);
- 
- 
-INSERT INTO `ps_product_category` 
-(`id_category`, `id_product`)
-VALUES 
-(1, 1),
-(1, 2),
-(2, 3),
-(2, 4),
-(3, 5),
-(3, 1);
 
+
+ -- Insert Product ----------------------------------------------------------------------------------
+
+CREATE FUNCTION split_str(
+  x TEXT,
+  delim VARCHAR(12),
+  pos INT
+)
+RETURNS VARCHAR(255)
+RETURN REPLACE(SUBSTRING(SUBSTRING_INDEX(x, delim, pos),
+       LENGTH(SUBSTRING_INDEX(x, delim, pos -1)) + 1),
+       delim, '');
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS proc_insert_product $$
+CREATE PROCEDURE proc_insert_product (IN `proc_id_user`          SMALLINT,
+									  IN `proc_id_category`      SMALLINT,
+									  IN `proc_name`             VARCHAR(50),
+									  IN `proc_price`            INTEGER,
+									  IN `proc_stock`            INTEGER,
+									  IN `proc_translation`	     TINYINT(2),
+									  IN `proc_connection`	     SMALLINT,
+									  IN `proc_on_sale`          TINYINT(1),
+									  IN `proc_on_open`          TINYINT(1),
+									  IN `proc_tag`              VARCHAR(128),
+									  IN `proc_out_of_stock`     TINYINT(1),
+									  IN `proc_description`      TEXT,
+									  IN `proc_searching_count`  INTEGER,
+                                      IN `proc_image_paths`      VARCHAR(1000)) 
+BEGIN
+	DECLARE indx INT Default 0 ;
+	DECLARE str VARCHAR(255);
+    DECLARE productId INT;
+    
+     -- Insert Product
+    INSERT INTO `ps_product` 
+	(`id_user`,`name`,`price`,`stock`,`translation`,`connection`,`on_sale`,`on_open`,`tag`,`out_of_stock`,`description`,`searching_count`)
+	VALUES
+	(`proc_id_user`,`proc_name`,`proc_price`,`proc_stock`,`proc_translation`,`proc_connection`,`proc_on_sale`,`proc_on_open`,`proc_tag`,`proc_out_of_stock`,`proc_description`,`proc_searching_count`);
+    
+    -- Insert prodcut category
+    SET productId = LAST_INSERT_ID();
+    
+    INSERT INTO `ps_product_category` 
+	(`id_category`, `id_product`)
+	VALUES 
+	(`proc_id_category`, productId);
+    
+    -- Insert Images 
+	simpleLoop: LOOP  
+         SET indx=indx+1;
+         SET str = split_str(`proc_image_paths`,",",indx);
+        IF str='' OR str=null THEN
+            LEAVE simpleLoop;
+         END IF; 
+         INSERT INTO `ps_image` (`id_product`, `path`) VALUES (productId, str);
+  	  END LOOP simpleLoop;
+ 
+END $$
+DELIMITER ;
+
+
+-- Insert Product By Proc ----------------------------------------------------------------------------------
+ 
+ CALL proc_insert_product (1, 1, 'product1', '10', '10',1, 1, true, true, 'tag1', false, 'description1',0,
+'/content/image/product_image/sample1.jpg,/content/image/product_image/sample2.jpg,/content/image/product_image/sample3.jpg,/content/image/product_image/sample4.jpg');
+
+
+-- Insert Option By Proc ----------------------------------------------------------------------------------
 
 INSERT INTO `ps_option` (`id_option_type_parent`, `option_name`)
 VALUES
@@ -317,42 +356,8 @@ INSERT INTO `ps_product_option`
 VALUES 
 -- product 1
 (1, 1),
-(1, 2),
--- product 2
-(2, 3),
-(2, 4),
--- product 3
-(3, 5),
-(3, 6),
--- product 4
-(4, 1),
-(4, 2),
-(4, 3),
--- product 5
-(5, 2),
-(5, 4),
-(5, 6);
+(1, 2);
 
-
-INSERT INTO `ps_image` (`id_product`, `path`)
-VALUES
-(1, '/content/image/product_image/sample1.jpg'),
-(1, '/content/image/product_image/sample2.jpg'),
-(1, '/content/image/product_image/sample3.jpg'),
-(1, '/content/image/product_image/sample4.jpg'),
-(2, '/content/image/product_image/sample1.jpg'),
-(2, '/content/image/product_image/sample2.jpg'),
-(2, '/content/image/product_image/sample3.jpg'),
-(2, '/content/image/product_image/sample4.jpg'),
-(3, '/content/image/product_image/sample1.jpg'),
-(3, '/content/image/product_image/sample2.jpg'),
-(3, '/content/image/product_image/sample3.jpg'),
-(3, '/content/image/product_image/sample4.jpg'),
-(4, '/content/image/product_image/sample1.jpg'),
-(4, '/content/image/product_image/sample2.jpg'),
-(4, '/content/image/product_image/sample3.jpg'),
-(4, '/content/image/product_image/sample4.jpg');
- 
  -- Confirm ----------------------------------------------------------------------------------
  BEGIN;
  
@@ -418,3 +423,4 @@ WHERE p.`id_product` = 1;
 SELECT * FROM `ps_image` WHERE `id_product`= 1;
 
 ROLLBACK;
+ 

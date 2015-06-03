@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.shshop.domain.Product;
 import com.shshop.domain.ProductOption;
+import com.shshop.domain.ProductProc;
 
 public interface ProductMapper {
 	public int getProductCount();
@@ -21,7 +22,10 @@ public interface ProductMapper {
 	public void deleteProduct(@Param("productId") Integer productId);
 	
 	public List<Product> getSearchedProducts(@Param("keywords") String keywords);
+	
 	public List<Product> selectMainCount();
 	
 	public List<Product> selectMainDate();
+	
+	public void insertProductProc(ProductProc productProc);
 }

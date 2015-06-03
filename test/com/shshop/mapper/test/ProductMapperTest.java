@@ -13,6 +13,9 @@ import org.junit.Test;
 
 import com.shshop.domain.Product;
 import com.shshop.domain.ProductOption;
+import com.shshop.domain.ProductProc;
+import com.shshop.mapper.ProductCategoryMapper;
+import com.shshop.mapper.ProductImageMapper;
 import com.shshop.mapper.ProductMapper;
 import com.shshop.util.MyBatisUtil;
 
@@ -20,11 +23,15 @@ public class ProductMapperTest {
 
 	SqlSession sqlSession = null;
 	ProductMapper productMapper = null;
+	ProductImageMapper imageMapper = null;
+	ProductCategoryMapper productCategoryMapper = null;
 
 	@Before
 	public void setUp() throws Exception {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		productMapper = sqlSession.getMapper(ProductMapper.class);
+		imageMapper = sqlSession.getMapper(ProductImageMapper.class);
+		productCategoryMapper = sqlSession.getMapper(ProductCategoryMapper.class);
 	}
 
 	@After
@@ -83,5 +90,21 @@ public class ProductMapperTest {
 		List<Product> results = productMapper.getSearchedProducts("regName|regTag|regDesc|±è´ë¿õ");
 		
 		assertEquals("testGetSearchedProducts", results.size(), 4);
+	}
+	
+	@Test
+	public void testInsertProductProc() {
+		int procCountBefore = productMapper.getProductCount();
+		int catProcCountBefore = productCategoryMapper.getProductCategoryCount();
+		int imageCountBefore = imageMapper.getProductImageCount();
+		productMapper.insertProductProc(new ProductProc(1, 1, "product6", 60, 60, 1, 204, "tag8", "description6", 0, true, true, false,"c:/1.png,c:/2.png,c:/3.png"));
+		int procCountAfter = productMapper.getProductCount();
+		int catProcCountAfter = productCategoryMapper.getProductCategoryCount();
+		int imageCountAfter = imageMapper.getProductImageCount(); 
+		
+		int countAfter = productMapper.getProductCount();
+		assertEquals("testInsertProductProc1", procCountBefore + 1, procCountAfter);
+		assertEquals("testInsertProductProc2", catProcCountBefore + 1, catProcCountAfter);
+		assertEquals("testInsertProductProc3", imageCountBefore + 3, imageCountAfter);
 	}
 }
