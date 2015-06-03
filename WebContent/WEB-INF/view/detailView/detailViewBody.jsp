@@ -1,217 +1,58 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page session="true" import="com.shshop.service.*"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%--
-<div class="wrap">
-	<center>
-		<section class="page panel">
-			<div class="gallery">
-				<div id="photo-viewer"></div>
-				<div id="thumbnails">
-					<c:forEach var="imagePaths" items="${sessionScope.productDetail.imagePaths}">
-						<a href="${imagePaths}" class="thumb active"> <img src="${imagePaths}" width=60 height=60 />
-						</a>
-					</c:forEach>
-				</div>
-			</div>
-			<div class="description" align="left">
-			<ul>
-				<li>
-					<p class="psTitle"><strong>상품명</strong></p>
-					<p class="psDesc"><span>${sessionScope.productDetail.product.name}</span></p>
-				</li>
-				<li>
-					<p class="psTitle"><strong>가격</strong></p>
-					</br>
-					<p class="psDesc"><span>${sessionScope.productDetail.product.price}</span> 원(개당)</p>
-				</li>
-				<li>
-					<p class="psTitle"><strong>재고</strong></p>
-					</br>
-					<p class="psDesc">${sessionScope.productDetail.product.stock} 개
-				</li>	
-				<li>
-					<p class="psTitle"><strong>상품설명</strong></p>
-					</br>
-					<p class="psDesc"><span>${sessionScope.productDetail.product.description}</span></p>
-				</li>	
-				<c:if test="${sessionScope.productDetail.product.connection > 0}">
-					<li>
-						<p class="psTitle"><strong>연락방법</strong></p>
-						</br>
-						<p class="psDesc"><span>${sessionScope.productDetail.product.connectOptionComment}</span></p>
-					</li>
-				</c:if>	
-				<c:if test="${sessionScope.productDetail.product.translation > 0}">
-					<li>
-						<p class="psTitle"><strong>거래방법</strong></p>
-						</br>
-						<p class="psDesc"><span>${sessionScope.productDetail.product.translationComment}</span></p>
-					</li>
-				</c:if>
-				<li>
-					<a href="" id="buy">Buy now</a> 
-				</li>
-				</ul>
-			</div>
-		</section>
-
-		<section class="page">
-			<ul class="accordion">
-				<li>
-					<button class="accordion-control">구매 관련정보</button>
-					<div class="accordion-panel">
-						<div id="page-wrap">
-							<div id="tab_design">
-								<nav class="tab_menu clearfix">
-									<ul>
-										<li><a href="#producer_info"><img src="${adminBean.contextPath}/content/image/detailview_image/faill-icon-24.png" alt="">판매자정보</a></li>
-										<li><a href="#ask_reply_info"><img src="${adminBean.contextPath}/content/image/detailview_image/oh-u-icon-24.png" alt="">묻고답하기</a></li>
-										<li><a href="#order_reply_info"><img src="${adminBean.contextPath}/content/image/detailview_image/high-icon-24.png" alt="">구매후기</a></li>
-									</ul>
-								</nav>
-								<div class="tab_contents">
-									<ul>
-										<li id="producer_info">
-											
-											<img src="${adminBean.contextPath}/content/image/detailview_image/faill-icon-128.png" alt="" />
-											<div class="UserDetailTable">
-											<table>
-												<tr>
-													<td width=30%><strong>판매자명</strong></td>
-													<td width=70%>${sessionScope.user.name}</td>
-												</tr>
-												<tr>
-													<td width=30%><strong>카카오톡 아이디</strong></td>
-													<td width=70%>${sessionScope.user.ktalkId}</td>
-												</tr>
-												<tr>
-													<td width=30%><strong>이메일</strong></td>
-													<td width=70%>${sessionScope.user.email}</td>
-												</tr>
-												<tr>
-													<td width=30%><strong>전화번호</strong></td>
-													<td width=70%>${sessionScope.user.phone}</td>
-												</tr>
-											</table>
-											</div>
-										</li>
-										<li id="ask_reply_info">
-											<img src="${adminBean.contextPath}/content/image/detailview_image/oh-u-icon-128.png" alt="" width="128" height="128" />
-											<h3>묻고 답하기</h3>
-											<p>묻고 답하기에 대한 내용을 출력한다.</p>
-										</li>
-										<li id="order_reply_info">
-											<img src="${adminBean.contextPath}/content/image/detailview_image/high-icon-128.png" alt="" width="128" height="128" />
-											<h3>구매후기</h3>
-											<p>구매후기에 대한 내용 출력한다.</p>
-										</li>
-									</ul>
-								</div>
-								<!-- .tab_content-->
-							</div>
-							<!-- .tab_design-->
-						</div>
-						<!-- #page-wrap -->
-					</div> <!-- .accordion-panel -->
-				</li>
-				<li>
-					<button class="accordion-control">유사상품 보기</button>
-					<div class="accordion-panel">
-					    <div class="graybox">
-					        <h4>해당 아이템과 유사한 아이템</h4>
-					        <div class="horizontal_box">
-					            <div class="itembox">
-					                <ul id="similar_item_list" class="similar" style="display: block;">
-					                    <li>
-					                        <p>
-					                            <a href="/item/7747754"><img src="//img.hellomarket.com/images5/2015/item/s3/05/05/21/0847_7693401_1.jpg" width=86 height=86>
-					                            </a><strong><a href="/item/7747754">캠핑용 방석 se...</a></strong><span class="price">8,000원</span>
-					                            <span class="time">1970/01/01</span>
-					                        </p>
-					                    </li>
-					                    <li>
-					                        <p>
-					                            <a href="/item/6893352"><img src="//img.hellomarket.com/images5/2015/item/s3/03/08/23/4147_6893352_1.jpg" width=86 height=86>
-					                            </a><strong><a href="/item/6893352">(새것)로우알파인...</a></strong>
-					                            <span class="price">20,000원</span>
-					                            <span class="time">1970/01/01</span>
-					                        </p>
-					                    </li>
-					                    <li>
-					                        <p>
-					                            <a href="/item/6892885"><img src="//img.hellomarket.com/images5/2015/item/s3/03/08/23/0817_6892885_1.jpg" width=86 height=86>
-					                            </a><strong><a href="/item/6892885">(새것)로우알파인...</a>
-					                            </strong><span class="price">70,000원</span>
-					                            <span class="time">1970/01/01</span>
-					                        </p>
-					                    </li>
-					                </ul>
-					            </div>
-					        </div>
-					        <p class="moveBtn">
-					            <a href="#" id="similar_item_list_prev" class="movepreB">이전 아이템</a>
-					            <span id="similar_item_list_page"><strong>1</strong>/10</span>
-					            <a href="#" id="similar_item_list_next" class="movenextB">다음 아이템</a>
-					        </p>
-					    </div>
-					</div>
-				</li>
-			</ul>
-		</section>
-	</center>
-</div>--%>
-
+ 
 <div id="wrap">
 	<div id="contentArea">
 		<!-- CONTENTS -->
 		<div id="section">
 			<div id="contents">
-				<div class="page_navi">
-					<div class="location">
-						<a href="/">홈</a> <span>&gt;</span> 
-						<a href="/category/list.hm?cid=HAD0000">화장품,기타미용제품</a> <span>&gt;</span> 
-						<strong>
-						<a href="/category/list.hm?cid=HAD0006">이미용제품</a>
-						</strong>
-					</div>
-				</div>
 				<div class="viewTopArea">
 					<div class="leftArea">
 						<a href="#" id="item_top_list_button" class="btn_gray2"><span>목록</span></a>
-
 					</div>
 					<div class="rightArea">
-						<span class="date">수정일 : 05/11, 등록일 : 05/11</span>
+						<span class="date">수정일 : ${sessionScope.productDetail.product.dateUpdated}, 등록일 : ${sessionScope.productDetail.product.dateCreated} </span>
 					</div>
 				</div>
 				<div class="detailView">
 					<div class="detailBox">
 						<div class="photoArea">
 							<div id="item_view_big_photo" class="bigPhoto">
-								<a href="#"><img src="//img.hellomarket.com/images5/2015/item/s4/05/11/16/4709_7766636_1.jpg"> </a>
+								<a href="#"><img src="<c:out value="${sessionScope.productDetail.imagePaths[1]}"/> "> </a>
 								<div class="text hide" style="display: none;"></div>
 							</div>
-
 							<ul id="item_view_mini_photo" class="miniPhoto">
-								<c:choose>
-									<c:when test="${imagePaths.index == 0}">
-								      <li><img src="${imagePath}" rel="${imagePaths.index}" class="on"></li>
-								    </c:when> 
-									<c:otherwise>
-								        <li><img src="${imagePath}" rel="${imagePaths.index}" class=""></li>
-								    </c:otherwise>
-								</c:choose>
+								<c:forEach var="imagePath" varStatus="imagePaths" items="${sessionScope.productDetail.imagePaths}">
+									<c:choose>
+										<c:when test="${imagePaths.index == 0}">
+											<li><img src="${imagePath}" rel="${imagePaths.index}" class="on"></li>
+										</c:when>
+										<c:otherwise>
+											<li><img src="${imagePath}" rel="${imagePaths.index}" class=""></li>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
 							</ul>
 						</div>
 						<div class="detailArea">
 							<div class="detailInfo">
-								<div id="item_view_title_text" class="title">파라핀 네일팩</div>
+								<div id="item_view_title_text" class="title">
+									<c:choose>
+										<c:when test="${sessionScope.productDetail.product.name == '' || sessionScope.productDetail.product.name == null }">
+										       상품이름없음
+										</c:when>
+										<c:otherwise>
+										    ${sessionScope.productDetail.product.name}
+										</c:otherwise>
+									</c:choose>
+								</div>
+
 								<div class="info">
 									<dl>
 										<dt>가격</dt>
 										<dd>
-											<span id="item_view_price_text" class="price">12,000원</span>
+											<span id="item_view_price_text" class="price">${sessionScope.productDetail.product.price} 원</span>
 										</dd>
 									</dl>
 									<dl>
@@ -219,16 +60,27 @@
 										<dd></dd>
 									</dl>
 									<dl>
+										<dt>거래방법</dt>
+										<c:choose>
+											<c:when test="${sessionScope.productDetail.product.translationComment == '' || sessionScope.productDetail.product.translationComment == null }">
+											      <dd>등록하지 않음</dd>
+											</c:when>
+											<c:otherwise>
+											    <dd>${sessionScope.productDetail.product.translationComment}</dd>
+											</c:otherwise>
+										</c:choose>
+									</dl>
+									<dl>
 										<dt>희망연락방법</dt>
-										<dd></dd>
-									</dl>
-									<dl>
-										<dt>소셜커뮤니티</dt>
-										<dd></dd>
-									</dl>
-									<dl>
-										<dt>특이사항</dt>
-										<dd></dd>
+										<c:choose>
+											<c:when
+												test="${sessionScope.productDetail.product.connectOptionComment == '' || sessionScope.productDetail.product.connectOptionComment == null }">
+												<dd>등록하지 않음</dd>
+											</c:when>
+											<c:otherwise>
+												<dd>${sessionScope.productDetail.product.connectOptionComment}</dd>
+											</c:otherwise>
+										</c:choose>
 									</dl>
 								</div>
 							</div>
@@ -236,7 +88,14 @@
 								<div class="userInfo">
 									<div class="userName">
 										<p class="name">
-											<a href="#" data-midx="358549" data-domain="@1469660" data-nick="초코바닐라♡">초코바닐라♡</a>
+											<c:choose>
+												<c:when test="${sessionScope.user.name == '' || sessionScope.user.name == null }">
+										       		<a href="#" data-midx="358549" data-domain="@1469660" data-nick="이름없음">이름없음</a>
+												</c:when>
+												<c:otherwise>
+										    		<a href="#" data-midx="358549" data-domain="@1469660" data-nick="${sessionScope.user.name}">${sessionScope.user.name}</a>
+												</c:otherwise>
+											</c:choose>
 										</p>
 										<ul class="userLevel">
 										</ul>
@@ -265,10 +124,34 @@
 
 							<div id="item_view_phone_layer" class="openBox hide" style="display: block;">
 								<div class="phone">
-									휴대폰 번호: 010-4321-6182 <br> 카카오톡 ID: 없음
+									<c:choose>
+									    <c:when test="${sessionScope.user.phone == '' || sessionScope.user.phone == null }">
+									       	휴대폰 번호 : 없음
+									    </c:when> 
+									    <c:otherwise>
+									               휴대폰 번호 :  ${sessionScope.user.phone}
+									    </c:otherwise>
+									</c:choose> 
+									<br>
+									<c:choose>
+									    <c:when test="${sessionScope.user.ktalkId == '' || sessionScope.user.ktalkId == null }">
+									       	카카오톡 ID : 없음
+									    </c:when> 
+									    <c:otherwise>
+									      	  카카오톡 ID : ${sessionScope.user.ktalkId}
+									    </c:otherwise>
+									</c:choose>
+									<br>
+									<c:choose>
+									    <c:when test="${sessionScope.user.email == '' || sessionScope.user.email == null }">
+									       	이메일 : 없음
+									    </c:when> 
+									    <c:otherwise>
+									      	  이메일 :  ${sessionScope.user.email}
+									    </c:otherwise>
+									</c:choose>
 								</div>
 							</div>
-
 
 							<div class="functionBtn">
 								<ul>
@@ -288,11 +171,14 @@
 							<div class="accordion-panel">
 								<div class="detailCnt">
 									<div class="detailCntL">
+										<h3 class="h3_icon">재고</h3>
+										<div class="cntView">
+											${sessionScope.productDetail.product.stock}
+										</div>
 										<h3 class="h3_icon">상세설명</h3>
 										<div class="cntView">
-											파라핀 네일팩 <br>파라핀10개 들어가고 있구요 <br>집에서도 관리한수 있수 있어서 편안해요 <br>택포 12000원 <br>
+											${sessionScope.productDetail.product.description}
 										</div>
-
 										<h3 class="h3_icon">댓글달기</h3>
 										<div id="comment_list" class="cmtView clearfix">
 											<div id="comment_view_all" class="cmtAll" style="display: none;">
