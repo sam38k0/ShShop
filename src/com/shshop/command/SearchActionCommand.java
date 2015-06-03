@@ -10,8 +10,8 @@ public class SearchActionCommand implements Command {
 
 	@Override
 	public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
-
 		ProductService psService = new ProductService(request, response);
-		return psService.setSearchedProductDatas();
+		
+		return psService.searchProdcuts();
 	}
 }

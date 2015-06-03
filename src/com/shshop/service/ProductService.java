@@ -103,7 +103,7 @@ public class ProductService {
 		}
 	}
 	    
-	public CommandResult setSearchedProductDatas() {
+	public CommandResult searchProdcuts() {
 		// [TODO]: 실제 데이터를 사용해야 한다.
 
 		String keywords = request.getParameter(Constant.attrKeywords);
@@ -139,7 +139,7 @@ public class ProductService {
 			List<ProductSearchResultParam> searchResults = new ArrayList<>();
 			int totalCount = 200;
 			for (int i = 0; i < totalCount; i++) {
-					searchResults.add( new ProductSearchResultParam("product$Id" + i, "name" + i, "products" + i, 100 * (i + 1), Format.randDate(), false, 
+					searchResults.add( new ProductSearchResultParam("name" + i, "products" + i, 100 * (i + 1), Format.randDate(), false, 
 													 			"C:/temp/" + i + ".png", "location" + i, "" + i, Format.randInt(10,10000)));
 			}
 
