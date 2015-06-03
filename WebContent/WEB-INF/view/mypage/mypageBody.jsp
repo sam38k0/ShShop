@@ -36,14 +36,11 @@
 				<th>주소</th>
 				<td class="user_table_line">
 					<div class="add_wrap">
-						<select name="city" id="">
-							<option value="seoul">서울</option>
-							<option value="dagu">대구</option>
-						</select> <select name="gu" id="">
-							<option value="">강서구</option>
-							<option value="">강북구</option>
-						</select>
-						<input type="text" value="상세주소 입력"><input type="submit" value="변경">
+						<input type="text" id="sample6_postcode1"> -
+						<input type="text" id="sample6_postcode2">
+						<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+						<input type="text" id="sample6_address" placeholder="주소" >
+						<input type="text" id="sample6_address2" placeholder="상세주소">
 					</div>
 				</td>
 			</tr>

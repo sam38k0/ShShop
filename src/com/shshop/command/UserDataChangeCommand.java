@@ -39,7 +39,7 @@ public class UserDataChangeCommand implements Command{
 		
 		attService.userDataUpdate(user);
 		
-		CommandResult comm = new CommandResult("text/plain;charset=UTF-8","�쉶�썝�젙蹂� �닔�젙 �꽦怨�");
+		CommandResult comm = new CommandResult("text/plain;charset=UTF-8","회원정보 수정완료");
 		return comm;
 	}
 

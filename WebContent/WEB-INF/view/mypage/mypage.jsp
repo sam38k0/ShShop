@@ -6,7 +6,9 @@
  
 <c:set var= "pageTitle" scope ="request" value= "Main Page"/>
 <jsp:setProperty name= "adminBean" property ="headerPage" value="/WEB-INF/view/header.jsp" />
-<jsp:setProperty name= "adminBean" property ="contentPage" value="/WEB-INF/view/mypageBody.jsp" />
+<jsp:setProperty name= "adminBean" property ="stylePage" value="/WEB-INF/view/mypage/mypageStyle.jsp" />
+<jsp:setProperty name= "adminBean" property ="contentPage" value="/WEB-INF/view/mypage/mypageBody.jsp" />
+<jsp:setProperty name= "adminBean" property ="scriptPage" value="/WEB-INF/view/mypage/mypageScript.jsp" />
 <jsp:setProperty name= "adminBean" property ="footerPage" value="/WEB-INF/view/footer.jsp" /> 
 
 <jsp:include page= "/WEB-INF/view/index.jsp" />

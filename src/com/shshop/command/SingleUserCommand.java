@@ -27,7 +27,7 @@ public class SingleUserCommand implements Command{
 		
 		request.setAttribute("user", attService.getViewSingleUser(user.getUserId()));
 		
-		comm = new CommandResult("/WEB-INF/view/mypage.jsp");
+		comm = new CommandResult("/WEB-INF/view/mypage/mypage.jsp");
 		
 		return comm;
 	}
