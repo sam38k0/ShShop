@@ -12,6 +12,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.shshop.constant.Constant;
 import com.shshop.control.CommandResult;
+import com.shshop.domain.Address;
 import com.shshop.domain.Product;
 import com.shshop.domain.User;
 import com.shshop.helper.RegExpressionHelper;
@@ -223,5 +224,42 @@ public class AuthenticatorService {
 		}
 		
 		return product;
+	}
+	
+	public Address getUserAdd(Integer userId) {
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		Address address;
+		
+		try {
+			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+			address = userMapper.getUserAddress(userId);
+		} finally {
+			sqlSession.close();
+		}
+		return address;
+	}
+	
+	public void insertUserAdd(Address address) {
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		
+		try {
+			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+			userMapper.insertAddress(address);
+			sqlSession.commit();
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public void updateUserAdd(Address address) {
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		
+		try {
+			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+			userMapper.updateUserAddress(address);
+			sqlSession.commit();
+		} finally {
+			sqlSession.close();
+		}
 	}
 }

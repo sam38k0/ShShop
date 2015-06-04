@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.shshop.domain.Address;
 import com.shshop.domain.Product;
 import com.shshop.domain.User;
 
@@ -27,6 +28,12 @@ public interface UserMapper {
 	public List<Product> getAllProducts(@Param("userId") int userId);
 
 	public void updateUser(User user);
+	
+	public Address getUserAddress(@Param("userId") int userId);
+	
+	public void insertAddress(Address address);
+	
+	public void updateUserAddress(Address address);
 }
 
 

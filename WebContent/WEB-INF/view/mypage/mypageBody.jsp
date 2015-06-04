@@ -39,8 +39,8 @@
 						<input type="text" id="sample6_postcode1"> -
 						<input type="text" id="sample6_postcode2">
 						<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-						<input type="text" id="sample6_address" placeholder="주소" >
-						<input type="text" id="sample6_address2" placeholder="상세주소">
+						<input type="text" id="sample6_address" placeholder="주소" name="bagicAdd" value='${address.bagicAdd}'>
+						<input type="text" id="sample6_address2" placeholder="상세주소" name="detailAdd" value='${address.detailAdd}'>
 					</div>
 				</td>
 			</tr>

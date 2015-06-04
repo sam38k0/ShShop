@@ -31,6 +31,15 @@
 	<select id='getAllProducts' resultMap='${ProductResultMap}'>
 		SELECT * FROM `ps_product` WHERE `id_user`= ${id_user};
 	</select>
+	
+	<select id='getUserAddress' resultMap='Address'>
+		SELECT * FROM `cr_address` WHERE `id_user`= ${id_user};
+	</select>
+	
+	<insert id='insertAddress' parameterType='${AddressType}' useGeneratedKeys='true' keyProperty='${id_address}'>
+		INSERT INTO `cr_address`(`id_user`, `basic_add`, `detail_add`) 
+		VALUES (${id_user}, ${basic_add}, ${detail_add});
+	</insert>
 
 	<insert id='insertUser' parameterType='${UserType}' useGeneratedKeys='true' keyProperty='${id_user}'>
 		INSERT INTO `cr_user`
@@ -43,6 +52,10 @@
 		(`email`, `password`)
 		VALUES (${email}, ${password})
 	</insert>
+	
+	<update id='updateUserAddress' parameterType='${AddressType}'>
+		UPDATE `cr_address` SET `basic_add`=${basic_add}, `detail_add`=${detail_add} where `id_user`=${id_user};
+	</update>
 	
 	<update id='updateUser' parameterType='${UserType}'>
 		UPDATE `cr_user`
@@ -79,5 +92,12 @@
 		<result property='lastPasswordGenerated' column='last_password_generated' />
 		<result property='dateCreated' column='date_created' />
 		<result property='dateUpdated' column='date_updated' />
+	</resultMap>
+	
+	<resultMap id='Address' type='${AddressType}'>
+		<id property='idAddress' column='id_address' />
+		<result property='idUser' column='id_user' />
+		<result property='basicAdd' column='basic_add' />
+		<result property='detailAdd' column='detail_add' />
 	</resultMap>
 </mapper>

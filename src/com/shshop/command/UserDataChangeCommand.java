@@ -4,12 +4,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.shshop.control.CommandResult;
+import com.shshop.domain.Address;
 import com.shshop.domain.User;
 import com.shshop.helper.Format;
 import com.shshop.service.AuthenticatorService;
 
 public class UserDataChangeCommand implements Command{
-
 	@Override
 	public CommandResult execute(HttpServletRequest request,
 			HttpServletResponse response) {
@@ -22,6 +22,8 @@ public class UserDataChangeCommand implements Command{
 		String bio = request.getParameter("bio");
 		String bankName = request.getParameter("bankName");
 		String bankNum = request.getParameter("bankNum");
+		String bagicAdd = request.getParameter("bagicAdd");
+		String detailAdd = request.getParameter("detailAdd");
 		java.sql.Date birthdaySqlDate = Format.getSqlDate(birthday);
 		
 		AuthenticatorService attService = new AuthenticatorService(request, response);
@@ -38,6 +40,21 @@ public class UserDataChangeCommand implements Command{
 		user.setBankNum(bankNum);
 		
 		attService.userDataUpdate(user);
+		
+		Address address = new Address();
+		
+		if (attService.getUserAdd(user.getUserId()) == null) {
+			address.setIdUser(user.getUserId());
+			address.setBasicAdd(bagicAdd);
+			address.setDetailAdd(detailAdd);
+			attService.insertUserAdd(address);
+			System.out.println("인서트 됨");
+		} else {
+			address.setBasicAdd(bagicAdd);
+			address.setDetailAdd(detailAdd);
+			attService.updateUserAdd(address);
+			System.out.println("업데이트 됨");
+		}
 		
 		CommandResult comm = new CommandResult("text/plain;charset=UTF-8","회원정보 수정완료");
 		return comm;

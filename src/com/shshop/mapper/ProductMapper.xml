@@ -54,11 +54,11 @@
 	</delete>
 	
 	<select id='selectMainCount' resultMap='Product'>
-		SELECT * FROM `ps_product` ORDER BY `searching_count` DESC;
+		SELECT * FROM `ps_product` ORDER BY `searching_count` DESC LIMIT 0, 60;
 	</select>
 	
 	<select id='selectMainDate' resultMap='Product'>
-		SELECT * FROM `ps_product` ORDER BY `date_created` DESC;
+		SELECT * FROM `ps_product` ORDER BY `date_created` DESC LIMIT 0, 60;
 	</select>
 		
 	<insert id="insertProductProc" parameterType='${ProductProcType}' statementType="CALLABLE">

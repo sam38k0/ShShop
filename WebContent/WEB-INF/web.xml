@@ -52,7 +52,7 @@
     <description>Absolute location to store uploaded file</description> 
     <param-name>file-upload-absolute</param-name> 
     <param-value>
-         D:/projectManagement/WebProjects/ShShop/WebContent/content/image/product_image/
+         C:\mastProject\ShShop0601\WebContent\content\image\product_image
     </param-value> 
 	</context-param>
 	 
