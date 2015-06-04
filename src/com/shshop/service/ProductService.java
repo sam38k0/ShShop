@@ -138,6 +138,7 @@ public class ProductService {
 			sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 			ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
 			ProductImageMapper imageMapper = sqlSession.getMapper(ProductImageMapper.class);
+			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 			
 			String filterdKeywords;
 			try {
@@ -149,11 +150,12 @@ public class ProductService {
 			List<ProductSearchResultParam> searchResults = new ArrayList<>();
 			List<Product> results = productMapper.getSearchedProducts(filterdKeywords);
 			for (int i = 0; i < results.size(); i++) {
+				User user = userMapper.getUserById(results.get(i).getUserId());
 				List<ProductImage> images = imageMapper.getProductImages(results.get(i).getProductId());
 				if(images!=null)
-					searchResults.add( new ProductSearchResultParam(results.get(i),images.get(0).getImagePath()));
+					searchResults.add( new ProductSearchResultParam(user, results.get(i),images.get(0).getImagePath()));
 				else
-					searchResults.add( new ProductSearchResultParam(results.get(i),"C:/temp/noimg.png"));
+					searchResults.add( new ProductSearchResultParam(user, results.get(i),"C:/temp/noimg.png"));
 			}
 
 			searchResult = new ProductSearchResult(Integer.parseInt(dataPage), keywords, Integer.parseInt(sortCondition), searchResults);
