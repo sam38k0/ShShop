@@ -9,7 +9,6 @@
 	<json:property name="currentPage" value="${searchResult.currentPage}" />
 	<json:array name="searchResults" var="item" items="${searchResult.currentPageResult}">
 		<json:object>
-			<json:property name="id" value="${item.id}" />
 			<json:property name="userName" value="${item.userName}" />
 			<json:property name="productName" value="${item.productName}" />
 			<json:property name="price" value="${item.price}" />

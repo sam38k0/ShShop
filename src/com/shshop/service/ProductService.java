@@ -2,7 +2,6 @@ package com.shshop.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -21,7 +20,7 @@ import com.shshop.domain.ProductDetail;
 import com.shshop.domain.ProductImage;
 import com.shshop.domain.ProductProc;
 import com.shshop.domain.User;
-import com.shshop.helper.Format;
+import com.shshop.helper.KeywordGuesser;
 import com.shshop.helper.TimestampFileRenamePolicy;
 import com.shshop.mapper.CategoryMapper;
 import com.shshop.mapper.ProductImageMapper;
@@ -136,11 +135,25 @@ public class ProductService {
 
 		if (searchResult == null || !searchResult.getKeywords().equals(keywords)) {
  
+			sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+			ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+			ProductImageMapper imageMapper = sqlSession.getMapper(ProductImageMapper.class);
+			
+			String filterdKeywords;
+			try {
+				filterdKeywords = KeywordGuesser.getKeywordsWithoutWhiteSpace( keywords,"|");
+			} catch (IOException e) {
+				return null;
+			}
+			
 			List<ProductSearchResultParam> searchResults = new ArrayList<>();
-			int totalCount = 200;
-			for (int i = 0; i < totalCount; i++) {
-					searchResults.add( new ProductSearchResultParam("name" + i, "products" + i, 100 * (i + 1), Format.randDate(), false, 
-													 			"C:/temp/" + i + ".png", "location" + i, "" + i, Format.randInt(10,10000)));
+			List<Product> results = productMapper.getSearchedProducts(filterdKeywords);
+			for (int i = 0; i < results.size(); i++) {
+				List<ProductImage> images = imageMapper.getProductImages(results.get(i).getProductId());
+				if(images!=null)
+					searchResults.add( new ProductSearchResultParam(results.get(i),images.get(0).getImagePath()));
+				else
+					searchResults.add( new ProductSearchResultParam(results.get(i),"C:/temp/noimg.png"));
 			}
 
 			searchResult = new ProductSearchResult(Integer.parseInt(dataPage), keywords, Integer.parseInt(sortCondition), searchResults);
