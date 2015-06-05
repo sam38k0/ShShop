@@ -3,10 +3,6 @@
 
 <jsp:useBean id="adminBean" class="com.shshop.system.AdminBean" scope="session" />
 
-<%-- <script src="${adminBean.contextPath}/content/js/search.js"></script>--%>
-
-<%-- 위의 js 파일 말고 아래 코드를 사용해야 된다. ( 위는 테스트용 js 파일임)--%>
-
 <script type="text/javascript">
 function sorting(event) {
 	event.preventDefault();
@@ -142,7 +138,6 @@ function pageSet(text) {
 }
 
 $(document).ready(function() {
-
 	$.ajax({
 		type : "POST",
 		url : "searchAction",
