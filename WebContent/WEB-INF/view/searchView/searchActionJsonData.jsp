@@ -9,7 +9,6 @@
 	<json:property name="currentPage" value="${searchResult.currentPage}" />
 	<json:array name="searchResults" var="item" items="${searchResult.currentPageResult}">
 		<json:object>
-			<json:property name="id" value="${item.id}" />
 			<json:property name="userName" value="${item.userName}" />
 			<json:property name="productName" value="${item.productName}" />
 			<json:property name="price" value="${item.price}" />
@@ -17,6 +16,7 @@
 			<json:property name="safeOrder" value="${item.safeOrder}" />
  			<json:property name="imageUrl" value="${item.imageUrl}" />
  			<json:property name="location" value="${item.location}" />
+ 			<json:property name="hitCount" value="${item.hitCount}" />
  			<json:property name="userLevel" value="${item.userLevel}" />
  			<json:property name="totalPageNum" value="${totalPageNum}" />
 		</json:object>

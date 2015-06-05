@@ -332,85 +332,13 @@ END $$
 DELIMITER ;
 
 
-
-
-/* EXAMPLE -----------------------------------------------------------------------------
-
+ 
+ 
+/* -- Confirm ----------------------------------------------------------------------------------
  BEGIN;
- 
-INSERT INTO `cr_user` 
-(`email`, `password`, `ktalk_id`, `phone`) 
-VALUES 
-('name1@gmail.com', '1111', 'ktalk1', '111-111-1111'),
-('name2@gmail.com', '2222', 'ktalk2', '222-222-2222'),
-('name3@gmail.com', '3333', 'ktalk3', '333-333-3333'),
-('name4@gmail.com', '4444', 'ktalk4', '444-444-4444'),
-('name4@gmail.com', '5555', 'ktalk5', '555-555-5555'),
-('name4@gmail.com', '6666', 'ktalk6', '666-666-6666'),
-('name4@gmail.com', '7777', 'ktalk7', '777-777-7777'),
-('name4@gmail.com', '8888', 'ktalk8', '888-888-8888'),
-('name4@gmail.com', '9999', 'ktalk9', '999-999-9999');
- 
-INSERT INTO `ps_category` 
-(`id_category_parent`, `name`, `description`, `link`, `is_root_category`)
-VALUES 
-(null, '여성의류', 'category1_desc', 'category1_link', true),
-(null, '남성의류', 'category2_desc', 'category2_link', true),
-(null, '잡화', 'category3_desc', 'category3_link', true),
-(null, '뷰티', 'category4_desc', 'category4_link', true),
-(null, '출산,아동', 'category5_desc', 'category5_link', true),
-(null, '가전', 'category6_desc', 'category6_link', true),
-(null, '모바일', 'category7_desc', 'category7_link', true),
-(null, '도서', 'category8_desc', 'category8_link', true),
-(null, '자동차,오토바이', 'category9_desc', 'category9_link', true), 
-(1, '여성티셔츠', 'category11_desc', 'category11_link', true),
-(1, '여성니트류', 'category12_desc', 'category12_link', true),
-(1, '여성조끼류', 'category13_desc', 'category13_link', true),
-(1, '남방,블라우스', 'category14_desc', 'category14_link', true),
-(1, '여성바지류', 'category15_desc', 'category15_link', true),
-(2, '남성티셔츠', 'category21_desc', 'category21_link', true),
-(2, '남성니트류', 'category22_desc', 'category22_link', true), 
-(2, '남성정장', 'category21_desc', 'category21_link', true),
-(2, '남성속옷', 'category22_desc', 'category22_link', true), 
-(3, '가방', 'category31_desc', 'category31_link', true),
-(3, '지갑,벨트', 'category32_desc', 'category32_link', true),
-(3, '모자,안경', 'category33_desc', 'category33_link', true),
-(3, '시계,보석', 'category34_desc', 'category34_link', true),
-(3, '기타잡화', 'category35_desc', 'category35_link', true),
-(4, '여성화장품', 'category41_desc', 'category41_link', true),
-(4, '메이크업', 'category42_desc', 'category42_link', true),
-(4, '헤어,바디케어', 'category43_desc', 'category43_link', true),
-(4, '남성화장품', 'category44_desc', 'category44_link', true),
-(4, '향수,아로마', 'category45_desc', 'category45_link', true),
-(5, '신생아의류', 'category51_desc', 'category51_link', true),
-(5, '유아의류', 'category52_desc', 'category52_link', true),
-(5, '유아생활용품', 'category53_desc', 'category53_link', true),
-(5, '유아도서', 'category54_desc', 'category54_link', true),
-(5, '아동완구', 'category55_desc', 'category55_link', true),
-(6, 'TV', 'category61_desc', 'category61_link', true),
-(6, '냉장고', 'category62_desc', 'category62_link', true),
-(6, '세탁기', 'category63_desc', 'category63_link', true),
-(6, '청소기', 'category64_desc', 'category64_link', true),
-(6, '기타가전제품', 'category65_desc', 'category65_link', true),
-(7, 'SKT', 'category71_desc', 'category71_link', true),
-(7, 'KT', 'category72_desc', 'category72_link', true),
-(7, 'LGU+', 'category73_desc', 'category73_link', true),
-(7, '휴대폰주변기기', 'category74_desc', 'category74_link', true),
-(7, '휴대폰액세서리', 'category75_desc', 'category75_link', true),
-(8, '대학교제', 'category81_desc', 'category81_link', true),
-(8, '외국어,학습', 'category82_desc', 'category82_link', true),
-(8, '소설,문학', 'category83_desc', 'category83_link', true),
-(8, '경영,경제', 'category84_desc', 'category84_link', true),
-(8, '인문,사회', 'category85_desc', 'category85_link', true),
-(9, '수입차', 'category91_desc', 'category91_link', true),
-(9, '경차', 'category92_desc', 'category92_link', true),
-(9, '중,대형차', 'category93_desc', 'category93_link', true),
-(9, '버스,화물차', 'category94_desc', 'category94_link', true),
-(9, '자동차용품', 'category95_desc', 'category95_link', true);
 
  CALL proc_insert_product (1, 1, 'product1', '10', '10',1, 1, true, true, 'tag1', false, 'description1',0,
 '/content/image/product_image/sample1.jpg,/content/image/product_image/sample2.jpg,/content/image/product_image/sample3.jpg,/content/image/product_image/sample4.jpg');
-
 
  -- getUserCount
 SELECT COUNT(`cr_user`.`id_user`) as count FROM `cr_user`;
@@ -451,7 +379,6 @@ FROM `ps_product` p
 WHERE c.`id_category` = 1;
  
  -- getAllProducts
-BEGIN;
 SELECT * FROM `ps_category`;
 SELECT * FROM `ps_product`;
 SELECT COUNT(`id_category`) as count FROM `ps_category`;
@@ -462,7 +389,6 @@ SELECT COUNT(`id_category`) as count FROM `ps_product_category`;
 SELECT * FROM `ps_category`;
 SELECT * FROM `ps_product_category`;
 
-
 -- getProductOptions
 SELECT o.*
 FROM `ps_product` p
@@ -470,9 +396,24 @@ FROM `ps_product` p
 	INNER JOIN `ps_option` o USING(`id_option`)
 WHERE p.`id_product` = 1;
 
-
+-- getImage
 SELECT * FROM `ps_image` WHERE `id_product`= 1;
+
+ -- Search Product By Keyword
+SELECT  * FROM `ps_product` as p WHERE p.`name` REGEXP '농구' or 
+									   p.`description` REGEXP '농구' or 
+									   p.`tag` REGEXP '농구';
+                                     
+ -- Search Category Product
+SELECT * FROM `ps_category` c 
+		LEFT OUTER JOIN `ps_product_category` pc USING(`id_category`)
+        LEFT OUTER JOIN `ps_product` p USING(`id_product`)
+WHERE c.`name`= '여성의류';
 
 ROLLBACK;
 
+<<<<<<< HEAD
  -----------------------------------------------------------------------------*/
+=======
+*/
+>>>>>>> 0dd4f5cbb382648346b30ea3d9a36b422279caa6

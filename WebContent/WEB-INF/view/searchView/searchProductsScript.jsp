@@ -3,10 +3,10 @@
 
 <jsp:useBean id="adminBean" class="com.shshop.system.AdminBean" scope="session" />
 
-<script src="${adminBean.contextPath}/content/js/search.js"></script>
+<%-- <script src="${adminBean.contextPath}/content/js/search.js"></script>--%>
 
 <%-- 위의 js 파일 말고 아래 코드를 사용해야 된다. ( 위는 테스트용 js 파일임)--%>
-<%--
+
 <script type="text/javascript">
 function sorting(event) {
 	event.preventDefault();
@@ -20,6 +20,8 @@ function sorting(event) {
 	var keywords = $('#keywords').val();
 	var dataPage = $('#currentPage').text();
 	var sort = $(this).attr('sort');
+	var priceFrom = $('#price_from').val();
+	var priceTo = $('#price_to').val();
 
 	$.ajax({
 		type : "POST",
@@ -27,7 +29,9 @@ function sorting(event) {
 		data : {
 			"keywords" : keywords,
 			"data-page" : dataPage,
-			"sort" : sort
+			"sort" : sort,
+			"price_from" : priceFrom,
+			"price_to" : priceTo
 		},
 		success : pageSet,
 		error : function(ajaxContext) {
@@ -35,6 +39,32 @@ function sorting(event) {
 	});
 
 	return;
+}
+
+function pageReset(event) {
+	event.preventDefault();
+
+	var keywords = $('#keywords').val();
+	var dataPage = $(this).attr('data-page');
+	var sort = $("ul.sortLeft li.on").attr("sort");
+	var priceFrom = $('#price_from').val();
+	var priceTo = $('#price_to').val();
+
+	$.ajax({
+		type : "POST",
+		url : "searchAction",
+		data : {
+			"keywords" : keywords,
+			"data-page" : dataPage,
+			"sort" : sort,
+			"price_from" : priceFrom,
+			"price_to" : priceTo
+		},
+		success : pageSet,
+		error : function(ajaxContext) {
+		}
+	});
+	return false;
 }
 
 function pageSet(text) {
@@ -67,8 +97,10 @@ function pageSet(text) {
 				+ '\" width=\"90\" height=\"90\"></a></div></td>'
 				+ '<td class=\"itemCnt\"><div class= \"itemInfo\"><p class=\"title\"><a href= \"#\">' + item.productName
 				+ '</a></p><p class=\"location\">' + item.location + '</p></div> </td>' + '<td class=\"price\">' + item.price + '</td>'
-				+ '<td class=\"safeOrder\">' + item.safeOrder + '</td>' + '<td class=\"user\">' + item.userName + '</td>'
-				+ '<td class=\"userLevel\">' + item.userLevel + '</td>' + '<td class=\"time\">' + item.dataCreated + '</td> ' + '</tr>';
+				+ '<td class=\"safeOrder\">' + item.safeOrder + '</td>' 
+				+ '<td class=\"userName\">' + item.userName + '</td>'
+				+ '<td class=\"hitCount\">' + item.hitCount + '</td>'
+				+ '<td class=\"time\">' + item.dataCreated + '</td> ' + '</tr>';
 	});
 	$('tbody').empty();
 	$('tbody').append(trHTML);
@@ -100,54 +132,32 @@ function pageSet(text) {
 	$('#pagingSearchResults').empty();
 	$('#pagingSearchResults').append(aHTML);
 
-	//Page
-	$("#pagingSearchResults a").each(function(idx) {
-		$(this).click(function(event) {
-			event.preventDefault();
-
-			var keywords = $('#keywords').val();
-			var dataPage = $(this).attr('data-page');
-			var sort = $("ul.sortLeft li.on").attr("sort");
-
-			$.ajax({
-				type : "POST",
-				url : "searchAction",
-				data : {
-					"keywords" : keywords,
-					"data-page" : dataPage,
-					"sort" : sort
-				},
-				success : pageSet,
-				error : function(ajaxContext) {
-				}
-			});
-			return false;
-		});
-
-		//Sorting 
-		$("#sortByDate").click(sorting);
-		$("#sortByHit").click(sorting);
-		$("#sortByHighPrice").click(sorting);
-		$("#sortByLowPrice").click(sorting);
- 
-	});
+	$("#pagingSearchResults a").each(function(idx) {$(this).click(pageReset);});
+	$('#btn_visible_search').click(pageReset);
+	 
+	$("#sortByDate").click(sorting);
+	$("#sortByHit").click(sorting);
+	$("#sortByHighPrice").click(sorting);
+	$("#sortByLowPrice").click(sorting);
 }
 
-$(document).ready(
-function() {
+$(document).ready(function() {
+
 	$.ajax({
 		type : "POST",
 		url : "searchAction",
 		data : {
-			"keywords": '<c:out value=${param.keywords} />'
+			"keywords" : '${param.keywords}',
 			"data-page" : "1",
-			"sort" : "1"
-			},
+			"sort" : "1",
+			"price_from" : "0",
+			"price_to" : "100000000"
+		},
 		success : pageSet,
-
 		error : function(ajaxContext) {
 		}
 	});
 });
+
 </script>
---%>
+

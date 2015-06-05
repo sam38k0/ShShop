@@ -25,6 +25,7 @@ public class Constant {
 	public static final String attrAdmin = "adminBean";
 	public static final String attrProductDetail = "productDetail";
 	public static final String attrSearchResult = "searchResult";
+	public static final String attrSearchResultMap = "searchResultMap";
 	public static final String attrKeywords = "keywords";
 	public static final String attrDataPage = "data-page";
 	public static final String attrSort = "sort";

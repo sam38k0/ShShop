@@ -61,7 +61,7 @@
 							<th>가격</th>
 							<th>안전결제</th>
 							<th>판매자</th>
-							<th>판매자등급</th>
+							<th>히트수</th>
 							<th class="end">등록일</th>
 						</tr>
 					</thead>
@@ -85,8 +85,8 @@
 							</td>
 							<td class="price">8,000원</td>
 							<td class="safeOrder">안전결제</td>
-							<td class="user">아이디</td>
-							<td class="userLevel">1등급</td>
+							<td class="userName">아이디</td>
+							<td class="hitCount">1000</td>
 							<td class="time">42초전</td>
 						</tr>
 						 --%>
