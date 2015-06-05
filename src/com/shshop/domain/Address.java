@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Address implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private Integer idAddress;
-	private Integer idUser;
+	private Integer userId;
 	private String basicAdd;
 	private String detailAdd;
 	
@@ -13,9 +13,8 @@ public class Address implements Serializable{
 		
 	}
 	
-	public Address (Integer idAddress, Integer idUser, String basicAdd, String detailAdd) {
-		this.idAddress = idAddress;
-		this.idUser = idUser;
+	public Address (Integer userId, String basicAdd, String detailAdd) {
+		this.userId = userId;
 		this.basicAdd = basicAdd;
 		this.detailAdd = detailAdd;
 	}
@@ -28,12 +27,12 @@ public class Address implements Serializable{
 		this.idAddress = idAddress;
 	}
 
-	public Integer getIdUser() {
-		return idUser;
+	public Integer getUserId() {
+		return userId;
 	}
 
-	public void setIdUser(Integer idUser) {
-		this.idUser = idUser;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 	public String getBasicAdd() {

@@ -17,14 +17,13 @@ import com.shshop.constant.Constant;
 import com.shshop.control.CommandResult;
 import com.shshop.domain.Category;
 import com.shshop.domain.Product;
-import com.shshop.domain.ProductCategory;
 import com.shshop.domain.ProductDetail;
 import com.shshop.domain.ProductImage;
+import com.shshop.domain.ProductProc;
 import com.shshop.domain.User;
 import com.shshop.helper.Format;
 import com.shshop.helper.TimestampFileRenamePolicy;
 import com.shshop.mapper.CategoryMapper;
-import com.shshop.mapper.ProductCategoryMapper;
 import com.shshop.mapper.ProductImageMapper;
 import com.shshop.mapper.ProductMapper;
 import com.shshop.mapper.UserMapper;
@@ -49,116 +48,23 @@ public class ProductService {
 
 		HttpSession session = request.getSession(false);
 		User user = (User) session.getAttribute(Constant.attrUser);
-		if (user == null)
+		if (user == null) {
 			return new CommandResult(Constant.textPlain, Constant.noUser);
+		}
 
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 
 		try {
-			List<String> uploadedFilePaths = uploadFiles();
-
-			Product product = insertProduct(user);
-			if (product == null) {
+			if (insertProductByProc(user) != true) {
 				sqlSession.rollback();
 				return new CommandResult(Constant.textPlain, Constant.productInsertionError);
 			}
-			
-
-			product = insertImageOfProduct(user, product, uploadedFilePaths);
-			if (product == null) {
-				sqlSession.rollback();
-				return new CommandResult(Constant.textPlain, Constant.productInsertionError);
-			}
-
-			if (!insertCategoryOfProudct(product)) {
-				sqlSession.rollback();
-				return new CommandResult(Constant.textPlain, Constant.productInsertionError);
-			}
-			
 		} finally {
 			sqlSession.commit();
 			sqlSession.close();
 		}
 
 		return new CommandResult("/WEB-INF/view/mainView/main.jsp");
-	}
-
-	private List<String> uploadFiles() throws IOException {
-		String filePath = request.getServletContext().getInitParameter(Constant.paramFileUploadAbsolutePath);
-
-		TimestampFileRenamePolicy fileRenamePolicy = new TimestampFileRenamePolicy();
-		if (getMulti() == null)
-			setMulti(new MultipartRequest(request, filePath, 500 * 1024, "UTF-8", fileRenamePolicy));
-
-		List<String> uploadedFilePaths = new ArrayList<>();
-		List<String> newFileNames = fileRenamePolicy.getNewFileNames();
-		for (int i = 0; i < newFileNames.size(); i++) {
-			String fileRelativePath = "";
-			String fileUploadPath = request.getServletContext().getInitParameter(Constant.paramFileUpload);
-			fileRelativePath = fileUploadPath + newFileNames.get(i);
-			uploadedFilePaths.add(fileRelativePath);
-		}
-		return uploadedFilePaths;
-	}
-
-	private Product insertProduct(User user) throws IOException {
-		Product product = null;
-		InsertProductParams psParam = new InsertProductParams(multi);
-		ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
-		product = new Product(user.getUserId(), psParam.getProductName(), psParam.getPrice(), psParam.getStock(), psParam.getTransactionType(),
-				psParam.getConnectionOpt(), psParam.getTags(), psParam.getDescription(), 0, false, true, false);
-		productMapper.insertProduct(product);
-
-		return product;
-	}
-
-	private Product insertImageOfProduct(User user, Product product, List<String> uploadedFilePaths) throws IOException {
-		Product productFound = null;
-		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-		List<Product> products = userMapper.getAllProducts(user.getUserId());
-		Iterator<Product> iterProduct = products.iterator();
-
-		while (iterProduct.hasNext()) {
-			Product productNext = iterProduct.next();
-			if (!productNext.equals(product))
-				continue;
-
-			productFound = productNext;
-			break;
-		}
-
-		if (productFound == null)
-			return null;
-
-		ProductImageMapper imageMapper = sqlSession.getMapper(ProductImageMapper.class);
-		for (int i = 0; i < uploadedFilePaths.size(); i++) {
-			ProductImage psImage = new ProductImage(productFound.getProductId(), uploadedFilePaths.get(i));
-			imageMapper.insertImage(psImage);
-		}
-
-		return productFound;
-	}
-
-	private boolean insertCategoryOfProudct(Product product) throws IOException {
-		String categoryName = multi.getParameter("miniCategory");
-
-		if (categoryName == "" || categoryName == null)
-			return false;
-
-		String[] categorySplited = categoryName.split(">");
-
-		String categoryLastName = categorySplited[categorySplited.length - 1].trim();
-
-		CategoryMapper categoryMapper = sqlSession.getMapper(CategoryMapper.class);
-		Category category = categoryMapper.getCategoryByName(categoryLastName);
-		if (category == null)
-			return false;
-
-		ProductCategoryMapper productCategoryMapper = sqlSession.getMapper(ProductCategoryMapper.class);
-		ProductCategory productAndCategory = new ProductCategory(category.getCategoryId(), product.getProductId());
-		productCategoryMapper.insertProductCategory(productAndCategory);
-
-		return true;
 	}
 
 	public ProductDetail getProductInformation(Integer productId) {
@@ -184,6 +90,11 @@ public class ProductService {
 					productInfo.addImagePath(contextPath + images.get(i).getImagePath());
 				}
 			}
+			
+			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+			User user = userMapper.getUserById(product.getUserId());
+			if(user!=null)
+				productInfo.setProductOwner(user);
 
 			return productInfo;
 
@@ -191,16 +102,8 @@ public class ProductService {
 			sqlSession.close();
 		}
 	}
-
-	public MultipartRequest getMulti() {
-		return multi;
-	}
-
-	public void setMulti(MultipartRequest multi) {
-		this.multi = multi;
-	}
 	    
-	public CommandResult setSearchedProductDatas() {
+	public CommandResult searchProdcuts() {
 		// [TODO]: 실제 데이터를 사용해야 한다.
 
 		String keywords = request.getParameter(Constant.attrKeywords);
@@ -236,7 +139,7 @@ public class ProductService {
 			List<ProductSearchResultParam> searchResults = new ArrayList<>();
 			int totalCount = 200;
 			for (int i = 0; i < totalCount; i++) {
-					searchResults.add( new ProductSearchResultParam("product$Id" + i, "name" + i, "products" + i, 100 * (i + 1), Format.randDate(), false, 
+					searchResults.add( new ProductSearchResultParam("name" + i, "products" + i, 100 * (i + 1), Format.randDate(), false, 
 													 			"C:/temp/" + i + ".png", "location" + i, "" + i, Format.randInt(10,10000)));
 			}
 
@@ -252,5 +155,71 @@ public class ProductService {
 		}
 
 		return new CommandResult("/WEB-INF/view/searchView/searchActionJsonData.jsp");
+	}
+	
+	private String uploadFilesAndGetFilePaths() throws IOException {
+		String filePath = request.getServletContext().getInitParameter(Constant.paramFileUploadAbsolutePath);
+
+		TimestampFileRenamePolicy fileRenamePolicy = new TimestampFileRenamePolicy();
+		if (getMulti() == null)
+			setMulti(new MultipartRequest(request, filePath, 500 * 1024, "UTF-8", fileRenamePolicy));
+
+		StringBuilder uploadFileBulder = new StringBuilder();
+		List<String> newFileNames = fileRenamePolicy.getNewFileNames();
+		for (int i = 0; i < newFileNames.size(); i++) {
+			String fileRelativePath = "";
+			String fileUploadPath = request.getServletContext().getInitParameter(Constant.paramFileUpload);
+			fileRelativePath = fileUploadPath + newFileNames.get(i);
+			if(i != newFileNames.size()-1) {
+				uploadFileBulder.append(fileRelativePath + ",");
+			} else {
+				uploadFileBulder.append(fileRelativePath);
+			}
+		}
+		
+		return uploadFileBulder.toString();
+	}
+
+	private boolean insertProductByProc(User user) throws IOException {
+		String uploadedFilePaths = uploadFilesAndGetFilePaths();
+		if(uploadedFilePaths == null || uploadedFilePaths.equals("")) {
+			return false;
+		}
+		
+		InsertProductParams psParam = new InsertProductParams(multi);
+		ProductProc productProc = new ProductProc(user.getUserId(),getCategoryId(),psParam.getProductName(), psParam.getPrice(), psParam.getStock(), psParam.getTransactionType(),
+				psParam.getConnectionOpt(), psParam.getTags(), psParam.getDescription(), 0, false, true, false,uploadedFilePaths);
+		
+		ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+		productMapper.insertProductProc(productProc);
+
+		return true;
+	}
+
+	private Integer getCategoryId() throws IOException {
+		String categoryName = multi.getParameter("miniCategory");
+
+		if (categoryName == "" || categoryName == null)
+			return null;
+
+		String[] categorySplited = categoryName.split(">");
+
+		String categoryLastName = categorySplited[categorySplited.length - 1].trim();
+
+		CategoryMapper categoryMapper = sqlSession.getMapper(CategoryMapper.class);
+		Category category = categoryMapper.getCategoryByName(categoryLastName);
+		if (category == null)
+			return null;
+
+		return category.getCategoryId();
+	}
+	
+
+	private MultipartRequest getMulti() {
+		return multi;
+	}
+
+	public void setMulti(MultipartRequest multi) {
+		this.multi = multi;
 	}
 }

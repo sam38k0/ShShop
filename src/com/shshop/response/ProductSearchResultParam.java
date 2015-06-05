@@ -4,7 +4,6 @@ import com.shshop.domain.Product;
 import com.shshop.domain.User;
 
 public class ProductSearchResultParam {
-	private String id = "";
 	private String userName = "";
 	private String productName = "";
 	private int price = 0;
@@ -18,9 +17,8 @@ public class ProductSearchResultParam {
 	public ProductSearchResultParam() {
 
 	}
-	public ProductSearchResultParam(String id, String userName, String productName, int price, String dataCreated, boolean safeOrder,
+	public ProductSearchResultParam(String userName, String productName, int price, String dataCreated, boolean safeOrder,
 							 String imageUrl, String location, String userLevel, int hitCount){
-		this.id = id;
 		this.userName = userName;
 		this.productName = productName;
 		this.price = price;
@@ -103,14 +101,6 @@ public class ProductSearchResultParam {
 
 	public void setUserLevel(String userLevel) {
 		this.userLevel = userLevel;
-	}
-	
-	public String getId() {
-		return id;
-	}
-	
-	public void setId(String id) {
-		this.id = id;
 	}
 	
 	public int getHitCount() {

@@ -54,7 +54,7 @@
 	</insert>
 	
 	<update id='updateUserAddress' parameterType='${AddressType}'>
-		UPDATE `cr_address` SET `basic_add`=${basic_add}, `detail_add`=${detail_add} where `id_user`=${id_user};
+		UPDATE `cr_address` SET `basic_add`=${basic_add}, `detail_add`=${detail_add} WHERE `id_user`=${id_user};
 	</update>
 	
 	<update id='updateUser' parameterType='${UserType}'>
@@ -96,7 +96,7 @@
 	
 	<resultMap id='Address' type='${AddressType}'>
 		<id property='idAddress' column='id_address' />
-		<result property='idUser' column='id_user' />
+		<result property='userId' column='id_user' />
 		<result property='basicAdd' column='basic_add' />
 		<result property='detailAdd' column='detail_add' />
 	</resultMap>
