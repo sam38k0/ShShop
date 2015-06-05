@@ -107,8 +107,6 @@ public class DispatcherServletTest {
 	public void testInsertProduct() {
 
 		try { 
-			// Test 1 > 유저가 없는 경우
-			//
 			when(multi.getParameter("productname")).thenReturn("product");
 			when(multi.getParameter("price")).thenReturn("1000");
 			when(multi.getParameter("stock")).thenReturn("100");

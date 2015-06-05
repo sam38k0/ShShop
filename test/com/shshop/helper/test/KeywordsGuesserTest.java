@@ -21,7 +21,7 @@ public class KeywordsGuesserTest {
 
 	@Test
 	public void testWhiteSpaceAnalyzer() throws IOException {
-		StringReader stringReader = new StringReader("Å°¿öµå1 Å°¿öµå2  Å°¿öµå3     Å°¿öµå4.");
+		StringReader stringReader = new StringReader("í‚¤ì›Œë“œ1 í‚¤ì›Œë“œ2   í‚¤ì›Œë“œ3 ");
 		Analyzer analyzer = new WhitespaceAnalyzer(Version.LUCENE_32);
 		TokenStream tokenStream = analyzer.tokenStream("title", stringReader);
 
@@ -50,7 +50,7 @@ public class KeywordsGuesserTest {
 
 	@Test
 	public void testGet() throws IOException {
-		String result = KeywordGuesser.getKeywordsWithoutWhiteSpace("Å°¿öµå1 Å°¿öµå2  Å°¿öµå3     Å°¿öµå4.","|");
-		assertTrue("",result.equals("Å°¿öµå1|Å°¿öµå2|Å°¿öµå3|Å°¿öµå4."));
+		String result = KeywordGuesser.getKeywordsWithoutWhiteSpace("í‚¤ì›Œë“œ1  í‚¤ì›Œë“œ2   í‚¤ì›Œë“œ3.","|");
+		assertTrue("",result.equals("í‚¤ì›Œë“œ1|í‚¤ì›Œë“œ2|í‚¤ì›Œë“œ3."));
 	}
 }
