@@ -1,4 +1,4 @@
- -- ShShop ----------------------------------------------------------------------------------
+-- ShShop ----------------------------------------------------------------------------------
 
 SET NAMES 'utf8';
 DROP DATABASE IF EXISTS `ShShop`;
@@ -11,22 +11,22 @@ USE `ShShop`;
 
 CREATE TABLE `cr_user` (
 	`id_user`                 SMALLINT     UNSIGNED NOT NULL AUTO_INCREMENT, -- id_user
-	`name`                    VARCHAR(50)  NULL,    -- ������
-	`gender`                  TINYINT(1)   NULL,    -- ����
-	`ktalk_id`                VARCHAR(50)  NULL,    -- īī������̵��
-	`email`                   VARCHAR(128) NOT NULL,-- �̸����ּ�
-	`phone`                   VARCHAR(30)  NULL,    -- �ڵ�����ȣ
-	`password`                VARCHAR(32)  NOT NULL,-- �н�����
-	`birthday`                DATETIME     NULL,    -- �������
-	`bio`					  TEXT		   NULL,	-- �ڱ�Ұ�
-	`is_deleted`              TINYINT(1)   NULL,    -- ���������� ������������ 
-	`is_guest`                TINYINT(1)   NULL,    -- �մ�������������
-	`is_producer`             TINYINT(1)   NULL,    -- �Ǹ������� ����
-    `bank_name`				  VARCHAR(128) NULL,	-- ���� ������ �����
-    `bank_num`				  VARCHAR(128) NULL,	-- ���� ������ ���¹�ȣ
-	`last_password_generated` DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, 	-- ���������� ��� ���泯¥
-	`date_created`            DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP, 								-- ���Գ�¥
-	`date_updated`            DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, 	-- �������泯¥
+	`name`                    VARCHAR(50)  NULL,    -- 유저명
+	`gender`                  TINYINT(1)   NULL,    -- 성별
+	`ktalk_id`                VARCHAR(50)  NULL,    -- 카카오톡아이디명
+	`email`                   VARCHAR(128) NOT NULL,-- 이메일주소
+	`phone`                   VARCHAR(30)  NULL,    -- 핸드폰번호
+	`password`                VARCHAR(32)  NOT NULL,-- 패스워드
+	`birthday`                DATETIME     NULL,    -- 생년월일
+	`bio`					  TEXT		   NULL,	-- 자기소개
+	`is_deleted`              TINYINT(1)   NULL,    -- 계정삭제된 유저인지여부 
+	`is_guest`                TINYINT(1)   NULL,    -- 손님유저인지여부
+	`is_producer`             TINYINT(1)   NULL,    -- 판매자인지 여부
+    `bank_name`				  VARCHAR(128) NULL,	-- 계정 인증용 은행명
+    `bank_num`				  VARCHAR(128) NULL,	-- 계정 인증용 계좌번호
+	`last_password_generated` DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, 	-- 마지막으로 비번 변경날짜
+	`date_created`            DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP, 								-- 가입날짜
+	`date_updated`            DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, 	-- 정보변경날짜
 
 	CONSTRAINT `PK_cr_user_id_user` 
 		PRIMARY KEY (`id_user`)
@@ -40,9 +40,9 @@ DROP TABLE `cr_address`;
 CREATE TABLE `cr_address` (
 	`id_address` SMALLINT     UNSIGNED NOT NULL AUTO_INCREMENT, -- id_address
 	`id_user`    SMALLINT     UNSIGNED NOT NULL,     -- id_user
-	`bagic_add`       VARCHAR(64)  NULL,     -- 주소
-	`detail_add`        VARCHAR(255) NULL,      -- 상세주소
-    CONSTRAINT `PK_cr_address` -- cr_address 기본키
+	`bagic_add`       VARCHAR(64)  NULL,     -- 二쇱냼
+	`detail_add`        VARCHAR(255) NULL,      -- �긽�꽭二쇱냼
+    CONSTRAINT `PK_cr_address` -- cr_address 湲곕낯�궎
 		PRIMARY KEY (`id_address`),
 	CONSTRAINT `FK_cr_user_TO_cr_address` -- cr_user -> cr_address
 		FOREIGN KEY (`id_user`)
@@ -56,12 +56,12 @@ CREATE TABLE `cr_address` (
 CREATE TABLE `ps_category` (
 	`id_category`        SMALLINT     UNSIGNED NOT NULL AUTO_INCREMENT, -- id_category
 	`id_category_parent` SMALLINT     UNSIGNED NULL DEFAULT NULL,     	-- id_category_parent
-	`name`               VARCHAR(50)  NOT NULL, -- ī�װ���
-	`description`        TEXT         NOT NULL, -- ī�װ� ����
-	`link`               VARCHAR(255) NULL,     -- ī�װ� �⺻��ũ
-	`is_root_category`   TINYINT(1)   NOT NULL, -- ��Ʈī�װ���������
-	`date_created`       DATETIME     NOT NULL NOT NULL DEFAULT CURRENT_TIMESTAMP,   				  -- ī�װ� ���� ��¥
-	`date_updated`       DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- ī�װ� ������Ʈ�� ��¥
+	`name`               VARCHAR(50)  NOT NULL, -- 카테고리명
+	`description`        TEXT         NOT NULL, -- 카테고리 설명
+	`link`               VARCHAR(255) NULL,     -- 카테고리 기본링크
+	`is_root_category`   TINYINT(1)   NOT NULL, -- 루트카테고리인지여부
+	`date_created`       DATETIME     NOT NULL NOT NULL DEFAULT CURRENT_TIMESTAMP,   				  -- 카테고리 생성 날짜
+	`date_updated`       DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- 카테고리 업데이트된 날짜
     
      CONSTRAINT `PK_ps_category_id_category` 
 		PRIMARY KEY (`id_category`),
@@ -79,19 +79,19 @@ CREATE INDEX `PK_ps_category_name` ON `ps_category` (`name` ASC);
 CREATE TABLE `ps_product` (
 	`id_product`      SMALLINT     UNSIGNED NOT NULL AUTO_INCREMENT, -- id_product
 	`id_user`         SMALLINT     UNSIGNED NOT NULL,     			 -- id_user
-	`name`            VARCHAR(50)  NOT NULL, -- ��ǰ�̸�
-	`price`           INTEGER      NOT NULL, -- ��ǰ����
-	`stock`           INTEGER      NOT NULL, -- ����
-	`translation`	  TINYINT(2)   NOT NULL, -- �ŷ���� ( 1:�������� , 2:�ù�, ����� �� �߰� )
-    `connection`	  SMALLINT     NOT NULL, -- ���������� (������ȭ,SMS,ī��,�̸���,����,ä��,���)
-	`on_sale`         TINYINT(1)   NOT NULL, -- ��������������
-	`on_open`         TINYINT(1)   NOT NULL, -- ��������
-	`tag`             VARCHAR(128) NULL,     -- �±�
-	`out_of_stock`    TINYINT(1)   NOT NULL, -- ��ǰ�� �� �ȷȴ��� ����
-	`description`     TEXT         NOT NULL, -- ��ǰ����
-	`searching_count` INTEGER      NOT NULL, -- ��Ʈ��
-	`date_created`    DATETIME     NOT NULL NOT NULL DEFAULT CURRENT_TIMESTAMP, 					-- ��ǰ�� ������ ��¥
-	`date_updated`    DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  -- ��ǰ�� ������ ��¥
+	`name`            VARCHAR(50)  NOT NULL, -- 제품이름
+	`price`           INTEGER      NOT NULL, -- 제품가격
+	`stock`           INTEGER      NOT NULL, -- 제고량
+	`translation`	  TINYINT(2)   NOT NULL, -- 거래방법 ( 1:안전결재 , 2:택배, 생기면 더 추가 )
+    `connection`	  SMALLINT     NOT NULL, -- 희망연락방법 (직접통화,SMS,카톡,이메일,쪽지,채팅,댓글)
+	`on_sale`         TINYINT(1)   NOT NULL, -- 세일중인지여부
+	`on_open`         TINYINT(1)   NOT NULL, -- 공개설정
+	`tag`             VARCHAR(128) NULL,     -- 태그
+	`out_of_stock`    TINYINT(1)   NOT NULL, -- 상품이 다 팔렸는지 여부
+	`description`     TEXT         NOT NULL, -- 상품설명
+	`searching_count` INTEGER      NOT NULL, -- 히트수
+	`date_created`    DATETIME     NOT NULL NOT NULL DEFAULT CURRENT_TIMESTAMP, 					-- 상품이 더해진 날짜
+	`date_updated`    DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  -- 상품이 업뎃된 날짜
     
     CONSTRAINT `PK_ps_product_id_product` 
 		PRIMARY KEY (`id_product`),
@@ -133,7 +133,7 @@ CREATE TABLE `ps_product_category` (
 CREATE TABLE `ps_option` (
 	`id_option`             SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT, 	-- id_option
 	`id_option_type_parent` SMALLINT UNSIGNED NULL DEFAULT NULL,     	-- id_option_parent
-	`option_name`           VARCHAR(50) NOT NULL,     -- ���� �ɼ��̸�
+	`option_name`           VARCHAR(50) NOT NULL,     -- 현재 옵션이름
     
 	 CONSTRAINT `PK_ps_option` 
 		PRIMARY KEY (`id_option`),
@@ -181,7 +181,7 @@ CREATE UNIQUE INDEX `PK_ps_product_option` ON `ps_product_option` (
 CREATE TABLE `ps_image` (
 	`id_image`   SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT, -- id_image
 	`id_product` SMALLINT UNSIGNED NOT NULL,     -- id_product
-	`path`       VARCHAR(255) NOT NULL,     -- ���ϰ��
+	`path`       VARCHAR(255) NOT NULL,     -- 파일경로
     
 	CONSTRAINT `PK_ps_image` 
 		PRIMARY KEY ( `id_image` ),
@@ -193,83 +193,6 @@ CREATE TABLE `ps_image` (
 		ON UPDATE CASCADE
 );
 
-<<<<<<< HEAD
- -- Insert User ----------------------------------------------------------------------------------
- 
-INSERT INTO `cr_user` 
-(`email`, `password`) 
-VALUES 
-('name1@gmail.com', '1111'),
-('name2@gmail.com', '2222'),
-('name3@gmail.com', '3333'),
-('name4@gmail.com', '4444'),
-('name4@gmail.com', '5555'),
-('name4@gmail.com', '6666'),
-('name4@gmail.com', '7777'),
-('name4@gmail.com', '8888'),
-('name4@gmail.com', '9999');
-
- -- Insert Category ----------------------------------------------------------------------------------
- 
-INSERT INTO `ps_category` 
-(`id_category_parent`, `name`, `description`, `link`, `is_root_category`)
-VALUES 
-(null, '�����Ƿ�', 'category1_desc', 'category1_link', true),
-(null, '�����Ƿ�', 'category2_desc', 'category2_link', true),
-(null, '��ȭ', 'category3_desc', 'category3_link', true),
-(null, '��Ƽ', 'category4_desc', 'category4_link', true),
-(null, '���,�Ƶ�', 'category5_desc', 'category5_link', true),
-(null, '����', 'category6_desc', 'category6_link', true),
-(null, '�����', 'category7_desc', 'category7_link', true),
-(null, '����', 'category8_desc', 'category8_link', true),
-(null, '�ڵ���,�������', 'category9_desc', 'category9_link', true), 
-(1, '����Ƽ����', 'category11_desc', 'category11_link', true),
-(1, '������Ʈ��', 'category12_desc', 'category12_link', true),
-(1, '����������', 'category13_desc', 'category13_link', true),
-(1, '����,���콺', 'category14_desc', 'category14_link', true),
-(1, '����������', 'category15_desc', 'category15_link', true),
-(2, '����Ƽ����', 'category21_desc', 'category21_link', true),
-(2, '������Ʈ��', 'category22_desc', 'category22_link', true), 
-(2, '��������', 'category21_desc', 'category21_link', true),
-(2, '�����ӿ�', 'category22_desc', 'category22_link', true), 
-(3, '����', 'category31_desc', 'category31_link', true),
-(3, '����,��Ʈ', 'category32_desc', 'category32_link', true),
-(3, '����,�Ȱ�', 'category33_desc', 'category33_link', true),
-(3, '�ð�,����', 'category34_desc', 'category34_link', true),
-(3, '��Ÿ��ȭ', 'category35_desc', 'category35_link', true),
-(4, '����ȭ��ǰ', 'category41_desc', 'category41_link', true),
-(4, '����ũ��', 'category42_desc', 'category42_link', true),
-(4, '���,�ٵ��ɾ�', 'category43_desc', 'category43_link', true),
-(4, '����ȭ��ǰ', 'category44_desc', 'category44_link', true),
-(4, '���,�Ʒθ�', 'category45_desc', 'category45_link', true),
-(5, '�Ż����Ƿ�', 'category51_desc', 'category51_link', true),
-(5, '�����Ƿ�', 'category52_desc', 'category52_link', true),
-(5, '���ƻ�Ȱ��ǰ', 'category53_desc', 'category53_link', true),
-(5, '���Ƶ���', 'category54_desc', 'category54_link', true),
-(5, '�Ƶ��ϱ�', 'category55_desc', 'category55_link', true),
-(6, 'TV', 'category61_desc', 'category61_link', true),
-(6, '�����', 'category62_desc', 'category62_link', true),
-(6, '��Ź��', 'category63_desc', 'category63_link', true),
-(6, 'û�ұ�', 'category64_desc', 'category64_link', true),
-(6, '��Ÿ������ǰ', 'category65_desc', 'category65_link', true),
-(7, 'SKT', 'category71_desc', 'category71_link', true),
-(7, 'KT', 'category72_desc', 'category72_link', true),
-(7, 'LGU+', 'category73_desc', 'category73_link', true),
-(7, '�޴����ֺ����', 'category74_desc', 'category74_link', true),
-(7, '�޴����׼�����', 'category75_desc', 'category75_link', true),
-(8, '���б���', 'category81_desc', 'category81_link', true),
-(8, '�ܱ���,�н�', 'category82_desc', 'category82_link', true),
-(8, '�Ҽ�,����', 'category83_desc', 'category83_link', true),
-(8, '�濵,����', 'category84_desc', 'category84_link', true),
-(8, '�ι�,��ȸ', 'category85_desc', 'category85_link', true),
-(9, '������', 'category91_desc', 'category91_link', true),
-(9, '����', 'category92_desc', 'category92_link', true),
-(9, '��,������', 'category93_desc', 'category93_link', true),
-(9, '����,ȭ����', 'category94_desc', 'category94_link', true),
-(9, '�ڵ�����ǰ', 'category95_desc', 'category95_link', true);
-
-=======
->>>>>>> fb078bf6686b0d858417cd12c00f79633d34939a
 
  -- Insert Product ----------------------------------------------------------------------------------
 
@@ -400,20 +323,16 @@ WHERE p.`id_product` = 1;
 SELECT * FROM `ps_image` WHERE `id_product`= 1;
 
  -- Search Product By Keyword
-SELECT  * FROM `ps_product` as p WHERE p.`name` REGEXP '��' or 
-									   p.`description` REGEXP '��' or 
-									   p.`tag` REGEXP '��';
+SELECT  * FROM `ps_product` as p WHERE p.`name` REGEXP '농구' or 
+									   p.`description` REGEXP '농구' or 
+									   p.`tag` REGEXP '농구';
                                      
  -- Search Category Product
 SELECT * FROM `ps_category` c 
 		LEFT OUTER JOIN `ps_product_category` pc USING(`id_category`)
         LEFT OUTER JOIN `ps_product` p USING(`id_product`)
-WHERE c.`name`= '�����Ƿ�';
+WHERE c.`name`= '여성의류';
 
 ROLLBACK;
 
-<<<<<<< HEAD
- -----------------------------------------------------------------------------*/
-=======
 */
->>>>>>> 0dd4f5cbb382648346b30ea3d9a36b422279caa6
