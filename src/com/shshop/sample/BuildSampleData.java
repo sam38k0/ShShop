@@ -172,15 +172,15 @@ public class BuildSampleData {
 	}
 
 	private static void insertUser() {
-		userMapper.insertUserByEmail( new User("name1@gmail.com", "1111", "name1", "111-111-1111", "ktalk1", "bio1",Format.getSqlDate(Format.randDate()))); 
-		userMapper.insertUserByEmail( new User("name2@gmail.com", "2222", "name2", "222-222-2222", "ktalk2", "bio2",Format.getSqlDate(Format.randDate()))); 
-		userMapper.insertUserByEmail( new User("name3@gmail.com", "3333", "name3", "333-333-3333", "ktalk3", "bio3",Format.getSqlDate(Format.randDate()))); 
-		userMapper.insertUserByEmail( new User("name4@gmail.com", "4444", "name4", "444-444-4444", "ktalk4", "bio4",Format.getSqlDate(Format.randDate()))); 
-		userMapper.insertUserByEmail( new User("name5@gmail.com", "5555", "name5", "555-555-5555", "ktalk5", "bio5",Format.getSqlDate(Format.randDate()))); 
-		userMapper.insertUserByEmail( new User("name6@gmail.com", "6666", "name6", "666-666-6666", "ktalk6", "bio6",Format.getSqlDate(Format.randDate()))); 
-		userMapper.insertUserByEmail( new User("name7@gmail.com", "7777", "name7", "777-777-7777", "ktalk7", "bio7",Format.getSqlDate(Format.randDate()))); 
-		userMapper.insertUserByEmail( new User("name8@gmail.com", "8888", "name8", "888-888-8888", "ktalk8", "bio8",Format.getSqlDate(Format.randDate()))); 
-		userMapper.insertUserByEmail( new User("name9@gmail.com", "9999", "name9", "999-999-9999", "ktalk9", "bio9",Format.getSqlDate(Format.randDate())));
+		userMapper.insertUser( new User("name1@gmail.com", "1111", "name1", "111-111-1111", "ktalk1", "bio1",Format.getSqlDate(Format.randDate()))); 
+		userMapper.insertUser( new User("name2@gmail.com", "2222", "name2", "222-222-2222", "ktalk2", "bio2",Format.getSqlDate(Format.randDate()))); 
+		userMapper.insertUser( new User("name3@gmail.com", "3333", "name3", "333-333-3333", "ktalk3", "bio3",Format.getSqlDate(Format.randDate()))); 
+		userMapper.insertUser( new User("name4@gmail.com", "4444", "name4", "444-444-4444", "ktalk4", "bio4",Format.getSqlDate(Format.randDate()))); 
+		userMapper.insertUser( new User("name5@gmail.com", "5555", "name5", "555-555-5555", "ktalk5", "bio5",Format.getSqlDate(Format.randDate()))); 
+		userMapper.insertUser( new User("name6@gmail.com", "6666", "name6", "666-666-6666", "ktalk6", "bio6",Format.getSqlDate(Format.randDate()))); 
+		userMapper.insertUser( new User("name7@gmail.com", "7777", "name7", "777-777-7777", "ktalk7", "bio7",Format.getSqlDate(Format.randDate()))); 
+		userMapper.insertUser( new User("name8@gmail.com", "8888", "name8", "888-888-8888", "ktalk8", "bio8",Format.getSqlDate(Format.randDate()))); 
+		userMapper.insertUser( new User("name9@gmail.com", "9999", "name9", "999-999-9999", "ktalk9", "bio9",Format.getSqlDate(Format.randDate())));
 	}
 
 	private static void inputSampleProducts(int categoryId, String productNameHeader) {

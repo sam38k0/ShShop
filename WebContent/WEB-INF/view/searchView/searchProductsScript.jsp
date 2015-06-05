@@ -97,8 +97,10 @@ function pageSet(text) {
 				+ '\" width=\"90\" height=\"90\"></a></div></td>'
 				+ '<td class=\"itemCnt\"><div class= \"itemInfo\"><p class=\"title\"><a href= \"#\">' + item.productName
 				+ '</a></p><p class=\"location\">' + item.location + '</p></div> </td>' + '<td class=\"price\">' + item.price + '</td>'
-				+ '<td class=\"safeOrder\">' + item.safeOrder + '</td>' + '<td class=\"hitCount\">' + item.hitCount + '</td>'
-				+ '<td class=\"userLevel\">' + item.userLevel + '</td>' + '<td class=\"time\">' + item.dataCreated + '</td> ' + '</tr>';
+				+ '<td class=\"safeOrder\">' + item.safeOrder + '</td>' 
+				+ '<td class=\"userName\">' + item.userName + '</td>'
+				+ '<td class=\"hitCount\">' + item.hitCount + '</td>'
+				+ '<td class=\"time\">' + item.dataCreated + '</td> ' + '</tr>';
 	});
 	$('tbody').empty();
 	$('tbody').append(trHTML);

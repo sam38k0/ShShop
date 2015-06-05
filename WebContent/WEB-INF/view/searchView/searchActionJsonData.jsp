@@ -16,6 +16,7 @@
 			<json:property name="safeOrder" value="${item.safeOrder}" />
  			<json:property name="imageUrl" value="${item.imageUrl}" />
  			<json:property name="location" value="${item.location}" />
+ 			<json:property name="hitCount" value="${item.hitCount}" />
  			<json:property name="userLevel" value="${item.userLevel}" />
  			<json:property name="totalPageNum" value="${totalPageNum}" />
 		</json:object>

@@ -28,6 +28,7 @@ import com.shshop.mapper.ProductMapper;
 import com.shshop.mapper.UserMapper;
 import com.shshop.response.InsertProductParams;
 import com.shshop.response.ProductSearchResult;
+import com.shshop.response.ProductSearchResultManager;
 import com.shshop.response.ProductSearchResultParam;
 import com.shshop.util.MyBatisUtil;
 
@@ -37,6 +38,7 @@ public class ProductService {
 	private HttpServletResponse response = null;
 	private SqlSession sqlSession = null;
 	private MultipartRequest multi = null;
+	private ProductSearchResultManager searchResultManager = null;
 
 	public ProductService(HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;
@@ -89,10 +91,10 @@ public class ProductService {
 					productInfo.addImagePath(contextPath + images.get(i).getImagePath());
 				}
 			}
-			
+
 			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 			User user = userMapper.getUserById(product.getUserId());
-			if(user!=null)
+			if (user != null)
 				productInfo.setProductOwner(user);
 
 			return productInfo;
@@ -101,66 +103,41 @@ public class ProductService {
 			sqlSession.close();
 		}
 	}
-	    
+
 	public CommandResult searchProdcuts() {
-		// [TODO]: 실제 데이터를 사용해야 한다.
 
 		String keywords = request.getParameter(Constant.attrKeywords);
-		String dataPage = request.getParameter(Constant.attrDataPage);
-		String sortCondition = request.getParameter(Constant.attrSort);
-		String priceFrom = request.getParameter(Constant.attrPriceFrom);
-		String priceTo = request.getParameter(Constant.attrPriceTo);
+		String filterdKeywords = getFilterdKeyword(keywords);
+		if (filterdKeywords == null || filterdKeywords == "") {
+			return null;
+		}
 
+		String dataPage = request.getParameter(Constant.attrDataPage);
 		if (dataPage == null || dataPage.equals("")) {
 			dataPage = "1";
 		}
-
+		
+		String sortCondition = request.getParameter(Constant.attrSort);
 		if (sortCondition == null || sortCondition.equals("")) {
 			sortCondition = "1";
 		}
 		
-		if(priceFrom == null || priceFrom.equals("")) {
+		String priceFrom = request.getParameter(Constant.attrPriceFrom);
+		if (priceFrom == null || priceFrom.equals("")) {
 			priceFrom = "0";
 		}
 		
-		if(priceTo == null || priceTo.equals("")) {
+		String priceTo = request.getParameter(Constant.attrPriceTo);
+		if (priceTo == null || priceTo.equals("")) {
 			priceTo = "100000000";
 		}
 
-		HttpSession session = request.getSession();
-		ProductSearchResult searchResult = (ProductSearchResult) session.getAttribute(Constant.attrSearchResult);
+		ProductSearchResult searchResult = getSearchResult(filterdKeywords);
 
-		if (keywords == null || keywords == "")
-			return null;
-
-		if (searchResult == null || !searchResult.getKeywords().equals(keywords)) {
- 
-			sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-			ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
-			ProductImageMapper imageMapper = sqlSession.getMapper(ProductImageMapper.class);
-			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-			
-			String filterdKeywords;
-			try {
-				filterdKeywords = KeywordGuesser.getKeywordsWithoutWhiteSpace( keywords,"|");
-			} catch (IOException e) {
-				return null;
-			}
-			
-			List<ProductSearchResultParam> searchResults = new ArrayList<>();
-			List<Product> results = productMapper.getSearchedProducts(filterdKeywords);
-			for (int i = 0; i < results.size(); i++) {
-				User user = userMapper.getUserById(results.get(i).getUserId());
-				List<ProductImage> images = imageMapper.getProductImages(results.get(i).getProductId());
-				if(images!=null)
-					searchResults.add( new ProductSearchResultParam(user, results.get(i),images.get(0).getImagePath()));
-				else
-					searchResults.add( new ProductSearchResultParam(user, results.get(i),"C:/temp/noimg.png"));
-			}
-
+		if (searchResult == null) {
+			List<ProductSearchResultParam> searchResults = querySearchData(filterdKeywords);
 			searchResult = new ProductSearchResult(Integer.parseInt(dataPage), keywords, Integer.parseInt(sortCondition), searchResults);
-			session.setAttribute(Constant.attrSearchResult, searchResult);
-
+			searchResultManager.addSearchResult(filterdKeywords, searchResult);
 		} else {
 			searchResult.setKeywords(keywords);
 			searchResult.setCurrentPage(Integer.parseInt(dataPage));
@@ -168,10 +145,67 @@ public class ProductService {
 			searchResult.setPriceFrom(Integer.parseInt(priceFrom));
 			searchResult.setPriceTo(Integer.parseInt(priceTo));
 		}
+		
+		request.setAttribute(Constant.attrSearchResult, searchResult);
 
 		return new CommandResult("/WEB-INF/view/searchView/searchActionJsonData.jsp");
 	}
-	
+
+	private List<ProductSearchResultParam> querySearchData(String filterdKeywords) {
+		List<ProductSearchResultParam> searchResults = null;
+
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+		ProductImageMapper imageMapper = sqlSession.getMapper(ProductImageMapper.class);
+		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+		List<Product> results = productMapper.getSearchedProducts(filterdKeywords);
+		if (results != null)
+			searchResults = new ArrayList<>();
+
+		for (int i = 0; i < results.size(); i++) {
+			User user = userMapper.getUserById(results.get(i).getUserId());
+			List<ProductImage> images = imageMapper.getProductImages(results.get(i).getProductId());
+			if (images != null) {
+				searchResults.add(new ProductSearchResultParam(user, results.get(i), images.get(0).getImagePath()));
+			} else {
+				searchResults.add(new ProductSearchResultParam(user, results.get(i), "C:/temp/noimg.png"));
+			}
+		}
+
+		return searchResults;
+	}
+
+	private ProductSearchResult getSearchResult(String keywords) {
+		HttpSession session = request.getSession();
+
+		searchResultManager = (ProductSearchResultManager) session.getAttribute(Constant.attrSearchResultMap);
+
+		ProductSearchResult searchResult = null;
+		if (searchResultManager != null) {
+			searchResult = searchResultManager.getSearchResult(keywords);
+		} else {
+			searchResultManager = new ProductSearchResultManager();
+			session.setAttribute(Constant.attrSearchResultMap, searchResultManager);
+		}
+
+		return searchResult;
+	}
+
+	private String getFilterdKeyword(String keywords) {
+		if (keywords == null || keywords == "")
+			return null;
+
+		String filterdKeywords = "";
+		try {
+			filterdKeywords = KeywordGuesser.getKeywordsWithoutWhiteSpace(keywords, "|");
+		} catch (IOException e) {
+			return null;
+		}
+
+		return filterdKeywords;
+	}
+
 	private String uploadFilesAndGetFilePaths() throws IOException {
 		String filePath = request.getServletContext().getInitParameter(Constant.paramFileUploadAbsolutePath);
 
@@ -185,26 +219,27 @@ public class ProductService {
 			String fileRelativePath = "";
 			String fileUploadPath = request.getServletContext().getInitParameter(Constant.paramFileUpload);
 			fileRelativePath = fileUploadPath + newFileNames.get(i);
-			if(i != newFileNames.size()-1) {
+			if (i != newFileNames.size() - 1) {
 				uploadFileBulder.append(fileRelativePath + ",");
 			} else {
 				uploadFileBulder.append(fileRelativePath);
 			}
 		}
-		
+
 		return uploadFileBulder.toString();
 	}
 
 	private boolean insertProductByProc(User user) throws IOException {
 		String uploadedFilePaths = uploadFilesAndGetFilePaths();
-		if(uploadedFilePaths == null || uploadedFilePaths.equals("")) {
+		if (uploadedFilePaths == null || uploadedFilePaths.equals("")) {
 			return false;
 		}
-		
+
 		InsertProductParams psParam = new InsertProductParams(multi);
-		ProductProc productProc = new ProductProc(user.getUserId(),getCategoryId(),psParam.getProductName(), psParam.getPrice(), psParam.getStock(), psParam.getTransactionType(),
-				psParam.getConnectionOpt(), psParam.getTags(), psParam.getDescription(), 0, false, true, false,uploadedFilePaths);
-		
+		ProductProc productProc = new ProductProc(user.getUserId(), getCategoryId(), psParam.getProductName(), psParam.getPrice(),
+				psParam.getStock(), psParam.getTransactionType(), psParam.getConnectionOpt(), psParam.getTags(), psParam.getDescription(), 0, false,
+				true, false, uploadedFilePaths);
+
 		ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
 		productMapper.insertProductProc(productProc);
 
@@ -228,7 +263,6 @@ public class ProductService {
 
 		return category.getCategoryId();
 	}
-	
 
 	private MultipartRequest getMulti() {
 		return multi;

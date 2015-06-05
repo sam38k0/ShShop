@@ -11,7 +11,6 @@ public class ProductSearch {
 	}
 
 	public String getKeyword() {
-//		return "%" + keyword + "%";
 		return keyword;
 	}
 
