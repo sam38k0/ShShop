@@ -12,7 +12,7 @@ function sorting(event) {
 		
 	$(this).addClass('on');
 	$(this).siblings().removeClass('on');
-
+ 
 	var keywords = $('#keywords').val();
 	var dataPage = $('#currentPage').text();
 	var sort = $(this).attr('sort');
@@ -23,6 +23,7 @@ function sorting(event) {
 		type : "POST",
 		url : "searchAction",
 		data : {
+			"categoryName" : '${param.categoryName}',
 			"keywords" : keywords,
 			"data-page" : dataPage,
 			"sort" : sort,
@@ -50,6 +51,7 @@ function pageReset(event) {
 		type : "POST",
 		url : "searchAction",
 		data : {
+			"categoryName" : '${param.categoryName}',
 			"keywords" : keywords,
 			"data-page" : dataPage,
 			"sort" : sort,
@@ -142,6 +144,7 @@ $(document).ready(function() {
 		type : "POST",
 		url : "searchAction",
 		data : {
+			"categoryName" : '${param.categoryName}',
 			"keywords" : '${param.keywords}',
 			"data-page" : "1",
 			"sort" : "1",

@@ -155,6 +155,8 @@ public class BuildSampleData {
 		inputSampleProducts(categoryId, "잡지");
 
 		sqlSession.commit();
+		
+		System.out.println("Insertion Completed");
 	}
 
 	private static void insertCategory() {

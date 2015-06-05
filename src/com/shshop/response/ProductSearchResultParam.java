@@ -17,6 +17,7 @@ public class ProductSearchResultParam {
 	public ProductSearchResultParam() {
 
 	}
+	
 	public ProductSearchResultParam(String userName, String productName, int price, String dataCreated, boolean safeOrder,
 							 String imageUrl, String location, String userLevel, int hitCount){
 		this.userName = userName;

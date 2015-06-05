@@ -56,7 +56,7 @@ public class ProductImageMapperTest {
 		imageMapper.insertImage(image);
 		imageMapper.insertImage(image2);
 		int iCountAfter = imageMapper.getProductImageCount();
-		assertTrue("testInsertImage", iCountBefore + 2 == iCountAfter);		
+		assertTrue("testInsertImage", iCountBefore + 2 == iCountAfter);
 	}
 
 	@Test
@@ -78,5 +78,4 @@ public class ProductImageMapperTest {
 		int countAfter = imageMapper.getProductImageCount();
 		assertTrue("testDeleteImage", countBefore > countAfter+1);
 	}
-
 }

@@ -9,6 +9,7 @@ import com.shshop.command.LoginCommand;
 import com.shshop.command.LogoutCommand;
 import com.shshop.command.MainViewCommand;
 import com.shshop.command.SearchActionCommand;
+import com.shshop.command.SearchCategoryCommand;
 import com.shshop.command.SearchViewCommand;
 import com.shshop.command.ShowDetailViewCommand;
 import com.shshop.command.SingleUserCommand;
@@ -50,6 +51,9 @@ public class CommandFactory {
 		
 		case Constant.searchAction:
 			return new SearchActionCommand();
+			
+		case Constant.searchCategory:
+			return new SearchCategoryCommand();
 			
 		case Constant.mypage:
 			return new SingleUserCommand();

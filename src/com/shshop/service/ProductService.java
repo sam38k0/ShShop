@@ -105,7 +105,10 @@ public class ProductService {
 	}
 
 	public CommandResult searchProdcuts() {
-
+		String categoryName = request.getParameter(Constant.attrCategoryName);
+		if(categoryName != null)
+			return searchCategory(categoryName);
+		
 		String keywords = request.getParameter(Constant.attrKeywords);
 		String filterdKeywords = getFilterdKeyword(keywords);
 		if (filterdKeywords == null || filterdKeywords == "") {
@@ -150,6 +153,47 @@ public class ProductService {
 
 		return new CommandResult("/WEB-INF/view/searchView/searchActionJsonData.jsp");
 	}
+	
+	public CommandResult searchCategory(String categoryName) {
+
+		String dataPage = request.getParameter(Constant.attrDataPage);
+		if (dataPage == null || dataPage.equals("")) {
+			dataPage = "1";
+		}
+		
+		String sortCondition = request.getParameter(Constant.attrSort);
+		if (sortCondition == null || sortCondition.equals("")) {
+			sortCondition = "1";
+		}
+		
+		String priceFrom = request.getParameter(Constant.attrPriceFrom);
+		if (priceFrom == null || priceFrom.equals("")) {
+			priceFrom = "0";
+		}
+		
+		String priceTo = request.getParameter(Constant.attrPriceTo);
+		if (priceTo == null || priceTo.equals("")) {
+			priceTo = "100000000";
+		}
+
+		ProductSearchResult searchResult = getSearchResult(categoryName);
+
+		if (searchResult == null) {
+			List<ProductSearchResultParam> searchResults = queryCategoryData(categoryName);
+			searchResult = new ProductSearchResult(Integer.parseInt(dataPage), "", Integer.parseInt(sortCondition), searchResults);
+			searchResultManager.addSearchResult(categoryName, searchResult);
+		} else {
+			searchResult.setKeywords("");
+			searchResult.setCurrentPage(Integer.parseInt(dataPage));
+			searchResult.setSortCondition(Integer.parseInt(sortCondition));
+			searchResult.setPriceFrom(Integer.parseInt(priceFrom));
+			searchResult.setPriceTo(Integer.parseInt(priceTo));
+		}
+		
+		request.setAttribute(Constant.attrSearchResult, searchResult);
+
+		return new CommandResult("/WEB-INF/view/searchView/searchActionJsonData.jsp");
+	}
 
 	private List<ProductSearchResultParam> querySearchData(String filterdKeywords) {
 		List<ProductSearchResultParam> searchResults = null;
@@ -160,6 +204,32 @@ public class ProductService {
 		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 
 		List<Product> results = productMapper.getSearchedProducts(filterdKeywords);
+		if (results != null)
+			searchResults = new ArrayList<>();
+
+		for (int i = 0; i < results.size(); i++) {
+			User user = userMapper.getUserById(results.get(i).getUserId());
+			List<ProductImage> images = imageMapper.getProductImages(results.get(i).getProductId());
+			if (images != null) {
+				searchResults.add(new ProductSearchResultParam(user, results.get(i), images.get(0).getImagePath()));
+			} else {
+				searchResults.add(new ProductSearchResultParam(user, results.get(i), "C:/temp/noimg.png"));
+			}
+		}
+
+		return searchResults;
+	}
+	
+	private List<ProductSearchResultParam> queryCategoryData(String categoryName) {
+		List<ProductSearchResultParam> searchResults = null;
+
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		CategoryMapper categoryMapper = sqlSession.getMapper(CategoryMapper.class);
+		ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+		ProductImageMapper imageMapper = sqlSession.getMapper(ProductImageMapper.class);
+		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+		List<Product> results = categoryMapper.getCategoryProducts(categoryName);
 		if (results != null)
 			searchResults = new ArrayList<>();
 

@@ -31,9 +31,9 @@
 			INNER JOIN `ps_category` c USING(`id_category`)
 		WHERE c.`id_category` = ${id_category};
 	</select>
-	
+
 	<select id='getCategoryProducts'  resultMap='${ProductResultMap}'>							
-		SELECT * FROM `ps_category` c 
+		SELECT p.* FROM `ps_category` c 
 			LEFT OUTER JOIN `ps_product_category` pc USING(`id_category`)
         	LEFT OUTER JOIN `ps_product` p USING(`id_product`)
 		WHERE c.`name`= ${name};

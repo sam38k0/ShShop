@@ -9,6 +9,7 @@ public class Constant {
 	public static final String insertProduct = "/insertProduct";
 	public static final String searchView = "/searchView";
 	public static final String searchAction ="/searchAction";
+	public static final String searchCategory = "/searchCategory";
 	public static final String search = "/search";
 	public static final String viewMain = "/viewMain";
 	public static final String insertHopeProductView = "/insertHopeProduct";
@@ -27,6 +28,7 @@ public class Constant {
 	public static final String attrSearchResult = "searchResult";
 	public static final String attrSearchResultMap = "searchResultMap";
 	public static final String attrKeywords = "keywords";
+	public static final String attrCategoryName = "categoryName";
 	public static final String attrDataPage = "data-page";
 	public static final String attrSort = "sort";
 	public static final String attrPriceFrom = "price_from";
