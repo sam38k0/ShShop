@@ -16,7 +16,6 @@ html {
   color: #333;
 }
 
-
 body {
   width: 100%;
   height: 100%;
@@ -516,7 +515,6 @@ div.openBox div.phone {
 
 div.detailCnt {
   overflow: hidden;
-  padding: 20px 0 0 0;
 }
 
 div.detailCnt div.detailCntL {
@@ -525,8 +523,10 @@ div.detailCnt div.detailCntL {
 }
 
 .h3_icon {
-  text-indent: 0;
-  background: url(//image.hellomarket.com/common/all_icon.png) no-repeat 0 -13px;
+  text-indent: 0; 
+  background-image: url('../image/sqpurple.gif');
+  background-repeat: no-repeat;
+  background-position: -1px;
   padding: 0 0 0 10px;
   color: #000;
   margin: 0 0 7px 0;
@@ -623,6 +623,8 @@ div.cmtWrite textarea {
 
 .accordion-panel {
     min-height: 300px;
+    margin: 5px;
+    padding: 5px;
 }
 .accordion-panel img {
     display: block;
@@ -779,4 +781,149 @@ a.movenextB {
 	background-position: -103px 0;
 	width: 22px;
 	height: 22px;
+}
+
+
+/*-- 댓글 달기 --*/
+.clearfix:before, .clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+
+div.detailCnt div.cmtView {
+  clear: left;
+}
+
+div.cmtView dl {
+  float: left;
+  width: 100%;
+  background-color: #f9f9f9;
+  padding: 7px 0 7px 0;
+}
+
+div.cmtView dl dt {
+  float: left;
+  margin: 0 10px 0 5px;
+}
+
+div.cmtView dl dt img {
+  width: 32px;
+  height: 32px;
+}
+
+div.cmtView dl dd {
+  float: left;
+  position: relative;
+  width: 545px;
+}
+
+div.cmtView dl dd p.name {
+  font-weight: bold;
+  padding: 1px 0 3px 0;
+}
+
+div.cmtView dl dd p.text {
+  color: #666;
+  width: 91%;
+  line-height: 16px;
+}
+
+div.cmtView dl dd div.cmtcmt {
+  position: relative;
+  overflow: hidden;
+  padding: 0 0 0 25px;
+  margin: 3px 0 0 -25px;
+  width: 552px;
+}
+
+div.cmtView dl dd div.cmtcmt div.cmtView2 {
+  clear: both;
+}
+
+p.flagBtn a, .cmtReplyTitle, .fileImage {
+  text-indent: -1000em;
+  overflow: hidden;
+  display: inline-block;
+  background: url(//image.hellomarket.com/common/all_icon.png) no-repeat;
+}
+
+div.cmtView dl dd div.cmtcmt div.cmtView2 p.cmtReplyTitle {
+  float: left;
+  background-position: -14px -63px;
+  width: 12px;
+  height: 19px;
+  margin: 13px 0 0 -17px;
+}
+
+div.cmtView dl dd p.functionCmt {
+  clear: both;
+  font-size: 11px;
+  letter-spacing: -1px;
+  padding: 5px 0 0 0;
+}
+
+div.cmtView dl dd p.functionCmt a.cmtReply {
+  color: #d1af4d;
+  padding: 0 0 0 21px;
+  margin: 0 15px 0 0;
+}
+
+/*-------------- 거래설명 --------------------------*/
+div.detailCnt div.detailCntR {
+  float: right;
+  width: 320px;
+}
+
+div.detailCnt div.detailCntR div.tipBoxWrap {
+  width: 320px;
+  margin: 0 0 10px 0;
+}
+
+div.detailCnt div.detailCntR div.tipBoxWrap div.tipT {
+  height: 10px;
+  background: url(//image.hellomarket.com/common/box_tip.gif) top no-repeat;
+}
+
+div.detailCnt div.detailCntR div.tipBoxWrap div.tipPrivate {
+  width: 284px;
+  height: 30px;
+  background: url(//image.hellomarket.com/common/box_tip_private.gif) top no-repeat;
+  color: #6f6528;
+  font-weight: bold;
+  padding: 3px 0 0 36px;
+}
+
+div.detailCnt div.detailCntR div.tipBoxWrap div.tipBox {
+  color: #8f845f;
+  font-size: 11px;
+  letter-spacing: -1px;
+  padding: 2px 10px;
+  line-height: 16px;
+  background-color: #fbf5d0;
+  border-left: solid 1px #d2c494;
+  border-right: solid 1px #d2c494;
+}
+
+div.detailCnt div.detailCntR div.tipBoxWrap div.tipBox div.tipCnt p.textgreen {
+  color: #138d17;
+}
+
+div.detailCnt div.detailCntR div.tipBoxWrap div.tipBox div.tipCnt dl {
+  padding: 10px 0 0 0;
+}
+
+div.detailCnt div.detailCntR div.tipBoxWrap div.tipBox div.tipCnt dl dt {
+  font-weight: bold;
+  padding: 0 0 2px 0;
+  color: #786c42;
+}
+
+div.detailCnt div.detailCntR div.tipBoxWrap div.tipBox div.tipCnt ul li {
+  padding: 1px 0 0 0;
+}
+
+div.detailCnt div.detailCntR div.tipBoxWrap div.tipB {
+  height: 10px;
+  background: url(//image.hellomarket.com/common/box_tip2.gif) bottom no-repeat;
 }
