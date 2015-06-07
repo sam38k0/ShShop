@@ -25,7 +25,14 @@
 										 `description` REGEXP #{keywords} or  
 										 `tag` REGEXP #{keywords};
  	</select>
-	
+ 	
+ 	<select id = 'getProdcutCategories' resultMap='${CategoryResultMap}'>
+		SELECT c.* FROM `ps_category` c 
+			LEFT OUTER JOIN `ps_product_category` pc USING(`id_category`)
+		    LEFT OUTER JOIN `ps_product` p USING(`id_product`)
+		WHERE p.`id_product`= ${id_product};
+ 	</select>
+ 		
 	<insert id='insertProduct' parameterType='${ProductType}' useGeneratedKeys='true' keyProperty='${id_product}'>
 		INSERT INTO  `ps_product`(`id_user`,`name`,`price`,`stock`,`translation`,`connection`,`on_sale`,`on_open`,`tag`,`out_of_stock`,`description`,`searching_count`)
 		VALUES(${id_user}, ${name}, ${price}, ${stock}, ${translation}, ${connection}, ${on_sale}, ${on_open}, ${tag}, ${out_of_stock}, ${description}, ${searching_count})

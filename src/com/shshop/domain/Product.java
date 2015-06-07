@@ -11,8 +11,8 @@ public class Product implements Serializable {
 	private String name;
 	private Integer price;
 	private Integer stock;
-	private int translation = 0; //°Å·¡¹æ¹ı ( 1:¾ÈÀü°áÀç , 2:ÅÃ¹è, »ı±â¸é ´õ Ãß°¡ )
-	private int connection = 1; //Èñ¸Á¿¬¶ô¹æ¹ı (Á÷Á¢ÅëÈ­,SMS,Ä«Åå,ÀÌ¸ŞÀÏ,ÂÊÁö,Ã¤ÆÃ,´ñ±Û) > 2Áø¼ö º¯È¯ÀúÀå°ª
+	private int translation = 0; // 1:ì•ˆì „ê²°ì¬ , 2:íƒë°°
+	private int connection = 1; //ì§ì ‘í†µí™”,SMS,ì¹´í†¡,ì´ë©”ì¼,ìª½ì§€,ì±„íŒ…,ëŒ“ê¸€
 	private boolean onSale;
 	private boolean onOpen;
 	private String tag;
@@ -193,9 +193,9 @@ public class Product implements Serializable {
 		if(translation <= 0 || translation > 2)
 			return "";
 		else if(translation == 1)
-			return "¾ÈÀü°áÁ¦";
+			return "ì•ˆì „ê²°ì¬";
 		else 
-			return "ÅÃ¹è";
+			return "íƒë°°";
 			
 	}
 	
@@ -212,13 +212,13 @@ public class Product implements Serializable {
 		int opt7 = 0x00001000;
 
 		String strResult = "";
-		String strOpt1 = "Á÷Á¢ÅëÈ­ ,";
-		String strOpt2 = "SMS ,";
-		String strOpt3 = "Ä«Åå ,";
-		String strOpt4 = "ÀÌ¸ŞÀÏ ,";
-		String strOpt5 = "ÂÊÁö ,";
-		String strOpt6 = "Ã¤ÆÃ ,";
-		String strOpt7 = "´ñ±Û ,";
+		String strOpt1 = "ì§ì ‘í†µí™”,";
+		String strOpt2 = "SMS,";
+		String strOpt3 = "ì¹´í†¡,";
+		String strOpt4 = "ì´ë©”ì¼,";
+		String strOpt5 = "ìª½ì§€,";
+		String strOpt6 = "ì±„íŒ…,";
+		String strOpt7 = "ëŒ“ê¸€,";
 
 		if ((connection & opt1) > 0)
 			strResult += strOpt1;
@@ -235,7 +235,7 @@ public class Product implements Serializable {
 		if ((connection & opt7) > 0)
 			strResult += strOpt7;
 		if (!strResult.equals(""))
-			strResult = strResult.substring(0, strResult.length() - 2);
+			strResult = strResult.substring(0, strResult.length() - 1);
 
 		return strResult;
 	}

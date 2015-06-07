@@ -12,6 +12,7 @@ import com.shshop.command.SearchActionCommand;
 import com.shshop.command.SearchCategoryCommand;
 import com.shshop.command.SearchViewCommand;
 import com.shshop.command.ShowDetailViewCommand;
+import com.shshop.command.SimilarItemSearchCommand;
 import com.shshop.command.SingleUserCommand;
 import com.shshop.command.UserDataChangeCommand;
 import com.shshop.constant.Constant;
@@ -60,6 +61,9 @@ public class CommandFactory {
 			
 		case Constant.userUpdate:
 			return new UserDataChangeCommand();
+			
+		case Constant.similarItemAction:
+			return new SimilarItemSearchCommand();
 			
 		default:
 			return null;

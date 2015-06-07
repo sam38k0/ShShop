@@ -18,6 +18,7 @@ public class Constant {
 	public static final String showDetailView = "/showDetailView";
 	public static final String mypage = "/mypage";
 	public static final String userUpdate = "/userUpdate";
+	public static final String similarItemAction = "/similarItemAction";
 
 	//Attribute
 	public static final String attrUser = "user";
@@ -33,6 +34,7 @@ public class Constant {
 	public static final String attrSort = "sort";
 	public static final String attrPriceFrom = "price_from";
 	public static final String attrPriceTo = "price_to";
+	public static final String attrProductId = "productId";
 	
 	//DD Parameter
 	public static final String paramFileUpload = "file-upload";
@@ -56,4 +58,5 @@ public class Constant {
 	
 	//Path
 	public static final String contextPath = "/ShShop/WebContent";
+	
 }

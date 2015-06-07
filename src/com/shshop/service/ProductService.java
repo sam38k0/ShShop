@@ -106,9 +106,9 @@ public class ProductService {
 
 	public CommandResult searchProdcuts() {
 		String categoryName = request.getParameter(Constant.attrCategoryName);
-		if(categoryName != null)
+		if (categoryName != null)
 			return searchCategory(categoryName);
-		
+
 		String keywords = request.getParameter(Constant.attrKeywords);
 		String filterdKeywords = getFilterdKeyword(keywords);
 		if (filterdKeywords == null || filterdKeywords == "") {
@@ -119,17 +119,17 @@ public class ProductService {
 		if (dataPage == null || dataPage.equals("")) {
 			dataPage = "1";
 		}
-		
+
 		String sortCondition = request.getParameter(Constant.attrSort);
 		if (sortCondition == null || sortCondition.equals("")) {
 			sortCondition = "1";
 		}
-		
+
 		String priceFrom = request.getParameter(Constant.attrPriceFrom);
 		if (priceFrom == null || priceFrom.equals("")) {
 			priceFrom = "0";
 		}
-		
+
 		String priceTo = request.getParameter(Constant.attrPriceTo);
 		if (priceTo == null || priceTo.equals("")) {
 			priceTo = "100000000";
@@ -139,38 +139,102 @@ public class ProductService {
 
 		if (searchResult == null) {
 			List<ProductSearchResultParam> searchResults = querySearchData(filterdKeywords);
-			searchResult = new ProductSearchResult(Integer.parseInt(dataPage), keywords, Integer.parseInt(sortCondition), searchResults);
+			searchResult = new ProductSearchResult(Integer.parseInt(dataPage), keywords, Integer.parseInt(sortCondition), 10, searchResults);
 			searchResultManager.addSearchResult(filterdKeywords, searchResult);
 		} else {
 			searchResult.setKeywords(keywords);
+			searchResult.setPageDivNum(10);
 			searchResult.setCurrentPage(Integer.parseInt(dataPage));
 			searchResult.setSortCondition(Integer.parseInt(sortCondition));
 			searchResult.setPriceFrom(Integer.parseInt(priceFrom));
 			searchResult.setPriceTo(Integer.parseInt(priceTo));
 		}
-		
+
 		request.setAttribute(Constant.attrSearchResult, searchResult);
 
 		return new CommandResult("/WEB-INF/view/searchView/searchActionJsonData.jsp");
 	}
-	
+
+	public CommandResult searchCategoryOfProduct() {
+		String strProductId = request.getParameter(Constant.attrProductId);
+		if (strProductId == null || strProductId == "")
+			return null;
+		
+		Integer productId = Integer.parseInt(strProductId);
+		
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+
+		try {
+			ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+			
+			Product product = productMapper.getProductById(productId);
+			if(product == null)
+				return null;
+			
+			List<Category> categories = productMapper.getProdcutCategories(Integer.parseInt(strProductId));
+			if (categories == null)
+				return null;
+			
+			String categoryName = categories.get(0).getName();
+			
+			String dataPage = request.getParameter(Constant.attrDataPage);
+			if (dataPage == null || dataPage.equals("")) {
+				dataPage = "1";
+			}
+
+			String sortCondition = request.getParameter(Constant.attrSort);
+			if (sortCondition == null || sortCondition.equals("")) {
+				sortCondition = "1";
+			}
+
+			String priceFrom = request.getParameter(Constant.attrPriceFrom);
+			if (priceFrom == null || priceFrom.equals("")) {
+				priceFrom = "0";
+			}
+
+			String priceTo = "" + (product.getPrice() + 1000000);
+
+			ProductSearchResult searchResult = getSearchResult(categoryName);
+			
+			if (searchResult == null) {
+				List<ProductSearchResultParam> searchResults = queryCategoryData(categoryName);
+				searchResult = new ProductSearchResult(Integer.parseInt(dataPage), "", Integer.parseInt(sortCondition), 8, searchResults);
+				searchResultManager.addSearchResult(categoryName, searchResult);
+			} else {
+				searchResult.setKeywords("");
+				searchResult.setPageDivNum(8);
+				searchResult.setCurrentPage(Integer.parseInt(dataPage));
+				searchResult.setSortCondition(Integer.parseInt(sortCondition));
+				searchResult.setPriceFrom(Integer.parseInt(priceFrom));
+				searchResult.setPriceTo(Integer.parseInt(priceTo));
+			}
+
+			request.setAttribute(Constant.attrSearchResult, searchResult);
+
+			return new CommandResult("/WEB-INF/view/searchView/searchActionJsonData.jsp");
+
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 	public CommandResult searchCategory(String categoryName) {
 
 		String dataPage = request.getParameter(Constant.attrDataPage);
 		if (dataPage == null || dataPage.equals("")) {
 			dataPage = "1";
 		}
-		
+
 		String sortCondition = request.getParameter(Constant.attrSort);
 		if (sortCondition == null || sortCondition.equals("")) {
 			sortCondition = "1";
 		}
-		
+
 		String priceFrom = request.getParameter(Constant.attrPriceFrom);
 		if (priceFrom == null || priceFrom.equals("")) {
 			priceFrom = "0";
 		}
-		
+
 		String priceTo = request.getParameter(Constant.attrPriceTo);
 		if (priceTo == null || priceTo.equals("")) {
 			priceTo = "100000000";
@@ -180,16 +244,17 @@ public class ProductService {
 
 		if (searchResult == null) {
 			List<ProductSearchResultParam> searchResults = queryCategoryData(categoryName);
-			searchResult = new ProductSearchResult(Integer.parseInt(dataPage), "", Integer.parseInt(sortCondition), searchResults);
+			searchResult = new ProductSearchResult(Integer.parseInt(dataPage), "", Integer.parseInt(sortCondition), 10, searchResults);
 			searchResultManager.addSearchResult(categoryName, searchResult);
 		} else {
 			searchResult.setKeywords("");
+			searchResult.setPageDivNum(10);
 			searchResult.setCurrentPage(Integer.parseInt(dataPage));
 			searchResult.setSortCondition(Integer.parseInt(sortCondition));
 			searchResult.setPriceFrom(Integer.parseInt(priceFrom));
 			searchResult.setPriceTo(Integer.parseInt(priceTo));
 		}
-		
+
 		request.setAttribute(Constant.attrSearchResult, searchResult);
 
 		return new CommandResult("/WEB-INF/view/searchView/searchActionJsonData.jsp");
@@ -219,7 +284,7 @@ public class ProductService {
 
 		return searchResults;
 	}
-	
+
 	private List<ProductSearchResultParam> queryCategoryData(String categoryName) {
 		List<ProductSearchResultParam> searchResults = null;
 

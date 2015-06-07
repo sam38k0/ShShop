@@ -202,30 +202,12 @@
 									<div class="horizontal_box">
 										<div class="itembox">
 											<ul id="similar_item_list" class="similar" style="display: block;">
-												<li>
-													<p>
-														<a href="/item/7747754"><img src="//img.hellomarket.com/images5/2015/item/s3/05/05/21/0847_7693401_1.jpg" width=86 height=86>
-														</a><strong><a href="/item/7747754">캠핑용 방석 se...</a></strong><span class="price">8,000원</span> <span class="time">1970/01/01</span>
-													</p>
-												</li>
-												<li>
-													<p>
-														<a href="/item/6893352"><img src="//img.hellomarket.com/images5/2015/item/s3/03/08/23/4147_6893352_1.jpg" width=86 height=86>
-														</a><strong><a href="/item/6893352">(새것)로우알파인...</a></strong> <span class="price">20,000원</span> <span class="time">1970/01/01</span>
-													</p>
-												</li>
-												<li>
-													<p>
-														<a href="/item/6892885"><img src="//img.hellomarket.com/images5/2015/item/s3/03/08/23/0817_6892885_1.jpg" width=86 height=86>
-														</a><strong><a href="/item/6892885">(새것)로우알파인...</a> </strong><span class="price">70,000원</span> <span class="time">1970/01/01</span>
-													</p>
-												</li>
+											 <%-- 여기에 Similar Item 추가 --%>
 											</ul>
 										</div>
 									</div>
 									<p class="moveBtn">
-										<a href="#" id="similar_item_list_prev" class="movepreB">이전 아이템</a> <span id="similar_item_list_page"><strong>1</strong>/10</span> <a
-											href="#" id="similar_item_list_next" class="movenextB">다음 아이템</a>
+ 										<%-- 여기에 Button Control 추가 --%>
 									</p>
 								</div>
 							</div>

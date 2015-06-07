@@ -6,3 +6,4 @@ $('.accordion').on('click', '.accordion-control', function(e){ // 클릭 이벤�
     .not(':animated')                    // 애니메이션이 진행중이지 않으면
     .slideToggle();                      // 패널을 슬라이드 토글한다.
 });
+
