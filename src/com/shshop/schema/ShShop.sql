@@ -193,6 +193,63 @@ CREATE TABLE `ps_image` (
 		ON UPDATE CASCADE
 );
 
+
+-- or_order -------------------------------------------------------------------------------------
+
+CREATE TABLE `or_order` (
+	`id_order`        SMALLINT 	UNSIGNED NOT NULL AUTO_INCREMENT,
+	`id_user`         SMALLINT 	UNSIGNED NOT NULL,
+	`id_product`      SMALLINT 	UNSIGNED NOT NULL,
+	`id_address`      SMALLINT 	UNSIGNED NOT NULL,
+	`amount`          INTEGER 	NULL,  -- 주문수량
+	`cost`            INTEGER 	NULL,  -- 주문가격
+	`delivery_cost`   INTEGER 	NULL,  -- 배송가격
+	`order_request`   TEXT     	NULL,  -- 추가요청사항설명
+	`date_created`    DATETIME  NOT NULL NOT NULL DEFAULT CURRENT_TIMESTAMP,  -- 주문 날짜
+	`date_updated`    DATETIME  NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  -- 주문업뎃날짜
+	
+	CONSTRAINT `PK_or_order`
+		PRIMARY KEY (`id_order`),
+		
+	CONSTRAINT `FK_cr_user_TO_or_order`
+		FOREIGN KEY (`id_user`)
+		REFERENCES `cr_user` ( `id_user`)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+		
+	CONSTRAINT `FK_ps_product_TO_or_order`
+		FOREIGN KEY (`id_product`)
+		REFERENCES `ps_product` (`id_product`)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+		
+	CONSTRAINT `FK_cr_address_TO_or_order`
+		FOREIGN KEY (`id_address`)
+		REFERENCES `cr_address` (`id_address`)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+
+CREATE TABLE `or_order_state` (
+	`id_order`      SMALLINT   UNSIGNED NOT NULL, -- id_order
+	`virtual_order` TINYINT(1) NULL,     -- 가상주문(장바구니상태)
+	`activated`     TINYINT(1) NULL,     -- 주문활성화여부
+	`paid`          TINYINT(1) NULL,     -- 지불완료
+	`sended_email`  TINYINT(1) NULL,     -- 이메일보냄
+	`shipped`       TINYINT(1) NULL,     -- 배송중
+	`delivered`     TINYINT(1) NULL,     -- 배송완료
+	`deleted`       TINYINT(1) NULL,     -- 주문취소
+	
+	CONSTRAINT `PK_or_order_state`
+		PRIMARY KEY (`id_order`),
+		
+	CONSTRAINT `FK_or_order_TO_or_order_state`
+		FOREIGN KEY (`id_order`)
+		REFERENCES `or_order` (`id_order`)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+
 -- dt_board -------------------------------------------------------------------------------------
 
 CREATE TABLE `dt_board` (
