@@ -91,6 +91,22 @@ function pageSet(text) {
 	$("#similar_item_list_next").click(pageNext);
 }
 
+$(".cmtWrite textarea").keyup(function(e) {
+	var code = (e.keyCode ? e.keyCode : e.which);
+	if (code == 13) {
+		$.ajax({
+			type : "POST",
+			url : "commentAddAction",
+			data : {
+				"productId" : '${sessionScope.productDetail.product.productId}',
+			},
+			success : commentSet,
+			error : function(ajaxContext) {
+			}
+		});
+	}
+});
+
 $(document).ready(function() {
 	$.ajax({
 		type : "POST",

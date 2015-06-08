@@ -8,8 +8,6 @@
         <title><c:out value='${pageTitle}'/></title>
 		
 		<!-- Basic Style -->
-		<link href="${adminBean.contextPath}/content/css/normalize.css" rel="stylesheet">
-		<link href="${adminBean.contextPath}/content/css/main.css" rel="stylesheet">
 		<link href="${adminBean.contextPath}/content/css/command.css" rel="stylesheet" type="text/css">
 		<link href="${adminBean.contextPath}/content/css/user.css" rel="stylesheet" type="text/css">
 		<style> input.error{border:1px dashed red;} </style> 
@@ -44,15 +42,6 @@
 		
         <!-- Each JS -->     
 	 	<jsp:include page= '${sessionScope.adminBean.scriptPage}'/>
-	 	
-	 	<script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='https://www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
-        </script>
     </body>
     
 </html>

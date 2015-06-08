@@ -91,7 +91,7 @@ function pageSet(text) {
 	//
 	var trHTML = '';
 	$.each(response.searchResults, function(i, item) {
-		trHTML += '<tr>' + '<td><div id= \"' + item.id + '\" class=\"outline\"><a href= \"#\"><img src= \"' + item.imageUrl
+		trHTML += '<tr>' + '<td><div id= \"' + item.id + '\" class=\"outline\"><a href= \"#\"><img src= \"/ShShopTest' + item.imageUrl
 				+ '\" width=\"90\" height=\"90\"></a></div></td>'
 				+ '<td class=\"itemCnt\"><div class= \"itemInfo\"><p class=\"title\"><a href= \"#\">' + item.productName
 				+ '</a></p><p class=\"location\">' + item.location + '</p></div> </td>' + '<td class=\"price\">' + item.price + '</td>'

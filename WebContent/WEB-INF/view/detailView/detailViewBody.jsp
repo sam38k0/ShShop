@@ -147,7 +147,7 @@
 									       	이메일 : 없음
 									    </c:when> 
 									    <c:otherwise>
-									      	  이메일 :  ${sessionScope.productDetail.productOwner.email}
+									      	이메일 :  ${sessionScope.productDetail.productOwner.email}
 									    </c:otherwise>
 									</c:choose>
 								</div>
@@ -173,7 +173,7 @@
 									<div class="detailCntL">
 										<h3 class="h3_icon">재고</h3>
 										<div class="cntView">
-											${sessionScope.productDetail.product.stock}
+											${sessionScope.productDetail.product.stock} 개
 										</div>
 										<h3 class="h3_icon">상세설명</h3>
 										<div class="cntView">
