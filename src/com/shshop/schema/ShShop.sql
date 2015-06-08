@@ -36,15 +36,16 @@ CREATE INDEX `PK_cr_user_email`ON `cr_user` (`email` ASC);
 
 -- address ----------------------------------------------------------------------------------
 
-DROP TABLE `cr_address`;
 CREATE TABLE `cr_address` (
 	`id_address` SMALLINT     UNSIGNED NOT NULL AUTO_INCREMENT, -- id_address
 	`id_user`    SMALLINT     UNSIGNED NOT NULL,     -- id_user
-	`bagic_add`       VARCHAR(64)  NULL,     -- 二쇱냼
-	`detail_add`        VARCHAR(255) NULL,      -- �긽�꽭二쇱냼
-    CONSTRAINT `PK_cr_address` -- cr_address 湲곕낯�궎
+	`bagic_add`       VARCHAR(64)  NULL, 
+	`detail_add`        VARCHAR(255) NULL, 
+	
+    CONSTRAINT `PK_cr_address`
 		PRIMARY KEY (`id_address`),
-	CONSTRAINT `FK_cr_user_TO_cr_address` -- cr_user -> cr_address
+		
+	CONSTRAINT `FK_cr_user_TO_cr_address`
 		FOREIGN KEY (`id_user`)
 		REFERENCES `cr_user` (`id_user`)
 		ON DELETE NO ACTION
