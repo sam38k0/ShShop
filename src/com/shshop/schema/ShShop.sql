@@ -193,6 +193,115 @@ CREATE TABLE `ps_image` (
 		ON UPDATE CASCADE
 );
 
+-- or_order -------------------------------------------------------------------------------------
+
+CREATE TABLE `or_order` (
+	`id_order`        SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT, -- id_order
+	`id_user`         SMALLINT UNSIGNED NOT NULL,     -- id_user
+	-- `id_producer`     SMALLINT UNSIGNED NOT NULL,     -- id_producer
+	-- `id_guest`        SMALLINT UNSIGNED NOT NULL,     -- id_guest
+	`id_product`      SMALLINT UNSIGNED NOT NULL,     -- id_product
+	`id_address`      SMALLINT UNSIGNED NOT NULL,     -- id_address
+	-- `id_order_type`   SMALLINT UNSIGNED NOT NULL,     -- id_order_type
+	-- `id_payment_type` SMALLINT UNSIGNED NOT NULL,     -- id_payment_type
+	`amount`          INTEGER NULL,     -- 주문수량
+	`cost`            INTEGER NULL,     -- 주문가격
+	`delivery_cost`   INTEGER NULL,     -- 배송가격
+	`order_request`         TEXT     NULL,     -- 추가요청사항설명
+	`date_created`    DATETIME     NOT NULL NOT NULL DEFAULT CURRENT_TIMESTAMP, 					-- 주문 날짜
+	`date_updated`    DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,      -- 주문업뎃날짜
+	CONSTRAINT `PK_or_order` -- or_order 기본키
+		PRIMARY KEY (
+			`id_order` -- id_order
+		),
+	/* CONSTRAINT `FK_cr_guest_TO_or_order` -- cr_guest -> or_order
+		FOREIGN KEY (
+			`id_guest` -- id_guest
+		)
+		REFERENCES `cr_guest` ( -- cr_guest
+			`id_guest` -- id_guest
+		)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION, */
+	CONSTRAINT `FK_cr_user_TO_or_order` -- cr_user -> or_order
+		FOREIGN KEY (
+			`id_user` -- id_user
+		)
+		REFERENCES `cr_user` ( -- cr_user
+			`id_user` -- id_user
+		)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION,
+	CONSTRAINT `FK_ps_product_TO_or_order` -- ps_product -> or_order
+		FOREIGN KEY (
+			`id_product` -- id_product
+		)
+		REFERENCES `ps_product` ( -- ps_product
+			`id_product` -- id_product
+		)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION,
+	CONSTRAINT `FK_cr_address_TO_or_order` -- cr_address -> or_order
+		FOREIGN KEY (
+			`id_address` -- id_address
+		)
+		REFERENCES `cr_address` ( -- cr_address
+			`id_address` -- id_address
+		)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION
+	/* CONSTRAINT `FK_cr_producer_TO_or_order` -- cr_producer -> or_order
+		FOREIGN KEY (
+			`id_producer` -- id_producer
+		)
+		REFERENCES `cr_producer` ( -- cr_producer
+			`id_producer` -- id_producer
+		)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION,
+	CONSTRAINT `FK_or_order_type_TO_or_order` -- or_order_type -> or_order
+		FOREIGN KEY (
+			`id_order_type` -- id_order_type
+		)
+		REFERENCES `or_order_type` ( -- or_order_type
+			`id_order_type` -- id_order_type
+		)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION,
+	CONSTRAINT `FK_or_payment_type_TO_or_order` -- or_payment_type -> or_order
+		FOREIGN KEY (
+			`id_payment_type` -- id_payment_type
+		)
+		REFERENCES `or_payment_type` ( -- or_payment_type
+			`id_payment_type` -- id_payment_type
+		)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION */
+);
+
+CREATE TABLE `or_order_state` (
+	`id_order`      SMALLINT   UNSIGNED NOT NULL, -- id_order
+	`virtual_order` TINYINT(1) NULL,     -- 가상주문(장바구니상태)
+	`activated`     TINYINT(1) NULL,     -- 주문활성화여부
+	`paid`          TINYINT(1) NULL,     -- 지불완료
+	`sended_email`  TINYINT(1) NULL,     -- 이메일보냄
+	`shipped`       TINYINT(1) NULL,     -- 배송중
+	`delivered`     TINYINT(1) NULL,     -- 배송완료
+	`deleted`       TINYINT(1) NULL,      -- 주문취소
+	CONSTRAINT `PK_or_order_state` -- or_order_state 기본키
+		PRIMARY KEY (
+			`id_order` -- id_order
+		),
+	CONSTRAINT `FK_or_order_TO_or_order_state` -- or_order -> or_order_state
+		FOREIGN KEY (
+			`id_order` -- id_order
+		)
+		REFERENCES `or_order` ( -- or_order
+			`id_order` -- id_order
+		)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION
+);
 
  -- Insert Product ----------------------------------------------------------------------------------
 
