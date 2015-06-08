@@ -193,6 +193,86 @@ CREATE TABLE `ps_image` (
 		ON UPDATE CASCADE
 );
 
+-- dt_board -------------------------------------------------------------------------------------
+
+CREATE TABLE `dt_board` (
+	`id_board` 	 SMALLINT     UNSIGNED NOT NULL AUTO_INCREMENT, -- id_board
+	`board_name`  VARCHAR(50)  NOT NULL,      -- 보드이름
+    
+	CONSTRAINT `PK_dt_board` 
+		PRIMARY KEY ( `id_board` )
+);
+
+-- dt_post -------------------------------------------------------------------------------------
+
+CREATE TABLE `dt_post` (
+	`id_post`       	SMALLINT     UNSIGNED NOT NULL AUTO_INCREMENT, -- id_post
+	`id_board`      	SMALLINT 	 UNSIGNED NOT NULL, -- id_board
+    `id_post_parent`    SMALLINT     UNSIGNED DEFAULT NULL, -- 부모 코멘트 아이디
+	`comment`       	VARCHAR(128) NOT NULL,     -- 코멘트
+	`node_position` 	TINYINT(2)   NOT NULL,      -- 형제간의순서
+    `date_created`    	DATETIME     NOT NULL NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 생성시간
+    
+	CONSTRAINT `PK_dt_post` 
+		PRIMARY KEY ( `id_post` ),
+    
+	CONSTRAINT `FK_dt_board_TO_dt_post`
+		FOREIGN KEY (`id_board`)
+		REFERENCES `dt_board` (`id_board`)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+ 
+-- dt_product_post -------------------------------------------------------------------------------------
+ 
+CREATE TABLE `dt_product_post` (
+	`id_proudct_post`  SMALLINT     UNSIGNED NOT NULL AUTO_INCREMENT NOT NULL,  -- id_proudct_board
+	`id_product`        SMALLINT     UNSIGNED NOT NULL , -- id_product
+	`id_post`           SMALLINT     UNSIGNED NOT NULL , -- id_post
+    `id_board`			SMALLINT 	 UNSIGNED NOT NULL , -- id_board
+
+	CONSTRAINT `PK_dt_product_post` 
+		PRIMARY KEY (`id_proudct_post`),
+        
+	CONSTRAINT `FK_ps_product_TO_dt_product_post` 
+		FOREIGN KEY (`id_product`)
+		REFERENCES `ps_product` (`id_product`)
+		ON DELETE CASCADE,
+      
+	CONSTRAINT `FK_dt_post_TO_dt_product_post`
+		FOREIGN KEY (`id_post`)
+		REFERENCES `dt_post` ( `id_post` )
+		ON DELETE CASCADE,
+        
+	CONSTRAINT `FK_dt_board_TO_dt_product_post`
+		FOREIGN KEY (`id_board`)
+		REFERENCES `dt_board` ( `id_board` )
+		ON DELETE CASCADE     
+);
+
+
+-- dt_user_post -------------------------------------------------------------------------------------
+
+CREATE TABLE `dt_user_post` (
+	`id_user_post`  SMALLINT	UNSIGNED NOT NULL AUTO_INCREMENT NOT NULL,  -- id_user_board
+	`id_post`      	SMALLINT	UNSIGNED NOT NULL, -- id_post
+	`id_user`       SMALLINT	UNSIGNED NOT NULL, -- id_user
+    `id_board`		SMALLINT 	 UNSIGNED NOT NULL , -- id_board
+	
+    CONSTRAINT `PK_dt_user_post` 
+		PRIMARY KEY (`id_user_post`),
+        
+	CONSTRAINT `FK_dt_post_TO_dt_user_post` 
+		FOREIGN KEY (`id_post`)
+		REFERENCES `dt_post` (`id_post`)
+		ON DELETE CASCADE,
+      
+	CONSTRAINT `FK_cr_user_TO_dt_user_board`
+		FOREIGN KEY (`id_user`)
+		REFERENCES `cr_user` ( `id_user` )
+		ON DELETE CASCADE
+);
+
 
  -- Insert Product ----------------------------------------------------------------------------------
 
@@ -255,8 +335,61 @@ END $$
 DELIMITER ;
 
 
+ -- Insert Post ----------------------------------------------------------------------------------
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS proc_insert_post $$
+CREATE PROCEDURE proc_insert_post (IN `proc_board_id`		SMALLINT,
+								   IN `proc_id_product`		SMALLINT,
+								   IN `proc_id_user`		SMALLINT,
+								   IN `proc_id_post_parent` SMALLINT,
+								   IN `proc_comment`        VARCHAR(128),
+								   IN `proc_node_position`  TINYINT(2) ) 
+BEGIN
+	DECLARE indx INT Default 0 ;
+	DECLARE str VARCHAR(255);
+    DECLARE productId INT;
+    DECLARE boardId INT; 
+    DECLARE postId INT;
+    DECLARE postParentId INT;
+    
+    SET postParentId = `proc_id_post_parent`;
+	IF (`proc_id_post_parent` < 0) 
+    THEN  
+		SET postParentId = null;
+	END IF;
+    
+    SET boardId = `proc_board_id`;
  
+    -- insert board ------------------------------------------------------
+    IF (ISNULL(boardId)) 
+    THEN 
+		INSERT INTO `dt_board` (`board_name`) VALUES (`proc_board_name`);
+		SET boardId = LAST_INSERT_ID();
+	END IF;
+    
+    -- insert post -------------------------------------------------------
+    INSERT INTO `dt_post` 
+	( `id_board`, `id_post_parent`, `comment`, `node_position`)
+	VALUES
+	( boardId, postParentId, `proc_comment`, `proc_node_position`);
+
+	-- insert product-post -----------------------------------------------
+    SET postId = LAST_INSERT_ID();
+    
+    INSERT INTO `dt_product_post` 
+		(`id_product`, `id_post`, `id_board`)
+	VALUES 
+		(`proc_id_product`, postId, boardId);
  
+    -- insert user-post --------------------------------------------------
+    INSERT INTO `dt_user_post`
+		(`id_post`, `id_user`, `id_board`)
+	VALUES
+		(postId, `proc_id_user`, boardId);
+END $$
+DELIMITER ;
+
 /* -- Confirm ----------------------------------------------------------------------------------
  BEGIN;
 
@@ -332,6 +465,23 @@ SELECT * FROM `ps_category` c
 		LEFT OUTER JOIN `ps_product_category` pc USING(`id_category`)
         LEFT OUTER JOIN `ps_product` p USING(`id_product`)
 WHERE c.`name`= '여성의류';
+
+-- dt_board
+INSERT INTO `dt_board` (`board_name`) VALUES ("test");
+ SELECT * from `dt_board`;
+ 
+UPDATE `dt_board` (`board_name`='test') WHERE `id_board`=11;
+
+--dt_post
+
+INSERT INTO `dt_board` (`board_name`) VALUES ('testboard');
+
+CALL proc_insert_post(1 , 1, 1, null, 'testcomment', 0);
+
+SELECT * FROM `dt_board`;
+SELECT * FROM `dt_post`;
+SELECT * FROM `dt_product_post`;
+SELECT * FROM `dt_user_post`;
 
 ROLLBACK;
 

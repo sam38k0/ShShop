@@ -106,8 +106,9 @@ public class ProductService {
 
 	public CommandResult searchProdcuts() {
 		String categoryName = request.getParameter(Constant.attrCategoryName);
-		if (categoryName != null)
+		if (categoryName != null && categoryName != "") {
 			return searchCategory(categoryName);
+		}
 
 		String keywords = request.getParameter(Constant.attrKeywords);
 		String filterdKeywords = getFilterdKeyword(keywords);

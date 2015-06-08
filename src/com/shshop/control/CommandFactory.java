@@ -44,9 +44,6 @@ public class CommandFactory {
 		case Constant.showDetailView:
 			return new ShowDetailViewCommand();
 			
-		case Constant.insertHopeProductView:
-			return null;
-			
 		case Constant.searchView:
 			return new SearchViewCommand();
 		

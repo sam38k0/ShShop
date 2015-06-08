@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.shshop.mapper.BoardMapper'>
+ 
+ 	<select id='getBoardCount' resultType='int'>
+		SELECT COUNT(`id_board`) as count FROM `dt_board`;
+	</select>
+	
+	<select id='getBoardById' resultMap='Board'>							
+		SELECT * FROM `dt_board` WHERE `id_board` = ${id_board};				
+	</select>
+	
+	<select id='getAllBoard' resultMap='Board'>							
+		SELECT * FROM `dt_board`;				
+	</select>
+	
+	<insert id='insertBoard' parameterType='${BoardType}' useGeneratedKeys='true' keyProperty='${id_board}'>
+		INSERT INTO `dt_board` (`board_name`)
+		VALUES (${board_name});
+	</insert>
+	
+	<update id='updateBoard' parameterType='${BoardType}'>
+		UPDATE `dt_board` SET `board_name`=${board_name}
+		WHERE `id_board`=${id_board};
+	</update>
+	
+	<delete id='deleteBoard'>
+		DELETE FROM `dt_board` WHERE `id_board`=${id_board}
+	</delete>
+
+	<resultMap id='Board' type = '${BoardType}' >
+		<result property='boardId' column='id_board'/>
+		<result property='boardName' column='board_name' />
+	</resultMap>
+ 
+</mapper>
