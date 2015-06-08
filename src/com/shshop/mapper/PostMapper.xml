@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.shshop.mapper.PostMapper'>
+ 
+ 	<select id='getPostCount' resultType='int'>
+		SELECT COUNT(`id_post`) as count FROM `dt_post`;
+	</select>
+	
+	<select id='getPostById' resultMap='Post'>							
+		SELECT * FROM `dt_post` WHERE `id_post` = ${id_post};				
+	</select>
+
+	<insert id='insertPost' parameterType='${PostType}' useGeneratedKeys='true' keyProperty='${id_post}'>
+	    INSERT INTO `dt_post` ( `id_board`, `id_post_parent`, `comment`, `node_position`)
+	    VALUES ( ${id_board}, ${id_post_parent}, ${comment}, ${node_position});
+	</insert>
+
+	<update id='updatePost' parameterType='${PostType}'>
+		UPDATE `dt_post`
+		<set>
+			<if test="${id_board} != null"> `id_board`=${id_board},</if>
+			<if test="${id_post_parent} != null"> `id_post_parent`=${id_post_parent}, </if>
+			<if test="${comment} != null"> `comment`=${comment}, </if>
+			<if test="${node_position} != null"> `node_position`=${node_position}, </if>
+		</set>
+		WHERE `id_post`=${id_post};
+	</update>
+	
+	<delete id='deletePost'>
+		DELETE FROM `dt_post` WHERE `id_post`=${id_post};
+	</delete>
+
+	<resultMap id='Post' type = '${PostType}' >
+		<id property='postId' column='id_post' />
+		<result property='boardId' column='id_board'/>
+		<result property='comment' column='comment' />
+		<result property='postParentId' column='id_post_parent' />
+		<result property='nodePosition' column='node_position' />
+	</resultMap>
+ 
+</mapper>

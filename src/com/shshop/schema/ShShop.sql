@@ -48,8 +48,8 @@ CREATE TABLE `cr_address` (
 	CONSTRAINT `FK_cr_user_TO_cr_address`
 		FOREIGN KEY (`id_user`)
 		REFERENCES `cr_user` (`id_user`)
-		ON DELETE NO ACTION
-		ON UPDATE NO ACTION
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
 );
 
 -- ps_category ----------------------------------------------------------------------------------
@@ -265,14 +265,14 @@ CREATE TABLE `dt_board` (
 
 CREATE TABLE `dt_post` (
 	`id_post`       	SMALLINT     UNSIGNED NOT NULL AUTO_INCREMENT, -- id_post
-	`id_board`      	SMALLINT 	 UNSIGNED NOT NULL, -- id_board
-    `id_post_parent`    SMALLINT     UNSIGNED DEFAULT NULL, -- 부모 코멘트 아이디
-	`comment`       	VARCHAR(128) NOT NULL,     -- 코멘트
-	`node_position` 	TINYINT(2)   NOT NULL,      -- 형제간의순서
-    `date_created`    	DATETIME     NOT NULL NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 생성시간
+	`id_board`      	SMALLINT 	 UNSIGNED NOT NULL, 	-- id_board
+    `id_post_parent`    SMALLINT     UNSIGNED DEFAULT NULL, -- parent comment id
+	`comment`       	VARCHAR(128) NOT NULL,     			-- content
+	`node_position` 	TINYINT(2)   NOT NULL,      		-- sequence between siblings
+    `date_created`    	DATETIME     NOT NULL NOT NULL DEFAULT CURRENT_TIMESTAMP, -- created time.
     
 	CONSTRAINT `PK_dt_post` 
-		PRIMARY KEY ( `id_post` ),
+		PRIMARY KEY (`id_post`),
     
 	CONSTRAINT `FK_dt_board_TO_dt_post`
 		FOREIGN KEY (`id_board`)
@@ -448,6 +448,49 @@ BEGIN
 END $$
 DELIMITER ;
 
+
+-- Comment Test -----------------------------------------------------------------
+
+BEGIN;
+
+INSERT INTO `dt_board` (`board_name`) VALUES ('testboard');
+ 
+INSERT INTO `cr_user` (`email`, `password`) VALUES ('email','pass');
+
+INSERT INTO `ps_product` 
+(`id_user`,`name`,`price`,`stock`,`translation`,`connection`,`on_sale`,`on_open`,`tag`,`out_of_stock`,`description`,`searching_count`)
+VALUES
+(1, 'product1', '60', '60', 1, 204, true, true, 'tag7', false, 'description6',0);
+
+-- insert post test
+CALL proc_insert_post(1 , 1, 1, null, 'testcomment', 0);
+CALL proc_insert_post(1 , 1, 1, 1, 'testChildcomment', 1);
+CALL proc_insert_post(1 , 1, 1, 1, 'testChildcomment2', 2);
+
+SELECT * FROM `dt_board`;
+SELECT * FROM `dt_post`;
+SELECT * FROM `dt_product_post`;
+SELECT * FROM `dt_user_post`;
+
+ 
+-- 일단 product 에 속해있는 모든 comment 를 검색한다.
+SELECT t.*
+FROM `dt_post` t
+	INNER JOIN `dt_product_post` pt USING(`id_post`) 
+	INNER JOIN `ps_product` p USING(`id_product`)
+WHERE p.`id_product` = 1;
+
+ 
+-- 검색한 코멘트에 해당하는 유저 정보를 찾는다.
+SELECT u.*
+FROM `cr_user` u
+	INNER JOIN `dt_user_post` up USING(`id_user`) 
+	INNER JOIN `dt_post` p USING(`id_post`)
+WHERE p.`id_post` = 1;
+
+ROLLBACK;
+
+
 /* -- Confirm ----------------------------------------------------------------------------------
  BEGIN;
 
@@ -523,23 +566,6 @@ SELECT * FROM `ps_category` c
 		LEFT OUTER JOIN `ps_product_category` pc USING(`id_category`)
         LEFT OUTER JOIN `ps_product` p USING(`id_product`)
 WHERE c.`name`= '여성의류';
-
--- dt_board
-INSERT INTO `dt_board` (`board_name`) VALUES ("test");
- SELECT * from `dt_board`;
- 
-UPDATE `dt_board` (`board_name`='test') WHERE `id_board`=11;
-
---dt_post
-
-INSERT INTO `dt_board` (`board_name`) VALUES ('testboard');
-
-CALL proc_insert_post(1 , 1, 1, null, 'testcomment', 0);
-
-SELECT * FROM `dt_board`;
-SELECT * FROM `dt_post`;
-SELECT * FROM `dt_product_post`;
-SELECT * FROM `dt_user_post`;
 
 ROLLBACK;
 

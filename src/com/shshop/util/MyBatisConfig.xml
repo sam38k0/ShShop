@@ -28,6 +28,7 @@
 		<mapper resource='com/shshop/mapper/ProductCategoryMapper.xml' />
 		<mapper resource='com/shshop/mapper/OrderMapper.xml' />
 		<mapper resource='com/shshop/mapper/BoardMapper.xml' />
+		<mapper resource='com/shshop/mapper/PostMapper.xml' />
 	</mappers>
 	
 </configuration>

@@ -17,9 +17,11 @@ public class Post implements Serializable{
 		
 	}
 	
-	public Post(Integer boardId, String comment) {
+	public Post(String comment, Integer boardId, Integer postParentId, Integer nodePosition) {
 		this.setBoardId(boardId);
 		this.setComment(comment);
+		this.setPostParentId(postParentId);
+		this.setNodePosition(nodePosition);
 	}
 
 	public Integer getPostId() {
