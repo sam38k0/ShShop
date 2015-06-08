@@ -155,6 +155,8 @@ public class BuildSampleData {
 		inputSampleProducts(categoryId, "잡지");
 
 		sqlSession.commit();
+		
+		System.out.println("Insertion Completed");
 	}
 
 	private static void insertCategory() {
@@ -191,12 +193,12 @@ public class BuildSampleData {
 		int count = Format.randInt(100, 200);
 		for (int i = 0; i < count; i++) {
 			imageStrBuilder.setLength(0);
-			imageStrBuilder.append("c:/100" + i + ".png,");
-			imageStrBuilder.append("c:/200" + i + ".png,");
-			imageStrBuilder.append("c:/300" + i + ".png,");
-			imageStrBuilder.append("c:/400" + i + ".png");
+			imageStrBuilder.append("/content/image/product_image/sample1.jpg,");
+			imageStrBuilder.append("/content/image/product_image/sample2.jpg,");
+			imageStrBuilder.append("/content/image/product_image/sample3.jpg,");
+			imageStrBuilder.append("/content/image/product_image/sample4.jpg");
 			productMapper.insertProductProc(new ProductProc(Format.randInt(1, 9), categoryId, productNameHeader + i, 100 * (i + 1), Format.randInt(1,
-					1000), i % 2 + 1, 204, tagNameHeader + i, descriptionHeader + i, Format.randInt(1, 10000), true, true, false, imageStrBuilder
+					1000), i%2 + 1 , 204, tagNameHeader + i, descriptionHeader + i, Format.randInt(1, 10000), true, true, false, imageStrBuilder
 					.toString()));
 		}
 	}

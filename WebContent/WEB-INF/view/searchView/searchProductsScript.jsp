@@ -3,10 +3,6 @@
 
 <jsp:useBean id="adminBean" class="com.shshop.system.AdminBean" scope="session" />
 
-<%-- <script src="${adminBean.contextPath}/content/js/search.js"></script>--%>
-
-<%-- 위의 js 파일 말고 아래 코드를 사용해야 된다. ( 위는 테스트용 js 파일임)--%>
-
 <script type="text/javascript">
 function sorting(event) {
 	event.preventDefault();
@@ -16,7 +12,7 @@ function sorting(event) {
 		
 	$(this).addClass('on');
 	$(this).siblings().removeClass('on');
-
+ 
 	var keywords = $('#keywords').val();
 	var dataPage = $('#currentPage').text();
 	var sort = $(this).attr('sort');
@@ -27,6 +23,7 @@ function sorting(event) {
 		type : "POST",
 		url : "searchAction",
 		data : {
+			"categoryName" : '${param.categoryName}',
 			"keywords" : keywords,
 			"data-page" : dataPage,
 			"sort" : sort,
@@ -54,6 +51,7 @@ function pageReset(event) {
 		type : "POST",
 		url : "searchAction",
 		data : {
+			"categoryName" : '${param.categoryName}',
 			"keywords" : keywords,
 			"data-page" : dataPage,
 			"sort" : sort,
@@ -142,11 +140,11 @@ function pageSet(text) {
 }
 
 $(document).ready(function() {
-
 	$.ajax({
 		type : "POST",
 		url : "searchAction",
 		data : {
+			"categoryName" : '${param.categoryName}',
 			"keywords" : '${param.keywords}',
 			"data-page" : "1",
 			"sort" : "1",

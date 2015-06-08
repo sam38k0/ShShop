@@ -21,10 +21,11 @@ public class ProductSearchResult {
 	private int priceFrom = 0;
 	private int priceTo = 1000000000;
 
-	public ProductSearchResult(int currentPage, String keyword, int sortCondition, List<ProductSearchResultParam> searchResults) {
+	public ProductSearchResult(int currentPage, String keyword, int sortCondition, int pageDivNum, List<ProductSearchResultParam> searchResults) {
 		this.currentPage = currentPage;
 		this.keywords = keyword;
 		this.searchResults = searchResults;
+		this.pageDivNum = pageDivNum;
 		setSortCondition(sortCondition);
 	}
 	
@@ -124,6 +125,14 @@ public class ProductSearchResult {
 
 	public void setPriceTo(int priceTo) {
 		this.priceTo = priceTo;
+	}
+
+	public int getPageDivNum() {
+		return pageDivNum;
+	}
+
+	public void setPageDivNum(int pageDivNum) {
+		this.pageDivNum = pageDivNum;
 	}
 
 	public static Comparator<ProductSearchResultParam> sortByDateComp = new Comparator<ProductSearchResultParam>() {

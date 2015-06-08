@@ -19,6 +19,8 @@ public interface CategoryMapper {
 	public List<Category> getRootCategories();
 	
 	public List<Product> getAllProducts(@Param("categoryId") int categoryId);
+	
+	public List<Product> getCategoryProducts(@Param("name") String name);
  
 	public void insertRootCategory(Category category);
 	

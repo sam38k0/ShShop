@@ -19,7 +19,7 @@
 					<div class="detailBox">
 						<div class="photoArea">
 							<div id="item_view_big_photo" class="bigPhoto">
-								<a href="#"><img src="<c:out value="${sessionScope.productDetail.imagePaths[1]}"/> "> </a>
+								<a href="#"><img src="<c:out value="${sessionScope.productDetail.imagePaths[0]}"/> "> </a>
 								<div class="text hide" style="display: none;"></div>
 							</div>
 							<ul id="item_view_mini_photo" class="miniPhoto">
@@ -166,7 +166,7 @@
 				<!-- //detailCnt -->
 				<div class="accordion">
 					<ul>
-						<li>
+						<li class="accordion_list">
 							<button class="accordion-control">제품 상세정보</button>
 							<div class="accordion-panel">
 								<div class="detailCnt">
@@ -181,20 +181,90 @@
 										</div>
 										<h3 class="h3_icon">댓글달기</h3>
 										<div id="comment_list" class="cmtView clearfix">
-											<div id="comment_view_all" class="cmtAll" style="display: none;">
-												<span class="arr"></span><a href="#">이전 댓글 보기</a> <span class="hide">#total_count#개 중 <b>3</b>개
-												</span>
-											</div>
-
+											<%-- 댓글 --%>
+											<dl class="" data-widx="156965">
+												<dt>
+													<img src="${adminBean.contextPath}/content/image/user.gif">
+												</dt>
+												<dd id="comment_5196762">
+													<p class="name">
+														<a href="#" data-nick="대웅">대웅</a><span class="time">12/14</span>
+													</p>
+													<p class="text">
+														이거 밥통으로 보임.
+													</p>
+													<div class="cmtcmt">
+														<div class="cmtView2" id="5197681">
+															<p class="cmtReplyTitle">댓글의댓글</p>
+															<dl class="first " data-widx="123827">
+																<dt>
+																	<img src="${adminBean.contextPath}/content/image/user.gif">
+																</dt>
+																<dd>
+																	<p class="name">
+																		<a href="#" data-nick="팀장">팀장</a><span class="time">12/14</span>
+																	</p>
+																	<p class="text">
+																		사기인건가?
+																	</p>
+																</dd>
+															</dl>
+														</div>
+														<p class="functionCmt">
+															<a href="#" class="cmtReply" data-id="5196762">댓글달기</a>
+														</p>
+													</div>
+													<div id="5196762" class="cmtReply hide" style="display: none;">
+														<textarea placeholder="댓글을 입력하세요" title="댓글을 입력하세요" style="width: 522px; height: 17px"></textarea>
+													</div>
+												</dd>
+											</dl>
+											<%-- //댓글 --%>
 											<div class="cmtWrite">
 												<textarea placeholder="댓글을 입력하세요" class="cmtTextarea" rel="auto_grow" style="width: 580px; height: 50px;"></textarea>
 											</div>
 										</div>
 									</div>
+									<div class="detailCntR">
+										<div class="tipBoxWrap">
+											<div class="tipT"></div>
+											<div class="tipPrivate">안전한 구매를 위한 간단한 팁</div>
+											<div class="tipBox">
+												<div class="tipCnt">
+													<p class="textgreen">가격이 너무 싸거나, 판매를 서두르는 경우에는 주의 바랍니다.</p>
+													<dl>
+														<dt>직접 거래를 하는 경우</dt>
+														<dd>
+															<ul>
+																<li>① 판매자의 과거 거래 아이템/회원, 남긴 글/댓글 확인</li>
+																<li>② 판매자 신용도 및 거래 상태 제공</li>
+																<li>③ 판매자 이웃 및 과거 거래한 회원을 통한 판매자 관련 문의</li>
+																<li>④ 송금시 ShShop에 인증된 판매자 계좌번호 사용</li>
+																<li>⑤ 판매자가 남긴 삭제한 댓글 제공</li>
+															</ul>
+														</dd>
+													</dl>
+													<dl>
+														<dt>ShShop 안전결제서비스를 이용하는 경우</dt>
+														<dd>
+															<ul>
+																<li>① 결제처리 업무(카드결제 및 현금영수증 등) 대행 </li>
+																<li>② 공지사항, 행정조치사항, 사용허가 등 정보제공을 위한 문자메시지 전송</li>
+																<li>③ 송금시 ShShop에 인증된 판매자 계좌번호 사용</li>
+																<li>④ 판매자와의 대화내용 동봉 발송</li>
+																<li>⑤ ShShop 내에서 운영하는 안전결제서비스만 이용</li>
+															</ul>
+														</dd>
+													</dl>
+												</div>
+											</div>
+											<div class="tipB"></div>
+										</div>
+									</div>
 								</div>
 							</div> <!-- .accordion-panel -->
 						</li>
-						<li>
+						<li class="accordion_list">
 							<button class="accordion-control">유사상품 보기</button>
 							<div class="accordion-panel">
 								<div class="graybox">
@@ -202,30 +272,12 @@
 									<div class="horizontal_box">
 										<div class="itembox">
 											<ul id="similar_item_list" class="similar" style="display: block;">
-												<li>
-													<p>
-														<a href="/item/7747754"><img src="//img.hellomarket.com/images5/2015/item/s3/05/05/21/0847_7693401_1.jpg" width=86 height=86>
-														</a><strong><a href="/item/7747754">캠핑용 방석 se...</a></strong><span class="price">8,000원</span> <span class="time">1970/01/01</span>
-													</p>
-												</li>
-												<li>
-													<p>
-														<a href="/item/6893352"><img src="//img.hellomarket.com/images5/2015/item/s3/03/08/23/4147_6893352_1.jpg" width=86 height=86>
-														</a><strong><a href="/item/6893352">(새것)로우알파인...</a></strong> <span class="price">20,000원</span> <span class="time">1970/01/01</span>
-													</p>
-												</li>
-												<li>
-													<p>
-														<a href="/item/6892885"><img src="//img.hellomarket.com/images5/2015/item/s3/03/08/23/0817_6892885_1.jpg" width=86 height=86>
-														</a><strong><a href="/item/6892885">(새것)로우알파인...</a> </strong><span class="price">70,000원</span> <span class="time">1970/01/01</span>
-													</p>
-												</li>
+											 <%-- 여기에 Similar Item 추가 --%>
 											</ul>
 										</div>
 									</div>
 									<p class="moveBtn">
-										<a href="#" id="similar_item_list_prev" class="movepreB">이전 아이템</a> <span id="similar_item_list_page"><strong>1</strong>/10</span> <a
-											href="#" id="similar_item_list_next" class="movenextB">다음 아이템</a>
+ 										<%-- 여기에 Button Control 추가 --%>
 									</p>
 								</div>
 							</div>

@@ -85,6 +85,11 @@ public class CategoryMapperTest {
 		int countBefore = categoryMapper.getCategoryCount();
 		categoryMapper.deleteCategory(2);
 		int countAfter = categoryMapper.getCategoryCount();
-		assertTrue("testDeleteCategory", countBefore > countAfter+1);
+		assertTrue("testDeleteCategory", countBefore > countAfter);
+	}
+	
+	@Test
+	public void testGetCategoryProducts() {
+		assertTrue("testGetCategoryProducts",categoryMapper.getCategoryProducts("여성의류").size()>0);
 	}
 }
