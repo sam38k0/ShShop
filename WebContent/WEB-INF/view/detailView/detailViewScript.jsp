@@ -87,6 +87,10 @@ function pageSet(text) {
 	$('.moveBtn').empty();
 	$('.moveBtn').append(btnHtml);
 	
+	$("#comment_list").empty();
+	if(response.commentResult != null && response.commentResult !== '')
+		$("#comment_list").append(response.commentResult);
+	
 	$("#similar_item_list_prev").click(pagePrev);
 	$("#similar_item_list_next").click(pageNext);
 }

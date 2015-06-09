@@ -48,23 +48,27 @@ public class CategoryHtmlBuilder {
 	}
 
 	public String buildHtml() {
-		String result = "";
-		
-		result += this.toString() + "\r\n";
+		StringBuilder result = new StringBuilder();
+		result.append(this.toString());
+		result.append("\r\n"); 
 
 		boolean hasItem = !items.isEmpty();
 
-		if (hasItem)
-			result += "<ul class=\"allcategory\">"+ "\r\n";
-
-		for (int i = 0; i < items.size(); i++) {
-			result += items.get(i).buildHtml();
+		if (hasItem) {
+			result.append("<ul class=\"allcategory\">");
+			result.append("\r\n"); 
 		}
 
-		if (hasItem)
-			result += "</ul></li>"+ "\r\n";
+		for (int i = 0; i < items.size(); i++) {
+			result.append(items.get(i).buildHtml());
+		}
+
+		if (hasItem) {
+			result.append("</ul></li>");
+			result.append("\r\n"); 
+		}
 		
-		return result;
+		return result.toString();
 	}
 
 	public String getName() {

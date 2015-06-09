@@ -7,6 +7,7 @@
 	<json:property name="totalSearchingCount" value="${searchResult.totalSize}" />
 	<json:property name="totalPageCount" value="${searchResult.totalPageCount}" />
 	<json:property name="currentPage" value="${searchResult.currentPage}" />
+	<json:property name="commentResult" value="${searchResult.commentResult}" />
 	<json:array name="searchResults" var="item" items="${searchResult.currentPageResult}">
 		<json:object>
 			<json:property name="userName" value="${item.userName}" />

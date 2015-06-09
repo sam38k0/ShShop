@@ -181,22 +181,19 @@
 										</div>
 										<h3 class="h3_icon">댓글달기</h3>
 										<div id="comment_list" class="cmtView clearfix">
-											<%-- 댓글 --%>
-											<dl class="" data-widx="156965">
+											<%-- 댓글 
+											<dl>
 												<dt>
 													<img src="${adminBean.contextPath}/content/image/user.gif">
 												</dt>
-												<dd id="comment_5196762">
+												<dd>
 													<p class="name">
 														<a href="#" data-nick="대웅">대웅</a><span class="time">12/14</span>
 													</p>
-													<p class="text">
-														이거 밥통으로 보임.
-													</p>
-													<div class="cmtcmt">
-														<div class="cmtView2" id="5197681">
-															<p class="cmtReplyTitle">댓글의댓글</p>
-															<dl class="first " data-widx="123827">
+													<p class="text">이거 밥통으로 보임.</p>
+													<div>
+														<div>
+															<dl>
 																<dt>
 																	<img src="${adminBean.contextPath}/content/image/user.gif">
 																</dt>
@@ -204,9 +201,7 @@
 																	<p class="name">
 																		<a href="#" data-nick="팀장">팀장</a><span class="time">12/14</span>
 																	</p>
-																	<p class="text">
-																		사기인건가?
-																	</p>
+																	<p class="text">사기인건가?</p>
 																</dd>
 															</dl>
 														</div>
@@ -219,7 +214,7 @@
 													</div>
 												</dd>
 											</dl>
-											<%-- //댓글 --%>
+											//댓글 --%>
 											<div class="cmtWrite">
 												<textarea placeholder="댓글을 입력하세요" class="cmtTextarea" rel="auto_grow" style="width: 580px; height: 50px;"></textarea>
 											</div>
