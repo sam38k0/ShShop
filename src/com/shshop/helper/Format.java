@@ -1,5 +1,6 @@
 package com.shshop.helper;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
@@ -265,6 +266,11 @@ public class Format {
 			e.printStackTrace();
 		}
 		return sqlDate;
+	}
+	
+	public static String getStrDateFromSqlDate(java.sql.Date date) {
+		DateFormat df = new SimpleDateFormat("yyyyMMdd");
+		return df.format(date);
 	}
 
 	public static int randInt(int min, int max) {

@@ -59,6 +59,10 @@ public class Post implements Serializable{
 	public Integer getPostParentId() {
 		return postParentId;
 	}
+	
+	public boolean isRootPost() {
+		return (getPostParentId() == null);
+	}
 
 	public void setPostParentId(Integer postParentId) {
 		this.postParentId = postParentId;

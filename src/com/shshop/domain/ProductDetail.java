@@ -9,6 +9,7 @@ public class ProductDetail implements Serializable{
 	
 	private Product product = null;
 	private User productOwner = null;
+	private String postResults = "";
 	
 	private List<String> imagePaths = new ArrayList<>();
 
@@ -42,6 +43,14 @@ public class ProductDetail implements Serializable{
 
 	public void setProductOwner(User productOwner) {
 		this.productOwner = productOwner;
+	}
+
+	public String getPostResults() {
+		return postResults;
+	}
+
+	public void setPostResults(String postResults) {
+		this.postResults = postResults;
 	}
 
 }

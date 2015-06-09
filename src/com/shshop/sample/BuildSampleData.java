@@ -1,12 +1,21 @@
 package com.shshop.sample;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
+import com.shshop.domain.Board;
 import com.shshop.domain.Category;
+import com.shshop.domain.Post;
+import com.shshop.domain.PostProc;
+import com.shshop.domain.Product;
 import com.shshop.domain.ProductProc;
 import com.shshop.domain.User;
 import com.shshop.helper.Format;
+import com.shshop.mapper.BoardMapper;
 import com.shshop.mapper.CategoryMapper;
+import com.shshop.mapper.PostMapper;
 import com.shshop.mapper.ProductMapper;
 import com.shshop.mapper.UserMapper;
 import com.shshop.util.MyBatisUtil;
@@ -16,12 +25,16 @@ public class BuildSampleData {
 	static ProductMapper productMapper = null;
 	static UserMapper userMapper = null;
 	static CategoryMapper categoryMapper = null;
+	static PostMapper postMapper = null;
+	static BoardMapper boardMapper = null;
 
 	public static void main(String[] args) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		userMapper = sqlSession.getMapper(UserMapper.class);
 		categoryMapper = sqlSession.getMapper(CategoryMapper.class);
 		productMapper = sqlSession.getMapper(ProductMapper.class);
+		postMapper = sqlSession.getMapper(PostMapper.class);
+		boardMapper = sqlSession.getMapper(BoardMapper.class);
 
 		insertUser();
 		insertCategory();
@@ -153,10 +166,31 @@ public class BuildSampleData {
 		inputSampleProducts(categoryId, "과학문화");
 		inputSampleProducts(categoryId, "만화책");
 		inputSampleProducts(categoryId, "잡지");
+		
+		// 묻고 답하기 코멘트 추가
+		inputSampleComment();
 
 		sqlSession.commit();
 		
 		System.out.println("Insertion Completed");
+	}
+
+	private static void inputSampleComment() {
+		boardMapper.insertBoard(new Board("askAndReply"));
+		Board board = boardMapper.getBoardByName("askAndReply");
+		Product product = productMapper.getProductById(1);
+		User user = userMapper.getUserById(product.getUserId());
+ 
+		List<Post> posts = new ArrayList<>();
+		posts.add( new Post("comment1", board.getBoardId(), null, 0) );
+		posts.add( new Post("comment11", board.getBoardId(), 1, 0) ); 
+		posts.add( new Post("comment111", board.getBoardId(), 2, 0) ); 
+		posts.add( new Post("comment2", board.getBoardId(), null, 0) ); 
+		posts.add( new Post("comment21", board.getBoardId(), 4, 0) ); 
+		
+		for(Post post : posts) { 
+			postMapper.insertPostByProc(new PostProc(post,user,product));
+		}
 	}
 
 	private static void insertCategory() {

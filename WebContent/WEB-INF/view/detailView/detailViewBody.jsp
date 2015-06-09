@@ -181,41 +181,8 @@
 										</div>
 										<h3 class="h3_icon">댓글달기</h3>
 										<div id="comment_list" class="cmtView clearfix">
-											<%-- 댓글 
-											<dl>
-												<dt>
-													<img src="${adminBean.contextPath}/content/image/user.gif">
-												</dt>
-												<dd>
-													<p class="name">
-														<a href="#" data-nick="대웅">대웅</a><span class="time">12/14</span>
-													</p>
-													<p class="text">이거 밥통으로 보임.</p>
-													<div>
-														<div>
-															<dl>
-																<dt>
-																	<img src="${adminBean.contextPath}/content/image/user.gif">
-																</dt>
-																<dd>
-																	<p class="name">
-																		<a href="#" data-nick="팀장">팀장</a><span class="time">12/14</span>
-																	</p>
-																	<p class="text">사기인건가?</p>
-																</dd>
-															</dl>
-														</div>
-														<p class="functionCmt">
-															<a href="#" class="cmtReply" data-id="5196762">댓글달기</a>
-														</p>
-													</div>
-													<div id="5196762" class="cmtReply hide" style="display: none;">
-														<textarea placeholder="댓글을 입력하세요" title="댓글을 입력하세요" style="width: 522px; height: 17px"></textarea>
-													</div>
-												</dd>
-											</dl>
-											//댓글 --%>
-											<div class="cmtWrite">
+											 ${sessionScope.productDetail.postResults}
+											 <div class="cmtWrite">
 												<textarea placeholder="댓글을 입력하세요" class="cmtTextarea" rel="auto_grow" style="width: 580px; height: 50px;"></textarea>
 											</div>
 										</div>

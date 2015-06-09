@@ -61,7 +61,7 @@ CREATE TABLE `ps_category` (
 	`description`        TEXT         NOT NULL, -- 카테고리 설명
 	`link`               VARCHAR(255) NULL,     -- 카테고리 기본링크
 	`is_root_category`   TINYINT(1)   NOT NULL, -- 루트카테고리인지여부
-	`date_created`       DATETIME     NOT NULL NOT NULL DEFAULT CURRENT_TIMESTAMP,   				  -- 카테고리 생성 날짜
+	`date_created`       DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,   				  -- 카테고리 생성 날짜
 	`date_updated`       DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- 카테고리 업데이트된 날짜
     
      CONSTRAINT `PK_ps_category_id_category` 
@@ -91,7 +91,7 @@ CREATE TABLE `ps_product` (
 	`out_of_stock`    TINYINT(1)   NOT NULL, -- 상품이 다 팔렸는지 여부
 	`description`     TEXT         NOT NULL, -- 상품설명
 	`searching_count` INTEGER      NOT NULL, -- 히트수
-	`date_created`    DATETIME     NOT NULL NOT NULL DEFAULT CURRENT_TIMESTAMP, 					-- 상품이 더해진 날짜
+	`date_created`    DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP, 					-- 상품이 더해진 날짜
 	`date_updated`    DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  -- 상품이 업뎃된 날짜
     
     CONSTRAINT `PK_ps_product_id_product` 
@@ -206,7 +206,7 @@ CREATE TABLE `or_order` (
 	`cost`            INTEGER 	NULL,  -- 주문가격
 	`delivery_cost`   INTEGER 	NULL,  -- 배송가격
 	`order_request`   TEXT     	NULL,  -- 추가요청사항설명
-	`date_created`    DATETIME  NOT NULL NOT NULL DEFAULT CURRENT_TIMESTAMP,  -- 주문 날짜
+	`date_created`    DATETIME  NOT NULL DEFAULT CURRENT_TIMESTAMP,  -- 주문 날짜
 	`date_updated`    DATETIME  NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  -- 주문업뎃날짜
 	
 	CONSTRAINT `PK_or_order`
@@ -269,8 +269,8 @@ CREATE TABLE `dt_post` (
     `id_post_parent`    SMALLINT     UNSIGNED DEFAULT NULL, -- 부모 코멘트 아이디
 	`comment`       	VARCHAR(128) NOT NULL,     -- 코멘트
 	`node_position` 	TINYINT(2)   NOT NULL,      -- 형제간의순서
-    `date_created`    	DATETIME     NOT NULL NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 생성시간
-    
+    `date_created`    	DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 생성시간
+
 	CONSTRAINT `PK_dt_post` 
 		PRIMARY KEY ( `id_post` ),
     

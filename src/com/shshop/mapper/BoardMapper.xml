@@ -12,6 +12,10 @@
 		SELECT * FROM `dt_board` WHERE `id_board` = ${id_board};				
 	</select>
 	
+	<select id='getBoardByName' resultMap='Board'>							
+		SELECT * FROM `dt_board` WHERE `board_name` = ${board_name};				
+	</select>
+	
 	<select id='getAllBoard' resultMap='Board'>							
 		SELECT * FROM `dt_board`;				
 	</select>

@@ -58,6 +58,10 @@ li {
   text-align: -webkit-match-parent;
 }
 
+fieldset, img {
+  border: 0 none;
+}
+
 img {
   vertical-align: top;
 }
@@ -96,6 +100,14 @@ h4 {
 	line-height: 0;
 }
 
+p {
+  display: block;
+  -webkit-margin-before: 1em;
+  -webkit-margin-after: 1em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+}
+
 .clearfix:before, .clearfix:after {
   display: table;
   content: "";
@@ -122,7 +134,7 @@ div.viewTopArea div.leftArea a.btn_gray2 {
 a.btn_gray2 {
   float: left;
   padding-right: 10px;
-  background: url(//image.hellomarket.com/btn/btn_pack.gif) no-repeat 100% -261px;
+  background: url(../image/btn_pack.gif) no-repeat 100% -261px;
   line-height: 26px;
   white-space: nowrap;
   font-weight: bold;
@@ -133,7 +145,7 @@ a.btn_gray2 {
 a.btn_gray2 span {
   display: block;
   padding: 0 0 0 10px;
-  background: url(//image.hellomarket.com/btn/btn_pack.gif) no-repeat 0 -261px;
+  background: url(../image/btn_pack.gif) no-repeat 0 -261px;
 }
 
 
@@ -220,7 +232,7 @@ div.detailView {
   position: relative;
   width: 1000px;
   margin: 0 auto;
-  background: url(//image.hellomarket.com/common/bg_category_bt.gif) repeat-x bottom;
+  background: url(../image/bg_category_bt.gif) repeat-x bottom;
   background-color: #FFF;
   padding: 0 0 3px 0;
 }
@@ -492,7 +504,7 @@ a.cnt_close {
   text-indent: -1000em;
   overflow: hidden;
   display: inline-block;
-  background: url(//image.hellomarket.com/btn/all_png.png) 0 -281px no-repeat;
+  background: url('../image/all_png.png') 0 -281px no-repeat;
   width: 14px;
   height: 14px;
 }
@@ -697,7 +709,7 @@ div.graybox div.itembox li {
  
 div.graybox div.itembox li p {
 	float: left;
-	background: url(//image.hellomarket.com/common/bg_itembox.gif) no-repeat;
+	background: url(../image/bg_itembox.gif) no-repeat;
 	background-size:cover;
 	padding: 12px 12px 0 12px;
 	width: 86px;
@@ -746,14 +758,14 @@ a.movepreB {
 	text-indent: -1000em;
   	overflow: hidden;
   	display: inline-block;
-  	background: url(//image.hellomarket.com/btn/all_btn_20130923.png) no-repeat;
+  	background: url(../image/all_btn_20130923.png) no-repeat;
 }
 
 a.movenextB {
   	text-indent: -1000em;
   	overflow: hidden;
   	display: inline-block;
-  	background: url(//image.hellomarket.com/btn/all_btn_20130923.png) no-repeat;
+  	background: url(../image/all_btn_20130923.png) no-repeat;
 }
 
 p.moveBtn span {
@@ -791,7 +803,7 @@ a.movenextB {
   line-height: 0;
 }
 
-div.detailCnt div.cmtView {
+div.detailCnt div.cmtView{
   clear: left;
 }
 
@@ -829,7 +841,7 @@ div.cmtView dl dd p.text {
   line-height: 16px;
 }
 
-div.cmtView dl dd div.cmtcmt {
+div.cmtcmt {
   position: relative;
   overflow: hidden;
   padding: 0 0 0 25px;
@@ -837,7 +849,7 @@ div.cmtView dl dd div.cmtcmt {
   width: 552px;
 }
 
-div.cmtView dl dd div.cmtcmt div.cmtView2 {
+div.cmtView2 {
   clear: both;
 }
 
@@ -845,10 +857,10 @@ p.flagBtn a, .cmtReplyTitle, .fileImage {
   text-indent: -1000em;
   overflow: hidden;
   display: inline-block;
-  background: url(//image.hellomarket.com/common/all_icon.png) no-repeat;
+  background: url('../image/all_icon.png') no-repeat;
 }
 
-div.cmtView dl dd div.cmtcmt div.cmtView2 p.cmtReplyTitle {
+p.cmtReplyTitle {
   float: left;
   background-position: -14px -63px;
   width: 12px;
@@ -856,17 +868,36 @@ div.cmtView dl dd div.cmtcmt div.cmtView2 p.cmtReplyTitle {
   margin: 13px 0 0 -17px;
 }
 
-div.cmtView dl dd p.functionCmt {
+div.cmtView2 dl dt {
+  float: left;
+  margin: 0 10px 0 0;
+}
+
+p.functionCmt {
   clear: both;
   font-size: 11px;
   letter-spacing: -1px;
   padding: 5px 0 0 0;
 }
 
-div.cmtView dl dd p.functionCmt a.cmtReply {
+a.cmtReply {
   color: #d1af4d;
   padding: 0 0 0 21px;
   margin: 0 15px 0 0;
+}
+
+dl.first {
+  border-top: solid 0 #c1d7e6;
+}
+
+dl.gray {
+  background-color: #f2f2f2;
+}
+
+.time {
+  color: #999!important;
+  display: inline-block;
+  padding: 0 0 0 3px;
 }
 
 /*-------------- 거래설명 --------------------------*/
@@ -882,13 +913,13 @@ div.detailCnt div.detailCntR div.tipBoxWrap {
 
 div.detailCnt div.detailCntR div.tipBoxWrap div.tipT {
   height: 10px;
-  background: url(//image.hellomarket.com/common/box_tip.gif) top no-repeat;
+  background: url(../image/box_tip.gif) top no-repeat;
 }
 
 div.detailCnt div.detailCntR div.tipBoxWrap div.tipPrivate {
   width: 284px;
   height: 30px;
-  background: url(//image.hellomarket.com/common/box_tip_private.gif) top no-repeat;
+  background: url(../image/box_tip_private.gif) top no-repeat;
   color: #6f6528;
   font-weight: bold;
   padding: 3px 0 0 36px;
@@ -925,5 +956,8 @@ div.detailCnt div.detailCntR div.tipBoxWrap div.tipBox div.tipCnt ul li {
 
 div.detailCnt div.detailCntR div.tipBoxWrap div.tipB {
   height: 10px;
-  background: url(//image.hellomarket.com/common/box_tip2.gif) bottom no-repeat;
+  background: url(../image/box_tip2.gif) bottom no-repeat;
 }
+
+
+
