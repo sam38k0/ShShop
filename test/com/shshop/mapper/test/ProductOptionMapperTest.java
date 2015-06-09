@@ -14,30 +14,32 @@ import com.shshop.domain.ProductOption;
 import com.shshop.mapper.ProductOptionMapper;
 import com.shshop.util.MyBatisUtil;
 
+// Option - We decided to do not support anymore..
+//
 public class ProductOptionMapperTest {
 
 	SqlSession sqlSession = null;
 	ProductOptionMapper productOptMapper = null;
 
-	@Before
+	//@Before
 	public void setUp() throws Exception {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		productOptMapper = sqlSession.getMapper(ProductOptionMapper.class);
 	}
 
-	@After
+	//@After
 	public void tearDown() throws Exception {
 		sqlSession.rollback();
 		sqlSession.close();
 	}
  
-	@Test
+	//@Test
 	public void testGetOptionById() {
 		ProductOption psOption = productOptMapper.getOptionById(1);
 		assertNotNull("testGetCategoryById", psOption);
 	}
 
-	@Test
+	//@Test
 	public void testGetChildrenOptions() {
 		ProductOption psOptionRoot = new ProductOption(1,"test");
 		
@@ -45,7 +47,7 @@ public class ProductOptionMapperTest {
 		assertTrue("testGetChildrenOptions", psChildOptions.size() > 0);
 	}
 
-	@Test
+	//@Test
 	public void testUpdateOption() {
 		ProductOption productOpt = productOptMapper.getOptionById(1);
 		productOpt.setOptionName("testName$");
@@ -54,7 +56,7 @@ public class ProductOptionMapperTest {
 		assertTrue("testUpdateCategory1", productOpt.getOptionName().equalsIgnoreCase("testName$")); 
 	}
 
-	@Test
+	//@Test
 	public void testDeleteOption() {
 		int countBefore = productOptMapper.getOptionCount();
 		productOptMapper.deleteOption(2);

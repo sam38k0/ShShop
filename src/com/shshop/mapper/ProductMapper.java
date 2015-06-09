@@ -26,11 +26,9 @@ public interface ProductMapper {
 	
 	public void deleteProduct(@Param("productId") Integer productId);
 	
-
 	public List<Product> selectMainCount();
 	
 	public List<Product> selectMainDate();
 	
-
-	public void insertProductProc(ProductProc productProc);
+	public int insertProductProc(ProductProc productProc);
 }

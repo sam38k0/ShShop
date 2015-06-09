@@ -11,10 +11,33 @@
 	<select id='getPostById' resultMap='Post'>							
 		SELECT * FROM `dt_post` WHERE `id_post` = ${id_post};				
 	</select>
+	
+	<select id='getAllPostOfProdcut' resultMap='Post'>							
+		SELECT t.*
+		FROM `dt_post` t
+			INNER JOIN `dt_product_post` pt USING(`id_post`) 
+			INNER JOIN `ps_product` p USING(`id_product`)
+		WHERE p.`id_product` = ${id_product};
+	</select>
+	
+	<select id='getUserOfPost' resultMap='${UserResultMap}'>							
+		SELECT u.*
+		FROM `cr_user` u
+			INNER JOIN `dt_user_post` up USING(`id_user`) 
+			INNER JOIN `dt_post` p USING(`id_post`)
+		WHERE p.`id_post` = 1;
+	</select>
 
 	<insert id='insertPost' parameterType='${PostType}' useGeneratedKeys='true' keyProperty='${id_post}'>
 	    INSERT INTO `dt_post` ( `id_board`, `id_post_parent`, `comment`, `node_position`)
 	    VALUES ( ${id_board}, ${id_post_parent}, ${comment}, ${node_position});
+	</insert>
+	
+	<insert id="insertPostByProc" parameterType='${PostProcType}' statementType="CALLABLE">
+    {
+        call proc_insert_post(${id_board}, ${id_product}, ${id_user}, ${id_post_parent}, ${comment}, ${node_position}, #{insertedPostId, mode=OUT, jdbcType=INTEGER})
+    }
+
 	</insert>
 
 	<update id='updatePost' parameterType='${PostType}'>

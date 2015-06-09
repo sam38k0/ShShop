@@ -70,7 +70,7 @@
 		
 	<insert id="insertProductProc" parameterType='${ProductProcType}' statementType="CALLABLE">
     {
-        call proc_insert_product(${id_user}, ${id_category}, ${name}, ${price}, ${stock}, ${translation}, ${connection}, ${on_sale}, ${on_open}, ${tag}, ${out_of_stock}, ${description}, ${searching_count}, #{imagePaths})
+       call proc_insert_product(${id_user}, ${id_category}, ${name}, ${price}, ${stock}, ${translation}, ${connection}, ${on_sale}, ${on_open}, ${tag}, ${out_of_stock}, ${description}, ${searching_count}, #{imagePaths},#{insertedProductId, mode=OUT, jdbcType=INTEGER})
     }
 	</insert>
 	

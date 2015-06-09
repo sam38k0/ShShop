@@ -74,13 +74,6 @@ public class ProductMapperTest {
 	}
 	
 	@Test
-	public void testGetProductRootOptions() {
-		List<ProductOption> productOpts = productMapper.getProductRootOptions(1);
-		
-		assertTrue("testUpdateProduct", productOpts.size() > 0 );
-	}
-	
-	@Test
 	public void testGetSearchedProducts() {
 		productMapper.insertProduct(new Product(3, "JJJJregNameJJJJ", 60, 60, 1, 204, "tag8", "description6", 0, true, true, false));
 		productMapper.insertProduct(new Product(1, "product7", 70, 70, 2, 3, null, "regTagSSSSS", 10, true, false, false));
@@ -96,12 +89,12 @@ public class ProductMapperTest {
 		int procCountBefore = productMapper.getProductCount();
 		int catProcCountBefore = productCategoryMapper.getProductCategoryCount();
 		int imageCountBefore = imageMapper.getProductImageCount();
-		productMapper.insertProductProc(new ProductProc(1, 1, "product6", 60, 60, 1, 204, "tag8", "description6", 0, true, true, false,"c:/1.png,c:/2.png,c:/3.png"));
+		ProductProc productProc = new ProductProc(1, 1, "product6", 60, 60, 1, 204, "tag8", "description6", 0, true, true, false,"c:/1.png,c:/2.png,c:/3.png");
+		productMapper.insertProductProc(productProc);
 		int procCountAfter = productMapper.getProductCount();
 		int catProcCountAfter = productCategoryMapper.getProductCategoryCount();
 		int imageCountAfter = imageMapper.getProductImageCount(); 
-		
-		int countAfter = productMapper.getProductCount();
+		assertTrue("testInsertProductProc0", productProc.getInsertedProductId() > 0);
 		assertEquals("testInsertProductProc1", procCountBefore + 1, procCountAfter);
 		assertEquals("testInsertProductProc2", catProcCountBefore + 1, catProcCountAfter);
 		assertEquals("testInsertProductProc3", imageCountBefore + 3, imageCountAfter);

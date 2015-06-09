@@ -8,6 +8,7 @@ public class ProductProc implements Serializable {
 	private Product product = null;
 	private Integer categoryId;
 	private String imagePaths;
+	private Integer insertedProductId;
 
 	public ProductProc() {
 
@@ -177,5 +178,13 @@ public class ProductProc implements Serializable {
 
 	public void setImagePaths(String imagePaths) {
 		this.imagePaths = imagePaths;
+	}
+
+	public Integer getInsertedProductId() {
+		return insertedProductId;
+	}
+
+	public void setInsertedProductId(Integer insertedProductId) {
+		this.insertedProductId = insertedProductId;
 	}
 }
