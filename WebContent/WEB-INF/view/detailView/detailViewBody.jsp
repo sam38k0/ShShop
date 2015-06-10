@@ -183,7 +183,7 @@
 										<div id="comment_list" class="cmtView clearfix">
 											 ${sessionScope.productDetail.postResults}
 											 <div class="cmtWrite">
-												<textarea placeholder="댓글을 입력하세요" class="cmtTextarea" rel="auto_grow" style="width: 580px; height: 50px;"></textarea>
+												<textarea placeholder="댓글을 입력하세요" class="cmtTextarea" style="width: 580px; height: 50px;"></textarea>
 											</div>
 										</div>
 									</div>

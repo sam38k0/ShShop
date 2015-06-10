@@ -19,6 +19,7 @@ public class Constant {
 	public static final String mypage = "/mypage";
 	public static final String userUpdate = "/userUpdate";
 	public static final String similarItemAction = "/similarItemAction";
+	public static final String commentPostAction = "/commentPostAction";
 
 	//Attribute
 	public static final String attrUser = "user";
@@ -35,6 +36,7 @@ public class Constant {
 	public static final String attrPriceFrom = "price_from";
 	public static final String attrPriceTo = "price_to";
 	public static final String attrProductId = "productId";
+	public static final String attrComment = "comment";
 	
 	//DD Parameter
 	public static final String paramFileUpload = "file-upload";
@@ -50,7 +52,9 @@ public class Constant {
     public static final String noPassword = "Please, put a password.";
     public static final String noUser = "There is no user information.";
     public static final String productInsertionError = "Product Insertion Error Occured.";
-
+	public static final String noProduct = "There is no product information.";
+	public static final String noComment = "There is no comment information.";
+	
 	//Ajax
 	public static final String Success = "Success";
 	public static final String Failed = "Failed"; 
@@ -59,4 +63,7 @@ public class Constant {
 	//Path
 	public static final String contextPath = "/ShShop/WebContent";
 	
+	//BoardName
+	public static String askAndReplyBoard = "askAndReply";
+
 }

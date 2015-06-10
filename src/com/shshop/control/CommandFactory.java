@@ -2,6 +2,7 @@ package com.shshop.control;
 
 import com.shshop.command.CheckLoginStateCommand;
 import com.shshop.command.Command;
+import com.shshop.command.CommentPostCommend;
 import com.shshop.command.InsertProductCommand;
 import com.shshop.command.InsertProductViewCommand;
 import com.shshop.command.JoinCommand;
@@ -61,6 +62,9 @@ public class CommandFactory {
 			
 		case Constant.similarItemAction:
 			return new SimilarItemSearchCommand();
+			
+		case Constant.commentPostAction:
+			return new CommentPostCommend();
 			
 		default:
 			return null;

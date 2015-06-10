@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.shshop.constant.Constant;
 import com.shshop.domain.Board;
 import com.shshop.domain.Category;
 import com.shshop.domain.Post;
@@ -176,8 +177,8 @@ public class BuildSampleData {
 	}
 
 	private static void inputSampleComment() {
-		boardMapper.insertBoard(new Board("askAndReply"));
-		Board board = boardMapper.getBoardByName("askAndReply");
+		boardMapper.insertBoard(new Board(Constant.askAndReplyBoard));
+		Board board = boardMapper.getBoardByName(Constant.askAndReplyBoard);
 		Product product = productMapper.getProductById(1);
 		User user = userMapper.getUserById(product.getUserId());
  

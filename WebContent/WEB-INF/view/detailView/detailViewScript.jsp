@@ -48,6 +48,54 @@ function pageNext(event) {
 	return false;
 }
 
+function textAreaEnter(e) {
+    var code = (e.keyCode ? e.keyCode : e.which);
+    
+ 	if(code == 13) { //Enter keycode
+ 		var text = $(this).val();
+ 		if(text === null && text === '')
+ 			return;
+ 	
+ 		$.ajax({
+ 			type : "POST",
+ 			url : "commentPostAction",
+ 			data : {
+ 				"productId" : '${sessionScope.productDetail.product.productId}',
+ 				"comment" : text
+ 			},
+ 			success : commentSet,
+ 			error : function(ajaxContext) {
+ 			}
+ 		});
+ 	}
+}
+
+function commentSet(text) {
+	response = text;
+	
+	$('.cmtWrite textarea').empty();
+	
+	var noUser = 'There is no user information.';
+	var noProduct = 'There is no product information.';
+	var noComment = 'There is no comment information.';
+	
+	if(response === noUser) {
+		alert("로그인이 필요한 서비스 입니다.");
+	} else if (response === noProduct) {
+		alert("상품 정보를 확인할 수 없습니다.");
+	} else if (response === noComment) {
+		alert("입력할 코멘트가 없습니다.");
+	} else {
+		var commentAddElem = '<div class=\"cmtWrite\">';
+		commentAddElem += '<textarea placeholder=\"댓글을 입력하세요\" class=\"cmtTextarea\" style=\"width: 580px; height: 50px;\"></textarea>';
+		commentAddElem += '</div>';
+		
+		$('#comment_list').empty();
+		$('#comment_list').html(response).contents();
+		$('#comment_list').append(commentAddElem);
+	}
+}
+
 function pageSet(text) {
 	response = text;
 	response = $.parseJSON(response);
@@ -87,8 +135,9 @@ function pageSet(text) {
 	$('.moveBtn').empty();
 	$('.moveBtn').append(btnHtml);
 	
-	$("#similar_item_list_prev").click(pagePrev);
-	$("#similar_item_list_next").click(pageNext);
+	$('#similar_item_list_prev').click(pagePrev);
+	$('#similar_item_list_next').click(pageNext);
+	$('.cmtWrite textarea').keyup(textAreaEnter);
 }
 
 $(".cmtWrite textarea").keyup(function(e) {
