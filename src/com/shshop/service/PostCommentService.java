@@ -52,12 +52,18 @@ public class PostCommentService {
 				return new CommandResult(Constant.textPlain, Constant.noComment);
 			}
 			
+			Integer parentId = null;
+			String strParentId = request.getParameter(Constant.attrParentId);
+			if (strParentId != null && strParentId != "") { 
+				parentId = Integer.parseInt(strParentId.replace("postId_", ""));
+			}
+			
 			Integer productId = Integer.parseInt(strProductId);
 			ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
 			Product product = productMapper.getProductById(productId);
 			BoardMapper boardMapper = sqlSession.getMapper(BoardMapper.class);
 			Board board = boardMapper.getBoardByName(Constant.askAndReplyBoard);
-			Post post = new Post(comment,board.getBoardId(),null, 0);
+			Post post = new Post(comment,board.getBoardId(),parentId, 0);
 			
 			PostMapper postMapper = sqlSession.getMapper(PostMapper.class);
 			postMapper.insertPostByProc(new PostProc(post,user,product));

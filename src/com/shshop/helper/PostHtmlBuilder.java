@@ -15,11 +15,27 @@ public class PostHtmlBuilder {
 		}
 	};
 
+	private Integer postId = 0;
 	private String userName;
 	private String dateCreated;
 	private String comment;
 	private PostHtmlBuilder parent = null;
 	private List<PostHtmlBuilder> items = new ArrayList<>();
+	
+	public PostHtmlBuilder(Post post, User user) {
+		this.setParent(parent);
+		this.setUserName(user.getName());
+		this.setComment(post.getComment());
+		this.setDateCreated(Format.getStrDateFromSqlDate(post.getDateCreated()));
+		this.setPostId(post.getPostId());
+	}
+
+	public PostHtmlBuilder(String userName, String comment, String dateCreated) {
+		this.setUserName(userName);
+		this.setComment(comment);
+		this.setDateCreated(dateCreated);
+	}
+
 
 	public static void main(String[] args) {
 		PostHtmlBuilder htmlBuilder = new PostHtmlBuilder("name1", "comment1", "2014/01/01");
@@ -31,7 +47,6 @@ public class PostHtmlBuilder {
 		htmlChild1.add(htmlChild3);
 
 		System.out.println(htmlBuilder.buildHtml(true, false));
-
 	}
 
 	public static String getPostHtml(List<Post> posts, PostMapper postMapper) {
@@ -68,19 +83,6 @@ public class PostHtmlBuilder {
 		}
 
 		return result.toString();
-	}
-
-	public PostHtmlBuilder(Post post, User user) {
-		this.setParent(parent);
-		this.setUserName(user.getName());
-		this.setComment(post.getComment());
-		this.setDateCreated(Format.getStrDateFromSqlDate(post.getDateCreated()));
-	}
-
-	public PostHtmlBuilder(String userName, String comment, String dateCreated) {
-		this.setUserName(userName);
-		this.setComment(comment);
-		this.setDateCreated(dateCreated);
 	}
 
 	public String buildHtml(boolean isFirst, boolean isGray) {
@@ -130,8 +132,8 @@ public class PostHtmlBuilder {
 			result.append("<p class=\"functionCmt\">");
 			result.append("<a href=\"#\" class=\"cmtReply\">댓글달기</a>");
 			result.append("</p>");
-			result.append("<div class=\"cmtReply hide\" style=\"display: none;\">");
-			result.append("<textarea placeholder=\"댓글을 입력하세요\" title=\"댓글을 입력하세요\" style=\"width: 522px; height: 17px\"></textarea>");
+			result.append("<div class=\"cmtReplyHide\" style=\"display: none;\">");
+			result.append("<textarea id=\"postId_" + getPostId() + "\" placeholder=\"댓글을 입력하세요\" title=\"댓글을 입력하세요\" style=\"width: 522px; height: 17px\"></textarea>");
 			result.append("</div>");
 		}
 
@@ -201,5 +203,13 @@ public class PostHtmlBuilder {
 
 			addChildPosts(childBuilder, child, postMapper);
 		}
+	}
+
+	public Integer getPostId() {
+		return postId;
+	}
+
+	public void setPostId(Integer postId) {
+		this.postId = postId;
 	}
 }

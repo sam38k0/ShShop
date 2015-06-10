@@ -70,6 +70,31 @@ function textAreaEnter(e) {
  	}
 }
 
+function textAreaChildEnter(e) {
+    var code = (e.keyCode ? e.keyCode : e.which);
+    
+ 	if(code == 13) { //Enter keycode
+ 		var text = $(this).val();
+ 		if(text === null && text === '')
+ 			return;
+ 	
+ 		var parentId = $(this).attr('id');
+ 		
+ 		$.ajax({
+ 			type : "POST",
+ 			url : "commentPostAction",
+ 			data : {
+ 				"productId" : '${sessionScope.productDetail.product.productId}',
+ 				"comment" : text,
+ 				"parentId" : parentId
+ 			},
+ 			success : commentSet,
+ 			error : function(ajaxContext) {
+ 			}
+ 		});
+ 	}
+}
+
 function commentSet(text) {
 	response = text;
 	
@@ -94,12 +119,32 @@ function commentSet(text) {
 		$('#comment_list').html(response).contents();
 		$('#comment_list').append(commentAddElem);
 	}
+	
+	registerEvent();
 }
+
+
+function cmtReplyClick(e) {
+	e.preventDefault();  
+	$('.cmtReplyHide').css("display","none");
+	$(this).parent('.functionCmt').next('.cmtReplyHide').css("display","block");
+}
+
+function registerEvent() {
+	$('#similar_item_list_prev').click(pagePrev);
+	$('#similar_item_list_next').click(pageNext);
+	$('.cmtWrite textarea').keyup(textAreaEnter);
+	$('.cmtReply').click(cmtReplyClick);
+	$(".cmtReplyHide textarea").keyup(textAreaChildEnter);
+}
+
 
 function pageSet(text) {
 	response = text;
 	response = $.parseJSON(response);
  
+	$('.cmtReplyHide').css("display","none");
+	
 	// Create Similar_Item_list
 	//
 	var trHTML = '';
@@ -134,27 +179,10 @@ function pageSet(text) {
  
 	$('.moveBtn').empty();
 	$('.moveBtn').append(btnHtml);
-	
-	$('#similar_item_list_prev').click(pagePrev);
-	$('#similar_item_list_next').click(pageNext);
-	$('.cmtWrite textarea').keyup(textAreaEnter);
+ 
+	registerEvent(); 
 }
 
-$(".cmtWrite textarea").keyup(function(e) {
-	var code = (e.keyCode ? e.keyCode : e.which);
-	if (code == 13) {
-		$.ajax({
-			type : "POST",
-			url : "commentAddAction",
-			data : {
-				"productId" : '${sessionScope.productDetail.product.productId}',
-			},
-			success : commentSet,
-			error : function(ajaxContext) {
-			}
-		});
-	}
-});
 
 $(document).ready(function() {
 	$.ajax({

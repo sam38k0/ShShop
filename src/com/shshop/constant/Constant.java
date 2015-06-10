@@ -37,6 +37,7 @@ public class Constant {
 	public static final String attrPriceTo = "price_to";
 	public static final String attrProductId = "productId";
 	public static final String attrComment = "comment";
+	public static final String attrParentId = "parentId";
 	
 	//DD Parameter
 	public static final String paramFileUpload = "file-upload";
@@ -64,6 +65,6 @@ public class Constant {
 	public static final String contextPath = "/ShShop/WebContent";
 	
 	//BoardName
-	public static String askAndReplyBoard = "askAndReply";
+	public static final String askAndReplyBoard = "askAndReply";
 
 }
