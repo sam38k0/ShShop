@@ -1,8 +1,12 @@
 package com.shshop.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
+import com.shshop.domain.Address;
 import com.shshop.domain.Order;
+import com.shshop.domain.Product;
 import com.shshop.domain.User;
 
 public interface OrderMapper {
@@ -10,11 +14,17 @@ public interface OrderMapper {
 	
 	public void updateOrder(Order order);
 	
-	public Order getBuyOrder(@Param("userId") int userId);
+	public List<Order> getBuyOrder(@Param("userId") int userId);
 	
-	public User getBuyUserInfo(@Param("userId") int userId);
+	public User getBuyUserInfo(@Param("orderId") int orderId);
 	
-	public Order getSellOrder(@Param("userId") int userId);
+	public Address getBuyUserAdd(@Param("orderId") int orderId);
 	
-	public User getSellUserInfo(@Param("productId") int productId); 
+	public List<Order> getSellOrder(@Param("userId") int userId);
+	
+	public User getSellUserInfo(@Param("productId") int productId);
+	
+	public Address getSellUserAdd(@Param("productId") int productId);
+	
+	public Product getProductInfo(@Param("productId") int productId);
 }

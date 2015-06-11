@@ -32,6 +32,12 @@ public class Order implements Serializable{
 		this.orderRequest = orderRequest;
 	}
 	
+	public Order(Integer userId, Integer productId, Integer idAddress) {
+		this.userId = userId;
+		this.productId = productId;
+		this.idAddress = idAddress;
+	}
+	
 	public Order(User user, Product product, Address address) {
 		this.setUserId(user.getUserId());
 		this.setProductId(product.getProductId());

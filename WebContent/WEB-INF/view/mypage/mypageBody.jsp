@@ -1,14 +1,145 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:useBean id ="adminBean" class ="com.shshop.system.AdminBean" scope ="session"/>
 
 <div class="mypage_tap">
 	<ul>
-		<li><a href="#">판매</a></li>
-		<li><a href="#">구매</a></li>
-		<li><a href="#">개인정보</a></li>
-	</ul>
+        <li><a href="#">거래정보</a></li>
+        <li><a href="#">개인정보</a></li>
+    </ul>
 </div>
+<div id="deal_wrap" >
+    <div class="deal_left">
+        <p>거래 현황</p>
+        <table>
+            <tr>
+                <th colspan="2">판매 진행 현황</th>
+            </tr>
+            <tr>
+                <td>배송대기 상품</td>
+                <td>0 건</td>
+            </tr>
+            <tr>
+                <td>배송진행 상품</td>
+                <td>0 건</td>
+            </tr>
+            <tr>
+                <th colspan="2">구매 진행 현황</th>
+            </tr>
+            <tr>
+                <td>입금완료 상품</td>
+                <td> 0건</td>
+            </tr>
+            <tr>
+                <td>배송 중 상품</td>
+                <td>0 건</td>
+            </tr>
+            <tr>
+                <td>구매확정대기 상품</td>
+                <td>0 건</td>
+            </tr>
+        </table>
+     </div>
+     <div id="sell_wrap" class="deal_rigth">
+         <div id="sell_list" >
+            <div  class="deal_header">판매 거래 리스트 
+                <select name="" id="">
+                    <option value="전체 거래 리스트">전체 거래 리스트</option>
+                    <option value="배송대기 상품">배송대기 상품</option>
+                    <option value="배송진행 상품">배송진행 상품</option>
+                    <option value="거래완료 상품">거래완료 상품</option>
+                </select>
+            </div>
+            <table>
+                <tr>
+                    <th>거래번호</th>
+                    <th>상품 정보</th>
+                    <th>거래금액</th>
+                    <th>배송지 주소</th>
+                    <th>구매자정보</th>
+                    <th>거래상태</th>
+                    <th>결제일</th>
+                </tr>
+                <c:forEach var = 'sellOrder' items='${sellOrderInfoList.orderInfos}'>
+	                <tr>
+	                    <td>${sellOrder.order.orderId}</td>
+	                    <td><span>${sellOrder.product.productId}</span><br>${sellOrder.product.name}</td>
+	                    <td>${sellOrder.product.price}</td>
+	                    <td>${sellOrder.address.basicAdd} ${sellOrder.address.detailAdd}</td>
+	                    <td>${sellOrder.user.name} <br> ${sellOrder.user.phone}</td>
+	                    <td>
+	                        <span>배송 대기</span><br>
+	                        <a href="#">송장 등록</a>
+	                        <div class="parcel_service">
+		                      	택배사 
+	                            <select name="" id="">
+	                                <option value="">대한통운</option>
+	                                <option value="">한진택배</option>
+	                            </select>
+	                            <input type="text" value="송장 번호">
+	                            <input type="button" value="송장 등록">
+	                        </div>
+	                    </td>
+	                    <td>2015-05-22</td>
+	                </tr>
+                </c:forEach>
+            </table>
+        </div>
+        <div id="buy_list" >
+            <div  class="deal_header">구매 거래 리스트 
+                <select name="" id="">
+                    <option value="전체 거래 리스트">전체 거래 리스트</option>
+                    <option value="배송대기 상품">배송대기 상품</option>
+                    <option value="배송진행 상품">배송진행 상품</option>
+                    <option value="거래완료 상품">거래완료 상품</option>
+                </select>
+            </div>
+            <table>
+                <tr>
+                    <th>거래번호</th>
+                    <th>상품 정보</th>
+                    <th>거래금액</th>
+                    <th>배송지 주소</th>
+                    <th>구매자정보</th>
+                    <th>거래상태</th>
+                    <th>결제일</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><span>상품번호</span><br> 상품제목</td>
+                    <td>2000</td>
+                    <td>서울 강북구</td>
+                    <td>함윤희 <br> 010-1111-1231</td>
+                    <td>
+                        <span>배송 대기</span><br>
+                        <a href="#">송장 등록</a>
+                        <div class="parcel_service">
+                            택배사 
+                            <select name="" id="">
+                                <option value="">대한통운</option>
+                                <option value="">한진택배</option>
+                            </select>
+                            <input type="text" value="송장 번호">
+                            <input type="button" value="송장 등록">
+                        </div>
+                    </td>
+                    <td>2015-05-22</td>
+                </tr>
+            </table>
+        </div>
+        <div id="sell_board_list">
+            <p  class="deal_header">판매 게시물 리스트</p>
+            <table>
+                <tr>
+                    <th></th>
+                </tr>
+                
+            </table>
+        </div>
+    </div>
+</div>
+<%-- 
 <div id="user_wrap">
 	<form id="user_form" class="user_form">
 		<table>
@@ -67,4 +198,4 @@
 			<input type='button' name='cancle' value='취소'><button type='submit'>수정</button>
 		</form>
 	</div>
-</div>
+</div> --%>

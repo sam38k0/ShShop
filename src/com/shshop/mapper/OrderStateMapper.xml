@@ -19,7 +19,7 @@
 		select * from `or_order_state` where `id_order` = ${id_order}
 	</select>
 	
-	<resultMap id="Order" type="${OrderStateType}">
+	<resultMap id="OrderState" type="${OrderStateType}">
 		<id property='orderId' column='id_order' />
 		<result property='virtualOrder' column='virtual_order' />
 		<result property='activated' column='activated' />

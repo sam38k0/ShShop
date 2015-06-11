@@ -4,34 +4,49 @@
 
 <mapper namespace='com.shshop.mapper.OrderMapper'>
 	<insert id='insertOrder' parameterType='${OrderType}' useGeneratedKeys='true' keyProperty='${id_order}'>
-		insert into `or_order` (`id_user`, `id_product`, `id_address`)
-		select user.`id_user`, product.`id_product`, address.`id_address`
-		from `cr_user` as user, `ps_product` as product, `cr_address` as address
-		where user.`id_user`=${id_user} and product.`id_product` = ${id_product} and user.`id_user` = address.`id_user`
+		INSERT into `or_order` (`id_user`, `id_product`, `id_address`)
+		SELECT user.`id_user`, product.`id_product`, address.`id_address`
+		FROM `cr_user` as user, `ps_product` as product, `cr_address` as address
+		WHERE user.`id_user`=${id_user} and product.`id_product` = ${id_product} and user.`id_user` = address.`id_user`
 	</insert>
 	
 	<update id='updateOrder' parameterType='${OrderType}'>
-		update `or_order` 
-		set `amount`= ${amount}, `cost` = ${cost}, delivery_cost = ${delivery_cost}, `order_request` = ${order_request} 
-		where `id_order` = ${id_order};
+		UPDATE `or_order` 
+		SET `amount`= ${amount}, `cost` = ${cost}, delivery_cost = ${delivery_cost}, `order_request` = ${order_request} 
+		WHERE `id_order` = ${id_order};
 	</update>
 	
 	<select id='getBuyOrder' resultMap='Order'>
-		select * from `or_order` where `id_user` = ${id_user}
+		SELECT * FROM `or_order` WHERE `id_user` = ${id_user}
 	</select>
 	
 	<select id='getBuyUserInfo' resultMap='${UserResultMap}'>
-		select * from `cr_user` inner join `or_order` on `cr_user`.`id_user` = `or_order`.`id_user`
-		where `or_order`.`id_user` = ${id_order} Group by `cr_user`.`id_user`
+		SELECT a.* FROM `cr_user` a inner join `or_order`  o on a.`id_user` = o.`id_user`
+		WHERE o.`id_order` = ${id_order} Group by a.`id_user`
+	</select>
+	
+	<select id='getBuyUserAdd' resultMap='${AddressResultMap}'>
+		SELECT a.* FROM `cr_address` a inner join `or_order` o on a.`id_address` = o.`id_address`
+		WHERE o.`id_order` = ${id_order}
 	</select>
 	
 	<select id='getSellOrder' resultMap='Order'>
-		select * from `or_order` where `id_product` in (SELECT `id_product` FROM `ps_product` WHERE `id_user` = ${id_order})
+		SELECT * FROM `or_order` WHERE `id_product` in (SELECT `id_product` FROM `ps_product` WHERE `id_user` = ${id_user})
 	</select>
 	
 	<select id='getSellUserInfo' resultMap='${UserResultMap}'>
-		select * from `cr_user` inner join `ps_product` on `cr_user`.`id_user` = `ps_product`.`id_user`
-		where `ps_product`.`id_product` = ${id_product} Group by `cr_user`.`id_user`
+		SELECT a.* FROM `cr_user` a inner join `ps_product` o on a.`id_user` = o.`id_user`
+		WHERE o.`id_product` = ${id_product} Group by a.`id_user`
+	</select>
+	
+	<select id='getProductInfo' resultMap='${ProductResultMap}'>
+		SELECT a.* FROM `ps_product` a inner join `or_order` o on a.`id_product` = o.`id_product`
+		WHERE o.`id_product` = ${id_product}
+	</select>
+	
+	<select id='getSellUserAdd' resultMap='${AddressResultMap}'>
+		SELECT a.* FROM `cr_address` a inner join `ps_product` o on a.`id_user` = o.`id_user`
+		WHERE o.`id_product` = ${id_product};
 	</select>
 	
 	<resultMap id="Order" type="${OrderType}">

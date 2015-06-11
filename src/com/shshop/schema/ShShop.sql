@@ -39,7 +39,7 @@ CREATE INDEX `PK_cr_user_email`ON `cr_user` (`email` ASC);
 CREATE TABLE `cr_address` (
 	`id_address` SMALLINT     UNSIGNED NOT NULL AUTO_INCREMENT, -- id_address
 	`id_user`    SMALLINT     UNSIGNED NOT NULL,     -- id_user
-	`bagic_add`       VARCHAR(64)  NULL, 
+	`basic_add`       VARCHAR(64)  NULL, 
 	`detail_add`        VARCHAR(255) NULL, 
 	
     CONSTRAINT `PK_cr_address`
