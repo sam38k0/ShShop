@@ -9,6 +9,7 @@ import com.shshop.command.JoinCommand;
 import com.shshop.command.LoginCommand;
 import com.shshop.command.LogoutCommand;
 import com.shshop.command.MainViewCommand;
+import com.shshop.command.OrderCommand;
 import com.shshop.command.OrderViewCommand;
 import com.shshop.command.SearchActionCommand;
 import com.shshop.command.SearchCategoryCommand;
@@ -66,6 +67,9 @@ public class CommandFactory {
 			
 		case Constant.commentPostAction:
 			return new CommentPostCommend();
+			
+		case Constant.showOrderView:
+			return new OrderCommand();
 			
 		default:
 			return null;

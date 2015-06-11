@@ -11,7 +11,11 @@
 		<form id="showDetailViewForm" name="showDetailViewForm" method="post" action="showDetailView">
 			<input type="submit" value="TestDetailView">
 		</form>
+		<form id="showOrderViewForm" name="showOrderViewForm" method="post" action="showOrderView">
+			<input type="submit" value="TestOrderView">
+		</form>
 	</div>
+	<!-- //테스트용 -->
 	
 	<!-- 헤더 시작 -->
 	<div id="header">

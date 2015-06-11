@@ -67,14 +67,7 @@ public class PostCommentService {
 			
 			PostMapper postMapper = sqlSession.getMapper(PostMapper.class);
 			postMapper.insertPostByProc(new PostProc(post,user,product));
-			
-//			List<Post> posts = new ArrayList<>();
-//			posts.add(post);
-//			String postResults = PostHtmlBuilder.getPostHtml(posts, postMapper);
-//			if(postResults != null && !postResults.equals("")) {
-//				System.out.println("%%%%" + postResults);
-//			}
-			
+
 			List<Post> posts = postMapper.getAllPostOfProdcut(productId);
 			String postResults = PostHtmlBuilder.getPostHtml(posts, postMapper);
 			if(postResults != null && !postResults.equals("")) {

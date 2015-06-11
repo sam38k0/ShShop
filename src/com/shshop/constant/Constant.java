@@ -20,6 +20,7 @@ public class Constant {
 	public static final String userUpdate = "/userUpdate";
 	public static final String similarItemAction = "/similarItemAction";
 	public static final String commentPostAction = "/commentPostAction";
+	public static final String showOrderView = "/showOrderView";
 
 	//Attribute
 	public static final String attrUser = "user";

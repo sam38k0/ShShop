@@ -21,10 +21,6 @@
 	    <font face="Arial, Helvetica, sans-serif" size="2"><b>Suggested actions </b></font>
 	    <ul>
 	        <li><font face="Arial, Helvetica, sans-serif" size="2"> 타이핑한 어드레스가 유효한지 확인해 주세요. </font></li>
-	        <li><font face="Arial, Helvetica, sans-serif" size="2"> 이전에 사용하신 정보는 저장되었을 것입니다. 
-	        홈페이지를 다시 접속해 주세요. 만약 아니라면 함윤희 팀장(java 64기) 에게 연락해 주세요. 항상 열려 있습니다. 
-	    </font>
-	        </li>
 	    </ul>
 	</body>
 </html>
