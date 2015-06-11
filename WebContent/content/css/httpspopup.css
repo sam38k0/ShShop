@@ -1,0 +1,350 @@
+.mgt5 { margin-top:5px !important; }
+.mgt10 { margin-top:10px !important; }
+.ac { text-align:center; }
+
+.plyr {clear:left;float:left;text-align:left;}
+.plyr_w {float:left;background:#fff;border:2px solid #3a96d7;position:relative;margin:0 0 30px 0;}
+.plyr_w .close {display:block;text-indent:-9999em;width:12px;height:12px;overflow:hidden;background:url(https://secimage.yes24.com/sysimage/orderN/icon.gif) 0 -640px no-repeat;position:absolute;right:15px;top:15px;z-index:1000;}
+.plyr_w .closetdy {display:inline-block;background:url(https://secimage.yes24.com/sysimage/orderN/icon.gif) 135px -640px no-repeat;padding:0 20px 0 0;position:absolute;right:15px;bottom:20px;z-index:1000;}
+.plyr_t {margin:0;padding:15px 0 10px 25px;font-size:14px;font-weight:bold;letter-spacing:-1px;white-space:nowrap;background:#eaf3f8 url(https://secimage.yes24.com/sysimage/orderN/icon.gif) 15px -305px no-repeat;color:#3781c0;}
+.plyr_dm {width:410px;height:37px;text-indent:-9999px;background:url(https://secimage.yes24.com/sysimage/orderN/t_dm.gif) 50% 15px no-repeat;margin:0 auto 30px auto;text-align:center;}
+.t_dmc {background-position:50% -22px;}
+.plyr_c {margin:15px;line-height:17px;}
+.plyr_c .cdl_w {margin:0 0 20px 0;clear:left;}
+.plyr_c .tbl_l {border-collapse:collapse;width:100%;}
+.plyr_c .tbl_l th {background:#f5f5f5;border-top:1px solid #d7d7d7;border-bottom:1px solid #d7d7d7;height:24px;font-size:11px;font-weight:normal;color:#888;letter-spacing:-1px;.padding-top:3px;}
+.plyr_c .tbl_l td {text-align:center;padding:14px 0 12px 0;background:url(https://secimage.yes24.com/sysimage/orderN/dotline.gif) 0 bottom repeat-x;line-height:17px;}
+.plyr_c .tbl_l td.con_tp02 {text-align:center;padding:6px 0 4px 0;background:url(https://secimage.yes24.com/sysimage/orderN/dotline.gif) 0 bottom repeat-x;line-height:17px;}
+.plyr_c .tbl_l2 th {background:#e6f0fa;border-top:1px solid #9fc7e1;border-bottom:1px solid #9fc7e1;font-weight:normal;color:#3a96d7}
+.plyr_c .tbl_l2 td {background:none;border-bottom:1px solid #9fc7e1}
+.plyr_c .tbl_l .last td {background:none;}
+.plyr_c .tbl_l .last_cp td {background:none;border-bottom:1px solid #d7d7d7;}
+.plyr_c .tbl_l td.le {text-align:left;padding:14px 10px 13px 10px;vertical-align:middle;}
+.plyr_c .tbl_l td.le .ipubx {text-align:right;font-weight:bold;color:#a13b66;}
+.plyr_c .tbl_l td.le .info11 {margin:5px 0 0 0;}
+.plyr_c .tbl_l td.ri {text-align:right;padding-right:10px;}
+.plyr_c .tbl_l .rp_prc td {background:#e6f0fa;border-bottom:1px solid #9fc7e1;padding:15px 20px 13px 0;}
+.plyr_c .tbl_l .rp_prc td p {font-weight:bold;}
+.plyr_c .tbl_l .rp_prc td span {display:inline-block;width:70px;}
+.plyr_c .tbl_l tfoot td {text-align:left;border-top:1px solid #9fc7e1;background:url(https://secimage.yes24.com/sysimage/orderN/dot1.gif) 0 21px no-repeat;padding:15px 0 15px 10px;}
+.plyr_c .tbl_c_l {border-collapse:collapse;width:100%;}
+.plyr_c .tbl_c_l td {text-align:center;padding:5px 10px !important;background:none;line-height:17px;}
+.plyr_c .scll_wrap { overflow-y:auto; }
+
+.plyr_c .post {margin:0 0 0 0;padding:0 0 5px 0;}
+.plyr_c .cpbx {margin:0 0 15px 0;padding:0 0 15px 0;border-bottom:1px solid #9fc7e1}
+.plyr_c .post p {margin:0 0 10px 0;}
+.plyr_c .post .ipubx {width:240px;margin:0 0 0 5px;} 
+.plyr_c .stnc {margin:15px 0 10px 0;}
+.plyr_c .stnc2 {margin:0 0 10px 0;}
+.plyr_c .noti {margin:0 0 10px 0;}
+.plyr_c .gbx {background:#f5f5f5;padding:10px;margin:0 0 10px 0;}
+.plyr_c .exchg_yp {position:relative;}
+.plyr_c .exchg_yp h4 {display:none;}
+.plyr_c .exchg_yp .selbxw {width:100px;}
+.plyr_c .prc {font-weight:bold;}
+.plyr_c .ypoint {width:175px;position:absolute;left:13px;top:45px;text-align:center;}
+.plyr_c .ypoint .prc {text-align:center;}
+.plyr_c .ypoint .selbxw {margin:-3px 0 0 0;float:right;text-align:left;}
+.plyr_c .ymoney {width:175px;position:absolute;left:219px;top:45px;text-align:center;color:#a13b66;}
+.plyr_c table {border-collapse:collapse;}
+.plyr_c li, .plyr_c td, .plyr_c p {line-height:18px !important;}
+.plyr_c img {vertical-align:top;}
+.plyr_c em {font-style:normal;}
+.plyr_c textarea {font:12px µ¸¿ò;}
+.plyr_c .info11 {font-size:11px;color:#888;letter-spacing:-1px;}
+.plyr_c .info12 {font-size:12px;color:#888;display:inline-block;}
+.plyr_c .chkbx {width:13px;height:13px;vertical-align:middle;}
+.plyr_c .rdbtn {width:13px;height:13px;vertical-align:top;.vertical-align:middle;}
+.plyr_c .ipubx {border:1px solid #c1c1c1;width:100px;height:20px;padding:3px 3px 0 3px;vertical-align:middle;}
+.plyr_c .txt_area {border:1px solid #c1c1c1;}
+.plyr_c .dvi {color:#d7d7d7;margin:0 5px;font-weight:normal}
+.plyr_c .ls0 {letter-spacing:0;}
+.plyr_c .clr1 {color:#3a85c8}
+.plyr_c .clr2 {color:#a13b66}
+.plyr_c .clr3 {color:#3c3c3c}
+.plyr_c .noti {clear:both;background:url(https://secimage.yes24.com/sysimage/orderN/icon.gif) 0 -218px no-repeat;padding:0 0 0 18px;color:#2063aa;}
+.plyr_c .nt {display:inline-block;background:url(https://secimage.yes24.com/sysimage/orderN/icon.gif) 6px -706px no-repeat;margin:5px 0 0 0;padding:1px 0 0 12px;color:#888;letter-spacing:-1px;font-size:11px;vertical-align:middle;line-height:16px !important;}
+.plyr_c .ls1 {letter-spacing:-1px}
+.plyr_c .ls0 {letter-spacing:0}
+.plyr_c .ule {text-decoration:underline;}	
+
+.post_l {border-top:1px solid #d7d7d7;margin:0 0 0 0;}
+.post_l_nosrch li {text-align:center;padding:50px 0 !important;}
+.post_l li { padding:9px 0 6px 9px;border-bottom:solid 1px #d7d7d7; }
+.post_l li .item_post_addr { color:#3781c0; }
+.post_l li.on  { background-color:#f5f5f5;cursor:hand; }
+.post_l li.off { background-color:#fff;cursor:hand; }
+.post_l li.post_li { padding:9px 0 6px 59px;text-indent:-54px; }
+
+.plyr .list_line li { padding:9px 0 9px 0;border-bottom:solid 1px #d7d7d7; }
+.plyr .list_line span.item_list { display:inline-blocl;width:80px;color:#3a85c8; }
+.plyr .list_line p.info11 { margin-left:80px; }
+
+.plyr_c th em {height:11px;display:inline-block;line-height:50px;overflow:hidden;vertical-align:middle;background:url(https://secimage.yes24.com/sysimage/orderN/tbl_title.gif) 0 0 no-repeat;}
+.plyr_c th .name {background-position:50% -250px !important;}
+.plyr_c th .spri {background-position:50% -270px !important;;}
+.plyr_c th .ifree {background-position:50% -290px;}
+.plyr_c th .date {background-position:50% -310px;}
+.plyr_c th .ordn {background-position:50% -330px;}
+.plyr_c th .auth {background-position:50% -350px;}
+.plyr_c th .publ {background-position:50% -370px;}
+.plyr_c th .reci {background-position:50% -390px;}
+.plyr_c th .numb {background-position:50% -410px !important;;}
+.plyr_c th .chkd {background-position:50% -470px;}
+.plyr_c th .name2 {background-position:50% -490px;}
+.plyr_c th .benf {background-position:50% -510px;}
+.plyr_c th .usec {background-position:50% -530px;}
+.plyr_c th .term {background-position:50% -550px;}
+.plyr_c th .name3 {background-position:50% -570px;}
+.plyr_c th .name4 {background-position:50% -590px;}
+.plyr_c th .name4_b2b {background-position:50% -910px;}
+.plyr_c th .term2 {background-position:50% -610px;}
+.plyr_c th .prc_gcard {background-position:50% -630px;}
+.plyr_c th .prc_gcard_b2b {background-position:50% -870px;}
+.plyr_c th .prc_pay {background-position:50% -650px;}
+.plyr_c th .prc_pay_b2b {background-position:50% -890px;}
+.plyr_c th .dlva {background-position:50% -670px;}
+.plyr_c th .phon {background-position:50% -690px;}
+.plyr_c th .mobi {background-position:50% -710px;}
+.plyr_c th .mana {background-position:50% -730px;}
+.plyr_c th .recia {background-position:50% -750px;}
+.plyr_c .scard_w {border-top:1px solid #d7d7d7;padding:15px 0 5px 0;background:url(https://secimage.yes24.com/sysimage/orderN/bg_2col.gif) 0 0 repeat-y;}
+.plyr_c .tbl_pay {width:600px;}
+.plyr_c .tbl_pay .clr2 em{font-size:17px;font-family:verdana;letter-spacing:-1px;}
+.plyr_c .tbl_pay .last td {padding-bottom:15px;}
+.plyr_c .tbl_pay th {width:95px;color:#3a85c8;font-weight:normal;text-align:left;vertical-align:top;}
+.plyr_c .tbl_pay th, .plyr_c .tbl_pay td {padding:0 0 10px 20px;}
+.plyr_c .tbl_pay .scard {position:relative;}
+.plyr_c .tbl_pay .scard .aws {position:absolute;left:210px;top:2px;}
+.plyr_c .tbl_pay .scard .selbxw {width:200px;}
+.plyr_c .tbl_pay .sfreei {position:relative;}
+.plyr_c .tbl_pay .sfreei .info11 {position:absolute;left:80px;top:2px;}
+.plyr_c .tbl_pay .sfreei .selbxw {width:70px;}
+.plyr_c .tbl_pay .scountry {position:relative;}
+.plyr_c .tbl_pay .scountry .nt {position:absolute;left:205px;top:0;font-weight:bold;}
+.plyr_c .tbl_pay .scountry .selbxw {width:200px;}
+.plyr_c .tbl_pay .add_adrs {margin:3px 0 0 0;}
+.plyr_c .dlv_mtd .rdb_w {display:inline-block;width:148px;}
+.plyr_c .dlv_mtd .rdb_w .prc {display:block;margin:0 0 0 16px;}
+.plyr_c .dlv_adrs .rdb_w {display:inline-block;margin:0 35px 0 0;}
+.plyr_c .smsg_l li {background:url(https://secimage.yes24.com/sysimage/orderN/dot3.gif) 0 5px no-repeat;padding:0 0 0 7px;margin:0 0 3px 0;}
+.plyr_c .smsg_l2 {margin:3px 0 0 0;}
+.plyr_c .smsg_l2 li {margin-top:2px;background:url(https://secimage.yes24.com/sysimage/orderN/dot2.gif) 0 5px no-repeat;padding:0 0 0 7px;font-size:11px;letter-spacing:-1px;color:#888;line-height:14px !important;}
+.plyr_c .rcp_h_s {padding:0 0 15px 0;}
+.plyr_c .rcp_h {background:url(https://secimage.yes24.com/sysimage/orderN/dotline.gif) 0 top repeat-x;padding:15px 0 15px 0;}
+.plyr_c .rcp_h2 {background:url(https://secimage.yes24.com/sysimage/orderN/dotline.gif) 0 top repeat-x;padding:15px 0 0 0;}
+.plyr_c .rcp_h .last {padding:0;}
+.plyr_c .rdb_h {display:block;padding:0 0 15px 0;}
+.plyr_c .rdb_hl {display:block;margin:5px 0 0 20px;}
+
+.plyr_st {text-indent:-9999em;background:url(https://secimage.yes24.com/sysimage/orderN/title.gif) 0 0 no-repeat;margin:0 0 10px 10px;}
+.st_cp1 {width:52px;height:14px;background-position:0 -320px;}
+.st_cp2 {width:77px;height:14px;background-position:0 -340px;}
+.st_cp3 {width:66px;height:14px;background-position:0 -360px;}
+.st_cp4 {width:66px;height:14px;background-position:0 -380px;}
+.st_cp5 {width:200px;height:14px;background-position:0 -400px;}
+.usecp_w {margin:20px 0 0 0;}
+
+.tot_usecp {background:e6f0fa;height:65px;position:relative;margin:20px 0 -10px 0;}
+.tot_usecp p {font-weight:bold;}
+.tot_usecp p span {display:inline-block;line-height:70px;height:22px;background:url(https://secimage.yes24.com/sysimage/orderN/title.gif) 0 0 no-repeat;vertical-align:middle;}
+.tot_usecp .prc span {width:93px;background-position:0 -420px;overflow:hidden;}
+.tot_usecp .usecp span {width:52px;background-position:0 -450px;overflow:hidden;}
+.tot_usecp .prc {position:absolute;left:20px;top:15px;color:#a13b66;}
+.tot_usecp .usecp {position:absolute;right:20px;top:15px;color:#3c3c3c;}
+.tot_usecp em {font:bold 24px verdana;letter-spacing:-2px;}
+
+.mgt15 { margin-top:15px !important; }
+
+.plyr_l {margin:0 0 5px 0;}
+.plyr_l strong {color:#3c3c3c;}
+.plyr_l .info12 strong {color:#888;}
+.plyr_l .info11 strong {color:#888;}
+.plyr_l .plyr_l2 strong {color:#888;}
+.plyr_l li {background:url(https://secimage.yes24.com/sysimage/orderN/dot1.gif) 0 5px no-repeat;padding:0 0 6px 10px;}
+.plyr_l li p {margin:4px 0;}
+.plyr_l2 {margin:3px 0 0 0;}
+.plyr_l2 li {background:url(https://secimage.yes24.com/sysimage/orderN/dot2.gif) 0 5px no-repeat;padding:0 0 3px 10px;font-size:11px;letter-spacing:-1px;color:#888;line-height:14px !important;}
+.plyr_optn {width:380px;border-bottom:1px solid #d7d7d7;padding:0 0 10px 0;margin:0 0 10px 0;}
+.plyr_optn .goods_img {float:left;margin-right:9px;width:60px;}
+.plyr_optn .goods_info {float:left;width:311px;}
+.plyr_optn .pdimg {float:left;margin:0 8px 0 0;width:60px;}
+.plyr_optn .pd_a {display:block;margin:0 0 5px 0;}
+.tbl_opt_w {position:relative;width:380px;}
+.tbl_opt .selbxw {width:260px;}
+.tbl_opt .txt_area {width:320px;height:40px;}
+.tbl_opt th {font-weight:normal;color:#3a85c8;width:60px;text-align:left;}
+.tbl_opt td {padding:3px 0 3px 0;}
+.tbl_rcdm {width:100%;}
+.tbl_rcdm th {color:#3c3c3c;width:100px;background:url(https://secimage.yes24.com/sysimage/orderN/dot3.gif) 10px 7px no-repeat;padding:0 0 10px 17px;letter-spacing:-1px;}
+.tbl_rcdm td {padding:0 0 10px 0;}
+.tbl_rcdm .rc_prc th, .tbl_rcdm .rc_prc td {border-top:1px solid #9fc7e1;padding:20px 0 20px 17px;}
+.tbl_rcdm .rc_prc td {padding:20px 0 20px 0;}
+.tbl_rcdm .rc_prc th {background-position:10px 27px;}
+.tbl_rcdm .selbxw {width:220px;}
+.plyr_l .num {width:32px;margin:0 0 3px 0;text-align:right;padding:2px 5px 0 0;}
+.exchg_l li {width:180px;_width:190px;float:left;margin:0 0 0 10px}
+.exchg_l em {}
+.cock {width:8px;height:6px;background:url(https://secimage.yes24.com/sysimage/orderN/icon.gif) center -670px no-repeat;position:absolute;left:50%;top:-6px;}
+.cock_def  {width:8px;height:6px;background:url(https://secimage.yes24.com/sysimage/orderN/icon.gif) center -670px no-repeat;position:absolute;}
+.cock_posl {left:30px;top:-6px;}
+.cock_posr {right:30px;top:-6px;}
+.chk_price {font-weight:bold;padding:10px 0 5px 60px;}
+.btn_area_lft {clear:left;margin-top:-23px;}
+.btn_area_p {clear:left;padding:15px 0 2px 0;margin:10px 0 0 0;border-top:1px solid #9fc7e1;text-align:center;}
+.btn_area_ln {border-top:solid 1px #9fc7e1;}
+.uln {border:0;margin:0;}
+.chg_num { position:relative; }
+.chg_num .ipubx{ padding:2px 4px 0 0;width:32px;border:solid 1px #c1c1c1;text-align:right; }
+.chg_num .c_up { position:absolute;left:35px;top:0; }
+.chg_num .c_dn { position:absolute;left:35px;top:10px; }
+
+.exchg_yp {width:404px;height:71px;background:url(https://secimage.yes24.com/sysimage/orderN/bg_exchange.gif) 0 0 no-repeat;}
+.tbl_nbk {width:100%;margin:0 0 15px 0;}
+.tbl_nbk th, .tbl_nbk td {padding:5px 0 5px 20px;border-top:1px solid #d7d7d7;border-bottom:1px solid #d7d7d7}
+.tbl_nbk th {background:#f5f5f5;text-align:left;font-weight:normal;color:#3781c0;}
+.tbl_nbk td select {vertical-align:top;}
+.tbl_nbk .selbxw {float:left;margin:0 5px 0 0;}
+.tbl_dm {margin:0 0 10px 0;}
+.tbl_dm th {color:#3c3c3c;vertical-align:top;padding-top:10px;}
+.tbl_dm .dlv_mtd .rdb_w {width:120px;}
+.tbl_dm .rcp_h_s {padding:5px 0 10px 0;}
+.tbl_dm .rcp_h {padding:10px 0;}
+.tbl_dm .rdb_h {padding:0 0 15px 0;}
+.tbl_dm .ipubx {margin:0 0 5px 0;}
+.tbl_dm .ri {text-align:right;padding-right:20px;}
+.indot {border-top:1px solid #d7d7d7;border-bottom:1px solid #d7d7d7;}
+.indot td {border:none;background:url(https://secimage.yes24.com/sysimage/orderN/dotline.gif) 0 bottom repeat-x;padding-left:10px;}
+.indot .last td {background:none;border-bottom:1px solid #d7d7d7l}
+
+.tbl_nbk2 {width:100%;table-layout:fixed;}
+.tbl_nbk2 th, .tbl_nbk2 td {padding:10px 10px 10px 20px;border-top:1px solid #9fc7e1;border-bottom:1px solid #9fc7e1;}
+.tbl_nbk2 th {background:#eaf3f8;text-align:left;font-weight:normal;color:#3781c0;}
+.tbl_nbk2 td {border-right:none;color:#303030;}
+.tbl_nbk2 td .rdb_w {display:inline-block;margin-right:2px;}
+.sel_c th {font-weight:bold;}
+.sel_c th, .sel_c td {text-align:center;padding:10px;}
+.sel_c2 {clear:left;}
+.sel_c2 th {background:none;}
+.sel_c2 th, .sel_c2 td {padding:5px 10px;border:none;}
+.sel_c2 .rdb_w {margin:0 20px 0 0;}
+.tbl_ocb {border:1px solid #9fc7e1;}
+.tbl_ocb th,.tbl_ocb td {background:#eaf3f8;padding:10px;}
+.tbl_ocb th {color:#3c3c3c;font-size:14px;font-weight:bold;letter-spacing:-1px;border:none;}
+.tbl_ocb td {color:#a13b66;font-weight:bold;border:none;text-align:right;}
+.tbl_ocb td em {font-size:18px;font-family:verdana;letter-spacing:-1px;}
+
+.gcard_l {float:left;margin:0 0 15px 0;}
+.gcard_l li {border:1px solid #9fc7e1;width:224px;.width:242px;height:30px;.height:40px;float:left;margin:0 0 0 -1px;padding:10px 0 0 17px;font-weight:bold;letter-spacing:-1px;background:url(https://secimage.yes24.com/sysimage/orderN/dot3.gif) 10px 17px no-repeat;position:relative;}
+.gcard_l li .ipubx {width:90px;font-weight:bold;text-align:right;}
+.gcard_l span {position:absolute;right:20px;top:10px;}
+.gcard_l .gcard_ll {background-color:#e6f0fa;}
+.rpay_l {margin:0 0 5px 0;}
+.rpay_l li {border:1px solid #9fc7e1;width:403px;.width:420px;margin:-1px 0 0 0;padding:10px 0 10px 17px;font-weight:bold;letter-spacing:-1px;background:url(https://secimage.yes24.com/sysimage/orderN/dot3.gif) 10px 17px no-repeat;position:relative;}
+.rpay_l strong {position:absolute;right:20px;top:10px;}
+
+.bnl_w {background:#f5f5f5;border-top:1px solid #d7d7d7;border-bottom:1px solid #d7d7d7;padding:15px 15px 13px 15px;}
+.bnl_w h4 {font-weight:bold;margin:0 0 5px 0;letter-spacing:-1px;color:#3c3c3c;}
+.bnl_w p {margin:0 0 5px 0;}
+.bnl_cash_w {background:#f5f5f5;position:relative;padding:10px;border-bottom:1px solid #d7d7d7;}
+.bnl_cash_w p {font-weight:bold;color:#3c3c3c;letter-spacing:-1px;}
+.bnl_cash_w .ipubx {text-align:right;}
+.echg_w {position:absolute;right:10px;top:10px;}
+.glbx_w {border:1px solid #d7d7d7;background:#f5f5f5;padding:10px;margin:0 0 15px 0;}
+.glbx_w span {display:inline-block;width:200px;}
+.glbx_w .rdb_w {width:100px;margin:15px 0 5px 10px;}
+.blbx_w {border:1px solid #cddeef;background:#e6f0fa;padding:10px;margin:0 0 15px 0;}
+.encln_w p {margin:0 0 0 0;}
+.encln_l {border-bottom:1px solid #d7d7d7;padding: 0 0 10px 10px;margin:0 0 15px 0}
+.encln_l li {margin:0 0 10px 0;}
+.encln_l span {display:inline-block;width:120px;}
+.encln_l .ipubx {width:55px;}
+.encln_l li.ocbpw .ipubx {width:100px;}
+.encln_l li.dc6pert .ipubx {width:100px;text-align:right;font-weight:bold;}
+.encln_l .info11 {margin:5px 0 0 125px}
+.eclen_p {position:relative;}
+.eclen_p .plyr {position:absolute;left:-13px;top:20px;}
+.wfpt_l {padding:0 0 1px 0;}
+.wfpt_l li {margin:0 0 10px 0;position:relative;}
+.wfpt_l strong {color:#3a85c8;display:inline-block;width:130px;font-weight:normal}
+.wfpt_l span {position:absolute;right:0;top:0;font-weight:bold;} 
+.wfpt_l .ipubx {text-align:right;font-weight:bold;}
+.mngm_l {padding:0 0 1px 0;}
+.mngm_l li {margin:0 0 10px 0;position:relative;}
+.mngm_l .mngm_t {color:#3a85c8;display:inline-block;width:130px;font-weight:normal}
+.mngm_l .selbxw {width:100px;margin:-20px 0 0 135px;}
+.mngm_nt {border:1px solid #d7d7d7;background:#f5f5f5;padding:10px 10px 0 10px;margin:15px 0 0 0;}
+.mngm_nt2 {border:1px solid #d7d7d7;background:#f5f5f5;padding:10px;margin:15px 0 0 0;}
+.reanm {padding:15px 15px 10px 15px;margin:0 0 10px 0;border-bottom:1px solid #cbdee9;}
+.reanm .mngm_t {width:90px;}
+
+
+
+.aws_p {display:inline-block;background:url(https://secimage.yes24.com/sysimage/orderN/icon.gif) right -732px no-repeat;padding:0 10px 0 0;margin:0 10px 0 5px;font-size:11px;letter-spacing:-1px;color:#888;zoom:1;}
+a.aws_p:link,a.aws_p:visited  {color:#3378bb;}
+
+.tab_pl_w {background:#eaf3f8 url(https://secimage.yes24.com/sysimage/orderN/line_tabh.gif) 0 bottom repeat-x;padding:5px 0 0 5px;overflow:hidden;zoom:1;}
+.tab_pl_l {border-left:1px solid #cbdee9;}
+.tab_pl_l li {float:left;border:1px solid #cbdee9;margin:0 0 0 -1px;text-align:center;font-size:14px;font-weight:bold;letter-spacing:-1px;}
+.tab_pl_l li.on {border-bottom:1px solid #fff;}
+.tab_pl_l li a {background:#f2f7f9;display:block;width:120px;height:25px;.height:35px;padding:10px 0 0 0;color:#87a6b8;}
+.tab_pl_l li a:visited {color:#87a6b8;}
+.tab_pl_l li.on a {background:#fff;color:#3781c0;}
+.tab_pl_l li.on a:visited {color:#3781c0;}
+.elecauth li a {width:260px;}
+
+.tab_rlnm {background-color:#fff;padding:0;}
+.tab_rlnm .tab_pl_l li {font-size:12px;} 
+.tab_rlnm .tab_pl_l li a {width:100px;height:20px;.height:30px;padding:6px 0 0 0;}
+.tab_rlnm .tab_pl_l li.on a {background:#fff;color:#3781c0;}
+.tab_rlnm .tab_pl_l li.on a:visited {color:#3c3c3c;}
+
+
+.sort_hg {position:absolute;right:15px;top:57px;}
+.sort_hg a,.sort_hg em {display:inline-block;border:1px solid #ccc;color:#ccc;font-size:11px;letter-spacing:-1px;padding:0 3px;}
+.sort_hg em, .sort_hg a:hover {border:1px solid #3781c0;color:#3781c0;text-decoration:none;}
+
+.tbl_sot_w {position:relative;margin:0 0 10px 0;}
+.tbl_sot {border-collapse:collapse;width:640px;}
+.tbl_sot th, .tbl_sot td {border:1px solid #ccc;padding:5px 5px 3px 5px;}
+.tbl_sot th {font-weight:normal;color:#3378bb;}
+.tbl_sot .padd0 {padding:0;}
+.tbl_sot .padd20 {padding:5px 5px 3px 20px;}
+.tbl_sot .tbl_sot_s {width:100%;}
+.tbl_sot .tbl_sot_s1 {width:350px;}
+.tbl_sot p {margin:0 0 5px 10px;}
+.tbl_sot .tot_prc {padding:10px;font-weight:bold;width:100%;text-align:center;}
+.tbl_sot .tot_prc .t_s_b em{font-size:24px;font-family:verdana}
+.tbl_sot .tbll_r {border-right:none;}
+.tbl_sot .tbll_l {border-left:none;}
+.tbl_sot .tbll_t {border-top:none;}
+.tbl_sot .tbll_b {border-bottom:none;}
+.tbl_sot .tit_w {position:relative;text-align:left;}
+.tbl_sot .odnumber {position:absolute;left:0;.left:15px;top:7px;}
+.tbl_sot .t_s_b2 {display:block;width:100%;height:30px;font-size:18px;font-weight:bold;text-align:center;line-height:30px;} 
+.tbl_sot .blb td, .tbl_sot .blb th  {border:2px solid #aaa;}
+.tbl_sot_s th {white-space:nowrap;}
+.tbl_sot_s td {text-align:right}
+.tbl_sot_s tfoot td,.tbl_sot_s tfoot th {font-weight:bold;}
+.tbl_sot .t_a_l {text-align:left;}
+.tbl_sot .t_a_c {text-align:center;}
+.tbl_sot .t_a_r {text-align:right;}
+.tbl_sot .t_s_b {font-size:14px;letter-spacing:-1px;}
+.tbl_sot_s1 td {text-align:left;height:30px;}
+.stamp_pst {position:absolute;right:10px;.right:25px;top:70px;}
+.tbl_sot2 {width:720px;}
+.tbl_sot2 td {padding:5px 10px 3px 10px;}
+
+
+.istyle_cp {float:left;width:567px}
+.istyle_cp li {float:left;width:174px;text-align:center;margin:0 15px 15px 0}
+.istyle_cp li img {margin:0 0 10px 0;}
+
+.hdmny {height:19px;background:url(https://secimage.yes24.com/sysimage/orderN/icon.gif) 15px -760px no-repeat;padding:0 0 10px 37px;font-weight:bold;color:#3a85c8;margin:0 0 15px 0;position:relative;border-bottom:1px solid #d7d7d7;}
+.hdmny span {position:absolute;right:15px;top:0;color:#3c3c3c;}
+.dm_w {margin:0 0 15px 0;}
+.dm_msg {margin:0 0 5px 10px;}
+.dm_msg2 {margin:30px 0;text-align:center;font-weight:bold;}
+.agr_dm {text-align:right;font-size:11px;letter-spacing:-1px;}
+

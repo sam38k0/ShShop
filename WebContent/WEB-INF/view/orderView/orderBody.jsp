@@ -60,12 +60,55 @@
                     </table>
                     <div id='divDiscount' class='dc_area' style=''>
                     </div>
-                </div>
-
-                <!-- 상품확인 //-->
+	            </div>
+	
+				<div class="tot_price tot_price_pay">
+					<table class="tbl_p" cellspacing="0" cellpadding="0">
+						<colgroup>
+							<col width="120">
+							<col width="150">
+							<col width="40">
+							<col width="130">
+							<col width="40">
+							<col width="147">
+							<col width="25">
+							<col width="300">
+						</colgroup>
+						<tbody>
+							<tr>
+								<th><em class="tot1">총 상품수</em></th>
+								<th><em class="tot2">총 상품금액</em></th>
+								<th rowspan="2"><span class="iw tt_pl">+</span></th>
+								<th><em class="tot3">총 배송비</em></th>
+								<th rowspan="2"><span class="iw tt_mi">-</span></th>
+								<th><em class="tot4">총 할인금액</em></th>
+								<th rowspan="2"><span class="iw tt_ec">=</span></th>
+								<th><em class="tot5">최종 결제금액</em></th>
+							</tr>
+							<tr>
+								<td>1종(1개)</td>
+								<td><em>13,500</em>원</td>
+								<td><em id="txtTotalDelvFare">0</em>원</td>
+								<td class="clr1">
+									<em id="txtSaleAmount">0</em>원
+									<input type="hidden" id="hdnYes24Sale" value="0">
+								</td>
+								<td class="clr2">
+									<em id="txtTotalAmount">13,500</em>원
+									<span id="spnGiftPackGbMemo2" class="wfee" display="none" style="display: none;">
+										(선물포장비 <strong class="ls0">1,000원</strong> 포함)
+									</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- 상품확인 //-->
 
                 <!-- // 배송주소 -->
+                
                 <div id="divDelvAddr" class="pay_w" style="">
+                	</br></br>
                     <h3><span class="tbl_t dlv_address">배송주소</span></h3>
                     <div class="col2">
                         <div class="inf_mem">
@@ -76,7 +119,6 @@
                                         <strong>회원정보</strong>
                                     </th>
                                     <td>
-
                                         <div id="divMemInfo"><strong>김대웅</strong>
                                             <br />서울특별시 중구 충무로3가 59-13 9 해피하우스 602호
                                             <br />043-742-0196 <em class="dvi">/</em> 010-3224-0196
@@ -85,14 +127,13 @@
                                         <input type="hidden" id="hdnMemEml" value="xxxx3303@hanmail.net" />
                                         <input type="hidden" id="hdnAddrTelNo" value="043-742-0196" />
                                         <input type="hidden" id="hdnAddrMobNo" value="010-3224-0196" />
-
                                     </td>
                                 </tr>
                             </table>
                             <table cellpadding="0" cellspacing="0" class="tbl_pay">
                                 <tr>
                                     <th>
-                                        이름
+                                        	이름
                                     </th>
                                     <td>
                                         <input type="text" id="txtMemNm" value="김대웅" class="ipubx" />
@@ -101,7 +142,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        핸드폰
+                                        	핸드폰
                                     </th>
                                     <td class="num_p">
                                         <select id="ddlAddrMobNo1" style="width: 72px; margin-bottom: 1px; vertical-align: bottom"
@@ -122,7 +163,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        일반전화
+                                        	일반전화
                                     </th>
                                     <td class="num_p">
                                         <select id="ddlAddrTelNo1" style="width: 72px; margin-bottom: 1px; vertical-align: bottom"
@@ -167,7 +208,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        이메일
+                                        	이메일
                                     </th>
                                     <td class="eml_w">
                                         <input type="text" id="txtMemEml" value="xxxx3303@hanmail.net" class="ipubx" />
@@ -179,7 +220,7 @@
                         <table cellpadding="0" cellspacing="0" class="tbl_pay">
                             <tr id="tr_delv_addr">
                                 <th>
-                                    배송지
+                                    	배송지
                                 </th>
                                 <td class="dlv_adrs">
                                     <span class="rdb_w">
@@ -196,13 +237,17 @@
                                         <input type="radio" id="rdoDelvAddrSetModeMember" name="rdoDelvAddrSetMod" 
                                                onclick="fnRdoDelvAddrSetModChanged()" value="MEMBER" class="rdbtn" /> 회원정보동일
                                     </span>
+                                    <span class="rdb_w">
+                                        <input type="radio" id="rdoDelvAddrSetModeNew" name="rdoDelvAddrSetMod" 
+                                               onclick="fnRdoDelvAddrSetModChanged()" value="NEW" class="rdbtn" /> 새로입력
+                                    </span>
                                 </td>
                             </tr>
                         </table>
                         <table cellpadding="0" cellspacing="0" class="tbl_pay">
                             <tr id="trOrdNmNormal" style="">
                                 <th>
-                                    이름
+                                    	이름
                                 </th>
                                 <td>
                                     <input id="txtOrdNmNormal" type="text" value="김대웅" class="ipubx" />
@@ -220,7 +265,7 @@
                             </tr>
                             <tr id="trOrdNmStore" style="display: none">
                                 <th>
-                                    이름
+                                    	이름
                                 </th>
                                 <td>
                                     <input id="txtOrdNmStore" type="text" value="" class="ipubx" />
@@ -470,7 +515,7 @@
                                     <td>
                                         <div class="scard">
                                             <div class="selbxw">
-                                                <select id="ddlCardNormal" name="SelCard" onchange='fnDdlCardChanged(this, "", "-1");' style="width: 202px;">
+                                                <select id="ddlCardNormal" name="SelCard" style="width: 202px;">
                                                     <option value="00" title="00" selected="selected">카드사 선택</option>
                                                     <option value="35" title="03">롯데카드</option>
                                                     <option value="03" title="03">신한카드</option>
@@ -490,16 +535,16 @@
                                                     <option value="37" title="03">문화누리카드</option>
                                                     <option value="25" title="03">기타</option>
                                                 </select>
-                                                <select id="ddlCardPartner" onchange='fnDdlCardChanged(this, "", "-1");' style="display: none; width: 202px;">
+                                                <select id="ddlCardPartner" style="display: none; width: 202px;">
                                                     <option value="00" title="00" selected="selected">카드사 선택</option>
-                                                    <option value="35" title="03">YES24 MANIA 롯데카드</option>
-                                                    <option value="04" title="03">YES24 MANIA 삼성올앳카드</option>
-                                                    <option value="18" title="03">YES24 현대M카드</option>
-                                                    <option value="01" title="03">YES24 우리V카드</option>
-                                                    <option value="10" title="03">YES24 하나SK카드</option>
-                                                    <option value="03" title="03">YES24 신한카드</option>
+                                                    <option value="35" title="03">ShShop MANIA 롯데카드</option>
+                                                    <option value="04" title="03">ShShop MANIA 삼성올앳카드</option>
+                                                    <option value="18" title="03">ShShop 현대M카드</option>
+                                                    <option value="01" title="03">ShShop 우리V카드</option>
+                                                    <option value="10" title="03">ShShop 하나SK카드</option>
+                                                    <option value="03" title="03">ShShop 신한카드</option>
                                                 </select>
-                                                <select id="ddlCardForeign" onchange='fnDdlCardChanged(this, "", "-1");' style="display: none; width: 202px;">
+                                                <select id="ddlCardForeign" style="display: none; width: 202px;">
                                                     <option value="00" title="00" selected="selected">카드사 선택</option>
                                                 </select>
                                                 <input type="hidden" id="hdnPgCode" value="" />
@@ -543,7 +588,29 @@
                         </div>
                         <!--// 카드사 선택 -->
 
-                        <!-- 무통장 입금은행 -->
+						<!--  계좌이체 안내 -->
+						<div id="divPayMthdBankRTime" class="scard_w">
+						<table cellpadding="0" cellspacing="0" id="" class="tbl_pay">
+							<tbody>
+								<tr>
+									<th>계좌이체<br>안내
+									</th>
+									<td>
+										<ul class="smsg_l">
+											<li>계좌이체 플러그인이 설치안되어 있는 경우 설치 후 결제 <a href="javascript:"
+												onclick="window.open('http://pg.banktown.com/wallet/common/plugin_check.html', '', 'width=340, height=430'); return false;" title="파일 받기"
+												class="bw rfile">파일 받기</a></li>
+											<li>결제금액이 입력하신 계좌에서 자동으로 이체되는 서비스로 계좌이체시 본인인증 필요.(법인/개인사업자 계좌는 불가능) <a href="javascript:"
+												onclick="fnShowYesLayerPop('divCertificationInfo', this); return false;" title="본인 인증 안내" class="bw ifo_ctfc">본인 인증 안내</a></li>
+										</ul>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						</div>
+						<!--  //계좌이체 안내 -->
+
+						<!-- 무통장 입금은행 -->
                         <div id="divPayMthdBankAccnt" style="display: none" class="scard_w">
                             <table cellpadding="0" cellspacing="0" id="" class="tbl_pay">
                                 <tr>
@@ -579,6 +646,149 @@
                         </div>
                         <!--// 무통장 입금은행 -->
                     </div>
+                    <!-- 주소록 (숨기기)-->
+                    <div id="divAddressList" class="plyr" style="width: 700px; left: 130px; top: 1181px;">
+					    <div class="plyr_w">
+					        <div id="divAddressListMember" class="plyr_c" style="width: 700px;">
+					            <ul class="plyr_l">
+					                <li>
+					                    김대웅의 주소록(<strong>2</strong>) ( 최대 5개까지 등록 가능 )
+					                </li>
+					            </ul>
+					            <table class="tbl_l">
+					                <colgroup>
+					                    <col width="34">
+					                    <col width="60">
+					                    <col width="60">
+					                    <col width="">
+					                    <col width="100">
+					                    <col width="100">
+					                    <col width="90">
+					                </colgroup>
+					                <thead>
+					                    <tr>
+					                        <th colspan="2">
+					                            <em class="recia">수령지</em>
+					                        </th>
+					                        <th>
+					                            <em class="reci">수령자</em>
+					                        </th>
+					                        <th>
+					                            <em class="dlva">배송지</em>
+					                        </th>
+					                        <th>
+					                            <em class="phon">일반전화</em>
+					                        </th>
+					                        <th>
+					                            <em class="mobi">휴대폰</em>
+					                        </th>
+					                        <th>
+					                            <em class="mana">관리</em>
+					                        </th>
+					                    </tr>
+					                </thead>
+					                <tbody>
+					                    <tr>
+					                        <td valign="top">
+					                            <input type="checkbox" id="chkMemberAddress5" name="chkMemberAddress" value="5"  class="chkbx">
+					                        </td>
+					                        <td valign="top">
+					                            <a href="#" >김대웅</a>
+					                        </td>
+					                        <td valign="top">
+					                           	 김대웅
+					                        </td>
+					                        <td class="le" valign="top">
+					                            <div class="putAddrWrap">
+					                                <div class="putAddrLft">
+					                                    <img class="addr_item" src="https://secimage.yes24.com/sysimage/orderN/btn_putAddr02.gif" 
+					                                        width="30" height="13" alt="도로명">
+					                                </div>
+					                                <div class="putAddrRgt">
+					                                    <span class="putAddrTxt">
+					                                        <a href="#" >(100-013)  서울특별시 중구 수표로 10, 9 해피하우스 602호 (충무로3가)</a>
+					                                    </span>
+					                                </div>
+					                            </div>
+					                            <div class="putAddrWrap mgt5">
+					                                <div class="putAddrLft">
+					                                    <img class="addr_item" src="https://secimage.yes24.com/sysimage/orderN/btn_putAddr03.gif" width="30" height="13" alt="지번">
+					                                </div>
+					                                <div class="putAddrRgt">
+					                                    <span class="putAddrTxt grayTxt">
+					                                        <a class="grayTxt" href="#" >(100-013)  서울특별시 중구 충무로3가 59-13 9 해피하우스 602호 </a>
+					                                    </span>
+					                                </div>
+					                            </div>
+					                        </td>
+					                        <td valign="top">
+					                            043-742-0196
+					                        </td>
+					                        <td valign="top">
+					                            010-3224-0196
+					                        </td>
+					                        <td valign="top">
+					                            <a href="#"  title="삭제하기" class="bw delet_s">삭제하기</a>
+					                            <a href="#"  title="수정" class="bw modif">수정</a>
+					                        </td>
+					                    </tr>
+					                    <tr class="last">
+					                        <td valign="top">
+					                            <input type="checkbox" id="chkMemberAddress1" name="chkMemberAddress" value="1" class="chkbx">
+					                        </td>
+					                        <td valign="top">
+					                            <a href="#" >기본주소</a>
+					                        </td>
+					                        <td valign="top">
+					                            	김대웅
+					                        </td>
+					                        <td class="le" valign="top">
+					                            <div class="putAddrWrap">
+					                                <div class="putAddrLft">
+					                                    <img class="addr_item" src="https://secimage.yes24.com/sysimage/orderN/btn_putAddr02.gif" 
+					                                         width="30" height="13" alt="도로명">
+					                                </div>
+					                                <div class="putAddrRgt">
+					                                    <span class="putAddrTxt">
+					                                        <a href="#" >(100-013)  서울특별시 중구 수표로 10, 9 해피하우스 602호 (충무로3가)</a>
+					                                    </span>
+					                                </div>
+					                            </div>
+					                            <div class="putAddrWrap mgt5">
+					                                <div class="putAddrLft">
+					                                    <img class="addr_item" src="https://secimage.yes24.com/sysimage/orderN/btn_putAddr03.gif" width="30" height="13" alt="지번">
+					                                </div>
+					                                <div class="putAddrRgt">
+					                                    <span class="putAddrTxt grayTxt">
+					                                        <a class="grayTxt" href="#" >(100-013)  서울특별시 중구 충무로3가 59-13 9 해피하우스 602호 </a>
+					                                    </span>
+					                                </div>
+					                            </div>
+					                        </td>
+					                        <td valign="top">
+					                            043-742-0196
+					                        </td>
+					                        <td valign="top">
+					                            010-3224-0196
+					                        </td>
+					                        <td valign="top">
+					                            <a href="#"  title="삭제하기" class="bw delet_s">삭제하기</a>
+					                            <a href="#"  title="수정" class="bw modif">수정</a>
+					                        </td>
+					                    </tr>
+					                </tbody>
+					            </table>
+					            <div class="btn_area_p">
+					                <a href="#" class="bw sel_add_use" title="선택 주소 사용">선택주소사용</a>
+					                <a href="#" class="bw cnl" title="취소">취소</a>
+					            </div>
+					        </div>
+					        <div>
+					            <a href="#" title="닫기" class="close">닫기</a>
+					        </div>
+					    </div>
+					</div>
+                    <!--// 주소록 -->
                 </div>
         </div>
     </div>
