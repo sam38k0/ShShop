@@ -1,6 +1,5 @@
 package com.shshop.command;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,8 +11,6 @@ import com.shshop.control.CommandResult;
 import com.shshop.domain.Address;
 import com.shshop.domain.Order;
 import com.shshop.domain.OrderInfomationList;
-import com.shshop.domain.OrderInformation;
-import com.shshop.domain.OrderSetting;
 import com.shshop.domain.OrderState;
 import com.shshop.domain.Product;
 import com.shshop.domain.User;
