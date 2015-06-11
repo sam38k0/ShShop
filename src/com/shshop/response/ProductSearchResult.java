@@ -22,8 +22,6 @@ public class ProductSearchResult {
 	private int sortCondition = sortByDate;
 	private int priceFrom = 0;
 	private int priceTo = 1000000000;
-	
-	private String commentResult = "";
 
 	public ProductSearchResult(int currentPage, String keyword, int sortCondition, int pageDivNum, List<ProductSearchResultParam> searchResults) {
 		this.currentPage = currentPage;
@@ -137,14 +135,6 @@ public class ProductSearchResult {
 
 	public void setPageDivNum(int pageDivNum) {
 		this.pageDivNum = pageDivNum;
-	}
-	
-	public String getCommentResult() {
-		return commentResult;
-	}
-
-	public void setCommentResult(String commentResult) {
-		this.commentResult = commentResult;
 	}
 
 	public static Comparator<ProductSearchResultParam> sortByDateComp = new Comparator<ProductSearchResultParam>() {

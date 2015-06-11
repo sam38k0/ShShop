@@ -11,6 +11,8 @@ public interface BoardMapper {
 	
 	public Board getBoardById(@Param("boardId") int boardId);
 	
+	public Board getBoardByName(@Param("boardName") String boardName);
+	
 	public List<Board> getAllBoard();
 	
 	public void insertBoard(Board board);

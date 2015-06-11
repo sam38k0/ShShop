@@ -225,8 +225,8 @@ public class PostMapperTest {
 		assertTrue("testGetUserOfPost2", posts.size() > 0);
 		
 		for(Post postItem: posts) {
-			List<User> userItem = postMapper.getUserOfPost(postItem.getPostId());
-			assertTrue("testGetUserOfPost3", userItem.get(0) != null);
+			User userItem = postMapper.getUserOfPost(postItem.getPostId());
+			assertTrue("testGetUserOfPost3", userItem != null);
 		}
 			
 	}

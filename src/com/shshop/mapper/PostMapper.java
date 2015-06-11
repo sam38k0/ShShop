@@ -13,6 +13,8 @@ public interface PostMapper {
 	
 	public Post getPostById(@Param("postId") int postId); 
 	
+	public List<Post> getChildPosts(Post post);
+	
 	public int insertPostByProc(PostProc postProc);
 	
 	public void insertPost(Post post);
@@ -23,5 +25,5 @@ public interface PostMapper {
 	
 	public List<Post> getAllPostOfProdcut(@Param("productId") int productId);
 	
-	public List<User> getUserOfPost(@Param("postId") int postId);
+	public User getUserOfPost(@Param("postId") int postId);
 }

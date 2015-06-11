@@ -35,8 +35,7 @@
         </div>
         
         <!-- Basic JS -->        
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script> window.jQuery || document.write('<script src="${adminBean.contextPath}/content/js/jquery-1.9.1.js"></script>')</script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
 		<script src="${adminBean.contextPath}/content/js/initialize.js"></script>
 		<script src="${adminBean.contextPath}/content/js/user.js"></script>
 		

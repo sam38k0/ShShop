@@ -27,6 +27,10 @@
 			INNER JOIN `dt_post` p USING(`id_post`)
 		WHERE p.`id_post` = 1;
 	</select>
+	
+	<select id='getChildPosts' parameterType='${PostType}' resultMap='Post'>							
+		SELECT * FROM `dt_post` WHERE `id_post_parent`= ${id_post};				
+	</select>
 
 	<insert id='insertPost' parameterType='${PostType}' useGeneratedKeys='true' keyProperty='${id_post}'>
 	    INSERT INTO `dt_post` ( `id_board`, `id_post_parent`, `comment`, `node_position`)
@@ -61,6 +65,7 @@
 		<result property='comment' column='comment' />
 		<result property='postParentId' column='id_post_parent' />
 		<result property='nodePosition' column='node_position' />
+		<result property='dateCreated' column='date_created' />
 	</resultMap>
  
 </mapper>

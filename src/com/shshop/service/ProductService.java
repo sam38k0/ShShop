@@ -2,7 +2,10 @@ package com.shshop.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,14 +18,17 @@ import com.oreilly.servlet.MultipartRequest;
 import com.shshop.constant.Constant;
 import com.shshop.control.CommandResult;
 import com.shshop.domain.Category;
+import com.shshop.domain.Post;
 import com.shshop.domain.Product;
 import com.shshop.domain.ProductDetail;
 import com.shshop.domain.ProductImage;
 import com.shshop.domain.ProductProc;
 import com.shshop.domain.User;
 import com.shshop.helper.KeywordGuesser;
+import com.shshop.helper.PostHtmlBuilder;
 import com.shshop.helper.TimestampFileRenamePolicy;
 import com.shshop.mapper.CategoryMapper;
+import com.shshop.mapper.PostMapper;
 import com.shshop.mapper.ProductImageMapper;
 import com.shshop.mapper.ProductMapper;
 import com.shshop.mapper.UserMapper;
@@ -96,6 +102,14 @@ public class ProductService {
 			User user = userMapper.getUserById(product.getUserId());
 			if (user != null)
 				productInfo.setProductOwner(user);
+			
+			PostMapper postMapper = sqlSession.getMapper(PostMapper.class);
+			List<Post> posts = postMapper.getAllPostOfProdcut(productId);
+			String postResults = PostHtmlBuilder.getPostHtml(posts, postMapper);
+			if(postResults != null && !postResults.equals("")) {
+				System.out.println(postResults);
+				productInfo.setPostResults(postResults);
+			}
 
 			return productInfo;
 
