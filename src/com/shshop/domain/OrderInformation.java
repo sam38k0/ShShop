@@ -3,13 +3,15 @@ package com.shshop.domain;
 public class OrderInformation {
 	private User user;
 	private Product product;
+	private ProductImage productImg;
 	private Order order;
 	private OrderState orderState;
 	private Address address;
 	
-	public OrderInformation(User user, Product product, Order order, OrderState orderState, Address address) {
+	public OrderInformation(User user, Product product, ProductImage productImg, Order order, OrderState orderState, Address address) {
 		this.setUser(user);
 		this.setProduct(product);
+		this.setProductImg(productImg);
 		this.setOrder(order);
 		this.setOrderState(orderState);
 		this.setAddress(address);
@@ -53,5 +55,13 @@ public class OrderInformation {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public ProductImage getProductImg() {
+		return productImg;
+	}
+
+	public void setProductImg(ProductImage productImg) {
+		this.productImg = productImg;
 	}
 }
