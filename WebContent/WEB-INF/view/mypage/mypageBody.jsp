@@ -59,12 +59,11 @@
                     <th>배송지 주소</th>
                     <th>구매자정보</th>
                     <th>거래상태</th>
-                    <th>결제일</th>
                 </tr>
                 <c:forEach var = 'sellOrder' items='${sellOrderInfoList.orderInfos}'>
 	                <tr>
 	                    <td>${sellOrder.order.orderId}</td>
-	                    <td><span>${sellOrder.product.productId}</span><br>${sellOrder.product.name}</td>
+	                    <td><img src="<c:out value="${sellOrder.productImg.imagePath}"/> "><span>${sellOrder.product.productId}</span><br>${sellOrder.product.name}</td>
 	                    <td>${sellOrder.product.price}</td>
 	                    <td>${sellOrder.address.basicAdd} ${sellOrder.address.detailAdd}</td>
 	                    <td>${sellOrder.user.name} <br> ${sellOrder.user.phone}</td>
@@ -81,7 +80,6 @@
 	                            <input type="button" value="송장 등록">
 	                        </div>
 	                    </td>
-	                    <td>2015-05-22</td>
 	                </tr>
                 </c:forEach>
             </table>
@@ -103,29 +101,19 @@
                     <th>배송지 주소</th>
                     <th>구매자정보</th>
                     <th>거래상태</th>
-                    <th>결제일</th>
                 </tr>
+                <c:forEach var = 'buyOrder' items='${buyOrderInfoList.orderInfos}'>
                 <tr>
-                    <td>1</td>
-                    <td><span>상품번호</span><br> 상품제목</td>
-                    <td>2000</td>
-                    <td>서울 강북구</td>
-                    <td>함윤희 <br> 010-1111-1231</td>
+                    <td>${buyOrder.order.orderId}</td>
+                    <td><span>${buyOrder.product.productId}</span><br>${buyOrder.product.name}</td>
+                    <td>${buyOrder.product.price}</td>
+                    <td>${buyOrder.address.basicAdd} ${buyOrder.address.detailAdd}</td>
+                    <td>${buyOrder.user.name}<br>${buyOrder.user.phone}</td>
                     <td>
                         <span>배송 대기</span><br>
-                        <a href="#">송장 등록</a>
-                        <div class="parcel_service">
-                            택배사 
-                            <select name="" id="">
-                                <option value="">대한통운</option>
-                                <option value="">한진택배</option>
-                            </select>
-                            <input type="text" value="송장 번호">
-                            <input type="button" value="송장 등록">
-                        </div>
                     </td>
-                    <td>2015-05-22</td>
                 </tr>
+                </c:forEach>
             </table>
         </div>
         <div id="sell_board_list">

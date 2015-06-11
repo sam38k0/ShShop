@@ -421,4 +421,19 @@ public class ProductService {
 	public void setMulti(MultipartRequest multi) {
 		this.multi = multi;
 	}
+	
+	public ProductImage getProductImg(int productId) {
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		
+		List<ProductImage> product;
+		ProductImage productImg = null;
+		try {
+			ProductImageMapper productImgMapper = sqlSession.getMapper(ProductImageMapper.class);
+			product = productImgMapper.getProductImages(productId);
+			productImg = product.get(0);
+		} finally {
+			sqlSession.close();
+		}
+		return productImg;
+	}
 }

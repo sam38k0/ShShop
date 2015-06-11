@@ -1,6 +1,5 @@
 package com.shshop.command;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,12 +11,12 @@ import com.shshop.control.CommandResult;
 import com.shshop.domain.Address;
 import com.shshop.domain.Order;
 import com.shshop.domain.OrderInfomationList;
-import com.shshop.domain.OrderInformation;
-import com.shshop.domain.OrderSetting;
 import com.shshop.domain.OrderState;
 import com.shshop.domain.Product;
+import com.shshop.domain.ProductImage;
 import com.shshop.domain.User;
 import com.shshop.service.OrderService;
+import com.shshop.service.ProductService;
 
 public class OrderViewCommand implements Command{
 
@@ -29,6 +28,7 @@ public class OrderViewCommand implements Command{
 		User user = (User) session.getAttribute(Constant.attrUser);
 		
 		OrderService orderService = new OrderService(request, response);
+		ProductService productService = new ProductService(request, response);
 		
 		// 구매 리스트
 		List<Order> buyOrder = orderService.selectBuyOrder(user.getUserId());
@@ -37,10 +37,11 @@ public class OrderViewCommand implements Command{
 		for (Order order : buyOrder) {
 			User sellUser = orderService.selectSellInfo(order.getProductId());
 			Product product = orderService.selectProduct(order.getProductId());
+			ProductImage productImg = productService.getProductImg(order.getProductId());
 			Address sellAdd = orderService.selectSellAddress(order.getProductId());
 			OrderState buyState = orderService.selectOrderState(order.getOrderId());
 			
-			buyOrderInfoList.addOrderInformation(sellUser,product,order, buyState,sellAdd);
+			buyOrderInfoList.addOrderInformation(sellUser,product, productImg, order, buyState,sellAdd);
 		}
 		
 		if(buyOrderInfoList.getOrderInfos().size() > 0 )
@@ -54,12 +55,14 @@ public class OrderViewCommand implements Command{
 		for(Order order: sellOrder) {  
 			User buyUser = orderService.selectBuyInfo(order.getUserId());
 			Product product =  orderService.selectProduct(order.getProductId());
+			ProductImage productImg = productService.getProductImg(order.getProductId());
 			Address buyAdd = orderService.selectBuyAddress(order.getOrderId());
 			OrderState sellState = orderService.selectOrderState(order.getOrderId());
 			
-			sellOrderInfoList.addOrderInformation(buyUser, product, order, sellState, buyAdd);
+			sellOrderInfoList.addOrderInformation(buyUser, product, productImg, order, sellState, buyAdd);
 		}
 		
+		if(sellOrderInfoList.getOrderInfos().size() > 0 )
 		request.setAttribute("sellOrderInfoList", sellOrderInfoList);
 		
 		CommandResult comResult = new CommandResult("/WEB-INF/view/mypage/mypage.jsp");

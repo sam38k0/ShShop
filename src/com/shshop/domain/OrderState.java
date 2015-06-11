@@ -3,7 +3,7 @@ package com.shshop.domain;
 public class OrderState {
 	private Integer orderId;
 	private boolean virtualOrder; // 가상주문(장바구니 상태)
-	private boolean actrivated; // 주문 활성화 여부
+	private boolean activated; // 주문 활성화 여부
 	private boolean paid; // 지불완료
 	private boolean sendedEmail; // 이메일 보냄
 	private boolean shipped; // 배송중
@@ -23,11 +23,11 @@ public class OrderState {
 	public void setVirtualOrder(boolean virtualOrder) {
 		this.virtualOrder = virtualOrder;
 	}
-	public boolean isActrivated() {
-		return actrivated;
+	public boolean isActivated() {
+		return activated;
 	}
-	public void setActrivated(boolean actrivated) {
-		this.actrivated = actrivated;
+	public void setActivated(boolean activated) {
+		this.activated = activated;
 	}
 	public boolean isPaid() {
 		return paid;
