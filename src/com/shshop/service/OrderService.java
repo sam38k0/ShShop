@@ -1,12 +1,16 @@
 package com.shshop.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.shshop.domain.Address;
 import com.shshop.domain.Order;
 import com.shshop.domain.OrderState;
+import com.shshop.domain.Product;
 import com.shshop.domain.User;
 import com.shshop.mapper.OrderMapper;
 import com.shshop.mapper.OrderStateMapper;
@@ -47,13 +51,13 @@ public class OrderService {
 		}
 	}
 	
-	public Order selectBuyOrder(int userId) {
+	public List<Order> selectBuyOrder(int orderId) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		
-		Order order;
+		List<Order> order;
 		try {
 			OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
-			order = orderMapper.getBuyOrder(userId);
+			order = orderMapper.getBuyOrder(orderId);
 		} finally {
 			sqlSession.close();
 		}
@@ -73,10 +77,23 @@ public class OrderService {
 		return user;
 	}
 	
-	public Order selectSellOrder(int userId) {
+	public Address selectBuyAddress(int orderId) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		
-		Order order;
+		Address address;
+		try {
+			OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+			address = orderMapper.getBuyUserAdd(orderId);
+		} finally {
+			sqlSession.close();
+		}
+		return address;
+	}
+	
+	public List<Order> selectSellOrder(int userId) {
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		
+		List<Order> order;
 		try {
 			OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
 			order = orderMapper.getSellOrder(userId);
@@ -97,6 +114,19 @@ public class OrderService {
 			sqlSession.close();
 		}
 		return user;
+	}
+	
+	public Address selectSellAddress(int productId) {
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		
+		Address address;
+		try {
+			OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+			address = orderMapper.getSellUserAdd(productId);
+		} finally {
+			sqlSession.close();
+		}
+		return address;
 	}
 	
 	public void insertOrderState(OrderState orderState) {
@@ -134,5 +164,18 @@ public class OrderService {
 			sqlSession.close();
 		}
 		return orderState;
+	}
+	
+	public Product selectProduct(int productId) {
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		
+		Product product;
+		try {
+			OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+			product = orderMapper.getProductInfo(productId);
+		} finally {
+			sqlSession.close();
+		}
+		return product;
 	}
 }
