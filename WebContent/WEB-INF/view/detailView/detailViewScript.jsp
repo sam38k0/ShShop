@@ -7,6 +7,7 @@
 
 <script type="text/javascript">
 
+ajaxChildObject = null;
 
 function pagePrev(event) {
 	event.preventDefault();
@@ -69,11 +70,12 @@ function textAreaEnter(e) {
  		});
  	}
 }
-
+ 
 function textAreaChildEnter(e) {
     var code = (e.keyCode ? e.keyCode : e.which);
     
- 	if(code == 13) { //Enter keycode
+ 	if(code == 13) { //Enter keycode 
+ 	
  		var text = $(this).val();
  		if(text === null && text === '')
  			return;
@@ -118,9 +120,8 @@ function commentSet(text) {
 		$('#comment_list').empty();
 		$('#comment_list').html(response).contents();
 		$('#comment_list').append(commentAddElem);
+		registerEvent();
 	}
-	
-	registerEvent();
 }
 
 
