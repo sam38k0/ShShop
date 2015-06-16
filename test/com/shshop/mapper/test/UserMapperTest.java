@@ -2,7 +2,7 @@ package com.shshop.mapper.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -11,6 +11,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.shshop.domain.Address;
+import com.shshop.domain.AddressProc;
 import com.shshop.domain.Product;
 import com.shshop.domain.User;
 import com.shshop.helper.Format;
@@ -105,6 +107,28 @@ public class UserMapperTest {
 		int countAfter = userMapper.getUserCount();
 		assertEquals("testAddUser", countBefore + 1, countAfter);
 	}
+	
+	@Test
+	public void testInsertAddressProc() {
+		String email = "aa@gmail.com";
+		String password = "11111111";
+		 
+		userMapper.insertUserByEmail(new User("aa@gmail.com", "11111111"));  
+		
+		List<User> users = userMapper.getAllUsers();
+ 
+		User user = users.get(0);
+		
+		AddressProc addressProc = new AddressProc(new Address(user.getUserId(),null,"basicAdd","detailAdd","000","111"));
+		userMapper.insertAddressProc(addressProc);
+		
+		assertTrue(addressProc.getInsertedAddressId()>0);
+	}
+//	
+//	@Test
+//	public void testUpdateAddress() {
+//		
+//	}
 	
 //	@Test
 //	public void testAddUser() {

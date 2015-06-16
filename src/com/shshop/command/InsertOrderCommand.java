@@ -35,16 +35,16 @@ public class InsertOrderCommand implements Command{
 		AuthenticatorService attService = new AuthenticatorService(request, response);
 		
 		if (basicAdd == null && detailAdd == null) {
-			address = attService.getUserAdd(user.getUserId());
-			if (address == null) {
-				address = new Address(userId, "", "");
-				attService.insertUserAdd(address);
-				address = attService.getUserAdd(userId);
+			address = attService.getUserAddress(user.getUserId()).get(0);
+			if (address == null) { 
+				address = new Address(userId, null,"","", "111", "222");
+				attService.insertUserAddress(address);
+				address = attService.getUserAddress(userId).get(0);
 			}
 		} else {
-			address = new Address(userId, basicAdd, detailAdd);
-			attService.insertUserAdd(address);
-			address = attService.getUserAdd(userId);
+			address = new Address(userId, null, basicAdd, detailAdd, "111", "222");
+			attService.insertUserAddress(address);
+			address = attService.getUserAddress(userId).get(0);
 		}
 		
 		Integer idAddress = address.getIdAddress();

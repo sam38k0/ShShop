@@ -39,6 +39,7 @@ public class Constant {
 	public static final String attrProductId = "productId";
 	public static final String attrComment = "comment";
 	public static final String attrParentId = "parentId";
+	public static final String attrOrderViewInfo = "orderviewInfo";
 	
 	//DD Parameter
 	public static final String paramFileUpload = "file-upload";
@@ -56,6 +57,7 @@ public class Constant {
     public static final String productInsertionError = "Product Insertion Error Occured.";
 	public static final String noProduct = "There is no product information.";
 	public static final String noComment = "There is no comment information.";
+	public static final String noAddress = "There is no user address information";
 	
 	//Ajax
 	public static final String Success = "Success";

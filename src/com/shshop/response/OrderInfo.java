@@ -4,10 +4,13 @@ import com.shshop.domain.Product;
 
 public class OrderInfo {
 	private Product product;
+	private String imagePath;
 	private int quantity;
 	
-	public OrderInfo(Product product, int quantity) {
+	public OrderInfo(Product product, String imagePath, int quantity) {
 		this.setProduct(product);
+		this.setImagePath(imagePath);
+		this.setQuantity(quantity);
 	}
 
 	public Product getProduct() {
@@ -32,5 +35,13 @@ public class OrderInfo {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 }

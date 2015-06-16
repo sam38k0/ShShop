@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.shshop.domain.Address;
+import com.shshop.domain.AddressProc;
 import com.shshop.domain.Product;
 import com.shshop.domain.User;
 
@@ -29,10 +30,12 @@ public interface UserMapper {
 
 	public void updateUser(User user);
 	
-	public Address getUserAddress(@Param("userId") int userId);
+	public List<Address> getUserAddress(@Param("userId") int userId);
 	
 	public void insertAddress(Address address);
 	
+	public void insertAddressProc(AddressProc address);
+ 
 	public void updateUserAddress(Address address);
 }
 

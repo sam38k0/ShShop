@@ -37,14 +37,20 @@
 	</select>
 	
 	<insert id='insertAddress' parameterType='${AddressType}' useGeneratedKeys='true' keyProperty='${id_address}'>
-		INSERT INTO `cr_address`(`id_user`, `basic_add`, `detail_add`) 
-		VALUES (${id_user}, ${basic_add}, ${detail_add});
+		INSERT INTO `cr_address`(`id_user`, `id_parent_address`, `basic_add`, `detail_add`, `post_num_header`, `post_num_tail`) 
+		VALUES (${id_user}, ${id_parent_address}, ${basic_add}, ${detail_add}, ${post_num_header}, ${post_num_tail});
 	</insert>
 
 	<insert id='insertUser' parameterType='${UserType}' useGeneratedKeys='true' keyProperty='${id_user}'>
 		INSERT INTO `cr_user`
 		(`email`, `password`, `name`, `phone`, `ktalk_id`,`birthday`,`bio`)
 		VALUES (${email}, ${password}, ${name}, ${phone}, ${ktalk_id}, ${birthday}, ${bio})
+	</insert>
+	
+	<insert id="insertAddressProc" parameterType='${AddressProcType}' statementType="CALLABLE">
+    {
+        call proc_insert_address(${id_user}, ${id_parent_address}, ${basic_add}, ${detail_add}, ${post_num_header}, ${post_num_tail}, #{insertedAddressId, mode=OUT, jdbcType=INTEGER})
+    }
 	</insert>
 	
 	<insert id='insertUserByEmail' useGeneratedKeys='true' keyProperty='${id_user}'>
@@ -54,7 +60,15 @@
 	</insert>
 	
 	<update id='updateUserAddress' parameterType='${AddressType}'>
-		UPDATE `cr_address` SET `basic_add`=${basic_add}, `detail_add`=${detail_add} WHERE `id_user`=${id_user};
+		UPDATE `cr_address`
+		<set>
+			<if test="${id_parent_address} != null"> `id_parent_address`=${id_parent_address},</if>
+			<if test="${basic_add} != null"> `basic_add`=${basic_add}, </if>
+			<if test="${detail_add} != null"> `detail_add`=${detail_add}, </if>
+			<if test="${post_num_header} != null"> `post_num_header`=${post_num_header}, </if>
+			<if test="${post_num_tail} != null"> `post_num_tail`=${post_num_tail}, </if>
+		</set>
+		 WHERE `id_user`=${id_user};
 	</update>
 	
 	<update id='updateUser' parameterType='${UserType}'>
@@ -96,8 +110,13 @@
 	
 	<resultMap id='Address' type='${AddressType}'>
 		<id property='idAddress' column='id_address' />
+		<result property='parentIdAddress' column='id_parent_address' />
 		<result property='userId' column='id_user' />
 		<result property='basicAdd' column='basic_add' />
 		<result property='detailAdd' column='detail_add' />
+		<result property='postNumHeader' column='post_num_header' />
+		<result property='postNumTail' column='post_num_tail' />
 	</resultMap>
-</mapper>
+	
+ </mapper>
+ 

@@ -37,10 +37,13 @@ CREATE INDEX `PK_cr_user_email`ON `cr_user` (`email` ASC);
 -- address ----------------------------------------------------------------------------------
 
 CREATE TABLE `cr_address` (
-	`id_address` SMALLINT     UNSIGNED NOT NULL AUTO_INCREMENT, -- id_address
-	`id_user`    SMALLINT     UNSIGNED NOT NULL,     -- id_user
-	`basic_add`       VARCHAR(64)  NULL, 
-	`detail_add`        VARCHAR(255) NULL, 
+	`id_address` 		SMALLINT   UNSIGNED NOT NULL AUTO_INCREMENT, -- id_address
+	`id_parent_address` SMALLINT  DEFAULT NULL,     -- null 이면 지번, 아니면 지번 주소 id 를 가지는 도로명 주소
+	`id_user`    		SMALLINT   UNSIGNED NOT NULL,  -- id_user
+	`bagic_add`       	VARCHAR(64)  NULL, -- 동주소
+	`detail_add`        VARCHAR(255) NULL, -- 상세주소
+	`post_num_header`   VARCHAR(3)   NOT NULL,     -- 우편번호 앞 번호
+	`post_num_tail`     VARCHAR(3)   NOT NULL,     -- 우편번호 뒷 번호
 	
     CONSTRAINT `PK_cr_address`
 		PRIMARY KEY (`id_address`),
@@ -51,6 +54,7 @@ CREATE TABLE `cr_address` (
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
 );
+
 
 -- ps_category ----------------------------------------------------------------------------------
 
@@ -454,6 +458,38 @@ BEGIN
 END $$
 DELIMITER ;
 
+
+ 
+ -- Insert Address ----------------------------------------------------------------------------------
+ 
+DELIMITER $$
+DROP PROCEDURE IF EXISTS proc_insert_address $$
+CREATE PROCEDURE proc_insert_address ( IN `proc_id_user`			SMALLINT, 
+									   IN `proc_id_parent_address`  SMALLINT,
+								       IN `proc_bagic_add`        	VARCHAR(64),
+								       IN `proc_detail_add`  		VARCHAR(255),
+                                       IN `post_num_header`  		VARCHAR(3),
+                                       IN `post_num_tail`  			VARCHAR(3),
+									   OUT `proc_inserted_address_id` INT) 
+BEGIN
+    DECLARE addressParentId INT;
+    
+    SET addressParentId = `proc_id_parent_address`;
+	IF (`proc_id_parent_address` <= 0) 
+    THEN  
+		SET addressParentId = null;
+	END IF;
+     
+    
+	INSERT INTO `cr_address`(`id_user`, `id_parent_address`, `bagic_add`, `detail_add`, `post_num_header`, `post_num_tail`) 
+		VALUES (`proc_id_user`, addressParentId, `proc_bagic_add`, `proc_detail_add` , `post_num_header`, `post_num_tail`);
+ 
+	SET `proc_inserted_address_id` = LAST_INSERT_ID();
+END $$
+DELIMITER ;
+
+
+
 /* -- Confirm ----------------------------------------------------------------------------------
  BEGIN;
 
@@ -581,4 +617,26 @@ BEGIN;
 	WHERE p.`id_post` = 1;
 ROLLBACK;
 
+-- Insert Address Test -----------------------------------------------------------------
+
+ DELIMITER $$
+DROP PROCEDURE IF EXISTS proc_insert_address_test $$
+CREATE PROCEDURE proc_insert_address_test () 
+BEGIN
+	DECLARE userId INT;
+	DECLARE outputId INT unsigned DEFAULT 1;
+
+	INSERT INTO `cr_user` (`email`, `password` ) VALUES ('email1','password1'); 
+    
+    SET userId = LAST_INSERT_ID();
+ 
+	CALL proc_insert_address(userId , null, 'basic1', 'detail1',  '000','111', outputId); 
+	CALL proc_insert_address(userId , outputId, 'basic2', 'detail2',  '000','111', outputId); 
+
+	SELECT outputId;
+END $$
+DELIMITER ;
+
+ CALL proc_insert_address_test();
+ 
 */

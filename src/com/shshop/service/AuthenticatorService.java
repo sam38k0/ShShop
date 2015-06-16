@@ -226,20 +226,19 @@ public class AuthenticatorService {
 		return product;
 	}
 	
-	public Address getUserAdd(Integer userId) {
-		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-		Address address;
+	public List<Address> getUserAddress(Integer userId) {
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession(); 
 		
 		try {
 			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-			address = userMapper.getUserAddress(userId);
+			List<Address> addresses = userMapper.getUserAddress(userId);
+			return addresses; 
 		} finally {
 			sqlSession.close();
-		}
-		return address;
+		} 
 	}
 	
-	public void insertUserAdd(Address address) {
+	public void insertUserAddress(Address address) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		
 		try {
@@ -251,7 +250,7 @@ public class AuthenticatorService {
 		}
 	}
 	
-	public void updateUserAdd(Address address) {
+	public void updateUserAddress(Address address) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		
 		try {

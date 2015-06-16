@@ -26,7 +26,7 @@ public class SingleUserCommand implements Command{
 		AuthenticatorService attService = new AuthenticatorService(request, response);
 		
 		request.setAttribute("user", attService.getViewSingleUser(user.getUserId()));
-		request.setAttribute("address", attService.getUserAdd(user.getUserId()));
+		request.setAttribute("address", attService.getUserAddress(user.getUserId()).get(0));
 		
 		comm = new CommandResult("/WEB-INF/view/mypage/mypage.jsp");
 		

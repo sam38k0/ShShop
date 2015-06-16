@@ -43,15 +43,15 @@ public class UserDataChangeCommand implements Command{
 		
 		System.out.println(basicAdd);
 		System.out.println(detailAdd);
-		Address address = attService.getUserAdd(user.getUserId());
+		Address address = attService.getUserAddress(user.getUserId()).get(0);
 		
 		if (address == null) {
-			address = new Address(user.getUserId(), basicAdd, detailAdd);
-			attService.insertUserAdd(address);
+			address = new Address(user.getUserId(), null, basicAdd, detailAdd,"000","1111");
+			attService.insertUserAddress(address);
 		} else {
 			address.setBasicAdd(basicAdd);
 			address.setDetailAdd(detailAdd);
-			attService.updateUserAdd(address);
+			attService.updateUserAddress(address);
 		}
 		
 		CommandResult comm = new CommandResult("text/plain;charset=UTF-8","회원정보 수정완료");
