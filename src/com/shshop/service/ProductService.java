@@ -2,10 +2,7 @@ package com.shshop.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +30,7 @@ import com.shshop.mapper.ProductImageMapper;
 import com.shshop.mapper.ProductMapper;
 import com.shshop.mapper.UserMapper;
 import com.shshop.response.InsertProductParams;
+import com.shshop.response.OrderInfo;
 import com.shshop.response.ProductSearchResult;
 import com.shshop.response.ProductSearchResultManager;
 import com.shshop.response.ProductSearchResultParam;
@@ -116,6 +114,46 @@ public class ProductService {
 		} finally {
 			sqlSession.close();
 		}
+	}
+	
+	public OrderInfo createNewOrderInfo(Integer productId, int quantity) {
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+
+		try {
+			Product product = getProductById(sqlSession, productId);
+			String imagePath = getProductFirstImagePaths(sqlSession,productId);
+			
+			if(product == null)
+				return null;
+			
+			if(imagePath == "") {
+				//[TODO] : Set Default Image
+			}
+			
+			return new OrderInfo(product, imagePath, quantity);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	private String getProductFirstImagePaths(SqlSession sqlSession, Integer productId) {
+		ProductImageMapper imageMapper = sqlSession.getMapper(ProductImageMapper.class);
+		List<ProductImage> images = imageMapper.getProductImages(productId);
+
+		String contextPath = request.getContextPath();
+
+		if (images != null) {
+			return images.get(0).getImagePath();
+		}
+		
+		return "";
+	}
+	
+	private Product getProductById(SqlSession sqlSession, int productId) {
+		ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+		Product product = productMapper.getProductById(productId);
+		return product;
 	}
 
 	public CommandResult searchProdcuts() {
