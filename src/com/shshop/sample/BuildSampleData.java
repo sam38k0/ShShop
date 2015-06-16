@@ -208,6 +208,84 @@ public class BuildSampleData {
 		categoryMapper.insertRootCategory(new Category("모바일", "모바일Desc", "모바일Link"));
 		categoryMapper.insertRootCategory(new Category("레저", "레저Desc", "레저Link"));
 		categoryMapper.insertRootCategory(new Category("도서", "도서Desc", "도서Link"));
+		
+		Category parentCategory = categoryMapper.getCategoryByName("여성의류");
+		categoryMapper.insertChildCategory(new Category(parentCategory, "여성 티셔츠", "여성티셔츠Desc", "여성티셔츠Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "여성 니트류", "여성니트류Desc", "여성니트류Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "여성 조끼류", "여성조끼류Desc", "여성조끼류Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "원피스", "원피스Desc", "원피스Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "여성 속옷", "여성 속옷Desc", "여성 속옷Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "기타 여성복", "기타 여성복Desc", "기타 여성복Link"));
+		
+		parentCategory = categoryMapper.getCategoryByName("남성의류");
+		categoryMapper.insertChildCategory(new Category(parentCategory, "남성 티셔츠", "남성 티셔츠Desc", "남성 티셔츠Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "남성 니트류", "남성 니트류Desc", "남성 니트류Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "남성 조끼류", "남성 조끼류Desc", "남성 조끼류Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "남성 자켓", "남성 자켓Desc", "남성 자켓Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "남성 속옷", "남성 속옷Desc", "남성 속옷Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "기타 남성복", "기타 남성복Desc", "기타 남성복Link"));
+	
+		parentCategory = categoryMapper.getCategoryByName("화장품");
+		categoryMapper.insertChildCategory(new Category(parentCategory, "메이크업", "메이크업Desc", "메이크업Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "향수", "향수Desc", "향수Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "바디", "바디Desc", "바디Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "헤어", "헤어Desc", "헤어Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "아로마", "아로마Desc", "아로마Link"));
+		
+		parentCategory = categoryMapper.getCategoryByName("잡화");
+		categoryMapper.insertChildCategory(new Category(parentCategory, "신발", "신발Desc", "신발Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "지갑", "지갑Desc", "지갑Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "모자", "모자Desc", "모자Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "벨트", "벨트Desc", "벨트Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "모자", "모자Desc", "모자Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "안경", "안경Desc", "안경Link"));
+		
+		parentCategory = categoryMapper.getCategoryByName("출산/아동");
+		categoryMapper.insertChildCategory(new Category(parentCategory, "유아의류", "유아의류Desc", "유아의류Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "신생아의류", "신생아의류Desc", "신생아의류Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "유아도서", "유아도서Desc", "유아도서Link")); 
+		categoryMapper.insertChildCategory(new Category(parentCategory, "아동의류", "아동의류Desc", "아동의류Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "완구", "완구Desc", "완구Link"));
+		
+		parentCategory = categoryMapper.getCategoryByName("가구");
+		categoryMapper.insertChildCategory(new Category(parentCategory, "책상", "책상Desc", "책상Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "의자", "의자Desc", "의자Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "침대", "침대Desc", "침대Link")); 
+		categoryMapper.insertChildCategory(new Category(parentCategory, "쇼파", "쇼파Desc", "쇼파Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "싱크대", "싱크대Desc", "싱크대Link"));
+		
+		parentCategory = categoryMapper.getCategoryByName("게임");
+		categoryMapper.insertChildCategory(new Category(parentCategory, "닌텐도", "닌텐도Desc", "닌텐도Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "PSP", "PSPDesc", "PSPLink"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "Nii", "NiiDesc", "NiiLink")); 
+		categoryMapper.insertChildCategory(new Category(parentCategory, "XBox", "XBoxDesc", "XBoxLink")); 
+		
+		parentCategory = categoryMapper.getCategoryByName("가전");
+		categoryMapper.insertChildCategory(new Category(parentCategory, "TV", "TVDesc", "TV상Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "냉장고", "냉장고Desc", "냉장고Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "선풍기", "선풍기Desc", "선풍기Link")); 
+		categoryMapper.insertChildCategory(new Category(parentCategory, "세탁기", "세탁기Desc", "세탁기Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "청소기", "청소기Desc", "청소기Link"));
+		
+		parentCategory = categoryMapper.getCategoryByName("모바일");
+		categoryMapper.insertChildCategory(new Category(parentCategory, "SKT", "SKTDesc", "SKTLink"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "KT", "KTDesc", "KTLink"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "LGU+", "LGU+Desc", "LGU+Link")); 
+		categoryMapper.insertChildCategory(new Category(parentCategory, "휴대폰주변기기", "휴대폰주변기기Desc", "휴대폰주변기기Link"));
+		
+		parentCategory = categoryMapper.getCategoryByName("레저");
+		categoryMapper.insertChildCategory(new Category(parentCategory, "헬스", "헬스Desc", "헬스Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "요가", "요가Desc", "요가Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "스키", "스키Desc", "스키Link")); 
+		categoryMapper.insertChildCategory(new Category(parentCategory, "보드", "보드Desc", "보드Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "등산", "등산Desc", "등산Link"));
+		
+		parentCategory = categoryMapper.getCategoryByName("도서");
+		categoryMapper.insertChildCategory(new Category(parentCategory, "외국어", "외국어Desc", "외국어Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "소설", "소설Desc", "소설Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "문학", "문학Desc", "문학Link")); 
+		categoryMapper.insertChildCategory(new Category(parentCategory, "수필", "수필Desc", "수필Link"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "교재", "교재Desc", "교재Link"));
 	}
 
 	private static void insertUser() {

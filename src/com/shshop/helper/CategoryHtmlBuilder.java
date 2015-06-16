@@ -21,18 +21,37 @@ public class CategoryHtmlBuilder {
 
 	@Override
 	public String toString() { 
-		if (items.isEmpty()) {
-			if(category != null)
-				return "<li><a href=\"searchCategory?categoryName="+ getName() + "\">" + getName() + "</a></li>";
-			else
-				return "<li><a href=\"searchCategory?categoryName="+ getName() + "\">" + getName() + "</a></li>";
-		} else {
-			if(category!= null)
-				return "<li><a href=\"searchCategory?categoryName="+ getName() + "\">" + "\" class=\"choice\">" + getName() + "</a>";
-			else
-				return "<li><a href=\"searchCategory?categoryName="+ getName() + "class=\"choice\">" + getName() + "</a>";
-		}
+		StringBuilder result = new StringBuilder();
 		
+		if (items.isEmpty()) {
+			result.append("<li><a href=\"searchCategory?categoryName=");
+			result.append( getName());
+			result.append( "\">");
+			result.append( getName() );
+			result.append( "</a></li>");
+			return result.toString();
+		} 
+		else 
+		{
+			if(category!= null)
+			{
+				result.append("<li><a href=\"searchCategory?categoryName=");
+				result.append( getName());
+				result.append( "\" class=\"choice\">"); 
+				result.append(getName());
+				result.append( "</a>");
+				return result.toString(); 
+			}
+			else
+			{
+				result.append("<li><a href=\"searchCategory?categoryName=");
+				result.append( getName());
+				result.append( "\" class=\"choice\">"); 
+				result.append(getName());
+				result.append( "</a>");
+				return result.toString(); 
+			}
+		}
 	}
 
 	public void add(CategoryHtmlBuilder menuComponent) {
