@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.shshop.constant.Constant;
+import com.shshop.domain.Address;
+import com.shshop.domain.AddressProc;
 import com.shshop.domain.Board;
 import com.shshop.domain.Category;
 import com.shshop.domain.Post;
@@ -218,6 +220,21 @@ public class BuildSampleData {
 		userMapper.insertUser(new User("name7@gmail.com", "7777", "name7", "777-777-7777", "ktalk7", "bio7", Format.getSqlDate(Format.randDate())));
 		userMapper.insertUser(new User("name8@gmail.com", "8888", "name8", "888-888-8888", "ktalk8", "bio8", Format.getSqlDate(Format.randDate())));
 		userMapper.insertUser(new User("name9@gmail.com", "9999", "name9", "999-999-9999", "ktalk9", "bio9", Format.getSqlDate(Format.randDate())));
+
+		List<User> users = userMapper.getAllUsers();
+
+		for (User user : users) {
+			for (int i = 0; i < 4; i++) {
+				String postRandomNumHead = "" + Format.randInt(100, 999);
+				String postRandomNumTail = "" + Format.randInt(100, 999);
+				
+				AddressProc addrProc = new AddressProc(new Address(user.getUserId(), null, "basicAdd" + i, "detailAdd" + i, postRandomNumHead, postRandomNumTail));
+				userMapper.insertAddressProc(addrProc);
+
+				addrProc = new AddressProc(new Address(user.getUserId(), addrProc.getInsertedAddressId(), "basicAddrRoad", "detailAddRoad", postRandomNumHead, postRandomNumTail));
+				userMapper.insertAddressProc(addrProc);
+			}
+		}
 	}
 
 	private static void inputSampleProducts(int categoryId, String productNameHeader) {

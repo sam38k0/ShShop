@@ -40,7 +40,7 @@ CREATE TABLE `cr_address` (
 	`id_address` 		SMALLINT   UNSIGNED NOT NULL AUTO_INCREMENT, -- id_address
 	`id_parent_address` SMALLINT  DEFAULT NULL,     -- null 이면 지번, 아니면 지번 주소 id 를 가지는 도로명 주소
 	`id_user`    		SMALLINT   UNSIGNED NOT NULL,  -- id_user
-	`bagic_add`       	VARCHAR(64)  NULL, -- 동주소
+	`basic_add`       	VARCHAR(64)  NULL, -- 동주소
 	`detail_add`        VARCHAR(255) NULL, -- 상세주소
 	`post_num_header`   VARCHAR(3)   NOT NULL,     -- 우편번호 앞 번호
 	`post_num_tail`     VARCHAR(3)   NOT NULL,     -- 우편번호 뒷 번호
@@ -466,7 +466,7 @@ DELIMITER $$
 DROP PROCEDURE IF EXISTS proc_insert_address $$
 CREATE PROCEDURE proc_insert_address ( IN `proc_id_user`			SMALLINT, 
 									   IN `proc_id_parent_address`  SMALLINT,
-								       IN `proc_bagic_add`        	VARCHAR(64),
+								       IN `proc_basic_add`        	VARCHAR(64),
 								       IN `proc_detail_add`  		VARCHAR(255),
                                        IN `post_num_header`  		VARCHAR(3),
                                        IN `post_num_tail`  			VARCHAR(3),
@@ -481,13 +481,12 @@ BEGIN
 	END IF;
      
     
-	INSERT INTO `cr_address`(`id_user`, `id_parent_address`, `bagic_add`, `detail_add`, `post_num_header`, `post_num_tail`) 
-		VALUES (`proc_id_user`, addressParentId, `proc_bagic_add`, `proc_detail_add` , `post_num_header`, `post_num_tail`);
+	INSERT INTO `cr_address`(`id_user`, `id_parent_address`, `basic_add`, `detail_add`, `post_num_header`, `post_num_tail`) 
+		VALUES (`proc_id_user`, addressParentId, `proc_basic_add`, `proc_detail_add` , `post_num_header`, `post_num_tail`);
  
 	SET `proc_inserted_address_id` = LAST_INSERT_ID();
 END $$
 DELIMITER ;
-
 
 
 /* -- Confirm ----------------------------------------------------------------------------------
