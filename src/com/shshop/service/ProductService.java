@@ -116,7 +116,7 @@ public class ProductService {
 		}
 	}
 	
-	public OrderInfo createNewOrderInfo(Integer productId, int quantity) {
+	public OrderInfo createNewOrderInfo(Integer productId, int quantity, int shippingPrice) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 
 		try {
@@ -130,7 +130,7 @@ public class ProductService {
 				//[TODO] : Set Default Image
 			}
 			
-			return new OrderInfo(product, imagePath, quantity);
+			return new OrderInfo(product, imagePath, quantity, shippingPrice);
 			
 		} finally {
 			sqlSession.close();

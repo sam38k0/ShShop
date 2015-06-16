@@ -1,5 +1,6 @@
 package com.shshop.response;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,8 +10,7 @@ import com.shshop.domain.User;
 public class OrderViewInfo {
 	private List<OrderInfo> orderInfos = new ArrayList<>();
 	private User user;
-	private List<Address> addresses;
-    private int totalPrice;
+	private List<Address> addresses; 
 
 	public OrderViewInfo(User user, List<Address> addresses) {
 		this.setUser(user);
@@ -38,13 +38,35 @@ public class OrderViewInfo {
 		}
 	}
 
-	public int getTotalPrice() {
-		totalPrice = 0;
+	public String getTotalPrice() {
+		int totalPrice = 0;
+		for(OrderInfo orderInfo : orderInfos) {
+			totalPrice += orderInfo.getProductTotalPrice();
+			totalPrice += orderInfo.getShippingPrice();
+		}
+		
+	    DecimalFormat df = new DecimalFormat("#,###"); 
+		return df.format(totalPrice);
+	}
+	
+	public String getShippingTotalPrice() {
+		int totalPrice = 0;
+		for(OrderInfo orderInfo : orderInfos) {
+			totalPrice += orderInfo.getShippingPrice();
+		}
+		
+	    DecimalFormat df = new DecimalFormat("#,###"); 
+		return df.format(totalPrice);
+	}
+	
+	public String getProductsTotalPrice() {
+		int totalPrice = 0;
 		for(OrderInfo orderInfo : orderInfos) {
 			totalPrice += orderInfo.getProductTotalPrice();
 		}
 		
-		return totalPrice;
+	    DecimalFormat df = new DecimalFormat("#,###"); 
+		return df.format(totalPrice);
 	}
 
 	public User getUser() {
@@ -61,5 +83,21 @@ public class OrderViewInfo {
 
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
+	}
+
+	public String getTotalDescription() {
+		String totalDescription = "";
+		try {
+			int totalQuantity = 0;
+			for(OrderInfo orderInfo : orderInfos ){
+				totalQuantity += orderInfo.getQuantity();
+			}
+			
+			totalDescription = "" + orderInfos.size() + " 종 ( " + totalQuantity + ") 개";
+		} catch (Exception e) {
+			totalDescription = "";
+		}
+		
+		return totalDescription;
 	}
 }

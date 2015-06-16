@@ -37,25 +37,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class='last'>
+ 
+						<c:forEach var="orderInfo" varStatus="orderInfos" items="${requestScope.orderViewInfo.orderInfos}">
+						<tr class='last'>
                                 <td class='goods_img le'>
                                     <a href='http://www.yes24.com/24/Goods/18242263' class='pd_a' target='_blank'>
-                                        <img src='https://secimage.yes24.com/Goods/18242263/60x0' alt='' class='pdimg' target='_blank' />
+                                        <img src="<c:out value="${adminBean.contextPath}"/><c:out value="${orderInfo.imagePath}"/> " alt='' class='pdimg' target='_blank' />
                                     </a>
                                 </td>
                                 <td>
-                                    <a href='http://www.yes24.com/24/Goods/18242263' class='pd_a'>[도서] 고미숙의 로드클래식, 길 위에서 길 찾기</a>
+                                    <a href='http://www.yes24.com/24/Goods/18242263' class='pd_a'>${orderInfo.product.name}</a>
                                 </td>
                                 <td>
-                                    15,000원
+                                    ${orderInfo.product.price}
                                 </td>
  
                                 <td>
-                                    1
+                                    ${orderInfo.quantity}
                                 </td>
-                                <td><strong>13,500원</strong>
+                                <td><strong> ${orderInfo.price}원</strong>
                                 </td>
                             </tr>
+                            </c:forEach>
                         </tbody>
                     </table>
                     <div id='divDiscount' class='dc_area' style=''>
@@ -76,7 +79,7 @@
 						</colgroup>
 						<tbody>
 							<tr>
-								<th><em class="tot1">총 상품수</em></th>
+								<th><em class="tot1">총 상품수s</em></th>
 								<th><em class="tot2">총 상품금액</em></th>
 								<th rowspan="2"><span class="iw tt_pl">+</span></th>
 								<th><em class="tot3">총 배송비</em></th>
@@ -86,15 +89,15 @@
 								<th><em class="tot5">최종 결제금액</em></th>
 							</tr>
 							<tr>
-								<td>1종(1개)</td>
-								<td><em>13,500</em>원</td>
-								<td><em id="txtTotalDelvFare">0</em>원</td>
+								<td>${requestScope.orderViewInfo.totalDescription}</td>
+								<td><em>${requestScope.orderViewInfo.productsTotalPrice}</em>원</td>
+								<td><em id="txtTotalDelvFare">${requestScope.orderViewInfo.shippingTotalPrice}</em>원</td>
 								<td class="clr1">
 									<em id="txtSaleAmount">0</em>원
 									<input type="hidden" id="hdnYes24Sale" value="0">
 								</td>
 								<td class="clr2">
-									<em id="txtTotalAmount">13,500</em>원
+									<em id="txtTotalAmount">${requestScope.orderViewInfo.totalPrice}</em>원
 									<span id="spnGiftPackGbMemo2" class="wfee" display="none" style="display: none;">
 										(선물포장비 <strong class="ls0">1,000원</strong> 포함)
 									</span>

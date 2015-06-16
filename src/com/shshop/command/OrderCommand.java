@@ -31,17 +31,16 @@ public class OrderCommand implements Command {
 			return new CommandResult(Constant.textPlain, Constant.noAddress);
 		}
 		
-		
-		
 		OrderViewInfo orderViewInfo = new OrderViewInfo(user, addresses); 
 		ProductService productService = new ProductService(request, response);
-		orderViewInfo.addOrderInfo(productService.createNewOrderInfo(1,3));
-		orderViewInfo.addOrderInfo(productService.createNewOrderInfo(2,3));
-		orderViewInfo.addOrderInfo(productService.createNewOrderInfo(3,3));
+		orderViewInfo.addOrderInfo(productService.createNewOrderInfo(1,3,2500));
+		orderViewInfo.addOrderInfo(productService.createNewOrderInfo(2,3,5000));
+		orderViewInfo.addOrderInfo(productService.createNewOrderInfo(3,3,10000));
 		
-		synchronized (session) {
-			session.setAttribute(Constant.attrOrderViewInfo, orderViewInfo);
-		}
+		System.out.println(orderViewInfo.getTotalDescription());
+		System.out.println(orderViewInfo.getTotalPrice()); 
+ 
+		request.setAttribute(Constant.attrOrderViewInfo, orderViewInfo);
  
 		return new CommandResult("/WEB-INF/view/orderView/order.jsp");
 	}

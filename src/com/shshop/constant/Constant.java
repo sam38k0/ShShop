@@ -39,7 +39,7 @@ public class Constant {
 	public static final String attrProductId = "productId";
 	public static final String attrComment = "comment";
 	public static final String attrParentId = "parentId";
-	public static final String attrOrderViewInfo = "orderviewInfo";
+	public static final String attrOrderViewInfo = "orderViewInfo";
 	
 	//DD Parameter
 	public static final String paramFileUpload = "file-upload";

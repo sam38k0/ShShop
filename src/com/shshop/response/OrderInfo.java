@@ -6,11 +6,13 @@ public class OrderInfo {
 	private Product product;
 	private String imagePath;
 	private int quantity;
+	private int shippingPrice;
 	
-	public OrderInfo(Product product, String imagePath, int quantity) {
+	public OrderInfo(Product product, String imagePath, int quantity, int shippingPrice) {
 		this.setProduct(product);
 		this.setImagePath(imagePath);
 		this.setQuantity(quantity);
+		this.setShippingPrice(shippingPrice);
 	}
 
 	public Product getProduct() {
@@ -43,5 +45,17 @@ public class OrderInfo {
 
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+	
+	public int getPrice() {
+		return product.getPrice() * quantity;
+	}
+
+	public int getShippingPrice() {
+		return shippingPrice;
+	}
+
+	public void setShippingPrice(int shippingPrice) {
+		this.shippingPrice = shippingPrice;
 	}
 }
