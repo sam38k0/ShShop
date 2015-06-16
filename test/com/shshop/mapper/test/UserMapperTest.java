@@ -119,7 +119,7 @@ public class UserMapperTest {
  
 		User user = users.get(0);
 		
-		AddressProc addressProc = new AddressProc(new Address(user.getUserId(),null,"basicAdd","detailAdd","000","111"));
+		AddressProc addressProc = new AddressProc(new Address(user.getUserId(),null,"basicAdd","detailAdd","000","111","addrName","111-222-3333"));
 		userMapper.insertAddressProc(addressProc);
 		
 		assertTrue(addressProc.getInsertedAddressId()>0);

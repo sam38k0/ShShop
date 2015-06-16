@@ -37,12 +37,12 @@ public class InsertOrderCommand implements Command{
 		if (basicAdd == null && detailAdd == null) {
 			address = attService.getUserAddress(user.getUserId()).get(0);
 			if (address == null) { 
-				address = new Address(userId, null,"","", "111", "222");
+				address = new Address(userId, null,"","", "111", "222", user.getName(), user.getPhone());
 				attService.insertUserAddress(address);
 				address = attService.getUserAddress(userId).get(0);
 			}
 		} else {
-			address = new Address(userId, null, basicAdd, detailAdd, "111", "222");
+			address = new Address(userId, null, basicAdd, detailAdd, "111", "222", user.getName(), user.getPhone());
 			attService.insertUserAddress(address);
 			address = attService.getUserAddress(userId).get(0);
 		}

@@ -37,8 +37,8 @@
 	</select>
 	
 	<insert id='insertAddress' parameterType='${AddressType}' useGeneratedKeys='true' keyProperty='${id_address}'>
-		INSERT INTO `cr_address`(`id_user`, `id_parent_address`, `basic_add`, `detail_add`, `post_num_header`, `post_num_tail`) 
-		VALUES (${id_user}, ${id_parent_address}, ${basic_add}, ${detail_add}, ${post_num_header}, ${post_num_tail});
+		INSERT INTO `cr_address`(`id_user`, `id_parent_address`, `basic_add`, `detail_add`, `post_num_header`, `post_num_tail`, `name`, `phone_number`) 
+		VALUES (${id_user}, ${id_parent_address}, ${basic_add}, ${detail_add}, ${post_num_header}, ${post_num_tail}, ${name}, ${phone_number});
 	</insert>
 
 	<insert id='insertUser' parameterType='${UserType}' useGeneratedKeys='true' keyProperty='${id_user}'>
@@ -49,7 +49,7 @@
 	
 	<insert id="insertAddressProc" parameterType='${AddressProcType}' statementType="CALLABLE">
     {
-        call proc_insert_address(${id_user}, ${id_parent_address}, ${basic_add}, ${detail_add}, ${post_num_header}, ${post_num_tail}, #{insertedAddressId, mode=OUT, jdbcType=INTEGER})
+        call proc_insert_address(${id_user}, ${id_parent_address}, ${basic_add}, ${detail_add}, ${post_num_header}, ${post_num_tail}, ${name}, ${phone_number}, #{insertedAddressId, mode=OUT, jdbcType=INTEGER})
     }
 	</insert>
 	
@@ -116,6 +116,8 @@
 		<result property='detailAdd' column='detail_add' />
 		<result property='postNumHeader' column='post_num_header' />
 		<result property='postNumTail' column='post_num_tail' />
+		<result property='name' column='name' />
+		<result property='phoneNumber' column='phone_number' />
 	</resultMap>
 	
  </mapper>

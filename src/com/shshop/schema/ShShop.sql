@@ -42,8 +42,10 @@ CREATE TABLE `cr_address` (
 	`id_user`    		SMALLINT   UNSIGNED NOT NULL,  -- id_user
 	`basic_add`       	VARCHAR(64)  NULL, -- 동주소
 	`detail_add`        VARCHAR(255) NULL, -- 상세주소
-	`post_num_header`   VARCHAR(3)   NOT NULL,     -- 우편번호 앞 번호
-	`post_num_tail`     VARCHAR(3)   NOT NULL,     -- 우편번호 뒷 번호
+	`post_num_header`   VARCHAR(3)   NOT NULL,  -- 우편번호 앞 번호
+	`post_num_tail`     VARCHAR(3)   NOT NULL,  -- 우편번호 뒷 번호
+	`name`              VARCHAR(50)  NOT NULL, -- 주소별명
+    `phone_number`      VARCHAR(30)  NULL,    -- 핸드폰번호
 	
     CONSTRAINT `PK_cr_address`
 		PRIMARY KEY (`id_address`),
@@ -468,8 +470,10 @@ CREATE PROCEDURE proc_insert_address ( IN `proc_id_user`			SMALLINT,
 									   IN `proc_id_parent_address`  SMALLINT,
 								       IN `proc_basic_add`        	VARCHAR(64),
 								       IN `proc_detail_add`  		VARCHAR(255),
-                                       IN `post_num_header`  		VARCHAR(3),
-                                       IN `post_num_tail`  			VARCHAR(3),
+                                       IN `proc_post_num_header`  	VARCHAR(3),
+                                       IN `proc_post_num_tail`  	VARCHAR(3),
+                                       IN `proc_name`				VARCHAR(50),
+                                       IN `proc_phone_number`       VARCHAR(30),
 									   OUT `proc_inserted_address_id` INT) 
 BEGIN
     DECLARE addressParentId INT;
@@ -481,8 +485,8 @@ BEGIN
 	END IF;
      
     
-	INSERT INTO `cr_address`(`id_user`, `id_parent_address`, `basic_add`, `detail_add`, `post_num_header`, `post_num_tail`) 
-		VALUES (`proc_id_user`, addressParentId, `proc_basic_add`, `proc_detail_add` , `post_num_header`, `post_num_tail`);
+	INSERT INTO `cr_address`(`id_user`, `id_parent_address`, `basic_add`, `detail_add`, `post_num_header`, `post_num_tail`, `name`, `phone_number`) 
+		VALUES (`proc_id_user`, addressParentId, `proc_basic_add`, `proc_detail_add` , `proc_post_num_header`, `proc_post_num_tail`, `proc_name`, `proc_phone_number`);
  
 	SET `proc_inserted_address_id` = LAST_INSERT_ID();
 END $$

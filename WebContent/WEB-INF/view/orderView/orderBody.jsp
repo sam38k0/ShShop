@@ -116,23 +116,6 @@
                     <div class="col2">
                         <div class="inf_mem">
                             <h4 class="tbl_t">주문고객</h4>
-                            <table cellpadding="0" cellspacing="0" class="tbl_pay" style="display:none">
-                                <tr>
-                                    <th>
-                                        <strong>회원정보</strong>
-                                    </th>
-                                    <td>
-                                        <div id="divMemInfo"><strong>${requestScope.orderViewInfo.user.name}</strong>
-                                            <br />${requestScope.orderViewInfo.basicAddressOrigin}
-                                            <br />043-742-0196 <em class="dvi">/</em> 010-3224-0196
-                                            <br />xxxx3303@hanmail.net</div>
-                                        <input type="hidden" id="hdnMemNm" value="김대웅" />
-                                        <input type="hidden" id="hdnMemEml" value="xxxx3303@hanmail.net" />
-                                        <input type="hidden" id="hdnAddrTelNo" value="043-742-0196" />
-                                        <input type="hidden" id="hdnAddrMobNo" value="010-3224-0196" />
-                                    </td>
-                                </tr>
-                            </table>
                             <table cellpadding="0" cellspacing="0" class="tbl_pay">
                                 <tr>
                                     <th>이름</th>
@@ -189,41 +172,8 @@
                         </table>
                         <table cellpadding="0" cellspacing="0" class="tbl_pay">
                             <tr id="trOrdNmNormal" style="">
-                                <th>
-                                    	이름
-                                </th>
-                                <td>
-                                    <input id="txtOrdNmNormal" type="text" value="김대웅" class="ipubx" />
-                                    <input type="hidden" id="hdnLastNormalRcvrNm" value="김대웅" />
-                                    <input type="hidden" id="hdnLastNormalZipCd" value="100-013" />
-                                    <input type="hidden" id="hdnLastNormalAddr1" value="서울특별시 중구 충무로3가 59-13" />
-                                    <input type="hidden" id="hdnLastNormalAddr2" value="9 해피하우스 602호 " />
-                                    <input type="hidden" id="hdnLastNormalAddr3" value="서울특별시 중구 수표로 10" />
-                                    <input type="hidden" id="hdnLastNormalAddr4" value="충무로3가" />
-                                    <input type="hidden" id="hdnLastNormalZipSeqCd" value="001" />
-                                    <input type="hidden" id="hdnLastNormalRcvrMobTelNo" value="010-3224-0196" />
-                                    <input type="hidden" id="hdnLastNormalRcvrTelNo" value="--" />
-                                    <input type="hidden" id="hdnLastNormalBuMngNo" value="1114015800100590013017709" />
-                                </td>
-                            </tr>
-                            <tr id="trOrdNmStore" style="display: none">
-                                <th>
-                                    	이름
-                                </th>
-                                <td>
-                                    <input id="txtOrdNmStore" type="text" value="" class="ipubx" />
-                                </td>
-                            </tr>
-
-                            <tr id="trOrdNmCrema" style="display: none">
-                                <th>
-                                    	이름
-                                </th>
-                                <td>
-
-                                    <input id="txtOrdNmCrema" type="text" value="" class="ipubx" />
-                                </td>
-
+                                <th>이름</th>
+                                <td><input id="txtOrdNmNormal" type="text" value="<c:out value="${requestScope.orderViewInfo.basicAddressOrigin.name}"/>" class="ipubx" /></td>
                             </tr>
 
                             <tr id="trDelvAddrNormal" style="">
@@ -235,27 +185,20 @@
                                            onclick="javascript:LoadPostalCode('aZipFind');" readonly="readonly" /> -
                                     <input type="text" id="txtZipCode2" value="013" class="ipubx" style="width: 40px" readonly="readonly"
                                            onclick="javascript:LoadPostalCode('aZipFind');" />
-                                    <input type="hidden" id="hdnZipSeqCd" value="001" />
-                                    <input type="hidden" id="hdnZipSelectMode" value="" />
                                     <a href="javascript:" onclick="LoadPostalCode('aZipFind'); return false;" title="주소 찾기" 
                                        class="bw sch_address" id="aZipFind">주소 찾기   
                                     </a>
                                     <br/>
                                     <p style="margin:5px 0;">도로명 주소
                                         <input type="text" id="txtAddressBySt" class="ipubx" onblur="fnAddressModifyApply();" 
-                                               value="서울특별시 중구 수표로 10, 9 해피하우스 602호 (충무로3가)" 
+                                               value="<c:out value="${requestScope.orderViewInfo.basicAddressNew.basicAdd} "/><c:out value="${requestScope.orderViewInfo.basicAddressNew.detailAdd}"/>" 
                                                style="width:320px;vertical-align:middle;" readonly="readonly" />
                                     </p>
                                     <p style="line-height:20px;">지번 주소&nbsp;&nbsp;&nbsp;
                                         <input type="text" id="txtAddressByOld" onblur="fnAddressModifyApply();" 
-                                               value="서울특별시 중구 충무로3가 59-13 9 해피하우스 602호 " class="ipubx" 
+                                               value="<c:out value="${requestScope.orderViewInfo.basicAddressOrigin.basicAdd} "/><c:out value="${requestScope.orderViewInfo.basicAddressOrigin.detailAdd}"/>"
+                                               class="ipubx" 
                                                style="width:320px;vertical-align:middle;" readonly="readonly" />
-                                        <input type="hidden" id="txtAddress1Normal" value="서울특별시 중구 충무로3가 59-13" />
-                                        <input type="hidden" id="txtAddress2Normal" value="9 해피하우스 602호 " />
-                                        <input type="hidden" id="hdnAddress1NormalBySt" value="서울특별시 중구 수표로 10" />
-                                        <input type="hidden" id="hdnAddress2NormalBySt" value="충무로3가" />
-                                        <input type="hidden" id="hdnBuMngNoBySt" value="1114015800100590013017709" />
-                                        <input type="hidden" id="hdnValidateDoro" value="true" />
                                         <a href="#" title="주소록에 추가" class="bw add_adrs">주소록에 추가</a>
                                     </p> 
                                 </td>

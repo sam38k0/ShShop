@@ -3,11 +3,10 @@ package com.shshop.domain;
 public class AddressProc {
 	private Address address;
 	private Integer insertedAddressId = -1;
-	
+
 	public AddressProc(Address address) {
 		this.address = address;
 	}
-	
 
 	public Integer getIdAddress() {
 		return address.getIdAddress();
@@ -65,13 +64,51 @@ public class AddressProc {
 		address.setParentIdAddress(parentIdAddress);
 	}
 
+	public String getName() {
+		return address.getName();
+	}
+
+	public void setName(String name) {
+		address.setName(name);
+	}
 
 	public Integer getInsertedAddressId() {
 		return insertedAddressId;
 	}
 
-
 	public void setInsertedAddressId(Integer insertedAddressId) {
 		this.insertedAddressId = insertedAddressId;
+	}
+
+	public String getPhoneNumber() {
+		return address.getPhoneNumber();
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		address.setPhoneNumber(phoneNumber);
+	}
+
+	public String getPhoneNumberHead() {
+		return address.getPhoneNumberHead();
+	}
+
+	public void setPhoneNumberHead(String phoneNumberHead) {
+		address.setPhoneNumberHead(phoneNumberHead);
+	}
+
+	public String getPhoneNumberMid() {
+		return address.getPhoneNumberMid();
+	}
+
+	public void setPhoneNumberMid(String phoneNumberMid) {
+		address.setPhoneNumberMid(phoneNumberMid);
+	}
+
+	public String getPhoneNumberTail() {
+		return address.getPhoneNumberTail();
+	}
+
+	public void setPhoneNumberTail(String phoneNumberTail) {
+		address.setPhoneNumberTail(phoneNumberTail);
 	}
 }

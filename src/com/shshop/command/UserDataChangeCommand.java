@@ -46,7 +46,7 @@ public class UserDataChangeCommand implements Command{
 		Address address = attService.getUserAddress(user.getUserId()).get(0);
 		
 		if (address == null) {
-			address = new Address(user.getUserId(), null, basicAdd, detailAdd,"000","1111");
+			address = new Address(user.getUserId(), null, basicAdd, detailAdd,"000","1111", user.getName(), user.getPhone());
 			attService.insertUserAddress(address);
 		} else {
 			address.setBasicAdd(basicAdd);

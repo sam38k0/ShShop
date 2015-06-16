@@ -7,22 +7,29 @@ public class Address implements Serializable {
 	private Integer idAddress;
 	private Integer parentIdAddress;
 	private Integer userId;
+	private String name;
 	private String basicAdd;
 	private String detailAdd;
 	private String postNumHeader;
 	private String postNumTail;
+	private String phoneNumber;
+	private String phoneNumberHead;
+	private String phoneNumberMid;
+	private String phoneNumberTail;
 
 	public Address() {
 
 	}
 
-	public Address(Integer userId, Integer parentIdAddress, String basicAdd, String detailAdd, String postNumHeader, String postNumTail) {
-		this.userId = userId;
-		this.basicAdd = basicAdd;
-		this.detailAdd = detailAdd;
-		this.parentIdAddress = parentIdAddress;
-		this.postNumHeader = postNumHeader;
-		this.postNumTail = postNumTail;
+	public Address(Integer userId, Integer parentIdAddress, String basicAdd, String detailAdd, String postNumHeader, String postNumTail, String name, String phoneNumber) {
+		this.setUserId(userId);
+		this.setBasicAdd(basicAdd);
+		this.setDetailAdd(detailAdd);
+		this.setParentIdAddress(parentIdAddress);
+		this.setPostNumHeader(postNumHeader);
+		this.setPostNumTail(postNumTail);
+		this.setName(name);
+		this.setPhoneNumber(phoneNumber);
 	}
 
 	public Integer getIdAddress() {
@@ -79,5 +86,54 @@ public class Address implements Serializable {
 
 	public void setParentIdAddress(Integer parentIdAddress) {
 		this.parentIdAddress = parentIdAddress;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+		
+		String[] splitedPhoneNumber = phoneNumber.split("-");
+		
+		if(splitedPhoneNumber.length != 3)
+			return;
+		 
+		setPhoneNumberHead(splitedPhoneNumber[0]);
+		setPhoneNumberMid(splitedPhoneNumber[1]);
+		setPhoneNumberTail(splitedPhoneNumber[2]);
+	}
+
+	public String getPhoneNumberHead() {
+		return phoneNumberHead;
+	}
+
+	public void setPhoneNumberHead(String phoneNumberHead) {
+		this.phoneNumberHead = phoneNumberHead;
+	}
+
+	public String getPhoneNumberMid() {
+		return phoneNumberMid;
+	}
+
+	public void setPhoneNumberMid(String phoneNumberMid) {
+		this.phoneNumberMid = phoneNumberMid;
+	}
+
+	public String getPhoneNumberTail() {
+		return phoneNumberTail;
+	}
+
+	public void setPhoneNumberTail(String phoneNumberTail) {
+		this.phoneNumberTail = phoneNumberTail;
 	}
 }

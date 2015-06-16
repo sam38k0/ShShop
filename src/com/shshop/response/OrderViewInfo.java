@@ -121,6 +121,14 @@ public class OrderViewInfo {
 		return null;
 	}
 	
+	public Address getBasicAddressNew() {
+		if(addressesNew != null) {
+			return addressesNew.get(0);
+		}
+		
+		return null;
+	}
+	
 	public void setAddresses(List<Address> addresses) {
 		
 		boolean fliflop = true;

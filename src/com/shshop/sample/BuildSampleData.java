@@ -228,10 +228,10 @@ public class BuildSampleData {
 				String postRandomNumHead = "" + Format.randInt(100, 999);
 				String postRandomNumTail = "" + Format.randInt(100, 999);
 				
-				AddressProc addrProc = new AddressProc(new Address(user.getUserId(), null, "basicAdd" + i, "detailAdd" + i, postRandomNumHead, postRandomNumTail));
+				AddressProc addrProc = new AddressProc(new Address(user.getUserId(), null, "basicAdd" + i, "detailAdd" + i, postRandomNumHead, postRandomNumTail, user.getName(), user.getPhone()));
 				userMapper.insertAddressProc(addrProc);
 
-				addrProc = new AddressProc(new Address(user.getUserId(), addrProc.getInsertedAddressId(), "basicAddrRoad", "detailAddRoad", postRandomNumHead, postRandomNumTail));
+				addrProc = new AddressProc(new Address(user.getUserId(), addrProc.getInsertedAddressId(), "basicAddrRoad", "detailAddRoad", postRandomNumHead, postRandomNumTail, user.getName(), user.getPhone()));
 				userMapper.insertAddressProc(addrProc);
 			}
 		}
