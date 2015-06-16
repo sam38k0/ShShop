@@ -122,8 +122,8 @@
                                         <strong>회원정보</strong>
                                     </th>
                                     <td>
-                                        <div id="divMemInfo"><strong>김대웅</strong>
-                                            <br />서울특별시 중구 충무로3가 59-13 9 해피하우스 602호
+                                        <div id="divMemInfo"><strong>${requestScope.orderViewInfo.user.name}</strong>
+                                            <br />${requestScope.orderViewInfo.basicAddressOrigin}
                                             <br />043-742-0196 <em class="dvi">/</em> 010-3224-0196
                                             <br />xxxx3303@hanmail.net</div>
                                         <input type="hidden" id="hdnMemNm" value="김대웅" />
@@ -135,23 +135,17 @@
                             </table>
                             <table cellpadding="0" cellspacing="0" class="tbl_pay">
                                 <tr>
-                                    <th>
-                                        	이름
-                                    </th>
-                                    <td>
-                                        <input type="text" id="txtMemNm" value="김대웅" class="ipubx" />
-
-                                    </td>
+                                    <th>이름</th>
+                                    <td> <input type="text" id="txtMemNm" value="<c:out value="${requestScope.orderViewInfo.user.name}"/>" class="ipubx" /></td>
                                 </tr>
                                 <tr>
                                     <th>
                                         	핸드폰
                                     </th>
                                     <td class="num_p">
-                                        <select id="ddlAddrMobNo1" style="width: 72px; margin-bottom: 1px; vertical-align: bottom"
-                                                onchange="fnChangeAddrNo(this); fnMoveFocusSelToText(this, 'txtAddrMobNo2');">
+                                        <select id="ddlAddrMobNo1" style="width: 72px; margin-bottom: 1px; vertical-align: bottom">
                                             <option value="">선택</option>
-                                            <option value="010" selected="selected">010</option>
+                                            <option value="010" selected="selected">${requestScope.orderViewInfo.userPhoneNumberHead}</option>
                                             <option value="011">011</option>
                                             <option value="016">016</option>
                                             <option value="017">017</option>
@@ -159,54 +153,8 @@
                                             <option value="019">019</option>
                                             <option value="00">선택안함</option>
                                         </select> -
-                                        <input type="text" id="txtAddrMobNo2" value="3224" onkeyup="fnMoveFocus(this, 'txtAddrMobNo3', 4);"
-                                               onfocus="this.select();" class="ipubx" maxlength="4" /> -
-                                        <input type="text" id="txtAddrMobNo3" value="0196" class="ipubx" maxlength="4" onfocus="this.select();" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        	일반전화
-                                    </th>
-                                    <td class="num_p">
-                                        <select id="ddlAddrTelNo1" style="width: 72px; margin-bottom: 1px; vertical-align: bottom"
-                                                onchange="fnChangeAddrNo(this); fnMoveFocusSelToText(this, 'txtAddrTelNo2');">
-                                            <option value="">선택</option>
-                                            <option value="02">02</option>
-                                            <option value="031">031</option>
-                                            <option value="032">032</option>
-                                            <option value="033">033</option>
-                                            <option value="041">041</option>
-                                            <option value="042">042</option>
-                                            <option value="043" selected="selected">043</option>
-                                            <option value="044">044</option>
-                                            <option value="051">051</option>
-                                            <option value="052">052</option>
-                                            <option value="053">053</option>
-                                            <option value="054">054</option>
-                                            <option value="055">055</option>
-                                            <option value="061">061</option>
-                                            <option value="062">062</option>
-                                            <option value="063">063</option>
-                                            <option value="064">064</option>
-                                            <option value="070">070</option>
-                                            <option value="0502">0502</option>
-                                            <option value="0503">0503</option>
-                                            <option value="0505">0505</option>
-                                            <option value="0506">0506</option>
-                                            <option value="0507">0507</option>
-                                            <option value="0508">0508</option>
-                                            <option value="010">010</option>
-                                            <option value="011">011</option>
-                                            <option value="016">016</option>
-                                            <option value="017">017</option>
-                                            <option value="018">018</option>
-                                            <option value="019">019</option>
-                                            <option value="00">선택안함</option>
-                                        </select> -
-                                        <input type="text" id="txtAddrTelNo2" value="742" class="ipubx"
-                                               onkeyup="fnMoveFocus(this, 'txtAddrTelNo3', 4);" onfocus="this.select();" maxlength="4" /> -
-                                        <input type="text" id="txtAddrTelNo3" value="0196" class="ipubx" maxlength="4" onfocus="this.select();" />
+                                        <input type="text" id="txtAddrMobNo2" value="<c:out value="${requestScope.orderViewInfo.userPhoneNumberMid}"/>" class="ipubx" maxlength="4" /> -
+                                        <input type="text" id="txtAddrMobNo3" value="<c:out value="${requestScope.orderViewInfo.userPhoneNumberTail}"/>" class="ipubx" maxlength="4" onfocus="this.select();" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -214,7 +162,7 @@
                                         	이메일
                                     </th>
                                     <td class="eml_w">
-                                        <input type="text" id="txtMemEml" value="xxxx3303@hanmail.net" class="ipubx" />
+                                        <input type="text" id="txtMemEml" value="<c:out value="${requestScope.orderViewInfo.user.email}"/>" class="ipubx" />
                                     </td>
                                 </tr>
                             </table>
@@ -227,22 +175,14 @@
                                 </th>
                                 <td class="dlv_adrs">
                                     <span class="rdb_w">
-                                        <input type="radio" id="rdoDelvAddrSetModeLast" name="rdoDelvAddrSetMod"
-                                               onclick="fnRdoDelvAddrSetModChanged()" value="LAST" class="rdbtn" checked="checked" /> 최근배송지 
-                                        <a href="javascript:" onclick="fnShowAddressList('LastDelivery', 'Member', '', event); return false;" 
-                                           class="bw viewmore" title="더보기">더보기</a>       
+                                        <input type="radio" id="rdoDelvAddrSetModeMember" name="rdoDelvAddrSetMod" class="rdbtn" checked="checked" /> 회원정보동일
                                     </span>
                                     <span class="rdb_w">
-                                        <input type="radio" id="rdoDelvAddrSetModeList" name="rdoDelvAddrSetMod" 
-                                               onclick="fnShowAddressList('Member', 'LastDelivery', '', event);" value="LIST" class="rdbtn" /> 주소록           
+                                        <input type="radio" id="rdoDelvAddrSetModeList" name="rdoDelvAddrSetMod" class="rdbtn" /> 주소록           
                                     </span>
+
                                     <span class="rdb_w">
-                                        <input type="radio" id="rdoDelvAddrSetModeMember" name="rdoDelvAddrSetMod" 
-                                               onclick="fnRdoDelvAddrSetModChanged()" value="MEMBER" class="rdbtn" /> 회원정보동일
-                                    </span>
-                                    <span class="rdb_w">
-                                        <input type="radio" id="rdoDelvAddrSetModeNew" name="rdoDelvAddrSetMod" 
-                                               onclick="fnRdoDelvAddrSetModChanged()" value="NEW" class="rdbtn" /> 새로입력
+                                        <input type="radio" id="rdoDelvAddrSetModeNew" name="rdoDelvAddrSetMod" value="NEW" class="rdbtn" /> 새로입력
                                     </span>
                                 </td>
                             </tr>
@@ -360,51 +300,6 @@
                                            onkeyup="fnMoveFocus(this, 'txtRcvrMobTelNo3Store', 4);" onfocus="this.select();" /> -
                                     <input type="text" id="txtRcvrMobTelNo3Store" value="" class="ipubx" maxlength="4" onfocus="this.select();" />
                                     <img src="https://secimage.yes24.com/sysimage/mypage/i_smsBlue.gif" alt="SMS" hspace="2px" valign="middle" />
-                                </td>
-                            </tr>
-
-                            <tr id="trDelvTellNoNormal" style="">
-                                <th>
-                                    	일반전화
-                                </th>
-                                <td class="num_p" style="height: 18px;">
-                                    <select id="ddlRcvrTelNo1Normal" style="width: 50px; margin-bottom: 1px; vertical-align: bottom"
-                                            onchange="fnMoveFocusSelToText(this, 'txtRcvrTelNo2Normal'); fnTelCheck();">
-                                        <option value="">선택</option>
-                                        <option value="02">02</option>
-                                        <option value="031">031</option>
-                                        <option value="032">032</option>
-                                        <option value="033">033</option>
-                                        <option value="041">041</option>
-                                        <option value="042">042</option>
-                                        <option value="043">043</option>
-                                        <option value="044">044</option>
-                                        <option value="051">051</option>
-                                        <option value="052">052</option>
-                                        <option value="053">053</option>
-                                        <option value="054">054</option>
-                                        <option value="055">055</option>
-                                        <option value="061">061</option>
-                                        <option value="062">062</option>
-                                        <option value="063">063</option>
-                                        <option value="064">064</option>
-                                        <option value="070">070</option>
-                                        <option value="0502">0502</option>
-                                        <option value="0503">0503</option>
-                                        <option value="0505">0505</option>
-                                        <option value="0506">0506</option>
-                                        <option value="0507">0507</option>
-                                        <option value="0508">0508</option>
-                                        <option value="010">010</option>
-                                        <option value="011">011</option>
-                                        <option value="016">016</option>
-                                        <option value="017">017</option>
-                                        <option value="018">018</option>
-                                        <option value="019">019</option>
-                                    </select> -
-                                    <input type="text" id="txtRcvrTelNo2Normal" value="" class="ipubx" 
-                                           onkeyup="fnMoveFocus(this, 'txtRcvrTelNo3Normal', 4);" onfocus="this.select();" maxlength="4" /> -
-                                    <input type="text" id="txtRcvrTelNo3Normal" value="" class="ipubx" onfocus="this.select();" maxlength="4" />
                                 </td>
                             </tr>
                         </table>

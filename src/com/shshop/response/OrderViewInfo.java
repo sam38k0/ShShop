@@ -9,12 +9,28 @@ import com.shshop.domain.User;
 
 public class OrderViewInfo {
 	private List<OrderInfo> orderInfos = new ArrayList<>();
+	private List<Address> addressesOrigin = new ArrayList<>();
+	private List<Address> addressesNew = new ArrayList<>();
 	private User user;
-	private List<Address> addresses; 
+	private String userPhoneNumberHead = "";
+	private String userPhoneNumberMid = "";
+	private String userPhoneNumberTail = "";
 
 	public OrderViewInfo(User user, List<Address> addresses) {
 		this.setUser(user);
 		this.setAddresses(addresses);
+	}
+	
+	public String getUserPhoneNumberHead() {
+		return userPhoneNumberHead;
+	}
+	
+	public String getUserPhoneNumberMid() {
+		return userPhoneNumberMid;
+	}
+	
+	public String getUserPhoneNumberTail() {
+		return userPhoneNumberTail;
 	}
 	
 	public void addOrderInfo(OrderInfo orderInfo) {
@@ -75,14 +91,49 @@ public class OrderViewInfo {
 
 	public void setUser(User user) {
 		this.user = user;
+		String phoneNumber = this.user.getPhone();
+		if(phoneNumber == null || phoneNumber == "")
+			return;
+		
+		String[] splitedPhoneNumber = phoneNumber.split("-");
+		
+		if(splitedPhoneNumber.length != 3)
+			return;
+		 
+		userPhoneNumberHead = splitedPhoneNumber[0];
+		userPhoneNumberMid = splitedPhoneNumber[1];
+		userPhoneNumberTail = splitedPhoneNumber[2];
 	}
 
-	public List<Address> getAddresses() {
-		return addresses;
+	public List<Address> getAddressesOrigin() {
+		return addressesOrigin;
 	}
-
+	
+	public List<Address> getAddressesNew() {
+		return addressesNew;
+	}
+	
+	public Address getBasicAddressOrigin() {
+		if(addressesOrigin != null) {
+			return addressesOrigin.get(0);
+		}
+		
+		return null;
+	}
+	
 	public void setAddresses(List<Address> addresses) {
-		this.addresses = addresses;
+		
+		boolean fliflop = true;
+		
+		for(Address address: addresses) {
+			if(fliflop) {
+				addressesOrigin.add(address);
+			} else {
+				addressesNew.add(address);
+			}
+			
+			fliflop = !fliflop;
+		}
 	}
 
 	public String getTotalDescription() {
