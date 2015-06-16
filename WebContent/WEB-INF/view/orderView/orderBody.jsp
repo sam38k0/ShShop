@@ -128,13 +128,7 @@
                                     <td class="num_p">
                                         <select id="ddlAddrMobNo1" style="width: 72px; margin-bottom: 1px; vertical-align: bottom">
                                             <option value="">선택</option>
-                                            <option value="010" selected="selected">${requestScope.orderViewInfo.userPhoneNumberHead}</option>
-                                            <option value="011">011</option>
-                                            <option value="016">016</option>
-                                            <option value="017">017</option>
-                                            <option value="018">018</option>
-                                            <option value="019">019</option>
-                                            <option value="00">선택안함</option>
+                                            ${requestScope.orderViewInfo.phoneNumberHeadHtml}
                                         </select> -
                                         <input type="text" id="txtAddrMobNo2" value="<c:out value="${requestScope.orderViewInfo.userPhoneNumberMid}"/>" class="ipubx" maxlength="4" /> -
                                         <input type="text" id="txtAddrMobNo3" value="<c:out value="${requestScope.orderViewInfo.userPhoneNumberTail}"/>" class="ipubx" maxlength="4" onfocus="this.select();" />
@@ -209,40 +203,12 @@
                                    	 핸드폰
                                 </th>
                                 <td class="num_p" style="height: 22px;">
-                                    <select id="ddlRcvrMobTelNo1Normal" style="width: 50px; margin-bottom: 1px; vertical-align: bottom"
-                                            onchange="fnMoveFocusSelToText(this, 'txtRcvrMobTelNo2Normal'); fnMobTelCheck();">
+                                    <select id="ddlRcvrMobTelNo1Normal" style="width: 50px; margin-bottom: 1px; vertical-align: bottom">
                                         <option value="">선택</option>
-                                        <option value="010" selected="selected">010</option>
-                                        <option value="011">011</option>
-                                        <option value="016">016</option>
-                                        <option value="017">017</option>
-                                        <option value="018">018</option>
-                                        <option value="019">019</option>
+                                        ${requestScope.orderViewInfo.phoneNumberHeadHtml}
                                     </select> -
-                                    <input type="text" id="txtRcvrMobTelNo2Normal" value="3224" class="ipubx" maxlength="4" 
-                                           onkeyup="fnMoveFocus(this, 'txtRcvrMobTelNo3Normal', 4);" onfocus="this.select();" /> -
-                                    <input type="text" id="txtRcvrMobTelNo3Normal" value="0196" class="ipubx" maxlength="4" onfocus="this.select();" />
-                                </td>
-                            </tr>
-                            <tr id="trDelvMobNoStore" style="display: none">
-                                <th>
-                                   	 핸드폰
-                                </th>
-                                <td class="num_p" style="height: 22px;">
-                                    <select id="ddlRcvrMobTelNo1Store" style="width: 50px; margin-bottom: 1px; vertical-align: bottom"
-                                            onchange="fnMoveFocusSelToText(this, 'txtRcvrMobTelNo2Store');">
-                                        <option value="">선택</option>
-                                        <option value="010">010</option>
-                                        <option value="011">011</option>
-                                        <option value="016">016</option>
-                                        <option value="017">017</option>
-                                        <option value="018">018</option>
-                                        <option value="019">019</option>
-                                    </select> -
-                                    <input type="text" id="txtRcvrMobTelNo2Store" value="" class="ipubx" maxlength="4" 
-                                           onkeyup="fnMoveFocus(this, 'txtRcvrMobTelNo3Store', 4);" onfocus="this.select();" /> -
-                                    <input type="text" id="txtRcvrMobTelNo3Store" value="" class="ipubx" maxlength="4" onfocus="this.select();" />
-                                    <img src="https://secimage.yes24.com/sysimage/mypage/i_smsBlue.gif" alt="SMS" hspace="2px" valign="middle" />
+                                    <input type="text" id="txtRcvrMobTelNo2Normal" value="<c:out value="${requestScope.orderViewInfo.basicAddressOrigin.phoneNumberMid}"/>" class="ipubx" maxlength="4"/> -
+                                    <input type="text" id="txtRcvrMobTelNo3Normal" value="<c:out value="${requestScope.orderViewInfo.basicAddressOrigin.phoneNumberTail}"/>" class="ipubx" maxlength="4"/>
                                 </td>
                             </tr>
                         </table>

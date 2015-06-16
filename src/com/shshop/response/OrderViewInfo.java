@@ -20,23 +20,23 @@ public class OrderViewInfo {
 		this.setUser(user);
 		this.setAddresses(addresses);
 	}
-	
+
 	public String getUserPhoneNumberHead() {
 		return userPhoneNumberHead;
 	}
-	
+
 	public String getUserPhoneNumberMid() {
 		return userPhoneNumberMid;
 	}
-	
+
 	public String getUserPhoneNumberTail() {
 		return userPhoneNumberTail;
 	}
-	
+
 	public void addOrderInfo(OrderInfo orderInfo) {
-		if(!orderInfo.isOpen())
+		if (!orderInfo.isOpen())
 			return;
-		
+
 		orderInfos.add(orderInfo);
 	}
 
@@ -46,42 +46,42 @@ public class OrderViewInfo {
 
 	public void setOrderInfos(List<OrderInfo> orderInfos) {
 		this.orderInfos = new ArrayList<>();
-		for(OrderInfo orderInfo : orderInfos) {
-			if(!orderInfo.isOpen())
+		for (OrderInfo orderInfo : orderInfos) {
+			if (!orderInfo.isOpen())
 				continue;
-			
+
 			this.orderInfos.add(orderInfo);
 		}
 	}
 
 	public String getTotalPrice() {
 		int totalPrice = 0;
-		for(OrderInfo orderInfo : orderInfos) {
+		for (OrderInfo orderInfo : orderInfos) {
 			totalPrice += orderInfo.getProductTotalPrice();
 			totalPrice += orderInfo.getShippingPrice();
 		}
-		
-	    DecimalFormat df = new DecimalFormat("#,###"); 
+
+		DecimalFormat df = new DecimalFormat("#,###");
 		return df.format(totalPrice);
 	}
-	
+
 	public String getShippingTotalPrice() {
 		int totalPrice = 0;
-		for(OrderInfo orderInfo : orderInfos) {
+		for (OrderInfo orderInfo : orderInfos) {
 			totalPrice += orderInfo.getShippingPrice();
 		}
-		
-	    DecimalFormat df = new DecimalFormat("#,###"); 
+
+		DecimalFormat df = new DecimalFormat("#,###");
 		return df.format(totalPrice);
 	}
-	
+
 	public String getProductsTotalPrice() {
 		int totalPrice = 0;
-		for(OrderInfo orderInfo : orderInfos) {
+		for (OrderInfo orderInfo : orderInfos) {
 			totalPrice += orderInfo.getProductTotalPrice();
 		}
-		
-	    DecimalFormat df = new DecimalFormat("#,###"); 
+
+		DecimalFormat df = new DecimalFormat("#,###");
 		return df.format(totalPrice);
 	}
 
@@ -92,14 +92,14 @@ public class OrderViewInfo {
 	public void setUser(User user) {
 		this.user = user;
 		String phoneNumber = this.user.getPhone();
-		if(phoneNumber == null || phoneNumber == "")
+		if (phoneNumber == null || phoneNumber == "")
 			return;
-		
+
 		String[] splitedPhoneNumber = phoneNumber.split("-");
-		
-		if(splitedPhoneNumber.length != 3)
+
+		if (splitedPhoneNumber.length != 3)
 			return;
-		 
+
 		userPhoneNumberHead = splitedPhoneNumber[0];
 		userPhoneNumberMid = splitedPhoneNumber[1];
 		userPhoneNumberTail = splitedPhoneNumber[2];
@@ -108,38 +108,82 @@ public class OrderViewInfo {
 	public List<Address> getAddressesOrigin() {
 		return addressesOrigin;
 	}
-	
+
 	public List<Address> getAddressesNew() {
 		return addressesNew;
 	}
-	
+
 	public Address getBasicAddressOrigin() {
-		if(addressesOrigin != null) {
+		if (addressesOrigin != null) {
 			return addressesOrigin.get(0);
 		}
-		
+
 		return null;
 	}
-	
+
 	public Address getBasicAddressNew() {
-		if(addressesNew != null) {
+		if (addressesNew != null) {
 			return addressesNew.get(0);
 		}
-		
+
 		return null;
 	}
-	
+
+	public String getPhoneNumberHeadHtml() {
+
+		Address address = getBasicAddressOrigin();
+		String phoneNumberHead = address.getPhoneNumberHead();
+
+		String[] arrPhoneHeaders = { 
+				"<option value=\"010\">010</option>", 
+				"<option value=\"011\">010</option>",
+				"<option value=\"011\">016</option>", 
+				"<option value=\"017\">017</option>", 
+				"<option value=\"018\">018</option>",
+				"<option value=\"019\">019</option>" 
+				};
+
+		switch (phoneNumberHead) {
+			case "011": 
+				arrPhoneHeaders[1] = "<option value=\"011\" selected=\"selected\">011</option>";
+				break;
+
+			case "016": 
+				arrPhoneHeaders[2] = "<option value=\"016\" selected=\"selected\">016</option>";
+				break;
+			
+			case "017": 
+				arrPhoneHeaders[3] = "<option value=\"017\" selected=\"selected\">017</option>";
+				break;
+			
+			case "018": 
+				arrPhoneHeaders[4] = "<option value=\"018\" selected=\"selected\">018</option>";
+				break;
+				
+			default:
+				arrPhoneHeaders[0] = "<option value=\"010\" selected=\"selected\">010</option>";
+		}
+		
+		StringBuilder phoneOptionHtmlBuilder = new StringBuilder();
+
+		for(String phoneHeader : arrPhoneHeaders) {
+			phoneOptionHtmlBuilder.append(phoneHeader + "\r\n");
+		}
+		
+		return phoneOptionHtmlBuilder.toString();
+	}
+
 	public void setAddresses(List<Address> addresses) {
-		
+
 		boolean fliflop = true;
-		
-		for(Address address: addresses) {
-			if(fliflop) {
+
+		for (Address address : addresses) {
+			if (fliflop) {
 				addressesOrigin.add(address);
 			} else {
 				addressesNew.add(address);
 			}
-			
+
 			fliflop = !fliflop;
 		}
 	}
@@ -148,15 +192,15 @@ public class OrderViewInfo {
 		String totalDescription = "";
 		try {
 			int totalQuantity = 0;
-			for(OrderInfo orderInfo : orderInfos ){
+			for (OrderInfo orderInfo : orderInfos) {
 				totalQuantity += orderInfo.getQuantity();
 			}
-			
+
 			totalDescription = "" + orderInfos.size() + " 종 ( " + totalQuantity + ") 개";
 		} catch (Exception e) {
 			totalDescription = "";
 		}
-		
+
 		return totalDescription;
 	}
 }
