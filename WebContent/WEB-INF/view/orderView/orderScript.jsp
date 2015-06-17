@@ -69,6 +69,9 @@ $(document).ready(function() {
             
         case 'rdoDelvAddrSetModeList' ://주소록
         	$(this).attr('checked','checked');
+        	var pos = $("#rdoDelvAddrSetModeList").position();
+        	var topPos = pos.top -10;
+        	$('#divAddressList').css('top',topPos); 
         	$('#divAddressList').css('display','block'); 
             break;
             

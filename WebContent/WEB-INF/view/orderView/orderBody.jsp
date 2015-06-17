@@ -508,7 +508,7 @@
                         <!--// 무통장 입금은행 -->
                     </div>
                     <!-- 주소록 (숨기기)-->
-                    <div id="divAddressList" class="plyr" style="position: absolute; z-index: 99999; width: 700px; left: 206px; top: 560px;">
+                    <div id="divAddressList" class="plyr" style="position: absolute; z-index: 99999; width: 700px; left: 206px; top: 10000px;">
 					    <div class="plyr_w">
 					        <div id="divAddressListMember" class="plyr_c" style="width: 700px;">
 					            <ul class="plyr_l">
