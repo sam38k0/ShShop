@@ -64,10 +64,7 @@ CREATE TABLE `ps_category` (
 	`id_category`        SMALLINT     UNSIGNED NOT NULL AUTO_INCREMENT, -- id_category
 	`id_category_parent` SMALLINT     UNSIGNED NULL DEFAULT NULL,     	-- id_category_parent
 	`name`               VARCHAR(50)  NOT NULL, -- 카테고리명
-	`description`        TEXT         NOT NULL, -- 카테고리 설명
-	`link`               VARCHAR(255) NULL,     -- 카테고리 기본링크
-	`is_root_category`   TINYINT(1)   NOT NULL, -- 루트카테고리인지여부
-	`date_created`       DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,   				  -- 카테고리 생성 날짜
+	`date_created`       DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 카테고리 생성 날짜
 	`date_updated`       DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- 카테고리 업데이트된 날짜
     
      CONSTRAINT `PK_ps_category_id_category` 
@@ -491,6 +488,16 @@ BEGIN
 	SET `proc_inserted_address_id` = LAST_INSERT_ID();
 END $$
 DELIMITER ;
+
+
+
+
+SELECT t1.name AS lev1, t2.name as lev2, t3.name as lev3
+FROM `ps_category` AS t1
+LEFT JOIN `ps_category` AS t2 ON t2.`id_category_parent` = t1.`id_category`
+LEFT JOIN `ps_category` AS t3 ON t3.`id_category_parent` = t2.`id_category`
+LEFT JOIN `ps_category` AS t4 ON t4.`id_category_parent` = t3.`id_category`
+WHERE t1.name = '여성의류';
 
 
 /* -- Confirm ----------------------------------------------------------------------------------
