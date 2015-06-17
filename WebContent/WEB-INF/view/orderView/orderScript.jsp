@@ -11,6 +11,8 @@ function pageInitialize(event) {
 
 	$('#ddlCardNormal').css('display','block');
 	$('#ddlCardPartner').css('display','none');
+	
+	$('#divAddressList').css('display','none'); 
 }
 
 $(document).ready(function() {
@@ -55,6 +57,31 @@ $(document).ready(function() {
 	        	break;
 	    }            
 	});
+	
+	$('input[type=radio][name=rdoDelvAddrSetMod]').on('change', function(){
+	    switch($(this).attr('id')){
+        case 'rdoDelvAddrSetModeMember' : //회원정보 동일
+        	$(this).attr('checked','checked');
+        	$('#newAddressSettings').css('display','none'); 
+        	$('#basicAddressSettings').css('display','block'); 
+        	$('#divAddressList').css('display','none'); 
+            break;
+            
+        case 'rdoDelvAddrSetModeList' ://주소록
+        	$(this).attr('checked','checked');
+        	$('#divAddressList').css('display','block'); 
+            break;
+            
+        case 'rdoDelvAddrSetModeNew' : //새로입력
+        	$(this).attr('checked','checked'); 
+        	$('#newAddressSettings').css('display','block'); 
+        	$('#basicAddressSettings').css('display','none'); 
+        	$('#divAddressList').css('display','none'); 
+        	break;
+    	}   
+	});
+	
+	
 });
 
 </script>

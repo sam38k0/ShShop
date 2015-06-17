@@ -21,6 +21,10 @@ public class OrderViewInfo {
 		this.setAddresses(addresses);
 	}
 
+	public int getAddressesPairSize() {
+		return addressesPair.size();
+	}
+	
 	public String getUserPhoneNumberHead() {
 		return userPhoneNumberHead;
 	}
