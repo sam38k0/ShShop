@@ -40,22 +40,20 @@
 	</select>
 	
 	<insert id='insertRootCategory' parameterType='${CategoryType}' useGeneratedKeys='true' keyProperty='${id_category}'>
-		INSERT INTO `ps_category` (`name`, `description`, `link`, `is_root_category`)
-		VALUES (${name}, ${description}, ${link}, ${is_root_category});
+		INSERT INTO `ps_category` (`name`)
+		VALUES (${name});
 	</insert>
 	
 	<insert id='insertChildCategory' parameterType='${CategoryType}' useGeneratedKeys='true' keyProperty='${id_category}'>
-		INSERT INTO `ps_category` (`id_category_parent`, `name`, `description`, `link`, `is_root_category`)
-		VALUES (${id_category_parent}, ${name}, ${description}, ${link}, ${is_root_category});
+		INSERT INTO `ps_category` (`id_category_parent`, `name`)
+		VALUES (${id_category_parent}, ${name});
 	</insert>
 	
 	<update id='updateCategory' parameterType='${CategoryType}'>
 		UPDATE `ps_category`
 		<set>
 			<if test="${name} != null"> `name`=${name}, </if>
-			<if test="${link} != null"> `link`=${link}, </if>
 			<if test="${is_root_category} != null"> `is_root_category`=${is_root_category}, </if>
-			<if test="${description} != null"> `description`=${description}, </if>
 		</set>
 		WHERE `id_category`=${id_category}
 	</update>
@@ -68,9 +66,6 @@
 		<id property='categoryId' column='id_category' />
 		<result property='parentCategoryId' column='id_category_parent'/>
 		<result property='name' column='name' />
-		<result property='link' column='link' />
-		<result property='isRootCategory' column='is_root_category' />
-		<result property='description' column='description' />
 		<result property='dateCreated' column='date_created' />
 		<result property='dateUpdated' column='date_updated' />
 	</resultMap>

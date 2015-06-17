@@ -9,9 +9,6 @@ public class Category implements Serializable {
 	private Integer categoryId;
 	private Integer parentCategoryId;
 	private String name;
-	private String link;
-	private boolean isRootCategory;
-	private String description;
 	private Date dateCreated;
 	private Date dateUpdated;
 
@@ -20,20 +17,14 @@ public class Category implements Serializable {
 	}
 
 	//For Child Category
-	public Category(Category parentCategory, String name, String description, String link) {
+	public Category(Category parentCategory, String name) {
 		this.parentCategoryId = parentCategory.getCategoryId();
 		this.name = name;
-		this.description = description;
-		this.link = link;
-		this.isRootCategory = false;
 	}
 
 	//For Root Category
-	public Category(String name, String description, String link) {
+	public Category(String name) {
 		this.name = name;
-		this.description = description;
-		this.link = link;
-		this.isRootCategory = true;
 	}
 
 	public Integer getCategoryId() {
@@ -50,30 +41,6 @@ public class Category implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getLink() {
-		return link;
-	}
-
-	public void setLink(String link) {
-		this.link = link;
-	}
-
-	public boolean isRootCategory() {
-		return isRootCategory;
-	}
-
-	public void setRootCategory(boolean isRootCategory) {
-		this.isRootCategory = isRootCategory;
 	}
 
 	public Date getDateCreated() {

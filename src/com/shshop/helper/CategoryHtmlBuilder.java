@@ -13,44 +13,30 @@ public class CategoryHtmlBuilder {
 	public CategoryHtmlBuilder(String name) {
 		this.setName(name);
 	}
-	
+
 	public CategoryHtmlBuilder(Category category) {
 		this.category = category;
 		this.name = category.getName();
-	}	
+	}
 
 	@Override
-	public String toString() { 
+	public String toString() {
 		StringBuilder result = new StringBuilder();
-		
+
 		if (items.isEmpty()) {
 			result.append("<li><a href=\"searchCategory?categoryName=");
-			result.append( getName());
-			result.append( "\">");
-			result.append( getName() );
-			result.append( "</a></li>");
+			result.append(getName());
+			result.append("\">");
+			result.append(getName());
+			result.append("</a></li>");
 			return result.toString();
-		} 
-		else 
-		{
-			if(category!= null)
-			{
-				result.append("<li><a href=\"searchCategory?categoryName=");
-				result.append( getName());
-				result.append( "\" class=\"choice\">"); 
-				result.append(getName());
-				result.append( "</a>");
-				return result.toString(); 
-			}
-			else
-			{
-				result.append("<li><a href=\"searchCategory?categoryName=");
-				result.append( getName());
-				result.append( "\" class=\"choice\">"); 
-				result.append(getName());
-				result.append( "</a>");
-				return result.toString(); 
-			}
+		} else {
+			result.append("<li><a href=\"searchCategory?categoryName=");
+			result.append(getName());
+			result.append("\" class=\"choice\">");
+			result.append(getName());
+			result.append("</a>");
+			return result.toString();
 		}
 	}
 
@@ -69,13 +55,13 @@ public class CategoryHtmlBuilder {
 	public String buildHtml() {
 		StringBuilder result = new StringBuilder();
 		result.append(this.toString());
-		result.append("\r\n"); 
+		result.append("\r\n");
 
 		boolean hasItem = !items.isEmpty();
 
 		if (hasItem) {
 			result.append("<ul class=\"allcategory\">");
-			result.append("\r\n"); 
+			result.append("\r\n");
 		}
 
 		for (int i = 0; i < items.size(); i++) {
@@ -84,9 +70,9 @@ public class CategoryHtmlBuilder {
 
 		if (hasItem) {
 			result.append("</ul></li>");
-			result.append("\r\n"); 
+			result.append("\r\n");
 		}
-		
+
 		return result.toString();
 	}
 

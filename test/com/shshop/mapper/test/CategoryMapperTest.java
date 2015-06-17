@@ -53,7 +53,7 @@ public class CategoryMapperTest {
 	@Test
 	public void testInsertRootCategory() {
 		int countBefore = categoryMapper.getCategoryCount();
-		categoryMapper.insertRootCategory(new Category("test", "testDescription", "testLink"));
+		categoryMapper.insertRootCategory(new Category("test"));
 		int countAfter = categoryMapper.getCategoryCount();
 		assertEquals("testInsertRootCategory", countBefore + 1, countAfter);
 	}
@@ -62,7 +62,7 @@ public class CategoryMapperTest {
 	public void testInsertChildCategory() {
 		Category rootCategory = categoryMapper.getCategoryById(1);
 		int countBefore = categoryMapper.getCategoryCount();
-		categoryMapper.insertChildCategory(new Category(rootCategory, "test2", "testDescription2", "testLink2"));
+		categoryMapper.insertChildCategory(new Category(rootCategory, "test2"));
 		int countAfter = categoryMapper.getCategoryCount();
 		assertEquals("testInsertChildCategory", countBefore + 1, countAfter);
 	}
@@ -71,13 +71,9 @@ public class CategoryMapperTest {
 	public void testUpdateCategory() {
 		Category category = categoryMapper.getCategoryById(1);
 		category.setName("testName");
-		category.setDescription("testDesc");
-		category.setLink("testLink");
 		categoryMapper.updateCategory(category);
 		category = categoryMapper.getCategoryById(1);
 		assertTrue("testUpdateCategory1", category.getName().equalsIgnoreCase("testName"));
-		assertTrue("testUpdateCategory2", category.getLink().equalsIgnoreCase("testLink"));
-		assertTrue("testUpdateCategory3", category.getDescription().equalsIgnoreCase("testDesc"));
 	}
 	
 	@Test
