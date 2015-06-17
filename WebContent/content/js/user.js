@@ -152,6 +152,7 @@ $(document).ready(function() {
 					if (response == 'Success') {
 						$(".gnb_before_login").show();
 						$(".gnb_after_login").hide();
+						location.reload();
 					}
 				}
 			});
