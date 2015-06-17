@@ -9,8 +9,8 @@ import com.shshop.domain.User;
 
 public class OrderViewInfo {
 	private List<OrderInfo> orderInfos = new ArrayList<>();
-	private List<Address> addressesOrigin = new ArrayList<>();
-	private List<Address> addressesNew = new ArrayList<>();
+	private List<AddressPair> addressesPair = new ArrayList<>();
+	
 	private User user;
 	private String userPhoneNumberHead = "";
 	private String userPhoneNumberMid = "";
@@ -105,25 +105,17 @@ public class OrderViewInfo {
 		userPhoneNumberTail = splitedPhoneNumber[2];
 	}
 
-	public List<Address> getAddressesOrigin() {
-		return addressesOrigin;
-	}
-
-	public List<Address> getAddressesNew() {
-		return addressesNew;
-	}
-
 	public Address getBasicAddressOrigin() {
-		if (addressesOrigin != null) {
-			return addressesOrigin.get(0);
+		if (getAddressesPair() != null) {
+			return getAddressesPair().get(0).getAddressOrigin();
 		}
 
 		return null;
 	}
 
 	public Address getBasicAddressNew() {
-		if (addressesNew != null) {
-			return addressesNew.get(0);
+		if (getAddressesPair() != null) {
+			return getAddressesPair().get(0).getAddressNew();
 		}
 
 		return null;
@@ -136,8 +128,8 @@ public class OrderViewInfo {
 
 		String[] arrPhoneHeaders = { 
 				"<option value=\"010\">010</option>", 
-				"<option value=\"011\">010</option>",
-				"<option value=\"011\">016</option>", 
+				"<option value=\"011\">011</option>",
+				"<option value=\"016\">016</option>", 
 				"<option value=\"017\">017</option>", 
 				"<option value=\"018\">018</option>",
 				"<option value=\"019\">019</option>" 
@@ -174,17 +166,8 @@ public class OrderViewInfo {
 	}
 
 	public void setAddresses(List<Address> addresses) {
-
-		boolean fliflop = true;
-
-		for (Address address : addresses) {
-			if (fliflop) {
-				addressesOrigin.add(address);
-			} else {
-				addressesNew.add(address);
-			}
-
-			fliflop = !fliflop;
+		for(int i = 0; i<addresses.size(); i+=2) {
+			getAddressesPair().add(new AddressPair(addresses.get(i),addresses.get(i+1)));
 		}
 	}
 
@@ -202,5 +185,9 @@ public class OrderViewInfo {
 		}
 
 		return totalDescription;
+	}
+
+	public List<AddressPair> getAddressesPair() {
+		return addressesPair;
 	}
 }

@@ -459,7 +459,7 @@
 					        <div id="divAddressListMember" class="plyr_c" style="width: 700px;">
 					            <ul class="plyr_l">
 					                <li>
-					                    김대웅의 주소록(<strong>2</strong>) ( 최대 5개까지 등록 가능 )
+					                   ${requestScope.orderViewInfo.user.name} 의 주소록(<strong>2</strong>) ( 최대 5개까지 등록 가능 )
 					                </li>
 					            </ul>
 					            <table class="tbl_l">
@@ -468,7 +468,6 @@
 					                    <col width="60">
 					                    <col width="60">
 					                    <col width="">
-					                    <col width="100">
 					                    <col width="100">
 					                    <col width="90">
 					                </colgroup>
@@ -484,9 +483,6 @@
 					                            <em class="dlva">배송지</em>
 					                        </th>
 					                        <th>
-					                            <em class="phon">일반전화</em>
-					                        </th>
-					                        <th>
 					                            <em class="mobi">휴대폰</em>
 					                        </th>
 					                        <th>
@@ -495,15 +491,16 @@
 					                    </tr>
 					                </thead>
 					                <tbody>
-					                    <tr>
+										<c:forEach var="addressInfo" varStatus="addressInfos" items="${requestScope.orderViewInfo.addressesPair}">
+										<tr>
 					                        <td valign="top">
-					                            <input type="checkbox" id="chkMemberAddress5" name="chkMemberAddress" value="5"  class="chkbx">
+					                            <input type="checkbox" id="chkMemberAddress5" name="chkMemberAddress" value="${addressInfos.index}"  class="chkbx">
 					                        </td>
 					                        <td valign="top">
-					                            <a href="#" >김대웅</a>
+					                            <a href="#" >${addressInfo.addressOrigin.name}</a>
 					                        </td>
 					                        <td valign="top">
-					                           	 김대웅
+					                           	 ${requestScope.orderViewInfo.user.name}
 					                        </td>
 					                        <td class="le" valign="top">
 					                            <div class="putAddrWrap">
@@ -513,7 +510,12 @@
 					                                </div>
 					                                <div class="putAddrRgt">
 					                                    <span class="putAddrTxt">
-					                                        <a href="#" >(100-013)  서울특별시 중구 수표로 10, 9 해피하우스 602호 (충무로3가)</a>
+					                                        <a href="#" >
+					                                        (<c:out value="${addressInfo.addressNew.postNumHeader}"/>-
+					                                        <c:out value="${addressInfo.addressNew.postNumHeader}"/>)
+					                                        <c:out value="${addressInfo.addressNew.basicAdd}"/>
+					                                        <c:out value="${addressInfo.addressNew.detailAdd}"/>
+					                                        </a>
 					                                    </span>
 					                                </div>
 					                            </div>
@@ -523,66 +525,25 @@
 					                                </div>
 					                                <div class="putAddrRgt">
 					                                    <span class="putAddrTxt grayTxt">
-					                                        <a class="grayTxt" href="#" >(100-013)  서울특별시 중구 충무로3가 59-13 9 해피하우스 602호 </a>
+					                                        <a class="grayTxt" href="#" >
+					                                        (<c:out value="${addressInfo.addressOrigin.postNumHeader}"/>-
+					                                        <c:out value="${addressInfo.addressOrigin.postNumHeader}"/>)
+					                                        <c:out value="${addressInfo.addressOrigin.basicAdd}"/>
+					                                        <c:out value="${addressInfo.addressOrigin.detailAdd}"/>
+					                                        </a>
 					                                    </span>
 					                                </div>
 					                            </div>
 					                        </td>
 					                        <td valign="top">
-					                            043-742-0196
-					                        </td>
-					                        <td valign="top">
-					                            010-3224-0196
+					                            ${addressInfo.addressOrigin.phoneNumber}
 					                        </td>
 					                        <td valign="top">
 					                            <a href="#"  title="삭제하기" class="bw delet_s">삭제하기</a>
 					                            <a href="#"  title="수정" class="bw modif">수정</a>
 					                        </td>
 					                    </tr>
-					                    <tr class="last">
-					                        <td valign="top">
-					                            <input type="checkbox" id="chkMemberAddress1" name="chkMemberAddress" value="1" class="chkbx">
-					                        </td>
-					                        <td valign="top">
-					                            <a href="#" >기본주소</a>
-					                        </td>
-					                        <td valign="top">
-					                            	김대웅
-					                        </td>
-					                        <td class="le" valign="top">
-					                            <div class="putAddrWrap">
-					                                <div class="putAddrLft">
-					                                    <img class="addr_item" src="https://secimage.yes24.com/sysimage/orderN/btn_putAddr02.gif" 
-					                                         width="30" height="13" alt="도로명">
-					                                </div>
-					                                <div class="putAddrRgt">
-					                                    <span class="putAddrTxt">
-					                                        <a href="#" >(100-013)  서울특별시 중구 수표로 10, 9 해피하우스 602호 (충무로3가)</a>
-					                                    </span>
-					                                </div>
-					                            </div>
-					                            <div class="putAddrWrap mgt5">
-					                                <div class="putAddrLft">
-					                                    <img class="addr_item" src="https://secimage.yes24.com/sysimage/orderN/btn_putAddr03.gif" width="30" height="13" alt="지번">
-					                                </div>
-					                                <div class="putAddrRgt">
-					                                    <span class="putAddrTxt grayTxt">
-					                                        <a class="grayTxt" href="#" >(100-013)  서울특별시 중구 충무로3가 59-13 9 해피하우스 602호 </a>
-					                                    </span>
-					                                </div>
-					                            </div>
-					                        </td>
-					                        <td valign="top">
-					                            043-742-0196
-					                        </td>
-					                        <td valign="top">
-					                            010-3224-0196
-					                        </td>
-					                        <td valign="top">
-					                            <a href="#"  title="삭제하기" class="bw delet_s">삭제하기</a>
-					                            <a href="#"  title="수정" class="bw modif">수정</a>
-					                        </td>
-					                    </tr>
+										</c:forEach>
 					                </tbody>
 					            </table>
 					            <div class="btn_area_p">
