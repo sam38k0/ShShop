@@ -602,16 +602,78 @@
 					            </table>
 					            <div class="btn_area_p">
 					                <a href="#" class="bw sel_add_use" title="선택 주소 사용">선택주소사용</a>
-					                <a href="#" class="bw cnl" title="취소">취소</a>
 					            </div>
 					        </div>
 					        <div>
-					            <a href="#" title="닫기" class="close">닫기</a>
+					            <a href="javascript:fnLayerHideById('divAddressList');" title="닫기" class="close">닫기</a>
 					        </div>
 					    </div>
 					</div>
                     <!--// 주소록 -->
-                </div>
+                    <!-- 주소정보 수정 -->
+				    <div id="divAddressNew" class="plyr" style="position: absolute; z-index: 9998; width: 586px; left: 263px; top: 500px;">
+				    <div class="plyr_w">
+				        <h3 id="lblAddressNewTitle" class="plyr_t">주소정보 수정</h3>
+				        <div class="plyr_c" style="width: 550px;">
+				            <table class="tbl_nbk sel_c2">
+				                <colgroup>
+				                    <col width="90"><col width="">
+				                </colgroup>
+				                <tbody><tr>
+				                    <th>주소별칭</th>
+				                    <td>
+				                        <input type="text" id="txtAddrNickNew" value="김대웅" class="ipubx" style="width: 150px;">
+				                        <input type="hidden" id="hdnAddrSeq" value="5">
+				                    </td>
+				                </tr>
+				                <tr id="divAddressNewKorea">
+				                    <th>주소</th>	
+									<td>
+										<input type="text" id="txtZipCd1New" value="100" readonly="readonly" class="ipubx" style="width:30px"> - <input type="text" id="txtZipCd2New" value="013" readonly="readonly" class="ipubx" style="width:30px"> <a id="aZipFind2" href="javascript:void(0)" onclick="LoadAddrModifyPostalCode('aZipFind2'); return false;" title="주소 찾기" class="bw sch_address">주소 찾기</a><br>
+										<p style="margin:5px 0">
+											도로명 주소 <input type="text" id="txtAddressNewBySt" value="서울특별시 중구 수표로 10, 9 해피하우스 602호 (충무로3가)" class="ipubx" style="width:300px;" readonly="readonly">
+										</p>
+										<p style="margin-bottom:5px;">
+											지번 주소&nbsp;&nbsp;&nbsp; <input type="text" id="txtAddressNewByOld" value="서울특별시 중구 충무로3가 59-13 9 해피하우스 602호 " class="ipubx" style="width:300px;" readonly="readonly">
+										</p>
+									</td>	
+				                </tr>
+				                <tr id="divAddressNewForeign" style="display: none;">
+				                    <th>주소</th>
+				                    <td>
+				                        <input type="text" id="txtZipCdNew" value="" class="ipubx">
+				                        <input type="text" id="txtAddr1NewForeign" value="서울특별시 중구 충무로3가 59-13" class="ipubx" style="width: 300px;">
+				                    </td>
+				                </tr>
+				                <tr id="divAddress2NewForeign" style="display: none;">
+				                <th>상세주소</th>
+				                    <td>
+				                        <input type="text" id="txtAddr2NewForeign" value="9 해피하우스 602호 " class="ipubx" style="width: 300px;">
+				                    </td>
+				                </tr>                
+				                <tr>
+				                    <th>핸드폰</th>
+				                    <td>
+				                        <input type="text" id="txtMobNoNew" value="010-3224-0196" class="ipubx" style="width: 110px;">
+				                    </td>
+				                </tr>
+				                <tr>
+				                <td colspan="2">
+				                    <div id="divAddressNewBtn" class="btn_area_p" style="z-index: 99999;">
+				                        <a href="javascript:" id="btnAddrModify" onclick="fnDelvAddrModify(); return false;" class="bw cfrm" title="확인">확인</a>
+				                        <a href="javascript:fnPopupLayerHide('divAddressNew');" id="btnAddrModifyCancel" class="bw cnl" title="취소">취소</a>
+				                    </div>
+				                </td>
+				                </tr>
+				            </tbody></table>
+				        </div>
+				        <div>
+				            <a href="javascript:fnLayerHideById('divAddressNew');" title="닫기" class="close">닫기</a>
+				        </div>
+				    </div>
+				</div>
+				<!-- //주소정보 수정 -->
+			</div>
         </div>
     </div>
 </div>
