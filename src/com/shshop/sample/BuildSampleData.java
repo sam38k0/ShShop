@@ -41,134 +41,92 @@ public class BuildSampleData {
 
 		insertUser();
 		insertCategory();
-
+		
 		// 여성의류
-		int categoryId = 1;
-		inputSampleProducts(categoryId, "(여)티셔츠");
-		inputSampleProducts(categoryId, "(여)니트");
-		inputSampleProducts(categoryId, "(여)조끼");
-		inputSampleProducts(categoryId, "(여)남방");
-		inputSampleProducts(categoryId, "(여)바지");
-		inputSampleProducts(categoryId, "(여)코트");
-		inputSampleProducts(categoryId, "(여)패딩");
-		inputSampleProducts(categoryId, "(여)정장");
-		inputSampleProducts(categoryId, "(여)원피스");
-		inputSampleProducts(categoryId, "(여)트레이닝복");
+		inputSampleProducts("여성 티셔츠","(여)티셔츠");
+		inputSampleProducts("여성 니트류","(여)니트");
+		inputSampleProducts("여성 조끼류", "(여)조끼");
+		inputSampleProducts("원피스", "(여)원피스");
+		inputSampleProducts("기타 여성복", "(여)바지");
+		inputSampleProducts("기타 여성복", "(여)코트");
+		inputSampleProducts("기타 여성복", "(여)패딩");
 
 		// 남성의류
-		categoryId += 1;
-		inputSampleProducts(categoryId, "(남)티셔츠");
-		inputSampleProducts(categoryId, "(남)니트");
-		inputSampleProducts(categoryId, "(남)조끼");
-		inputSampleProducts(categoryId, "(남)남방");
-		inputSampleProducts(categoryId, "(남)바지");
-		inputSampleProducts(categoryId, "(남)코트");
-		inputSampleProducts(categoryId, "(남)정장");
-		inputSampleProducts(categoryId, "(남)트레이닝복");
-		inputSampleProducts(categoryId, "(남)등산복");
+		inputSampleProducts("남성 티셔츠", "(남)티셔츠");
+		inputSampleProducts("남성 니트류", "(남)니트");
+		inputSampleProducts("남성 조끼류", "(남)조끼");
+		inputSampleProducts("남성 자켓", "(남)자켓");
+		inputSampleProducts("남성 속옷", "(남)팬티");
+		inputSampleProducts("기타 남성복", "(남)코트");
+		inputSampleProducts("기타 남성복", "(남)정장");
+		inputSampleProducts("기타 남성복", "(남)트레이닝복");
+		inputSampleProducts("기타 남성복", "(남)등산복");
 
 		// 화장품
-		categoryId += 1;
-		inputSampleProducts(categoryId, "여성화장품");
-		inputSampleProducts(categoryId, "메이크업");
-		inputSampleProducts(categoryId, "바디케어");
-		inputSampleProducts(categoryId, "남성화장품");
-		inputSampleProducts(categoryId, "향수");
-		inputSampleProducts(categoryId, "아로마");
+		inputSampleProducts("메이크업", "BB크림");
+		inputSampleProducts("향수", "샤넬");
+		inputSampleProducts("바디", "바디케어");
+		inputSampleProducts("헤어", "우루스");
+		inputSampleProducts("헤어", "비달사순");
+		inputSampleProducts("아로마", "아로마 손 청결제");
 
-		// 잡화
-		categoryId += 1;
-		inputSampleProducts(categoryId, "티켓");
-		inputSampleProducts(categoryId, "쿠폰");
-		inputSampleProducts(categoryId, "시즌권");
-		inputSampleProducts(categoryId, "골동품");
-		inputSampleProducts(categoryId, "희귀품");
-		inputSampleProducts(categoryId, "소품");
-		inputSampleProducts(categoryId, "수제품");
+		// 잡화 
+		inputSampleProducts("신발", "NIKE");
+		inputSampleProducts("지갑", "장지갑");
+		inputSampleProducts("모자", "흑간지모자");
+		inputSampleProducts("벨트", "성인용벨트");
+		inputSampleProducts("안경", "선글라스"); 
 
 		// 출산/아동
-		categoryId += 1;
-		inputSampleProducts(categoryId, "출산용품");
-		inputSampleProducts(categoryId, "신생아의류");
-		inputSampleProducts(categoryId, "유아의류");
-		inputSampleProducts(categoryId, "유아생활용품");
-		inputSampleProducts(categoryId, "유아도서");
-		inputSampleProducts(categoryId, "완구");
-		inputSampleProducts(categoryId, "교육용완구");
-		inputSampleProducts(categoryId, "아동의류");
-		inputSampleProducts(categoryId, "여자아동의류");
+ 
+		inputSampleProducts("유아의류", "면귀저기");
+		inputSampleProducts("신생아의류", "종이귀저기");
+		inputSampleProducts("유아도서", "MAXIM");
+		inputSampleProducts("아동의류", "뽀로로티셔츠");
+		inputSampleProducts("완구", "뽀로로완구");
 
 		// 가구
-		categoryId += 1;
-		inputSampleProducts(categoryId, "책상");
-		inputSampleProducts(categoryId, "책장");
-		inputSampleProducts(categoryId, "의자");
-		inputSampleProducts(categoryId, "침대의자");
-		inputSampleProducts(categoryId, "침대");
-		inputSampleProducts(categoryId, "완구");
-		inputSampleProducts(categoryId, "카페트");
-		inputSampleProducts(categoryId, "수납책상");
+		inputSampleProducts("책상", "고급책상");
+		inputSampleProducts("의자", "듀오벡");
+		inputSampleProducts("침대", "물침대");
+		inputSampleProducts("쇼파", "레이지보이");
+		inputSampleProducts("싱크대", "싱크대용품"); 
 
 		// 게임
-		categoryId += 1;
-		inputSampleProducts(categoryId, "닌텐도DS");
-		inputSampleProducts(categoryId, "PSP");
-		inputSampleProducts(categoryId, "PS2");
-		inputSampleProducts(categoryId, "PS3");
-		inputSampleProducts(categoryId, "PS4");
-		inputSampleProducts(categoryId, "Wii");
-		inputSampleProducts(categoryId, "Xbox");
-		inputSampleProducts(categoryId, " 퍼즐게임");
+		inputSampleProducts("닌텐도", "닌텐도DS");
+		inputSampleProducts("PSP", "PS3");
+		inputSampleProducts("Wii", "Wii");
+		inputSampleProducts("XBox", "XBox"); 
 
 		// 가전
-		categoryId += 1;
-		inputSampleProducts(categoryId, "홈씨어터");
-		inputSampleProducts(categoryId, "DVD플레이어");
-		inputSampleProducts(categoryId, "오디오");
-		inputSampleProducts(categoryId, "MP3");
-		inputSampleProducts(categoryId, "PMP");
-		inputSampleProducts(categoryId, "이어폰");
-		inputSampleProducts(categoryId, "스피커");
-		inputSampleProducts(categoryId, "마이크");
+		inputSampleProducts("TV", "홈씨어터");
+		inputSampleProducts("TV", "52인치TV");
+		inputSampleProducts("냉장고", "디오스");
+		inputSampleProducts("선풍기", "휴대용선풍기");
+		inputSampleProducts("세탁기", "LG세탁기");
+		inputSampleProducts("청소기", "자동진공청소기"); 
 
 		// 모바일
-		categoryId += 1;
-		inputSampleProducts(categoryId, "SKT");
-		inputSampleProducts(categoryId, "KT");
-		inputSampleProducts(categoryId, "LGU+");
-		inputSampleProducts(categoryId, "휴대폰액세서리");
-		inputSampleProducts(categoryId, "스마트패드");
-		inputSampleProducts(categoryId, "스마트폰액정");
-		inputSampleProducts(categoryId, "외출시폰");
-		inputSampleProducts(categoryId, "휴대폰주변기기");
+		inputSampleProducts("SKT", "SKT-iPhone");
+		inputSampleProducts("KT", "KT-Gallaxy");
+		inputSampleProducts("LGU+", "LGU+-iphone");
+		inputSampleProducts("휴대폰주변기기", "휴대폰액세서리");
+		inputSampleProducts("휴대폰주변기기", "스마트패드");
+		inputSampleProducts("휴대폰주변기기", "스마트폰액정"); 
 
 		// 레저
-		categoryId += 1;
-		inputSampleProducts(categoryId, "등산용품");
-		inputSampleProducts(categoryId, "캠핑용품");
-		inputSampleProducts(categoryId, "헬스요가용품");
-		inputSampleProducts(categoryId, "스키");
-		inputSampleProducts(categoryId, "보드");
-		inputSampleProducts(categoryId, "자전거");
-		inputSampleProducts(categoryId, "골프");
-		inputSampleProducts(categoryId, "축구");
-		inputSampleProducts(categoryId, "야구");
-		inputSampleProducts(categoryId, "농구");
-		inputSampleProducts(categoryId, "낚시");
-		inputSampleProducts(categoryId, "수상스포츠");
+		inputSampleProducts("헬스", "헬스장갑");
+		inputSampleProducts("요가", "요가깔개");
+		inputSampleProducts("스키", "스키용품");
+		inputSampleProducts("보드", "보드용품");
+		inputSampleProducts("등산", "등산스틱"); 
 
 		// 도서
-		categoryId += 1;
-		inputSampleProducts(categoryId, "대학교재");
-		inputSampleProducts(categoryId, "외국어");
-		inputSampleProducts(categoryId, "학습소설");
-		inputSampleProducts(categoryId, "문학경영");
-		inputSampleProducts(categoryId, "경제");
-		inputSampleProducts(categoryId, "인문");
-		inputSampleProducts(categoryId, "사회컴퓨터");
-		inputSampleProducts(categoryId, "과학문화");
-		inputSampleProducts(categoryId, "만화책");
-		inputSampleProducts(categoryId, "잡지");
+		inputSampleProducts("외국어", "Eng대학교재");
+		inputSampleProducts("소설", "왕좌의 게임");
+		inputSampleProducts("문학", "소림사");
+		inputSampleProducts("수필", "김소월시집");
+		inputSampleProducts("교재", "공업수학");
 		
 		// 묻고 답하기 코멘트 추가
 		inputSampleComment();
@@ -235,7 +193,6 @@ public class BuildSampleData {
 		parentCategory = categoryMapper.getCategoryByName("잡화");
 		categoryMapper.insertChildCategory(new Category(parentCategory, "신발"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "지갑"));
-		categoryMapper.insertChildCategory(new Category(parentCategory, "모자"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "벨트"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "모자"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "안경"));
@@ -257,7 +214,7 @@ public class BuildSampleData {
 		parentCategory = categoryMapper.getCategoryByName("게임");
 		categoryMapper.insertChildCategory(new Category(parentCategory, "닌텐도"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "PSP"));
-		categoryMapper.insertChildCategory(new Category(parentCategory, "Nii")); 
+		categoryMapper.insertChildCategory(new Category(parentCategory, "Wii")); 
 		categoryMapper.insertChildCategory(new Category(parentCategory, "XBox")); 
 		
 		parentCategory = categoryMapper.getCategoryByName("가전");
@@ -315,7 +272,11 @@ public class BuildSampleData {
 		}
 	}
 
-	private static void inputSampleProducts(int categoryId, String productNameHeader) {
+	private static void inputSampleProducts(String categoryName, String productNameHeader) {
+		int categoryId = categoryMapper.getCategoryByName(categoryName).getCategoryId();
+		if(categoryId <= 0 )
+			return;
+		
 		StringBuilder imageStrBuilder = new StringBuilder();
 		String tagNameHeader = productNameHeader + "tag";
 		String descriptionHeader = productNameHeader + "desc";

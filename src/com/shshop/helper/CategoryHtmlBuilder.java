@@ -31,8 +31,7 @@ public class CategoryHtmlBuilder {
 			result.append("</a></li>");
 			return result.toString();
 		} else {
-			result.append("<li><a href=\"searchCategory?categoryName=");
-			result.append(getName());
+			result.append("<li><a href=\"#");
 			result.append("\" class=\"choice\">");
 			result.append(getName());
 			result.append("</a>");
