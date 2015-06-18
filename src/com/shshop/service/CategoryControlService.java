@@ -76,7 +76,7 @@ public class CategoryControlService {
 				Category nextCategory = iter.next();
 				CategoryHtmlBuilder categoyBuilderChild = new CategoryHtmlBuilder(nextCategory);
 				categoryParentItem.add(categoyBuilderChild);
-				buildHtmlRecursive(categoyBuilderChild, nextCategory);
+				//buildHtmlRecursive(categoyBuilderChild, nextCategory); //2 단계 카테고리로 고정하여 이 코드 주석처리
 			}
 		} finally {
 			closeMapper();
