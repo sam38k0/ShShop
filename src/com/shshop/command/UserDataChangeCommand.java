@@ -22,7 +22,6 @@ public class UserDataChangeCommand implements Command{
 		String bio = request.getParameter("bio");
 		String bankName = request.getParameter("bankName");
 		String bankNum = request.getParameter("bankNum");
-		String basicAdd = request.getParameter("basicAdd");
 		String detailAdd = request.getParameter("detailAdd");
 		java.sql.Date birthdaySqlDate = Format.getSqlDate(birthday);
 		
@@ -41,15 +40,12 @@ public class UserDataChangeCommand implements Command{
 		
 		attService.userDataUpdate(user);
 		
-		System.out.println(basicAdd);
-		System.out.println(detailAdd);
 		Address address = attService.getUserAddress(user.getUserId()).get(0);
 		
 		if (address == null) {
-			address = new Address(user.getUserId(), null, basicAdd, detailAdd,"000","1111", user.getName(), user.getPhone());
+			address = new Address(user.getUserId(), null, detailAdd,"000","1111", user.getName(), user.getPhone());
 			attService.insertUserAddress(address);
 		} else {
-			address.setBasicAdd(basicAdd);
 			address.setDetailAdd(detailAdd);
 			attService.updateUserAddress(address);
 		}
@@ -57,5 +53,4 @@ public class UserDataChangeCommand implements Command{
 		CommandResult comm = new CommandResult("text/plain;charset=UTF-8","회원정보 수정완료");
 		return comm;
 	}
-
 }

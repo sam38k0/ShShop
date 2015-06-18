@@ -12,7 +12,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.shshop.domain.Product;
-import com.shshop.domain.ProductOption;
 import com.shshop.domain.ProductProc;
 import com.shshop.mapper.ProductCategoryMapper;
 import com.shshop.mapper.ProductImageMapper;

@@ -6,9 +6,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 
 import com.shshop.domain.ProductOption;
 import com.shshop.mapper.ProductOptionMapper;

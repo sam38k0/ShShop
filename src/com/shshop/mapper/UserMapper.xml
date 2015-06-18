@@ -37,8 +37,8 @@
 	</select>
 	
 	<insert id='insertAddress' parameterType='${AddressType}' useGeneratedKeys='true' keyProperty='${id_address}'>
-		INSERT INTO `cr_address`(`id_user`, `id_parent_address`, `basic_add`, `detail_add`, `post_num_header`, `post_num_tail`, `name`, `phone_number`) 
-		VALUES (${id_user}, ${id_parent_address}, ${basic_add}, ${detail_add}, ${post_num_header}, ${post_num_tail}, ${name}, ${phone_number});
+		INSERT INTO `cr_address`(`id_user`, `id_parent_address`, `detail_add`, `post_num_header`, `post_num_tail`, `name`, `phone_number`) 
+		VALUES (${id_user}, ${id_parent_address}, ${detail_add}, ${post_num_header}, ${post_num_tail}, ${name}, ${phone_number});
 	</insert>
 
 	<insert id='insertUser' parameterType='${UserType}' useGeneratedKeys='true' keyProperty='${id_user}'>
@@ -49,7 +49,7 @@
 	
 	<insert id="insertAddressProc" parameterType='${AddressProcType}' statementType="CALLABLE">
     {
-        call proc_insert_address(${id_user}, ${id_parent_address}, ${basic_add}, ${detail_add}, ${post_num_header}, ${post_num_tail}, ${name}, ${phone_number}, #{insertedAddressId, mode=OUT, jdbcType=INTEGER})
+        call proc_insert_address(${id_user}, ${id_parent_address}, ${detail_add}, ${post_num_header}, ${post_num_tail}, ${name}, ${phone_number}, #{insertedAddressId, mode=OUT, jdbcType=INTEGER})
     }
 	</insert>
 	
@@ -63,7 +63,6 @@
 		UPDATE `cr_address`
 		<set>
 			<if test="${id_parent_address} != null"> `id_parent_address`=${id_parent_address},</if>
-			<if test="${basic_add} != null"> `basic_add`=${basic_add}, </if>
 			<if test="${detail_add} != null"> `detail_add`=${detail_add}, </if>
 			<if test="${post_num_header} != null"> `post_num_header`=${post_num_header}, </if>
 			<if test="${post_num_tail} != null"> `post_num_tail`=${post_num_tail}, </if>

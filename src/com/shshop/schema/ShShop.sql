@@ -465,7 +465,6 @@ DELIMITER $$
 DROP PROCEDURE IF EXISTS proc_insert_address $$
 CREATE PROCEDURE proc_insert_address ( IN `proc_id_user`			SMALLINT, 
 									   IN `proc_id_parent_address`  SMALLINT,
-								       IN `proc_basic_add`        	VARCHAR(64),
 								       IN `proc_detail_add`  		VARCHAR(255),
                                        IN `proc_post_num_header`  	VARCHAR(3),
                                        IN `proc_post_num_tail`  	VARCHAR(3),
@@ -482,8 +481,8 @@ BEGIN
 	END IF;
      
     
-	INSERT INTO `cr_address`(`id_user`, `id_parent_address`, `basic_add`, `detail_add`, `post_num_header`, `post_num_tail`, `name`, `phone_number`) 
-		VALUES (`proc_id_user`, addressParentId, `proc_basic_add`, `proc_detail_add` , `proc_post_num_header`, `proc_post_num_tail`, `proc_name`, `proc_phone_number`);
+	INSERT INTO `cr_address`(`id_user`, `id_parent_address`, `detail_add`, `post_num_header`, `post_num_tail`, `name`, `phone_number`) 
+		VALUES (`proc_id_user`, addressParentId, `proc_detail_add` , `proc_post_num_header`, `proc_post_num_tail`, `proc_name`, `proc_phone_number`);
  
 	SET `proc_inserted_address_id` = LAST_INSERT_ID();
 END $$
