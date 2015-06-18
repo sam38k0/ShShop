@@ -31,10 +31,22 @@
 		fnLayerHideById('divAddressNew');
 	}
 	
-	function openModalDialog(refLayerName, layerName, offsetTop) {
-		var pos =  $('#' + refLayerName).position();
-		var topPos = pos.top + offsetTop;
-		$('#' + layerName).css('top',topPos); 
+	function openModalDialog(layerName, offsetTop) {
+ 
+		var $window = $(window);
+		var outerHeight = $('#' + layerName).outerHeight();
+		var outerWidth = $('#' + layerName).outerWidth();
+		
+		var topPos = Math.max($window.height() - outerHeight, 0) / 2;
+		var leftPos = Math.max($window.width() - outerWidth, 0) / 2;
+
+		$('#' + layerName).css({
+			//top : topPos + $window.scrollTop() + offsetTop,
+			top : offsetTop,
+			left : leftPos + $window.scrollLeft()
+		}); 
+		
+		fnLayerShowById(layerName);
 	}
 	 
 	function fnChangeUrlOfAddrChooser(checkedId) {
@@ -43,7 +55,7 @@
 		
 	}
 	
-	function fnResetAddrChooser() { 
+	function fnResetAddrChooser(checkBoxName) { 
 		$('#addrChooser').attr("value", '');
 		$('input:checkbox[name="' + checkBoxName + '"]').attr('checked', false);
 	}
@@ -58,7 +70,7 @@
 			fnChangeUrlOfAddrChooser(id);
 		} else {
 			$(id).prop('checked', false);
-			fnResetAddrChooser();
+			fnResetAddrChooser(checkBoxName);
 		}
 	}
 	
@@ -154,8 +166,7 @@
 
 			case 'rdoDelvAddrSetModeList'://주소록
 				$(this).attr('checked', 'checked');
-				openModalDialog('rdoDelvAddrSetModeList', 'divAddressList', 200);
-				fnLayerShowById('divAddressList');
+				openModalDialog('divAddressList', 500);
 				break;
 
 			case 'rdoDelvAddrSetModeNew': //새로입력
@@ -188,7 +199,6 @@
 			fnLayerHideById('basicAddressSettings');
 			fnLayerHideById('divAddressList');
 			fnLayerShowById('existingAddressSettings' + addrIndex);
-			fnResetAddrChooser();
 			
 			/* 	$.ajax({
 					type : "POST",
@@ -206,6 +216,15 @@
 		
 	    $("#aZipFind").click(function() {
 	    	setPostCode('txtZipCode1New','txtZipCode2New','txtAddressByStNew','txtAddressByOldNew');
+	    });
+ 
+	    $('.modif').click(function(){
+	    	var id = $(this).attr('id');
+	    	
+	    	var indx = id.replace('addressModify', '');
+	    	var addressNewId = 'divAddressNew' + indx;
+	    	fnLayerHideById('divAddressList');
+	    	openModalDialog(addressNewId, 500);
 	    });
 	});
 </script>
