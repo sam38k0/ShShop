@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
 /* 초기화 */
 ul{margin: 0; padding: 0}
@@ -6,6 +7,23 @@ li{list-style: none}
 a{text-decoration: none}
 img{border: 0}
 body{width: 100%; margin: 0;padding: 0}
+
+/* 초기화 추가*/
+body {margin:0;padding:0;background-color:#fff;}
+hr {display:none;clear:both;}
+img,fieldset {border:0 none;}
+dl,ul,ol,li {list-style: none;}
+h1,h2,h3,h4,h5,dl,dt,dd,ul,li,ol,th,td,p,blockquote,form,fieldset,legend {margin:0;padding:0;}
+a {color:#333;text-decoration:none;} a:hover, a:active {text-decoration:underline;}
+input,select,textarea {font-size:100%; vertical-align:middle;}
+em { font-style:normal; }
+/* body {font-size:13px; font-family: "Nanum Gothic", sans-serif; color:#333;} */
+/* body {font-size:13px; font-family:Dotum,돋움,AppleGothic,serif;  color:#333;} */
+ body {font-size:14px;  font-family:Malgun Gothic, Dotum,돋움,AppleGothic,serif;  color:#333;}
+
+table {border-collapse:collapse;}
+
+
 .wrap{position: relative; width: 1000px;height:100%;margin: 0 auto}
 
 /* 부팅 페이지*/

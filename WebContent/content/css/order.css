@@ -1,14 +1,4 @@
 ﻿@charset "utf-8";
-body {margin:0;padding:0;background-color:#fff;}
-hr {display:none;clear:both;}
-img,fieldset {border:0 none;}
-dl,ul,ol,li {list-style: none;}
-h1,h2,h3,h4,h5,dl,dt,dd,ul,li,ol,th,td,p,blockquote,form,fieldset,legend {margin:0;padding:0;}
-a {color:#333;text-decoration:none;} a:hover, a:active {text-decoration:underline;}
-input,select,textarea {font-size:100%; vertical-align:middle;}
-em { font-style:normal; }
-body,th,td,input {font-size:12px;font-family:Dotum,돋움,AppleGothic,serif; color:#333;}
-table {border-collapse:collapse;}
 
 /* clearfix */
 .clearfix:after { content:"."; display:block; height:0; clear:both; visibility:hidden; } .clearfix { display:inline-block; clear:both; }/* Hides from IE-mac \*/ *html .clearfix {height: 1px;} .clearfix {display: block;}/* End hide from IE-mac */
