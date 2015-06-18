@@ -7,39 +7,33 @@
 
 <div class="headwrap">
 	<!-- 테스트용 > 개발 끝나고 지워야 함 -->
-	<div id="test">
+	<!-- <div id="test">
 		<form id="showDetailViewForm" name="showDetailViewForm" method="post" action="showDetailView">
 			<input type="submit" value="TestDetailView">
 		</form>
 		<form id="showOrderViewForm" name="showOrderViewForm" method="post" action="showOrderView">
 			<input type="submit" value="TestOrderView">
 		</form>
-	</div>
+	</div> -->
 	<!-- //테스트용 -->
 	
 	<!-- 헤더 시작 -->
 	<div id="header">
-		<!-- 전체 카테고리 시작 -->
-		<div id="category">
-			<span>카테고리 선택</span>
-			<ul class="allcategory">
-			<%
-                CategoryControlService categoryControlService = new CategoryControlService();
-                out.print(categoryControlService.buildHtml(false));
-             %>
-			</ul>
-		</div>
-		<!-- 전체 카테고리 종료 -->
+		<div id="header_logo"><a href="viewMain"><img src="${adminBean.contextPath}/content/image/default/header_logo.png"></a></div>
 		<!-- 검색바 시작 -->
 		<div id="search">
 			<form action="searchView" method="get">
-				<select>
-					<option>전체</option>
-					<option>의류</option>
-					<option>장난감</option>
-					<option>가전</option>
-					<option>악세서리</option>
-				</select> <input type="text" id="keywords", name="keywords">
+				<div class="divSelectWrap">
+					<div class="divSelectText">전체</div>
+					<ul class="selectboxUI">
+						<li>전체</li>
+						<li>의류</li>
+						<li>장난감</li>
+						<li>가전</li>
+						<li>악세서리</li>
+					</ul>
+				</div>
+				<input type="text" id="keywords" name="keywords" >
 				<button type="submit" value="Submit">검색</button>
 			</form>
 		</div>
@@ -49,42 +43,51 @@
 			<form id="insertProductForm" name="insertProductForm" method="post" action="insertProductView">
 				<input type="submit" value="판매등록">
 			</form>
-			<form id="insertHopeProductForm" name="insertHopeProductForm" method="post" action="insertHopeProductView">
+			<!-- <form id="insertHopeProductForm" name="insertHopeProductForm" method="post" action="insertHopeProductView">
 				<input type="submit" value="구매등록">
-			</form>
+			</form> -->
 		</div>
-		
 		<!-- 상품등록버튼 종료 -->
-
+		
 		<!-- 로그인 전 서브 메뉴 시작 -->
 		<ul class="gnb_before_login">
-			<li><a href="viewMain">홈</a></li>
-			<li>|</li>
-			<li><div id="loginDiv">
-					<a><img src="${adminBean.contextPath}/content/image/login.png" title="로그인" width="30" height="30" alt="Share icon" /> </a>
-				</div></li>
-			<li>|</li>
-			<li><div id="registerUserDiv">
-					<a><img src="${adminBean.contextPath}/content/image/addUser.png" title="회원가입" width="30" height="30" alt="Share icon" /> </a>
-				</div></li>
+			<li><a href="viewMain">HOME</a></li>
+			<li>ㆍ</li>
+			<li id="loginDiv">
+				<a href="#">LOGIN</a>
+			</li>
+			<li>ㆍ</li>
+			<li id="registerUserDiv">
+				<a href="#">JOIN</a>
+			</li>
 			<!-- <li><a href="#" class="join_btn">회원가입</a></li>  -->
 		</ul>
-
 		<ul class="gnb_after_login">
-			<li><a href="viewMain">홈</a></li>
-			<li>|</li>
-			<li><div id="share_logout">
-					<a href="viewMain"><img src="${adminBean.contextPath}/content/image/logout.png" title="로그아웃" width="30" height="30" alt="Share icon" /> </a>
-				</div></li>
-			<li>|</li>
-			<li><a href="mypage">마이페이지</a></li>
-			<li>|</li>
-			<li><a href="#">장바구니</a></li>
+			<li><a href="viewMain">HOME</a></li>
+			<li>ㆍ</li>
+			<li id="share_logout">
+				<a href="#">LOGOUT</a>
+			</li>
+			<li>ㆍ</li>
+			<li><a href="mypage">MYPAGE</a></li>
+			<li>ㆍ</li>
+			<li><a href="#">BASKET</a></li>
 		</ul>
-
 		<!-- 로그인 후 서브 메뉴 종료 -->
-
 	</div>
+	<!-- 전체 카테고리 시작 -->
+	<div class="category_wrap">
+		<div id="category">
+			<ul class="allcategory">
+			<%
+	               CategoryControlService categoryControlService = new CategoryControlService();
+	               out.print(categoryControlService.buildHtml(false));
+	            %>
+			</ul>
+		</div>
+	</div>
+	<!-- 전체 카테고리 종료 -->
+		
 	<!-- 헤더 종료 -->
 </div>
 

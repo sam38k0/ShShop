@@ -5,9 +5,10 @@
 
 <div id="banner">
 	<ul class="show_banner">
-         <li><a href="#"><img src="${adminBean.contextPath}/content/image/ben1.jpg" alt="베너1"></a></li>
-         <li><a href="#"><img src="${adminBean.contextPath}/content/image/ben2.jpg" alt="베너2"></a></li>
-         <li><a href="#"><img src="${adminBean.contextPath}/content/image/ben3.jpg" alt="베너3"></a></li>
+         <li class="on"><a href="#"><img src="${adminBean.contextPath}/content/image/main_image/main_banner_1.png" alt="베너1"></a></li>
+         <li><a href="#"><img src="${adminBean.contextPath}/content/image/main_image/main_banner_2.png" alt="베너2"></a></li>
+         <li><a href="#"><img src="${adminBean.contextPath}/content/image/main_image/main_banner_3.png" alt="베너3"></a></li>
+         <li><a href="#"><img src="${adminBean.contextPath}/content/image/main_image/main_banner_4.png" alt="베너4"></a></li>
     </ul>
 	<div class="control">
 		<a href="#" id="prevBtn"><img src="${adminBean.contextPath}/content/image/left_btn.png" alt=""></a> 
@@ -19,7 +20,7 @@
 		<p>[HOT] 인기상품</p>
 		<ul class="hot_item_area">
 			<c:forEach  var="productC" items="${productsC}">
-				<li class="hot_item"><img src="http://placehold.it/110x110" alt=""><span>${productC.name}</span><br><em>${productC.price}</em></li>
+				<li class="hot_item"><img src="http://placehold.it/120x120" alt=""><span>${productC.name}</span><em>${productC.price}</em></li>
 			</c:forEach>
 		</ul>
 	</div>
@@ -27,7 +28,7 @@
 		<p>[NEW] 신규상품</p>
 		<ul class="new_item_area">
 			<c:forEach  var="productD" items="${productsD}">
-				<li class="new_item"><img src="http://placehold.it/110x110" alt=""><span>${productD.name}</span><br><em>${productD.price}</em></li>
+				<li class="new_item"><img src="http://placehold.it/120x120" alt=""><span>${productD.name}</span><br><em>${productD.price}</em></li>
 			</c:forEach>
 		</ul>
 	</div>

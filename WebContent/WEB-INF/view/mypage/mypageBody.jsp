@@ -127,7 +127,7 @@
         </div>
     </div>
 </div>
-<%-- 
+
 <div id="user_wrap">
 	<form id="user_form" class="user_form">
 		<table>
@@ -186,4 +186,4 @@
 			<input type='button' name='cancle' value='취소'><button type='submit'>수정</button>
 		</form>
 	</div>
-</div> --%>
+</div>

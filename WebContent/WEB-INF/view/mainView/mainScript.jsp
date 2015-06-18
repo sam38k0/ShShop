@@ -5,3 +5,4 @@
 <script src="${adminBean.contextPath}/content/js/main_banner.js"></script>
 <script src="${adminBean.contextPath}/content/js/hotItem.js"></script>
 <script src="${adminBean.contextPath}/content/js/newItem.js"></script>
+<script src="${adminBean.contextPath}/content/js/jquery.easing.1.3.js"></script>

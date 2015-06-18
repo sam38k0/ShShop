@@ -22,22 +22,23 @@
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+        <div class="header_area">
+            <jsp:include page= '${sessionScope.adminBean.headerPage}'/>
+        </div>
         <div class="wrap">
-            <div class="header_area">
-                <jsp:include page= '${sessionScope.adminBean.headerPage}'/>
-            </div>
             <div id="main_body">
 				<jsp:include page= '${sessionScope.adminBean.contentPage}'/>
             </div>
-            <div class="footer_area">
-                <jsp:include page= '${sessionScope.adminBean.footerPage}'/>
-            </div>
+        </div>
+        <div class="footer_area">
+            <jsp:include page= '${sessionScope.adminBean.footerPage}'/>
         </div>
         
         <!-- Basic JS -->        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
 		<script src="${adminBean.contextPath}/content/js/initialize.js"></script>
 		<script src="${adminBean.contextPath}/content/js/user.js"></script>
+		<script src="${adminBean.contextPath}/content/js/selectList.js"></script>
 		
         <!-- Each JS -->     
 	 	<jsp:include page= '${sessionScope.adminBean.scriptPage}'/>
