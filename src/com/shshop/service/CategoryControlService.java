@@ -13,11 +13,13 @@ import com.shshop.util.MyBatisUtil;
 public class CategoryControlService {
 	private SqlSession sqlSession = null;
 	private static String buildHtmlResult = "";
+	private static String buildHtmlResult2 = "";
+	
 	public CategoryControlService() {
 
 	}
 
-	public String buildHtml(boolean forceOperation) {
+	public String buildHtml(boolean forceOperation, boolean withSearchQuery) {
 		if (!forceOperation) {
 			try {
 				while (getBuildHtmlResult().equals(""))
@@ -26,10 +28,14 @@ public class CategoryControlService {
 				e.printStackTrace();
 			}
 			
-			return getBuildHtmlResult();
+			if(withSearchQuery)
+				return getBuildHtmlResult();
+			else
+				return getBuildHtmlResult2();
 		}
 	
 		String result = "";
+		String result2 = "";
 
 		try {
 			CategoryMapper categoryMapper = getCategoryMapper();
@@ -45,13 +51,19 @@ public class CategoryControlService {
 			}
 			
 			result = categoryHtmlBuilderRoot.buildHtml();
+			result2 = categoryHtmlBuilderRoot.buildHtml2();
+			
 		} finally {
 			closeMapper();
 		}
 
 		setBuildHtmlResult(result);
+		setBuildHtmlResult2(result2);
 		
-		return result;
+		if(withSearchQuery)
+			return getBuildHtmlResult();
+		else
+			return getBuildHtmlResult2();
 	}
 
 	private void buildHtmlRecursive(CategoryHtmlBuilder categoryParentItem, Category parentCategory) {
@@ -85,8 +97,17 @@ public class CategoryControlService {
 	public static String getBuildHtmlResult() {
 		return buildHtmlResult;
 	}
+	
+	public static String getBuildHtmlResult2() {
+		return buildHtmlResult2;
+	}
 
 	public static void setBuildHtmlResult(String buildHtmlResult) {
 		CategoryControlService.buildHtmlResult = buildHtmlResult;
 	}
+	
+	public static void setBuildHtmlResult2(String buildHtmlResult) {
+		CategoryControlService.buildHtmlResult2 = buildHtmlResult;
+	}
+	
 }

@@ -128,7 +128,7 @@
                                     <td class="num_p">
                                         <select id="ddlAddrMobNo1" style="width: 72px; margin-bottom: 1px; vertical-align: bottom">
                                             <option value="">선택</option>
-                                            ${requestScope.orderViewInfo.phoneNumberHeadHtml}
+                                            ${requestScope.orderViewInfo.basicAddressOrigin.phoneNumberHeadHtml}
                                         </select> -
                                         <input type="text" id="txtAddrMobNo2" value="<c:out value="${requestScope.orderViewInfo.userPhoneNumberMid}"/>" class="ipubx" maxlength="4" /> -
                                         <input type="text" id="txtAddrMobNo3" value="<c:out value="${requestScope.orderViewInfo.userPhoneNumberTail}"/>" class="ipubx" maxlength="4" onfocus="this.select();" />
@@ -164,10 +164,10 @@
                                 </td>
                             </tr>
                         </table>
-                        <table cellpadding="0" cellspacing="0" class="tbl_pay">
+                        <table cellpadding="0" class="tbl_pay" id="basicAddressSettings">
                             <tr id="trOrdNmNormal" style="">
                                 <th>이름</th>
-                                <td><input id="txtOrdNmNormal" type="text" value="<c:out value="${requestScope.orderViewInfo.basicAddressOrigin.name}"/>" class="ipubx" /></td>
+                                <td><input id="txtOrdNmNormalBasic" type="text" value="<c:out value="${requestScope.orderViewInfo.basicAddressOrigin.name}"/>" class="ipubx" /></td>
                             </tr>
 
                             <tr id="trDelvAddrNormal" style="">
@@ -175,23 +175,19 @@
                                   	  배송주소
                                 </th>
                                 <td>
-                                    <input type="text" id="txtZipCode1" value="100" class="ipubx" style="width: 40px"
-                                           onclick="javascript:LoadPostalCode('aZipFind');" readonly="readonly" /> -
-                                    <input type="text" id="txtZipCode2" value="013" class="ipubx" style="width: 40px" readonly="readonly"
-                                           onclick="javascript:LoadPostalCode('aZipFind');" />
-                                    <a href="javascript:" onclick="LoadPostalCode('aZipFind'); return false;" title="주소 찾기" 
-                                       class="bw sch_address" id="aZipFind">주소 찾기   
+                                    <input type="text" id="txtZipCode1Basic" value="<c:out value="${requestScope.orderViewInfo.basicAddressNew.postNumHeader}"/>" class="ipubx" style="width: 40px" readonly="readonly" /> -
+                                    <input type="text" id="txtZipCode2Basic" value="<c:out value="${requestScope.orderViewInfo.basicAddressNew.postNumTail}"/>" class="ipubx" style="width: 40px" readonly="readonly" />
+                                    <a href="#" title="주소 찾기" id="aZipFindBasic">주소 찾기   
                                     </a>
                                     <br/>
                                     <p style="margin:5px 0;">도로명 주소
-                                        <input type="text" id="txtAddressBySt" class="ipubx" onblur="fnAddressModifyApply();" 
-                                               value="<c:out value="${requestScope.orderViewInfo.basicAddressNew.basicAdd} "/><c:out value="${requestScope.orderViewInfo.basicAddressNew.detailAdd}"/>" 
+                                        <input type="text" id="txtAddressByStBasic" class="ipubx"
+                                               value="<c:out value="${requestScope.orderViewInfo.basicAddressNew.fullAddress} "/>" 
                                                style="width:320px;vertical-align:middle;" readonly="readonly" />
                                     </p>
                                     <p style="line-height:20px;">지번 주소&nbsp;&nbsp;&nbsp;
-                                        <input type="text" id="txtAddressByOld" onblur="fnAddressModifyApply();" 
-                                               value="<c:out value="${requestScope.orderViewInfo.basicAddressOrigin.basicAdd} "/><c:out value="${requestScope.orderViewInfo.basicAddressOrigin.detailAdd}"/>"
-                                               class="ipubx" 
+                                        <input type="text" id="txtAddressByOldBasic"  class="ipubx" 
+                                               value="<c:out value="${requestScope.orderViewInfo.basicAddressOrigin.fullAddress}"/>"
                                                style="width:320px;vertical-align:middle;" readonly="readonly" />
                                         <a href="#" title="주소록에 추가" class="bw add_adrs">주소록에 추가</a>
                                     </p> 
@@ -203,15 +199,114 @@
                                    	 핸드폰
                                 </th>
                                 <td class="num_p" style="height: 22px;">
-                                    <select id="ddlRcvrMobTelNo1Normal" style="width: 50px; margin-bottom: 1px; vertical-align: bottom">
+                                    <select id="ddlRcvrMobTelNo1NormalBasic" style="width: 50px; margin-bottom: 1px; vertical-align: bottom">
                                         <option value="">선택</option>
-                                        ${requestScope.orderViewInfo.phoneNumberHeadHtml}
+                                        ${requestScope.orderViewInfo.basicAddressOrigin.phoneNumberHeadHtml}
                                     </select> -
                                     <input type="text" id="txtRcvrMobTelNo2Normal" value="<c:out value="${requestScope.orderViewInfo.basicAddressOrigin.phoneNumberMid}"/>" class="ipubx" maxlength="4"/> -
                                     <input type="text" id="txtRcvrMobTelNo3Normal" value="<c:out value="${requestScope.orderViewInfo.basicAddressOrigin.phoneNumberTail}"/>" class="ipubx" maxlength="4"/>
                                 </td>
                             </tr>
                         </table>
+                        
+						<table cellpadding="0" class="tbl_pay"  id="newAddressSettings" style="display:none">
+                            <tr id="trOrdNmNormal" style="">
+                                <th>이름</th>
+                                <td><input id="txtOrdNmNormalNew" type="text" value="" class="ipubx" /></td>
+                            </tr>
+
+                            <tr id="trDelvAddrNormal" style="">
+                                <th>
+                                  	  배송주소
+                                </th>
+                                <td>
+                                    <input type="text" id="txtZipCode1New" value="" class="ipubx" style="width: 40px" readonly="readonly" /> -
+                                    <input type="text" id="txtZipCode2New" value="" class="ipubx" style="width: 40px" readonly="readonly" />
+                                    <a href="#" title="주소 찾기" id="aZipFind">주소 찾기   
+                                    </a>
+                                    <br/>
+                                    <p style="margin:5px 0;">도로명 주소
+                                        <input type="text" id="txtAddressByStNew" class="ipubx" onblur="fnAddressModifyApply();" 
+                                               value="" 
+                                               style="width:320px;vertical-align:middle;" readonly="readonly" />
+                                    </p>
+                                    <p style="line-height:20px;">지번 주소&nbsp;&nbsp;&nbsp;
+                                        <input type="text" id="txtAddressByOldNew" onblur="fnAddressModifyApply();" 
+                                               value=""
+                                               class="ipubx" 
+                                               style="width:320px;vertical-align:middle;" readonly="readonly" />
+                                        <a href="#" title="주소록에 추가" class="bw add_adrs">주소록에 추가</a>
+                                    </p> 
+                                </td>
+                            </tr>
+
+                            <tr id="trDelvMobNoNormalNew" style="">
+                                <th>
+                                   	 핸드폰
+                                </th>
+                                <td class="num_p" style="height: 22px;">
+                                    <select id="ddlRcvrMobTelNo1NormalNew" style="width: 50px; margin-bottom: 1px; vertical-align: bottom">
+                                        <option value="">선택</option>
+                                        <option value="010" selected="selected">010</option>
+										<option value="011">011</option>
+										<option value="016">016</option> 
+										<option value="017">017</option> 
+										<option value="018">018</option>
+										<option value="019">019</option> 
+                                    </select> -
+                                    <input type="text" id="txtRcvrMobTelNo2NormalNew" value="" class="ipubx" maxlength="4"/> -
+                                    <input type="text" id="txtRcvrMobTelNo3NormalNew" value="" class="ipubx" maxlength="4"/>
+                                </td>
+                            </tr>
+                        </table>
+
+						<c:forEach var="addressInfo" varStatus="addressInfos" items="${requestScope.orderViewInfo.addressesPair}">
+						<table cellpadding="0" class="tbl_pay"  id="existingAddressSettings<c:out value="${addressInfos.index}"/>" style="display:none">
+                            <tr id="trOrdNmNormal" style="">
+                                <th>이름</th>
+                                <td><input id="txtOrdNmNormalExisting<c:out value="${addressInfos.index}"/>" type="text" value="<c:out value="${addressInfo.addressOrigin.name}"/>" class="ipubx" /></td>
+                            </tr>
+
+                            <tr id="trDelvAddrNormalExisting<c:out value="${addressInfos.index}"/>" style="">
+                                <th>
+                                  	  배송주소
+                                </th>
+                                <td>
+                                    <input type="text" id="txtZipCode1Existing<c:out value="${addressInfos.index}"/>" value="<c:out value="${addressInfo.addressOrigin.postNumHeader}"/>" class="ipubx" style="width: 40px" readonly="readonly" /> -
+                                    <input type="text" id="txtZipCode2Existing<c:out value="${addressInfos.index}"/>" value="<c:out value="${addressInfo.addressOrigin.postNumTail}"/>" class="ipubx" style="width: 40px" readonly="readonly" />
+                                    <a href="#" title="주소 찾기" id="aZipFind">주소 찾기   
+                                    </a>
+                                    <br/>
+                                    <p style="margin:5px 0;">도로명 주소
+                                        <input type="text" id="txtAddressByStExisting<c:out value="${addressInfos.index}"/>" class="ipubx" onblur="fnAddressModifyApply();" 
+                                               value="<c:out value="${addressInfo.addressNew.fullAddress}"/>"  
+                                               style="width:320px;vertical-align:middle;" readonly="readonly" />
+                                    </p>
+                                    <p style="line-height:20px;">지번 주소&nbsp;&nbsp;&nbsp;
+                                        <input type="text" id="txtAddressByOldExisting<c:out value="${addressInfos.index}"/>" onblur="fnAddressModifyApply();" 
+                                               value="<c:out value="${addressInfo.addressOrigin.fullAddress}"/>"  
+                                               class="ipubx" 
+                                               style="width:320px;vertical-align:middle;" readonly="readonly" />
+                                        <a href="#" title="주소록에 추가" class="bw add_adrs">주소록에 추가</a>
+                                    </p> 
+                                </td>
+                            </tr>
+
+                            <tr id="trDelvMobNoNormalExisting<c:out value="${addressInfos.index}"/>" style="">
+                                <th>
+                                   	 핸드폰
+                                </th>
+                                <td class="num_p" style="height: 22px;">
+                                    <select id="ddlRcvrMobTelNo1NormalExisting<c:out value="${addressInfos.index}"/>" style="width: 50px; margin-bottom: 1px; vertical-align: bottom">
+                                        <option value="">선택</option>
+                                        ${addressInfo.addressOrigin.phoneNumberHeadHtml}
+                                    </select> -
+                                    <input type="text" id="txtRcvrMobTelNo2NormalExisting<c:out value="${addressInfos.index}"/>" value="<c:out value="${addressInfo.addressOrigin.phoneNumberMid}"/>" class="ipubx" maxlength="4"/> -
+                                    <input type="text" id="txtRcvrMobTelNo3NormalExisting<c:out value="${addressInfos.index}"/>" value="<c:out value="${addressInfo.addressOrigin.phoneNumberTail}"/>" class="ipubx" maxlength="4"/>
+                                </td>
+                            </tr>
+                        </table>
+                        </c:forEach>
                     </div>
                 </div>
                 <!-- 배송주소 // -->
@@ -454,12 +549,12 @@
                         <!--// 무통장 입금은행 -->
                     </div>
                     <!-- 주소록 (숨기기)-->
-                    <div id="divAddressList" class="plyr" style="width: 700px; left: 130px; top: 1181px;">
+                    <div id="divAddressList" class="plyr" style="position: absolute; z-index: 99999; width: 700px; left: 206px; top: 10000px;">
 					    <div class="plyr_w">
 					        <div id="divAddressListMember" class="plyr_c" style="width: 700px;">
 					            <ul class="plyr_l">
 					                <li>
-					                   ${requestScope.orderViewInfo.user.name} 의 주소록(<strong>2</strong>) ( 최대 5개까지 등록 가능 )
+					                   ${requestScope.orderViewInfo.user.name} 의 주소록(<strong>${requestScope.orderViewInfo.addressesPairSize}</strong>) ( 최대 5개까지 등록 가능 )
 					                </li>
 					            </ul>
 					            <table class="tbl_l">
@@ -494,7 +589,11 @@
 										<c:forEach var="addressInfo" varStatus="addressInfos" items="${requestScope.orderViewInfo.addressesPair}">
 										<tr>
 					                        <td valign="top">
-					                            <input type="checkbox" id="chkMemberAddress5" name="chkMemberAddress" value="${addressInfos.index}"  class="chkbx">
+					                            <input type="checkbox" 
+							                           id="chkMemberAddress<c:out value="${addressInfos.index}"/>" 
+							                           name="chkMemberAddress" 
+							                           value="${addressInfos.index}"  
+							                           class="chkbx">
 					                        </td>
 					                        <td valign="top">
 					                            <a href="#" >${addressInfo.addressOrigin.name}</a>
@@ -512,7 +611,7 @@
 					                                    <span class="putAddrTxt">
 					                                        <a href="#" >
 					                                        (<c:out value="${addressInfo.addressNew.postNumHeader}"/>-
-					                                        <c:out value="${addressInfo.addressNew.postNumHeader}"/>)
+					                                        <c:out value="${addressInfo.addressNew.postNumTail}"/>)
 					                                        <c:out value="${addressInfo.addressNew.basicAdd}"/>
 					                                        <c:out value="${addressInfo.addressNew.detailAdd}"/>
 					                                        </a>
@@ -527,7 +626,7 @@
 					                                    <span class="putAddrTxt grayTxt">
 					                                        <a class="grayTxt" href="#" >
 					                                        (<c:out value="${addressInfo.addressOrigin.postNumHeader}"/>-
-					                                        <c:out value="${addressInfo.addressOrigin.postNumHeader}"/>)
+					                                        <c:out value="${addressInfo.addressOrigin.postNumTail}"/>)
 					                                        <c:out value="${addressInfo.addressOrigin.basicAdd}"/>
 					                                        <c:out value="${addressInfo.addressOrigin.detailAdd}"/>
 					                                        </a>
@@ -547,17 +646,79 @@
 					                </tbody>
 					            </table>
 					            <div class="btn_area_p">
-					                <a href="#" class="bw sel_add_use" title="선택 주소 사용">선택주소사용</a>
-					                <a href="#" class="bw cnl" title="취소">취소</a>
+					                <a href="#" class="bw sel_add_use" id="addrChooser" title="선택 주소 사용">선택주소사용</a>
 					            </div>
 					        </div>
 					        <div>
-					            <a href="#" title="닫기" class="close">닫기</a>
+					            <a href="javascript:fnLayerHideById('divAddressList');" title="닫기" class="close">닫기</a>
 					        </div>
 					    </div>
 					</div>
                     <!--// 주소록 -->
-                </div>
+                    <!-- 주소정보 수정 -->
+				    <div id="divAddressNew" class="plyr" style="position: absolute; z-index: 9998; width: 586px; left: 263px; top: 500px;">
+				    <div class="plyr_w">
+				        <h3 id="lblAddressNewTitle" class="plyr_t">주소정보 수정</h3>
+				        <div class="plyr_c" style="width: 550px;">
+				            <table class="tbl_nbk sel_c2">
+				                <colgroup>
+				                    <col width="90"><col width="">
+				                </colgroup>
+				                <tbody><tr>
+				                    <th>주소별칭</th>
+				                    <td>
+				                        <input type="text" id="txtAddrNickNew" value="김대웅" class="ipubx" style="width: 150px;">
+				                        <input type="hidden" id="hdnAddrSeq" value="5">
+				                    </td>
+				                </tr>
+				                <tr id="divAddressNewKorea">
+				                    <th>주소</th>	
+									<td>
+										<input type="text" id="txtZipCd1New" value="100" readonly="readonly" class="ipubx" style="width:30px"> - <input type="text" id="txtZipCd2New" value="013" readonly="readonly" class="ipubx" style="width:30px"> <a id="aZipFind2" href="javascript:void(0)" onclick="LoadAddrModifyPostalCode('aZipFind2'); return false;" title="주소 찾기" class="bw sch_address">주소 찾기</a><br>
+										<p style="margin:5px 0">
+											도로명 주소 <input type="text" id="txtAddressNewBySt" value="서울특별시 중구 수표로 10, 9 해피하우스 602호 (충무로3가)" class="ipubx" style="width:300px;" readonly="readonly">
+										</p>
+										<p style="margin-bottom:5px;">
+											지번 주소&nbsp;&nbsp;&nbsp; <input type="text" id="txtAddressNewByOld" value="서울특별시 중구 충무로3가 59-13 9 해피하우스 602호 " class="ipubx" style="width:300px;" readonly="readonly">
+										</p>
+									</td>	
+				                </tr>
+				                <tr id="divAddressNewForeign" style="display: none;">
+				                    <th>주소</th>
+				                    <td>
+				                        <input type="text" id="txtZipCdNew" value="" class="ipubx">
+				                        <input type="text" id="txtAddr1NewForeign" value="서울특별시 중구 충무로3가 59-13" class="ipubx" style="width: 300px;">
+				                    </td>
+				                </tr>
+				                <tr id="divAddress2NewForeign" style="display: none;">
+				                <th>상세주소</th>
+				                    <td>
+				                        <input type="text" id="txtAddr2NewForeign" value="9 해피하우스 602호 " class="ipubx" style="width: 300px;">
+				                    </td>
+				                </tr>                
+				                <tr>
+				                    <th>핸드폰</th>
+				                    <td>
+				                        <input type="text" id="txtMobNoNew" value="010-3224-0196" class="ipubx" style="width: 110px;">
+				                    </td>
+				                </tr>
+				                <tr>
+				                <td colspan="2">
+				                    <div id="divAddressNewBtn" class="btn_area_p" style="z-index: 99999;">
+				                        <a href="javascript:" id="btnAddrModify" onclick="fnDelvAddrModify(); return false;" class="bw cfrm" title="확인">확인</a>
+				                        <a href="javascript:fnPopupLayerHide('divAddressNew');" id="btnAddrModifyCancel" class="bw cnl" title="취소">취소</a>
+				                    </div>
+				                </td>
+				                </tr>
+				            </tbody></table>
+				        </div>
+				        <div>
+				            <a href="javascript:fnLayerHideById('divAddressNew');" title="닫기" class="close">닫기</a>
+				        </div>
+				    </div>
+				</div>
+				<!-- //주소정보 수정 -->
+			</div>
         </div>
     </div>
 </div>

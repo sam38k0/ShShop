@@ -79,9 +79,9 @@
 	<div class="category_wrap">
 		<div id="category">
 			<ul class="allcategory">
-			<%
-	               CategoryControlService categoryControlService = new CategoryControlService();
-	               out.print(categoryControlService.buildHtml(false));
+				<%
+					CategoryControlService categoryControlService = new CategoryControlService();
+		            out.print(categoryControlService.buildHtml(false,true));
 	            %>
 			</ul>
 		</div>

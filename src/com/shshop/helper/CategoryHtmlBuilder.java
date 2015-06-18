@@ -38,6 +38,24 @@ public class CategoryHtmlBuilder {
 			return result.toString();
 		}
 	}
+	
+	public String toStringWithoutSearch() {
+		StringBuilder result = new StringBuilder();
+
+		if (items.isEmpty()) {
+			result.append("<li><a href=\"#\"");
+			result.append("\">");
+			result.append(getName());
+			result.append("</a></li>");
+			return result.toString();
+		} else {
+			result.append("<li><a href=\"#");
+			result.append("\" class=\"choice\">");
+			result.append(getName());
+			result.append("</a>");
+			return result.toString();
+		}
+	}
 
 	public void add(CategoryHtmlBuilder menuComponent) {
 		items.add(menuComponent);
@@ -74,6 +92,31 @@ public class CategoryHtmlBuilder {
 
 		return result.toString();
 	}
+	
+	public String buildHtml2() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.toStringWithoutSearch());
+		result.append("\r\n");
+
+		boolean hasItem = !items.isEmpty();
+
+		if (hasItem) {
+			result.append("<ul class=\"allcategory\">");
+			result.append("\r\n");
+		}
+
+		for (int i = 0; i < items.size(); i++) {
+			result.append(items.get(i).buildHtml2());
+		}
+
+		if (hasItem) {
+			result.append("</ul></li>");
+			result.append("\r\n");
+		}
+
+		return result.toString();
+	}
+
 
 	public String getName() {
 		return name;
