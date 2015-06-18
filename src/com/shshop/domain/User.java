@@ -5,7 +5,7 @@ import java.sql.Date;
 
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer userId;
 	private String name;
 	private boolean gender;
@@ -26,7 +26,7 @@ public class User implements Serializable {
 
 	public User() {
 	}
-	
+
 	public User(String email, String password, String name, String phone, String ktalkId, String bio, Date birthday) {
 		this.email = email;
 		this.password = password;

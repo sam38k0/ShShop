@@ -6,6 +6,6 @@ import com.shshop.domain.Address;
 
 public interface AddressMapper {
 	public int getAddressCount();
-	
+
 	public Address getAddressById(@Param("idAddress") int idAddress);
 }

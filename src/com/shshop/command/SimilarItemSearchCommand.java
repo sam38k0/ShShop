@@ -10,9 +10,9 @@ public class SimilarItemSearchCommand implements Command {
 
 	@Override
 	public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
-		ProductService psService = new ProductService(request, response);
-		
-		return psService.searchCategoryOfProduct();
+		ProductService psService = new ProductService();
+
+		return psService.searchCategoryOfProduct(request);
 	}
 
 }

@@ -21,8 +21,8 @@ public class CategoryControlServiceTest {
 	@Test
 	public void testBuildHtml() {
 		CategoryControlService categoryControlService = new CategoryControlService();
-		//System.out.println(categoryControlService.buildHtml());
-		assertTrue("testBuildHtml",true);
+		// System.out.println(categoryControlService.buildHtml());
+		assertTrue("testBuildHtml", true);
 	}
 
 }

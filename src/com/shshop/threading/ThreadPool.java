@@ -19,7 +19,6 @@ public class ThreadPool extends ThreadGroup {
 	private static int groupId = 0;
 	private static int threadId = 0;
 
-
 	public ThreadPool(int initThreadCount, int maxThreadCount, int minThreadCount, int allowedIdleCount) {
 		super(ThreadPool.class.getName() + Integer.toString(groupId++));
 
@@ -127,7 +126,7 @@ public class ThreadPool extends ThreadGroup {
 
 					beginRun();
 					work.run();
-					
+
 					if (terminate()) {
 						break;
 					}

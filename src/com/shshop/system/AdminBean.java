@@ -19,9 +19,9 @@ public class AdminBean implements Serializable {
 	private String contextPath;
 
 	public AdminBean() {
-	
+
 	}
-	
+
 	public AdminBean(HttpServletRequest request) {
 		contextPath = request.getContextPath();
 	}

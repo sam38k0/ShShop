@@ -5,7 +5,7 @@ import java.sql.Date;
 
 public class Category implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer categoryId;
 	private Integer parentCategoryId;
 	private String name;
@@ -16,13 +16,13 @@ public class Category implements Serializable {
 
 	}
 
-	//For Child Category
+	// For Child Category
 	public Category(Category parentCategory, String name) {
 		this.parentCategoryId = parentCategory.getCategoryId();
 		this.name = name;
 	}
 
-	//For Root Category
+	// For Root Category
 	public Category(String name) {
 		this.name = name;
 	}

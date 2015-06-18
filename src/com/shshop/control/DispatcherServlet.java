@@ -29,13 +29,13 @@ public class DispatcherServlet extends HttpServlet {
 
 		CommandResult result = null;
 		Command command = getCommand(request);
-		
+
 		if (command != null)
 			result = command.execute(request, response);
 
-		if(result == null)
+		if (result == null)
 			result = new CommandResult("/WEB-INF/view/error.jsp");
-		
+
 		if (result.getViewURI() != null) {
 			dispatch(request, response, result.getViewURI());
 		} else {
@@ -70,7 +70,6 @@ public class DispatcherServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		processRequest(request, response);
 	}
- 
 
 	private void setAdminBean(HttpServletRequest request) {
 		AdminBean adminBean = new AdminBean(request);

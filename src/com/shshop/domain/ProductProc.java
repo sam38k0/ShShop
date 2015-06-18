@@ -13,20 +13,18 @@ public class ProductProc implements Serializable {
 	public ProductProc() {
 
 	}
-	
-	public ProductProc(Integer userId, Integer categoryId, String name, int price, int stock, int translation, int connection, 
-				   String tag, String description, int searchingCount,
-				   boolean onSale, boolean onOpen, boolean outOfStock, String imagePaths) {
-		product = new Product(userId,name,price,stock,translation,connection,tag,description,searchingCount,onSale,onOpen,outOfStock);
+
+	public ProductProc(Integer userId, Integer categoryId, String name, int price, int stock, int translation, int connection, String tag,
+			String description, int searchingCount, boolean onSale, boolean onOpen, boolean outOfStock, String imagePaths) {
+		product = new Product(userId, name, price, stock, translation, connection, tag, description, searchingCount, onSale, onOpen, outOfStock);
 		this.setCategoryId(categoryId);
 		this.setImagePaths(imagePaths);
 	}
-	
-    @Override
-    public boolean equals(Object object)
-    {
-    	return product.equals(object);
-    }
+
+	@Override
+	public boolean equals(Object object) {
+		return product.equals(object);
+	}
 
 	public String getName() {
 		return product.getName();
@@ -155,11 +153,11 @@ public class ProductProc implements Serializable {
 	public void setConnection(int connection) {
 		product.setConnection(connection);
 	}
-	
-	public String getTranslationComment() { 
+
+	public String getTranslationComment() {
 		return product.getTranslationComment();
 	}
-	
+
 	public String getConnectOptionComment() {
 		return product.getConnectOptionComment();
 	}

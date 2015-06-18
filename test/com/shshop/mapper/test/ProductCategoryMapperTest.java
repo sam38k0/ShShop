@@ -24,16 +24,14 @@ public class ProductCategoryMapperTest {
 		sqlSession.close();
 	}
 
-	//@Test
+	// @Test
 	public void testInsertProductCategory() {
-		ProductCategory productAndCategory = new ProductCategory(1,1);
-		try{
+		ProductCategory productAndCategory = new ProductCategory(1, 1);
+		try {
 			productCategoryMapper.insertProductCategory(productAndCategory);
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		//fail("testInsertProductCategory");
-	} 
+		// fail("testInsertProductCategory");
+	}
 }

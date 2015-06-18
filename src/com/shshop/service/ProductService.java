@@ -38,18 +38,14 @@ import com.shshop.util.MyBatisUtil;
 
 @SuppressWarnings("unused")
 public class ProductService {
-	private HttpServletRequest request = null;
-	private HttpServletResponse response = null;
 	private SqlSession sqlSession = null;
 	private MultipartRequest multi = null;
 	private ProductSearchResultManager searchResultManager = null;
 
-	public ProductService(HttpServletRequest request, HttpServletResponse response) {
-		this.request = request;
-		this.response = response;
+	public ProductService() {
 	}
 
-	public CommandResult insertProduct() throws IOException, ServletException {
+	public CommandResult insertProduct(HttpServletRequest request) throws IOException, ServletException {
 
 		HttpSession session = request.getSession(false);
 		User user = (User) session.getAttribute(Constant.attrUser);
@@ -60,7 +56,7 @@ public class ProductService {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 
 		try {
-			if (insertProductByProc(user) != true) {
+			if (insertProductByProc(user, request) != true) {
 				sqlSession.rollback();
 				return new CommandResult(Constant.textPlain, Constant.productInsertionError);
 			}
@@ -72,7 +68,7 @@ public class ProductService {
 		return new CommandResult("/WEB-INF/view/mainView/main.jsp");
 	}
 
-	public ProductDetail getProductInformation(Integer productId) {
+	public ProductDetail getProductInformation(Integer productId, HttpServletRequest request) {
 
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 
@@ -100,11 +96,11 @@ public class ProductService {
 			User user = userMapper.getUserById(product.getUserId());
 			if (user != null)
 				productInfo.setProductOwner(user);
-			
+
 			PostMapper postMapper = sqlSession.getMapper(PostMapper.class);
 			List<Post> posts = postMapper.getAllPostOfProdcut(productId);
 			String postResults = PostHtmlBuilder.getPostHtml(posts, postMapper);
-			if(postResults != null && !postResults.equals("")) {
+			if (postResults != null && !postResults.equals("")) {
 				System.out.println(postResults);
 				productInfo.setPostResults(postResults);
 			}
@@ -115,29 +111,29 @@ public class ProductService {
 			sqlSession.close();
 		}
 	}
-	
-	public OrderInfo createNewOrderInfo(Integer productId, int quantity, int shippingPrice) {
+
+	public OrderInfo createNewOrderInfo(Integer productId, int quantity, int shippingPrice, HttpServletRequest request) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 
 		try {
 			Product product = getProductById(sqlSession, productId);
-			String imagePath = getProductFirstImagePaths(sqlSession,productId);
-			
-			if(product == null)
+			String imagePath = getProductFirstImagePaths(sqlSession, productId, request);
+
+			if (product == null)
 				return null;
-			
-			if(imagePath == "") {
-				//[TODO] : Set Default Image
+
+			if (imagePath == "") {
+				// [TODO] : Set Default Image
 			}
-			
+
 			return new OrderInfo(product, imagePath, quantity, shippingPrice);
-			
+
 		} finally {
 			sqlSession.close();
 		}
 	}
-	
-	private String getProductFirstImagePaths(SqlSession sqlSession, Integer productId) {
+
+	private String getProductFirstImagePaths(SqlSession sqlSession, Integer productId, HttpServletRequest request) {
 		ProductImageMapper imageMapper = sqlSession.getMapper(ProductImageMapper.class);
 		List<ProductImage> images = imageMapper.getProductImages(productId);
 
@@ -146,20 +142,20 @@ public class ProductService {
 		if (images != null) {
 			return images.get(0).getImagePath();
 		}
-		
+
 		return "";
 	}
-	
+
 	private Product getProductById(SqlSession sqlSession, int productId) {
 		ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
 		Product product = productMapper.getProductById(productId);
 		return product;
 	}
 
-	public CommandResult searchProdcuts() {
+	public CommandResult searchProdcuts(HttpServletRequest request) {
 		String categoryName = request.getParameter(Constant.attrCategoryName);
 		if (categoryName != null && categoryName != "") {
-			return searchCategory(categoryName);
+			return searchCategory(categoryName, request);
 		}
 
 		String keywords = request.getParameter(Constant.attrKeywords);
@@ -188,7 +184,7 @@ public class ProductService {
 			priceTo = "100000000";
 		}
 
-		ProductSearchResult searchResult = getSearchResult(filterdKeywords);
+		ProductSearchResult searchResult = getSearchResult(filterdKeywords, request);
 
 		if (searchResult == null) {
 			List<ProductSearchResultParam> searchResults = querySearchData(filterdKeywords);
@@ -208,28 +204,28 @@ public class ProductService {
 		return new CommandResult("/WEB-INF/view/searchView/searchActionJsonData.jsp");
 	}
 
-	public CommandResult searchCategoryOfProduct() {
+	public CommandResult searchCategoryOfProduct(HttpServletRequest request) {
 		String strProductId = request.getParameter(Constant.attrProductId);
 		if (strProductId == null || strProductId == "")
 			return null;
-		
+
 		Integer productId = Integer.parseInt(strProductId);
-		
+
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 
 		try {
 			ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
-			
+
 			Product product = productMapper.getProductById(productId);
-			if(product == null)
+			if (product == null)
 				return null;
-			
+
 			List<Category> categories = productMapper.getProdcutCategories(Integer.parseInt(strProductId));
 			if (categories == null)
 				return null;
-			
+
 			String categoryName = categories.get(0).getName();
-			
+
 			String dataPage = request.getParameter(Constant.attrDataPage);
 			if (dataPage == null || dataPage.equals("")) {
 				dataPage = "1";
@@ -247,8 +243,8 @@ public class ProductService {
 
 			String priceTo = "" + (product.getPrice() + 1000000);
 
-			ProductSearchResult searchResult = getSearchResult(categoryName);
-			
+			ProductSearchResult searchResult = getSearchResult(categoryName, request);
+
 			if (searchResult == null) {
 				List<ProductSearchResultParam> searchResults = queryCategoryData(categoryName);
 				searchResult = new ProductSearchResult(Integer.parseInt(dataPage), "", Integer.parseInt(sortCondition), 8, searchResults);
@@ -271,7 +267,7 @@ public class ProductService {
 		}
 	}
 
-	public CommandResult searchCategory(String categoryName) {
+	public CommandResult searchCategory(String categoryName, HttpServletRequest request) {
 
 		String dataPage = request.getParameter(Constant.attrDataPage);
 		if (dataPage == null || dataPage.equals("")) {
@@ -293,7 +289,7 @@ public class ProductService {
 			priceTo = "100000000";
 		}
 
-		ProductSearchResult searchResult = getSearchResult(categoryName);
+		ProductSearchResult searchResult = getSearchResult(categoryName, request);
 
 		if (searchResult == null) {
 			List<ProductSearchResultParam> searchResults = queryCategoryData(categoryName);
@@ -364,7 +360,7 @@ public class ProductService {
 		return searchResults;
 	}
 
-	private ProductSearchResult getSearchResult(String keywords) {
+	private ProductSearchResult getSearchResult(String keywords, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 
 		searchResultManager = (ProductSearchResultManager) session.getAttribute(Constant.attrSearchResultMap);
@@ -394,7 +390,7 @@ public class ProductService {
 		return filterdKeywords;
 	}
 
-	private String uploadFilesAndGetFilePaths() throws IOException {
+	private String uploadFilesAndGetFilePaths(HttpServletRequest request) throws IOException {
 		String filePath = request.getServletContext().getInitParameter(Constant.paramFileUploadAbsolutePath);
 
 		TimestampFileRenamePolicy fileRenamePolicy = new TimestampFileRenamePolicy();
@@ -417,8 +413,8 @@ public class ProductService {
 		return uploadFileBulder.toString();
 	}
 
-	private boolean insertProductByProc(User user) throws IOException {
-		String uploadedFilePaths = uploadFilesAndGetFilePaths();
+	private boolean insertProductByProc(User user, HttpServletRequest request) throws IOException {
+		String uploadedFilePaths = uploadFilesAndGetFilePaths(request);
 		if (uploadedFilePaths == null || uploadedFilePaths.equals("")) {
 			return false;
 		}
@@ -459,10 +455,10 @@ public class ProductService {
 	public void setMulti(MultipartRequest multi) {
 		this.multi = multi;
 	}
-	
+
 	public ProductImage getProductImg(int productId) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-		
+
 		List<ProductImage> product;
 		ProductImage productImg = null;
 		try {

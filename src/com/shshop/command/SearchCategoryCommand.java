@@ -13,9 +13,9 @@ public class SearchCategoryCommand implements Command {
 		String categoryName = (String) request.getParameter(Constant.attrCategoryName);
 		if (categoryName == null)
 			return null;
-		
+
 		request.setAttribute(Constant.attrCategoryName, categoryName);
-		
+
 		return new CommandResult("/WEB-INF/view/searchView/searchProducts.jsp");
 	}
 

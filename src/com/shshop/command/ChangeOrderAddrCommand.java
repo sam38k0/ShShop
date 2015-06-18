@@ -15,12 +15,12 @@ public class ChangeOrderAddrCommand implements Command {
 	public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
 		String orderKey = request.getParameter(Constant.attrOrderKey);
 		String strAddressIndex = request.getParameter(Constant.attrAddressIndex);
-		
-		HttpSession session = request.getSession(); 
-		OrderViewInfo orderViewInfo = (OrderViewInfo)session.getAttribute(orderKey);
-		
+
+		HttpSession session = request.getSession();
+		OrderViewInfo orderViewInfo = (OrderViewInfo) session.getAttribute(orderKey);
+
 		AddressPair selectedAddress = orderViewInfo.getAddressesPair().get(Integer.parseInt(strAddressIndex));
- 
+
 		request.setAttribute(Constant.attrSelectedAddressResult, selectedAddress);
 
 		return new CommandResult("/WEB-INF/view/orderView/selectAddrActionJsonData.jsp");

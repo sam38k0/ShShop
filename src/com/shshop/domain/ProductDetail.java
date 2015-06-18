@@ -4,13 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDetail implements Serializable{
+public class ProductDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Product product = null;
 	private User productOwner = null;
 	private String postResults = "";
-	
+
 	private List<String> imagePaths = new ArrayList<>();
 
 	public Product getProduct() {

@@ -55,8 +55,7 @@ public class DispatcherServletTest {
 		writter = mock(PrintWriter.class);
 		multi = mock(MultipartRequest.class);
 		context = mock(ServletContext.class);
-		
-		
+
 		try {
 			when(request.getSession()).thenReturn(session);
 			when(response.getWriter()).thenReturn(writter);
@@ -80,22 +79,22 @@ public class DispatcherServletTest {
 			when(request.getParameter("email")).thenReturn("aaaa@gmail.com");
 			when(request.getParameter("password")).thenReturn("tttt");
 
-			CommandResult cmdResult = new AuthenticatorService(request, response).doLoginProcess();
+			CommandResult cmdResult = new AuthenticatorService().doLoginProcess(request);
 			assertTrue("testLoginWithInvalidInformation", cmdResult.getContent() != "Success");
 
 			when(request.getParameter("email")).thenReturn("");
 			when(request.getParameter("password")).thenReturn("tttt");
-			cmdResult = new AuthenticatorService(request, response).doLoginProcess();
+			cmdResult = new AuthenticatorService().doLoginProcess(request);
 			assertTrue("testLoginWithInvalidInformation", cmdResult.getContent() != "Success");
 
 			when(request.getParameter("email")).thenReturn("aaaa@gmail.com");
 			when(request.getParameter("password")).thenReturn("");
-			cmdResult = new AuthenticatorService(request, response).doLoginProcess();
+			cmdResult = new AuthenticatorService().doLoginProcess(request);
 			assertTrue("testLoginWithInvalidInformation", cmdResult.getContent() != "Success");
 
 			when(request.getParameter("email")).thenReturn("name1@gmail.com");
 			when(request.getParameter("password")).thenReturn("1111");
-			cmdResult = new AuthenticatorService(request, response).doLoginProcess();
+			cmdResult = new AuthenticatorService().doLoginProcess(request);
 			assertTrue("testLoginWithInvalidInformation", cmdResult.getContent() == "Success");
 
 		} catch (IOException e) {
@@ -106,7 +105,7 @@ public class DispatcherServletTest {
 	@Test
 	public void testInsertProduct() {
 
-		try { 
+		try {
 			when(multi.getParameter("productname")).thenReturn("product");
 			when(multi.getParameter("price")).thenReturn("1000");
 			when(multi.getParameter("stock")).thenReturn("100");
@@ -114,14 +113,14 @@ public class DispatcherServletTest {
 			when(multi.getParameter("tagsinput")).thenReturn("tagsinput");
 			when(multi.getParameter("miniCategory")).thenReturn("");
 			when(multi.getParameter("transactionType")).thenReturn("1");
-			when((User)session.getAttribute(Constant.attrUser)).thenReturn(null); 
-			CommandResult cmdResult = new ProductService(request,response).insertProduct();
-			assertTrue("testInsertProduct", cmdResult.getContent() == Constant.noUser); 
-			
+			when((User) session.getAttribute(Constant.attrUser)).thenReturn(null);
+			CommandResult cmdResult = new ProductService().insertProduct(request);
+			assertTrue("testInsertProduct", cmdResult.getContent() == Constant.noUser);
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ServletException e) {
 			e.printStackTrace();
 		}
-	} 
+	}
 }

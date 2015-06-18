@@ -3,7 +3,7 @@ package com.shshop.domain;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class Order implements Serializable{
+public class Order implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer orderId;
 	private Integer userId;
@@ -15,13 +15,13 @@ public class Order implements Serializable{
 	private String orderRequest; // 추가 요청사항
 	private Date dateCreated;
 	private Date dateUpdated;
-	
+
 	public Order() {
-		
+
 	}
-	
-	public Order(Integer orderId, Integer userId, Integer productId, Integer idAddress
-			,Integer amount, Integer cost, Integer deliveryCost, String orderRequest) {
+
+	public Order(Integer orderId, Integer userId, Integer productId, Integer idAddress, Integer amount, Integer cost, Integer deliveryCost,
+			String orderRequest) {
 		this.orderId = orderId;
 		this.userId = userId;
 		this.productId = productId;
@@ -31,13 +31,13 @@ public class Order implements Serializable{
 		this.deliveryCost = deliveryCost;
 		this.orderRequest = orderRequest;
 	}
-	
+
 	public Order(Integer userId, Integer productId, Integer idAddress) {
 		this.userId = userId;
 		this.productId = productId;
 		this.idAddress = idAddress;
 	}
-	
+
 	public Order(User user, Product product, Address address) {
 		this.setUserId(user.getUserId());
 		this.setProductId(product.getProductId());

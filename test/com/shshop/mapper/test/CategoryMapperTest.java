@@ -75,7 +75,7 @@ public class CategoryMapperTest {
 		category = categoryMapper.getCategoryById(1);
 		assertTrue("testUpdateCategory1", category.getName().equalsIgnoreCase("testName"));
 	}
-	
+
 	@Test
 	public void testDeleteCategory() {
 		int countBefore = categoryMapper.getCategoryCount();
@@ -83,9 +83,9 @@ public class CategoryMapperTest {
 		int countAfter = categoryMapper.getCategoryCount();
 		assertTrue("testDeleteCategory", countBefore > countAfter);
 	}
-	
+
 	@Test
 	public void testGetCategoryProducts() {
-		assertTrue("testGetCategoryProducts",categoryMapper.getCategoryProducts("여성의류").size()>0);
+		assertTrue("testGetCategoryProducts", categoryMapper.getCategoryProducts("여성의류").size() > 0);
 	}
 }

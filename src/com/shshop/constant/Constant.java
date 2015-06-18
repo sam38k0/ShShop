@@ -1,14 +1,14 @@
 package com.shshop.constant;
- 
+
 public class Constant {
-	//Command
+	// Command
 	public static final String login = "/login";
 	public static final String logout = "/logout";
 	public static final String join = "/join";
 	public static final String insertProductView = "/insertProductView";
 	public static final String insertProduct = "/insertProduct";
 	public static final String searchView = "/searchView";
-	public static final String searchAction ="/searchAction";
+	public static final String searchAction = "/searchAction";
 	public static final String searchCategory = "/searchCategory";
 	public static final String search = "/search";
 	public static final String viewMain = "/viewMain";
@@ -23,7 +23,7 @@ public class Constant {
 	public static final String showOrderView = "/showOrderView";
 	public static final String changeOrderAddr = "/changeOrderAddr";
 
-	//Attribute
+	// Attribute
 	public static final String attrUser = "user";
 	public static final String attrEmail = "email";
 	public static final String attrPassword = "password";
@@ -44,34 +44,34 @@ public class Constant {
 	public static final String attrOrderKey = "orderKey";
 	public static final String attrAddressIndex = "addressIndex";
 	public static final String attrSelectedAddressResult = "selectedAddressResult";
-	
-	//DD Parameter
+
+	// DD Parameter
 	public static final String paramFileUpload = "file-upload";
 	public static final String paramFileUploadAbsolutePath = "file-upload-absolute";
 	public static final String paramFileUploadRepository = "file-upload-repository";
-	
-	//ContentType
+
+	// ContentType
 	public static final String textHtml = "text/html;charset=UTF-8";
 	public static final String textPlain = "text/plain;charset=UTF-8";
-	
-	//Message
-    public static final String wrongEmail = "Please, check email information.";
-    public static final String noPassword = "Please, put a password.";
-    public static final String noUser = "There is no user information.";
-    public static final String productInsertionError = "Product Insertion Error Occured.";
+
+	// Message
+	public static final String wrongEmail = "Please, check email information.";
+	public static final String noPassword = "Please, put a password.";
+	public static final String noUser = "There is no user information.";
+	public static final String productInsertionError = "Product Insertion Error Occured.";
 	public static final String noProduct = "There is no product information.";
 	public static final String noComment = "There is no comment information.";
 	public static final String noAddress = "There is no user address information";
-	
-	//Ajax
+
+	// Ajax
 	public static final String Success = "Success";
-	public static final String Failed = "Failed"; 
+	public static final String Failed = "Failed";
 	public static final String onLogin = "onLogin";
-	
-	//Path
+
+	// Path
 	public static final String contextPath = "/ShShop/WebContent";
-	
-	//BoardName
+
+	// BoardName
 	public static final String askAndReplyBoard = "askAndReply";
 
 }

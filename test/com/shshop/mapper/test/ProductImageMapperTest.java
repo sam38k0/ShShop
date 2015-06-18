@@ -17,7 +17,7 @@ import com.shshop.util.MyBatisUtil;
 public class ProductImageMapperTest {
 	SqlSession sqlSession = null;
 	ProductImageMapper imageMapper = null;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
@@ -51,8 +51,8 @@ public class ProductImageMapperTest {
 	@Test
 	public void testInsertImage() {
 		int iCountBefore = imageMapper.getProductImageCount();
-		ProductImage image = new ProductImage(1,"c:\test\testpath.png");
-		ProductImage image2 = new ProductImage(1,"c:\test\testpath2.png");
+		ProductImage image = new ProductImage(1, "c:\test\testpath.png");
+		ProductImage image2 = new ProductImage(1, "c:\test\testpath2.png");
 		imageMapper.insertImage(image);
 		imageMapper.insertImage(image2);
 		int iCountAfter = imageMapper.getProductImageCount();
@@ -63,9 +63,9 @@ public class ProductImageMapperTest {
 	public void testUpdateImage() {
 		ProductImage image = imageMapper.getImageById(1);
 		image.setImagePath("ttt");
-		
+
 		imageMapper.updateImage(image);
-		 
+
 		image = imageMapper.getImageById(1);
 		assertTrue("testUpdateImage", image.getImagePath().equalsIgnoreCase("ttt"));
 	}
@@ -76,6 +76,6 @@ public class ProductImageMapperTest {
 		imageMapper.deleteImage(1);
 		imageMapper.deleteImage(2);
 		int countAfter = imageMapper.getProductImageCount();
-		assertTrue("testDeleteImage", countBefore > countAfter+1);
+		assertTrue("testDeleteImage", countBefore > countAfter + 1);
 	}
 }

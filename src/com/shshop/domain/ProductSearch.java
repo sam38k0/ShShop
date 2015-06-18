@@ -2,11 +2,12 @@ package com.shshop.domain;
 
 public class ProductSearch {
 	private String keyword;
-	
-	public ProductSearch(){
-		
+
+	public ProductSearch() {
+
 	}
-	public ProductSearch(String keyword){
+
+	public ProductSearch(String keyword) {
 		this.keyword = keyword;
 	}
 

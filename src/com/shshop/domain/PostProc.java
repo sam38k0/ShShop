@@ -7,17 +7,17 @@ public class PostProc {
 	private User user;
 	private Product product;
 	private Integer insertedPostId;
-	
+
 	public PostProc() {
-		
+
 	}
-	
+
 	public PostProc(Post post, User user, Product product) {
 		this.post = post;
 		this.user = user;
 		this.product = product;
 	}
-	
+
 	public Integer getPostId() {
 		return post.getPostId();
 	}
@@ -64,12 +64,12 @@ public class PostProc {
 
 	public void setNodePosition(Integer nodePosition) {
 		post.setNodePosition(nodePosition);
-	}    
-	
+	}
+
 	public Integer getUserId() {
 		return user.getUserId();
 	}
-	
+
 	public Integer getProductId() {
 		return product.getProductId();
 	}

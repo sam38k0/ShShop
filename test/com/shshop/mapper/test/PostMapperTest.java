@@ -223,11 +223,11 @@ public class PostMapperTest {
 		List<Post> posts = postMapper.getAllPostOfProdcut(product.getProductId());
 		assertTrue("testGetUserOfPost1", postProc.getInsertedPostId() > 0);
 		assertTrue("testGetUserOfPost2", posts.size() > 0);
-		
-		for(Post postItem: posts) {
+
+		for (Post postItem : posts) {
 			User userItem = postMapper.getUserOfPost(postItem.getPostId());
 			assertTrue("testGetUserOfPost3", userItem != null);
 		}
-			
+
 	}
 }

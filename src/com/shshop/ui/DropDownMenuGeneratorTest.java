@@ -19,20 +19,20 @@ public class DropDownMenuGeneratorTest {
 	@Test
 	public void testGenerateSelect() {
 		DropDownMenuContainer container = new DropDownMenuContainer();
-		
+
 		DropDownMenu menu = new DropDownMenu();
 		menu.setMenuKey("key 1");
 		menu.setMenuName("product 1");
 		container.addMenuItems(menu);
- 
+
 		menu = new DropDownMenu();
 		menu.setMenuKey("key 2");
 		menu.setMenuName("product 2");
-		container.addMenuItems(menu); 
-		
-		String result = DropDownMenuGenerator.generateSelect(container,"productTypeFieldSet","productTypeSelect");
+		container.addMenuItems(menu);
+
+		String result = DropDownMenuGenerator.generateSelect(container, "productTypeFieldSet", "productTypeSelect");
 		System.out.println(result);
-		
+
 		String indent = "  ";
 		StringBuilder builder = new StringBuilder();
 		builder.append("<fieldset class=\"productTypeFieldSet\">\n");
@@ -43,10 +43,10 @@ public class DropDownMenuGeneratorTest {
 		builder.append(indent + indent + indent + "<option value=\"key 1\">prodcut 1</option>\n");
 		builder.append(indent + indent + indent + "<option value=\"key 2\">prodcut 2</option>\n");
 		builder.append(indent + indent + "<select id=\"productType\" name=\"productType\">\n");
-		builder.append(indent + "</select>\n"); 
-		builder.append("</fieldset>\n"); 
+		builder.append(indent + "</select>\n");
+		builder.append("</fieldset>\n");
 
-		assertEquals("testGenerateSelect",builder.toString().replaceAll("\\p{Z}", "")==result.replaceAll("\\p{Z}", ""));
+		assertEquals("testGenerateSelect", builder.toString().replaceAll("\\p{Z}", "") == result.replaceAll("\\p{Z}", ""));
 	}
 
 }

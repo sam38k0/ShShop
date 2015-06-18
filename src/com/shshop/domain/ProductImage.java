@@ -4,16 +4,16 @@ import java.io.Serializable;
 
 public class ProductImage implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer imageId;
 	private Integer productId;
 	private String imagePath;
-	
+
 	public ProductImage() {
-		
+
 	}
-	
-	public ProductImage(Integer productId, String imagePath ) {
+
+	public ProductImage(Integer productId, String imagePath) {
 		this.setProductId(productId);
 		this.setImagePath(imagePath);
 	}

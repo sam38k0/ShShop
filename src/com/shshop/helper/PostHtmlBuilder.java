@@ -21,7 +21,7 @@ public class PostHtmlBuilder {
 	private String comment;
 	private PostHtmlBuilder parent = null;
 	private List<PostHtmlBuilder> items = new ArrayList<>();
-	
+
 	public PostHtmlBuilder(Post post, User user) {
 		this.setParent(parent);
 		this.setUserName(user.getName());
@@ -35,7 +35,6 @@ public class PostHtmlBuilder {
 		this.setComment(comment);
 		this.setDateCreated(dateCreated);
 	}
-
 
 	public static void main(String[] args) {
 		PostHtmlBuilder htmlBuilder = new PostHtmlBuilder("name1", "comment1", "2014/01/01");
@@ -71,7 +70,7 @@ public class PostHtmlBuilder {
 
 			builders.add(builder);
 		}
-		
+
 		boolean isFirst = true;
 		boolean isGray = false;
 		StringBuilder result = new StringBuilder();
@@ -90,7 +89,7 @@ public class PostHtmlBuilder {
 
 		if (getParent() != null) {
 			result.append("<div class=\"cmtcmt\">");
-			
+
 			result.append("<div class=\"cmtView2\">");
 			result.append("<p class=\"cmtReplyTitle\">댓글의댓글</p>");
 			result.append("<dl>");
@@ -133,7 +132,8 @@ public class PostHtmlBuilder {
 			result.append("<a href=\"#\" class=\"cmtReply\">댓글달기</a>");
 			result.append("</p>");
 			result.append("<div class=\"cmtReplyHide\" style=\"display: none;\">");
-			result.append("<textarea id=\"postId_" + getPostId() + "\" placeholder=\"댓글을 입력하세요\" title=\"댓글을 입력하세요\" style=\"width: 522px; height: 17px\"></textarea>");
+			result.append("<textarea id=\"postId_" + getPostId()
+					+ "\" placeholder=\"댓글을 입력하세요\" title=\"댓글을 입력하세요\" style=\"width: 522px; height: 17px\"></textarea>");
 			result.append("</div>");
 		}
 
