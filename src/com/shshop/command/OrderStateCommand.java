@@ -18,7 +18,7 @@ import com.shshop.domain.User;
 import com.shshop.service.OrderService;
 import com.shshop.service.ProductService;
 
-public class OrderViewCommand implements Command{
+public class OrderStateCommand implements Command{
 
 	@Override
 	public CommandResult execute(HttpServletRequest request,
@@ -35,10 +35,10 @@ public class OrderViewCommand implements Command{
 		OrderInfomationList buyOrderInfoList = new OrderInfomationList();
 		
 		for (Order order : buyOrder) {
-			User sellUser = orderService.selectSellInfo(order.getProductId());
+			User sellUser = orderService.selectSellInfo(order.getUserId());
 			Product product = orderService.selectProduct(order.getProductId());
 			ProductImage productImg = productService.getProductImg(order.getProductId());
-			Address sellAdd = orderService.selectSellAddress(order.getProductId());
+			Address sellAdd = orderService.selectSellAddress(order.getIdAddress());
 			OrderState buyState = orderService.selectOrderState(order.getOrderId());
 			
 			buyOrderInfoList.addOrderInformation(sellUser,product, productImg, order, buyState,sellAdd);

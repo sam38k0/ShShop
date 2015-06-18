@@ -34,21 +34,6 @@
 		SELECT * FROM `or_order` WHERE `id_product` in (SELECT `id_product` FROM `ps_product` WHERE `id_user` = ${id_user})
 	</select>
 	
-	<select id='getSellUserInfo' resultMap='${UserResultMap}'>
-		SELECT a.* FROM `cr_user` a inner join `ps_product` o on a.`id_user` = o.`id_user`
-		WHERE o.`id_product` = ${id_product} Group by a.`id_user`
-	</select>
-	
-	<select id='getProductInfo' resultMap='${ProductResultMap}'>
-		SELECT a.* FROM `ps_product` a inner join `or_order` o on a.`id_product` = o.`id_product`
-		WHERE o.`id_product` = ${id_product}
-	</select>
-	
-	<select id='getSellUserAdd' resultMap='${AddressResultMap}'>
-		SELECT a.* FROM `cr_address` a inner join `ps_product` o on a.`id_user` = o.`id_user`
-		WHERE o.`id_product` = ${id_product};
-	</select>
-	
 	<resultMap id="Order" type="${OrderType}">
 		<id property='orderId' column='id_order' />
 		<result property='userId' column='id_user' />

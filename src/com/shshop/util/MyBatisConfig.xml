@@ -30,6 +30,7 @@
 		<mapper resource='com/shshop/mapper/OrderStateMapper.xml' />
 		<mapper resource='com/shshop/mapper/BoardMapper.xml' />
 		<mapper resource='com/shshop/mapper/PostMapper.xml' />
+		<mapper resource='com/shshop/mapper/AddressMapper.xml' />
 	</mappers>
 	
 </configuration>

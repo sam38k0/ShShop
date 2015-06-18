@@ -21,10 +21,4 @@ public interface OrderMapper {
 	public Address getBuyUserAdd(@Param("orderId") int orderId);
 	
 	public List<Order> getSellOrder(@Param("userId") int userId);
-	
-	public User getSellUserInfo(@Param("productId") int productId);
-	
-	public Address getSellUserAdd(@Param("productId") int productId);
-	
-	public Product getProductInfo(@Param("productId") int productId);
 }

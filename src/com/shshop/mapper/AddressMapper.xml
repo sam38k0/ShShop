@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.shshop.mapper.AddressMapper'>
+ 
+ 	<select id='getAddressCount' resultType='int'>
+		SELECT COUNT(`id_address`) as count FROM `cr_address`;
+	</select>
+	
+	<select id='getAddressById' resultMap='Address'>							
+		SELECT * FROM `cr_address` WHERE `id_address` = ${id_address};				
+	</select>
+ 
+ 	<resultMap id='Address' type='${AddressType}'>
+		<id property='idAddress' column='id_address' />
+		<result property='parentIdAddress' column='id_parent_address' />
+		<result property='userId' column='id_user' />
+		<result property='basicAdd' column='basic_add' />
+		<result property='detailAdd' column='detail_add' />
+		<result property='postNumHeader' column='post_num_header' />
+		<result property='postNumTail' column='post_num_tail' />
+		<result property='name' column='name' />
+		<result property='phoneNumber' column='phone_number' />
+	</resultMap>
+</mapper>

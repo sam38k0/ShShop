@@ -11,7 +11,7 @@ import com.shshop.command.LoginCommand;
 import com.shshop.command.LogoutCommand;
 import com.shshop.command.MainViewCommand;
 import com.shshop.command.OrderCommand;
-import com.shshop.command.OrderViewCommand;
+import com.shshop.command.OrderStateCommand;
 import com.shshop.command.SearchActionCommand;
 import com.shshop.command.SearchCategoryCommand;
 import com.shshop.command.SearchViewCommand;
@@ -57,7 +57,7 @@ public class CommandFactory {
 			return new SearchCategoryCommand();
 			
 		case Constant.mypage:
-			return new OrderViewCommand();
+			return new OrderStateCommand();
 			
 		case Constant.userUpdate:
 			return new UserDataChangeCommand();

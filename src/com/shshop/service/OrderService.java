@@ -12,8 +12,11 @@ import com.shshop.domain.Order;
 import com.shshop.domain.OrderState;
 import com.shshop.domain.Product;
 import com.shshop.domain.User;
+import com.shshop.mapper.AddressMapper;
 import com.shshop.mapper.OrderMapper;
 import com.shshop.mapper.OrderStateMapper;
+import com.shshop.mapper.ProductMapper;
+import com.shshop.mapper.UserMapper;
 import com.shshop.util.MyBatisUtil;
 
 public class OrderService {
@@ -103,26 +106,26 @@ public class OrderService {
 		return order;
 	}
 	
-	public User selectSellInfo(int productId) {
+	public User selectSellInfo(int userId) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		
 		User user;
 		try {
-			OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
-			user = orderMapper.getSellUserInfo(productId);
+			UserMapper orderMapper = sqlSession.getMapper(UserMapper.class);
+			user = orderMapper.getUserById(userId);
 		} finally {
 			sqlSession.close();
 		}
 		return user;
 	}
 	
-	public Address selectSellAddress(int productId) {
+	public Address selectSellAddress(int addressId) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		
 		Address address;
 		try {
-			OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
-			address = orderMapper.getSellUserAdd(productId);
+			AddressMapper orderMapper = sqlSession.getMapper(AddressMapper.class);
+			address = orderMapper.getAddressById(addressId);
 		} finally {
 			sqlSession.close();
 		}
@@ -171,8 +174,8 @@ public class OrderService {
 		
 		Product product;
 		try {
-			OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
-			product = orderMapper.getProductInfo(productId);
+			ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+			product = productMapper.getProductById(productId);
 		} finally {
 			sqlSession.close();
 		}
