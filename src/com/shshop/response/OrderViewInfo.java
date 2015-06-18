@@ -125,12 +125,6 @@ public class OrderViewInfo {
 		return null;
 	}
 
-//	public String getPhoneNumberHeadHtml() {
-//
-//		Address address = getBasicAddressOrigin();
-//		return address.getPhoneNumberHeadHtml();
-//	}
-
 	public void setAddresses(List<Address> addresses) {
 		for(int i = 0; i<addresses.size(); i+=2) {
 			getAddressesPair().add(new AddressPair(addresses.get(i),addresses.get(i+1)));

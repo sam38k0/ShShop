@@ -166,7 +166,7 @@
                         </table>
                         <table cellpadding="0" class="tbl_pay" id="basicAddressSettings">
                             <tr id="trOrdNmNormal" style="">
-                                <th>이름</th>
+                                <th>배송지명</th>
                                 <td><input id="txtOrdNmNormalBasic" type="text" value="<c:out value="${requestScope.orderViewInfo.basicAddressOrigin.name}"/>" class="ipubx" /></td>
                             </tr>
 
@@ -177,7 +177,6 @@
                                 <td>
                                     <input type="text" id="txtZipCode1Basic" value="<c:out value="${requestScope.orderViewInfo.basicAddressNew.postNumHeader}"/>" class="ipubx" style="width: 40px" readonly="readonly" /> -
                                     <input type="text" id="txtZipCode2Basic" value="<c:out value="${requestScope.orderViewInfo.basicAddressNew.postNumTail}"/>" class="ipubx" style="width: 40px" readonly="readonly" />
-                                    <a href="#" title="주소 찾기" id="aZipFindBasic">주소 찾기   
                                     </a>
                                     <br/>
                                     <p style="margin:5px 0;">도로명 주소
@@ -189,7 +188,6 @@
                                         <input type="text" id="txtAddressByOldBasic"  class="ipubx" 
                                                value="<c:out value="${requestScope.orderViewInfo.basicAddressOrigin.fullAddress}"/>"
                                                style="width:320px;vertical-align:middle;" readonly="readonly" />
-                                        <a href="#" title="주소록에 추가" class="bw add_adrs">주소록에 추가</a>
                                     </p> 
                                 </td>
                             </tr>
@@ -211,7 +209,7 @@
                         
 						<table cellpadding="0" class="tbl_pay"  id="newAddressSettings" style="display:none">
                             <tr id="trOrdNmNormal" style="">
-                                <th>이름</th>
+                                <th>배송지명</th>
                                 <td><input id="txtOrdNmNormalNew" type="text" value="" class="ipubx" /></td>
                             </tr>
 
@@ -226,12 +224,12 @@
                                     </a>
                                     <br/>
                                     <p style="margin:5px 0;">도로명 주소
-                                        <input type="text" id="txtAddressByStNew" class="ipubx" onblur="fnAddressModifyApply();" 
+                                        <input type="text" id="txtAddressByStNew" class="ipubx" 
                                                value="" 
                                                style="width:320px;vertical-align:middle;" readonly="readonly" />
                                     </p>
                                     <p style="line-height:20px;">지번 주소&nbsp;&nbsp;&nbsp;
-                                        <input type="text" id="txtAddressByOldNew" onblur="fnAddressModifyApply();" 
+                                        <input type="text" id="txtAddressByOldNew"
                                                value=""
                                                class="ipubx" 
                                                style="width:320px;vertical-align:middle;" readonly="readonly" />
@@ -263,7 +261,7 @@
 						<c:forEach var="addressInfo" varStatus="addressInfos" items="${requestScope.orderViewInfo.addressesPair}">
 						<table cellpadding="0" class="tbl_pay"  id="existingAddressSettings<c:out value="${addressInfos.index}"/>" style="display:none">
                             <tr id="trOrdNmNormal" style="">
-                                <th>이름</th>
+                                <th>배송지명</th>
                                 <td><input id="txtOrdNmNormalExisting<c:out value="${addressInfos.index}"/>" type="text" value="<c:out value="${addressInfo.addressOrigin.name}"/>" class="ipubx" /></td>
                             </tr>
 
@@ -274,7 +272,6 @@
                                 <td>
                                     <input type="text" id="txtZipCode1Existing<c:out value="${addressInfos.index}"/>" value="<c:out value="${addressInfo.addressOrigin.postNumHeader}"/>" class="ipubx" style="width: 40px" readonly="readonly" /> -
                                     <input type="text" id="txtZipCode2Existing<c:out value="${addressInfos.index}"/>" value="<c:out value="${addressInfo.addressOrigin.postNumTail}"/>" class="ipubx" style="width: 40px" readonly="readonly" />
-                                    <a href="#" title="주소 찾기" id="aZipFind">주소 찾기   
                                     </a>
                                     <br/>
                                     <p style="margin:5px 0;">도로명 주소
@@ -287,7 +284,6 @@
                                                value="<c:out value="${addressInfo.addressOrigin.fullAddress}"/>"  
                                                class="ipubx" 
                                                style="width:320px;vertical-align:middle;" readonly="readonly" />
-                                        <a href="#" title="주소록에 추가" class="bw add_adrs">주소록에 추가</a>
                                     </p> 
                                 </td>
                             </tr>
@@ -682,20 +678,7 @@
 											지번 주소&nbsp;&nbsp;&nbsp; <input type="text" id="txtAddressNewByOld" value="서울특별시 중구 충무로3가 59-13 9 해피하우스 602호 " class="ipubx" style="width:300px;" readonly="readonly">
 										</p>
 									</td>	
-				                </tr>
-				                <tr id="divAddressNewForeign" style="display: none;">
-				                    <th>주소</th>
-				                    <td>
-				                        <input type="text" id="txtZipCdNew" value="" class="ipubx">
-				                        <input type="text" id="txtAddr1NewForeign" value="서울특별시 중구 충무로3가 59-13" class="ipubx" style="width: 300px;">
-				                    </td>
-				                </tr>
-				                <tr id="divAddress2NewForeign" style="display: none;">
-				                <th>상세주소</th>
-				                    <td>
-				                        <input type="text" id="txtAddr2NewForeign" value="9 해피하우스 602호 " class="ipubx" style="width: 300px;">
-				                    </td>
-				                </tr>                
+				                </tr>              
 				                <tr>
 				                    <th>핸드폰</th>
 				                    <td>
