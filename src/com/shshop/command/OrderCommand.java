@@ -1,6 +1,7 @@
 package com.shshop.command;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,8 +37,15 @@ public class OrderCommand implements Command {
 		orderViewInfo.addOrderInfo(productService.createNewOrderInfo(1,3,2500));
 		orderViewInfo.addOrderInfo(productService.createNewOrderInfo(2,3,5000));
 		orderViewInfo.addOrderInfo(productService.createNewOrderInfo(3,3,10000));
-		 
+	
+		String orderKey = UUID.randomUUID().toString();
+		
 		request.setAttribute(Constant.attrOrderViewInfo, orderViewInfo);
+		request.setAttribute(Constant.attrOrderKey, orderKey);
+		
+		synchronized(session) {
+			session.setAttribute(orderKey, orderViewInfo);
+		}
  
 		return new CommandResult("/WEB-INF/view/orderView/order.jsp");
 	}

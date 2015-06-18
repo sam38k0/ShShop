@@ -1,5 +1,6 @@
 package com.shshop.control;
 
+import com.shshop.command.ChangeOrderAddrCommand;
 import com.shshop.command.CheckLoginStateCommand;
 import com.shshop.command.Command;
 import com.shshop.command.CommentPostCommend;
@@ -16,7 +17,6 @@ import com.shshop.command.SearchCategoryCommand;
 import com.shshop.command.SearchViewCommand;
 import com.shshop.command.ShowDetailViewCommand;
 import com.shshop.command.SimilarItemSearchCommand;
-import com.shshop.command.SingleUserCommand;
 import com.shshop.command.UserDataChangeCommand;
 import com.shshop.constant.Constant;
 
@@ -70,6 +70,9 @@ public class CommandFactory {
 			
 		case Constant.showOrderView:
 			return new OrderCommand();
+			
+		case Constant.changeOrderAddr:
+			return new ChangeOrderAddrCommand();
 			
 		default:
 			return null;

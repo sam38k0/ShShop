@@ -17,7 +17,7 @@
 							<ul class="allcategory" id="CategoryItems">
 								<%
                             		CategoryControlService categoryControlService = new CategoryControlService();
-                            		out.print(categoryControlService.buildHtml(false));
+                            		out.print(categoryControlService.buildHtml(false,false));
                             	%>
 							</ul>
 						</div> 

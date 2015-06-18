@@ -21,6 +21,7 @@ public class Constant {
 	public static final String similarItemAction = "/similarItemAction";
 	public static final String commentPostAction = "/commentPostAction";
 	public static final String showOrderView = "/showOrderView";
+	public static final String changeOrderAddr = "/changeOrderAddr";
 
 	//Attribute
 	public static final String attrUser = "user";
@@ -40,6 +41,9 @@ public class Constant {
 	public static final String attrComment = "comment";
 	public static final String attrParentId = "parentId";
 	public static final String attrOrderViewInfo = "orderViewInfo";
+	public static final String attrOrderKey = "orderKey";
+	public static final String attrAddressIndex = "addressIndex";
+	public static final String attrSelectedAddressResult = "selectedAddressResult";
 	
 	//DD Parameter
 	public static final String paramFileUpload = "file-upload";

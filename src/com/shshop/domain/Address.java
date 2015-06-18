@@ -136,4 +136,51 @@ public class Address implements Serializable {
 	public void setPhoneNumberTail(String phoneNumberTail) {
 		this.phoneNumberTail = phoneNumberTail;
 	}
+	
+	public String getFullAddress() {
+		return basicAdd + " " + detailAdd;
+	}
+	
+	public String getPhoneNumberHeadHtml() {
+ 
+		String phoneNumberHead = getPhoneNumberHead();
+
+		String[] arrPhoneHeaders = { 
+				"<option value=\"010\">010</option>", 
+				"<option value=\"011\">011</option>",
+				"<option value=\"016\">016</option>", 
+				"<option value=\"017\">017</option>", 
+				"<option value=\"018\">018</option>",
+				"<option value=\"019\">019</option>" 
+				};
+
+		switch (phoneNumberHead) {
+			case "011": 
+				arrPhoneHeaders[1] = "<option value=\"011\" selected=\"selected\">011</option>";
+				break;
+
+			case "016": 
+				arrPhoneHeaders[2] = "<option value=\"016\" selected=\"selected\">016</option>";
+				break;
+			
+			case "017": 
+				arrPhoneHeaders[3] = "<option value=\"017\" selected=\"selected\">017</option>";
+				break;
+			
+			case "018": 
+				arrPhoneHeaders[4] = "<option value=\"018\" selected=\"selected\">018</option>";
+				break;
+				
+			default:
+				arrPhoneHeaders[0] = "<option value=\"010\" selected=\"selected\">010</option>";
+		}
+		
+		StringBuilder phoneOptionHtmlBuilder = new StringBuilder();
+
+		for(String phoneHeader : arrPhoneHeaders) {
+			phoneOptionHtmlBuilder.append(phoneHeader + "\r\n");
+		}
+		
+		return phoneOptionHtmlBuilder.toString();
+	}
 }
