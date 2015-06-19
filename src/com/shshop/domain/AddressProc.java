@@ -24,14 +24,6 @@ public class AddressProc {
 		address.setUserId(userId);
 	}
 
-	public String getBasicAdd() {
-		return address.getBasicAdd();
-	}
-
-	public void setBasicAdd(String basicAdd) {
-		address.setBasicAdd(basicAdd);
-	}
-
 	public String getDetailAdd() {
 		return address.getDetailAdd();
 	}

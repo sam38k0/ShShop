@@ -267,7 +267,7 @@ public class Format {
 		}
 		return sqlDate;
 	}
-	
+
 	public static String getStrDateFromSqlDate(java.sql.Date date) {
 		DateFormat df = new SimpleDateFormat("yyyyMMdd");
 		return df.format(date);
@@ -279,20 +279,20 @@ public class Format {
 		return randomNum;
 	}
 
-	public static String randDate() { //yyyy-mm-dd
+	public static String randDate() { // yyyy-mm-dd
 
 		GregorianCalendar gc = new GregorianCalendar();
-		
+
 		int year = randBetween(1900, 2010);
 		gc.set(gc.YEAR, year);
-		
+
 		int dayOfYear = randBetween(1, gc.getActualMaximum(gc.DAY_OF_YEAR));
 		gc.set(gc.DAY_OF_YEAR, dayOfYear);
 
-		if(gc.get(gc.MONTH) < 10)
-			return gc.get(gc.YEAR) + "-0" + gc.get(gc.MONTH) + "-" + gc.get(gc.DAY_OF_MONTH) ;
+		if (gc.get(gc.MONTH) < 10)
+			return gc.get(gc.YEAR) + "-0" + gc.get(gc.MONTH) + "-" + gc.get(gc.DAY_OF_MONTH);
 		else
-			return gc.get(gc.YEAR) + "-" + gc.get(gc.MONTH) + "-" + gc.get(gc.DAY_OF_MONTH) ;
+			return gc.get(gc.YEAR) + "-" + gc.get(gc.MONTH) + "-" + gc.get(gc.DAY_OF_MONTH);
 	}
 
 	public static int randBetween(int start, int end) {

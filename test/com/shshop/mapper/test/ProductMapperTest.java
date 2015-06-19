@@ -12,7 +12,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.shshop.domain.Product;
-import com.shshop.domain.ProductOption;
 import com.shshop.domain.ProductProc;
 import com.shshop.mapper.ProductCategoryMapper;
 import com.shshop.mapper.ProductImageMapper;
@@ -70,9 +69,9 @@ public class ProductMapperTest {
 		int countBefore = productMapper.getProductCount();
 		productMapper.deleteProduct(1);
 		int countAfter = productMapper.getProductCount();
-		assertEquals("testInsertProduct", countBefore-1, countAfter);
+		assertEquals("testInsertProduct", countBefore - 1, countAfter);
 	}
-	
+
 	@Test
 	public void testGetSearchedProducts() {
 		productMapper.insertProduct(new Product(3, "JJJJregNameJJJJ", 60, 60, 1, 204, "tag8", "description6", 0, true, true, false));
@@ -80,20 +79,21 @@ public class ProductMapperTest {
 		productMapper.insertProduct(new Product(3, "product6", 60, 60, 1, 204, "tag8", "RRRRRregDesc", 0, true, true, false));
 
 		List<Product> results = productMapper.getSearchedProducts("regName|regTag|regDesc");
-		
+
 		assertEquals("testGetSearchedProducts", results.size(), 3);
 	}
-	
+
 	@Test
 	public void testInsertProductProc() {
 		int procCountBefore = productMapper.getProductCount();
 		int catProcCountBefore = productCategoryMapper.getProductCategoryCount();
 		int imageCountBefore = imageMapper.getProductImageCount();
-		ProductProc productProc = new ProductProc(1, 1, "product6", 60, 60, 1, 204, "tag8", "description6", 0, true, true, false,"c:/1.png,c:/2.png,c:/3.png");
+		ProductProc productProc = new ProductProc(1, 1, "product6", 60, 60, 1, 204, "tag8", "description6", 0, true, true, false,
+				"c:/1.png,c:/2.png,c:/3.png");
 		productMapper.insertProductProc(productProc);
 		int procCountAfter = productMapper.getProductCount();
 		int catProcCountAfter = productCategoryMapper.getProductCategoryCount();
-		int imageCountAfter = imageMapper.getProductImageCount(); 
+		int imageCountAfter = imageMapper.getProductImageCount();
 		assertTrue("testInsertProductProc0", productProc.getInsertedProductId() > 0);
 		assertEquals("testInsertProductProc1", procCountBefore + 1, procCountAfter);
 		assertEquals("testInsertProductProc2", catProcCountBefore + 1, catProcCountAfter);

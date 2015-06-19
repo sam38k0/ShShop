@@ -18,19 +18,19 @@ import com.shshop.util.MyBatisUtil;
 public class BoardMapperTest {
 	SqlSession sqlSession = null;
 	BoardMapper boardMapper = null;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		boardMapper = sqlSession.getMapper(BoardMapper.class);
 	}
-	
+
 	@After
 	public void tearDown() throws Exception {
 		sqlSession.rollback();
 		sqlSession.close();
 	}
-	
+
 	@Test
 	public void testInsertBoard() {
 		int countBefore = boardMapper.getBoardCount();
@@ -39,21 +39,21 @@ public class BoardMapperTest {
 		int countAfter = boardMapper.getBoardCount();
 		assertTrue("testInsertBoard", countBefore + 2 == countAfter);
 	}
-	
+
 	@Test
 	public void testDeleteBoard() {
 		boardMapper.insertBoard(new Board("testBoard1"));
 		boardMapper.insertBoard(new Board("testBoard2"));
 		boardMapper.insertBoard(new Board("testBoard3"));
-		
+
 		List<Board> boards = boardMapper.getAllBoard();
-		for(int i = 0; i < boards.size(); i++)
+		for (int i = 0; i < boards.size(); i++)
 			boardMapper.deleteBoard(boards.get(i).getBoardId());
-		
+
 		int count = boardMapper.getBoardCount();
 		assertEquals("testDeleteBoard", count, 0);
 	}
-	
+
 	@Test
 	public void testUpdateBoard() {
 		boardMapper.insertBoard(new Board("testBoard1"));

@@ -25,55 +25,55 @@ public class CommandFactory {
 		switch (pathInfo) {
 		case Constant.login:
 			return new LoginCommand();
-			
+
 		case Constant.logout:
 			return new LogoutCommand();
-			
+
 		case Constant.checklogin:
 			return new CheckLoginStateCommand();
-			
+
 		case Constant.join:
 			return new JoinCommand();
-			
+
 		case Constant.insertProductView:
-			return new InsertProductViewCommand(); 
+			return new InsertProductViewCommand();
 
 		case Constant.insertProduct:
 			return new InsertProductCommand();
-			
+
 		case Constant.viewMain:
 			return new MainViewCommand();
-			
+
 		case Constant.showDetailView:
 			return new ShowDetailViewCommand();
-			
+
 		case Constant.searchView:
 			return new SearchViewCommand();
-		
+
 		case Constant.searchAction:
 			return new SearchActionCommand();
-			
+
 		case Constant.searchCategory:
 			return new SearchCategoryCommand();
-			
+
 		case Constant.mypage:
 			return new OrderStateCommand();
-			
+
 		case Constant.userUpdate:
 			return new UserDataChangeCommand();
-			
+
 		case Constant.similarItemAction:
 			return new SimilarItemSearchCommand();
-			
+
 		case Constant.commentPostAction:
 			return new CommentPostCommend();
-			
+
 		case Constant.showOrderView:
 			return new OrderCommand();
-			
+
 		case Constant.changeOrderAddr:
 			return new ChangeOrderAddrCommand();
-			
+
 		default:
 			return null;
 		}

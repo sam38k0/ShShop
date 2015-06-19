@@ -6,27 +6,24 @@ import java.util.List;
 
 public class CategoryNodeInfos implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private List<String> categoryLevel1 = new ArrayList<>();
 	private List<String> categoryLevel2 = new ArrayList<>();
 	private List<String> categoryLevel3 = new ArrayList<>();
 	private List<String> categoryLevel4 = new ArrayList<>();
-	
-	public CategoryNodeInfos(){
-		
+
+	public CategoryNodeInfos() {
+
 	}
-	
-	public CategoryNodeInfos(List<String> categoryLevel1, 
-										   List<String> categoryLevel2, 
-										   List<String> categoryLevel3,
-										   List<String> categoryLevel4) {
+
+	public CategoryNodeInfos(List<String> categoryLevel1, List<String> categoryLevel2, List<String> categoryLevel3, List<String> categoryLevel4) {
 		super();
 		this.categoryLevel1 = categoryLevel1;
 		this.categoryLevel2 = categoryLevel2;
 		this.categoryLevel3 = categoryLevel3;
 		this.categoryLevel4 = categoryLevel4;
 	}
-	
+
 	public List<String> getCategoryLevel1() {
 		return categoryLevel1;
 	}

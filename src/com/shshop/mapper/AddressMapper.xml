@@ -16,7 +16,6 @@
 		<id property='idAddress' column='id_address' />
 		<result property='parentIdAddress' column='id_parent_address' />
 		<result property='userId' column='id_user' />
-		<result property='basicAdd' column='basic_add' />
 		<result property='detailAdd' column='detail_add' />
 		<result property='postNumHeader' column='post_num_header' />
 		<result property='postNumTail' column='post_num_tail' />

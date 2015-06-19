@@ -7,7 +7,7 @@ public class OrderInformation {
 	private Order order;
 	private OrderState orderState;
 	private Address address;
-	
+
 	public OrderInformation(User user, Product product, ProductImage productImg, Order order, OrderState orderState, Address address) {
 		this.setUser(user);
 		this.setProduct(product);

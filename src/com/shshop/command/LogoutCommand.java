@@ -15,8 +15,8 @@ public class LogoutCommand implements Command {
 		if (session != null) {
 			session.invalidate();
 		}
-		
-		commandResult = new CommandResult("text/html","Success");
+
+		commandResult = new CommandResult("text/html", "Success");
 
 		return commandResult;
 	}

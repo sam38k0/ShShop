@@ -2,16 +2,16 @@ package com.shshop.domain;
 
 import java.io.Serializable;
 
-public class Board implements Serializable{
+public class Board implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer boardId;
-	private String  boardName;
-	
+	private String boardName;
+
 	public Board() {
-		
+
 	}
-	
+
 	public Board(String boardName) {
 		this.setBoardName(boardName);
 	}
@@ -30,5 +30,5 @@ public class Board implements Serializable{
 
 	public void setBoardName(String boardName) {
 		this.boardName = boardName;
-	}	
+	}
 }

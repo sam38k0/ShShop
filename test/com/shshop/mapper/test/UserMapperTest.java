@@ -69,26 +69,36 @@ public class UserMapperTest {
 		userMapper.insertUser(user);
 
 		User user2 = userMapper.getUserByEmail("bbbb", "11111");
-		assertEquals("testGetUserByEmailAndPassword-email", user.getEmail(),
-				user2.getEmail());
-		assertEquals("testGetUserByEmailAndPassword-password",
-				user.getPassword(), user2.getPassword());
+		assertEquals("testGetUserByEmailAndPassword-email", user.getEmail(), user2.getEmail());
+		assertEquals("testGetUserByEmailAndPassword-password", user.getPassword(), user2.getPassword());
 	}
 
 	@Test
 	public void testUpdateNameByEmail() {
-			User user = userMapper.getUserById(1);
-			user.setUserId(1);
-			user.setBankName("bank");
-			user.setBankNum("1111-111-1111");
-			user.setPhone("aaa-aaa-aaaa");
-			userMapper.updateUser(user);
-	
-			User user2 = userMapper.getUserById(1);
-			assertEquals("testUpdateNameByEmail1", user2.getBankName(), "bank");
-			assertEquals("testUpdateNameByEmail2", user2.getBankNum(),
-					"1111-111-1111");
-			assertEquals("testUpdateNameByEmail3", user2.getPhone(), "aaa-aaa-aaaa");
+		String email = "aa@gmail.com";
+		String password = "11111111";
+		String name = "name";
+		String phone = "111-1111-1111";
+		String ktalk = "ktalk";
+		String birthday = "20011019";
+		String bio = "biobio";
+		java.sql.Date birthdaySqlDate = Format.getSqlDate(birthday);
+
+		userMapper.insertUserByEmail(new User(email, password, name, phone, ktalk, bio, birthdaySqlDate));
+
+		User user = userMapper.getUserByEmail("aa@gmail.com", "11111111");
+		int userIdBefore = user.getUserId();
+
+		user.setPassword("22");
+		user.setName("name2");
+		user.setEmail("bb@gamil.com");
+		userMapper.updateUser(user);
+
+		user = userMapper.getUserByEmail("bb@gamil.com", "22");
+		int userIdAfter = user.getUserId();
+
+		assertEquals("testUpdateNameByEmail1", user.getName(), "name2");
+		assertEquals("testUpdateNameByEmail2", userIdAfter, userIdBefore);
 	}
 
 	@Test
@@ -101,41 +111,38 @@ public class UserMapperTest {
 		String birthday = "20011019";
 		String bio = "biobio";
 		java.sql.Date birthdaySqlDate = Format.getSqlDate(birthday);
-		
+
 		int countBefore = userMapper.getUserCount();
-		userMapper.insertUserByEmail(new User(email, password, name, phone, ktalk, bio, birthdaySqlDate)); 
+		userMapper.insertUserByEmail(new User(email, password, name, phone, ktalk, bio, birthdaySqlDate));
 		int countAfter = userMapper.getUserCount();
 		assertEquals("testAddUser", countBefore + 1, countAfter);
 	}
-	
+
 	@Test
 	public void testInsertAddressProc() {
-		String email = "aa@gmail.com";
-		String password = "11111111";
-		 
-		userMapper.insertUserByEmail(new User("aa@gmail.com", "11111111"));  
-		
+		userMapper.insertUserByEmail(new User("aa@gmail.com", "11111111"));
+
 		List<User> users = userMapper.getAllUsers();
- 
+
 		User user = users.get(0);
-		
-		AddressProc addressProc = new AddressProc(new Address(user.getUserId(),null,"basicAdd","detailAdd","000","111","addrName","111-222-3333"));
+
+		AddressProc addressProc = new AddressProc(new Address(user.getUserId(), null, "detailAdd", "000", "111", "addrName", "111-222-3333"));
 		userMapper.insertAddressProc(addressProc);
-		
-		assertTrue(addressProc.getInsertedAddressId()>0);
+
+		assertTrue(addressProc.getInsertedAddressId() > 0);
 	}
-//	
-//	@Test
-//	public void testUpdateAddress() {
-//		
-//	}
-	
-//	@Test
-//	public void testAddUser() {
-//		int countBefore = userMapper.getUserCount();
-//		userMapper.insertUserByEmail(new User("aaaa", "1234"));
-//		userMapper.insertUserByEmail(new User("bbbb", "11111"));
-//		int countAfter = userMapper.getUserCount();
-//		assertEquals("testAddUser", countBefore + 2, countAfter);
-//	}
+	//
+	// @Test
+	// public void testUpdateAddress() {
+	//
+	// }
+
+	// @Test
+	// public void testAddUser() {
+	// int countBefore = userMapper.getUserCount();
+	// userMapper.insertUserByEmail(new User("aaaa", "1234"));
+	// userMapper.insertUserByEmail(new User("bbbb", "11111"));
+	// int countAfter = userMapper.getUserCount();
+	// assertEquals("testAddUser", countBefore + 2, countAfter);
+	// }
 }

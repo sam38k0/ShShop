@@ -18,7 +18,7 @@ public class ShShopContextListener implements ServletContextListener {
 				pool.execute(new Runnable() {
 					public void run() {
 						CategoryControlService categoryControlService = new CategoryControlService();
-						categoryControlService.buildHtml(true,true);
+						categoryControlService.buildHtml(true, true);
 					}
 				});
 			}

@@ -6,12 +6,12 @@ import com.shshop.command.Command;
 
 public class RequestHelper {
 	private HttpServletRequest request;
-	
-	public RequestHelper (HttpServletRequest request) {
+
+	public RequestHelper(HttpServletRequest request) {
 		this.request = request;
 	}
-	
-	public Command getCommand(){
+
+	public Command getCommand() {
 		return CommandFactory.createCommand(request.getPathInfo());
 	}
 }

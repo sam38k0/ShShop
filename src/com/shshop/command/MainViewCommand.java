@@ -12,17 +12,16 @@ import com.shshop.service.AuthenticatorService;
 public class MainViewCommand implements Command {
 
 	@Override
-	public CommandResult execute(HttpServletRequest request,
-			HttpServletResponse response) { 
-		
-		AuthenticatorService attService = new AuthenticatorService(request, response);
-		
+	public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
+
+		AuthenticatorService attService = new AuthenticatorService();
+
 		List<Product> productsC = attService.getProductTypeCount();
-		
+
 		List<Product> productsD = attService.getProductTypeDate();
 		request.setAttribute("productsC", productsC);
 		request.setAttribute("productsD", productsD);
-		
-		 return new CommandResult("/WEB-INF/view/mainView/main.jsp");
+
+		return new CommandResult("/WEB-INF/view/mainView/main.jsp");
 	}
 }

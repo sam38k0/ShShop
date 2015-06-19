@@ -40,17 +40,16 @@ public class KeywordsGuesserTest {
 			System.out.println("startOffSet : " + startOffSet);
 			System.out.println("endOffSet : " + endOffSet);
 
-			assertNotNull("",text);
+			assertNotNull("", text);
 			assertTrue("", postIncrAttr > 0);
 			assertTrue("", startOffSet >= 0);
 			assertTrue("", endOffSet > 0);
 		}
 	}
-	
 
 	@Test
 	public void testGet() throws IOException {
-		String result = KeywordGuesser.getKeywordsWithoutWhiteSpace("키워드1  키워드2   키워드3.","|");
-		assertTrue("",result.equals("키워드1|키워드2|키워드3."));
+		String result = KeywordGuesser.getKeywordsWithoutWhiteSpace("키워드1  키워드2   키워드3.", "|");
+		assertTrue("", result.equals("키워드1|키워드2|키워드3."));
 	}
 }

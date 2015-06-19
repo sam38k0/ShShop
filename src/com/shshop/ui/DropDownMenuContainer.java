@@ -7,7 +7,7 @@ public class DropDownMenuContainer {
 	List<DropDownMenu> menuItems = new ArrayList<>();
 	String menuSetName;
 	String menuSetKey;
-	
+
 	public void addMenuItems(DropDownMenu menu) {
 		menuItems.add(menu);
 	}

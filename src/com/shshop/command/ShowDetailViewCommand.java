@@ -14,8 +14,8 @@ public class ShowDetailViewCommand implements Command {
 	@Override
 	public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
 
-		ProductService service = new ProductService(request, response);
-		ProductDetail productDetail = service.getProductInformation(1);
+		ProductService service = new ProductService();
+		ProductDetail productDetail = service.getProductInformation(1, request);
 		if (productDetail == null)
 			return null;
 

@@ -1,11 +1,8 @@
 package com.shshop.mapper.test;
 
-import static org.junit.Assert.fail;
-
 import org.apache.ibatis.session.SqlSession;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
 
 import com.shshop.domain.ProductCategory;
 import com.shshop.mapper.ProductCategoryMapper;
@@ -27,16 +24,14 @@ public class ProductCategoryMapperTest {
 		sqlSession.close();
 	}
 
-	//@Test
+	// @Test
 	public void testInsertProductCategory() {
-		ProductCategory productAndCategory = new ProductCategory(1,1);
-		try{
+		ProductCategory productAndCategory = new ProductCategory(1, 1);
+		try {
 			productCategoryMapper.insertProductCategory(productAndCategory);
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		//fail("testInsertProductCategory");
-	} 
+		// fail("testInsertProductCategory");
+	}
 }

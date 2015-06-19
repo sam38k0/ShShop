@@ -3,20 +3,20 @@ package com.shshop.domain;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class Post implements Serializable{
+public class Post implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer postId;
 	private Integer boardId;
-	private String  comment;
+	private String comment;
 	private Date dateCreated;
 	private Integer postParentId;
 	private Integer nodePosition;
 
 	public Post() {
-		
+
 	}
-	
+
 	public Post(String comment, Integer boardId, Integer postParentId, Integer nodePosition) {
 		this.setBoardId(boardId);
 		this.setComment(comment);
@@ -59,7 +59,7 @@ public class Post implements Serializable{
 	public Integer getPostParentId() {
 		return postParentId;
 	}
-	
+
 	public boolean isRootPost() {
 		return (getPostParentId() == null);
 	}
@@ -74,5 +74,5 @@ public class Post implements Serializable{
 
 	public void setNodePosition(Integer nodePosition) {
 		this.nodePosition = nodePosition;
-	}    
+	}
 }

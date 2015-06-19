@@ -13,7 +13,7 @@ public class InsertProductViewCommand implements Command {
 	public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession(false);
 
-		if (session == null && session.getAttribute(Constant.attrUser) == null)
+		if (session == null || session.getAttribute(Constant.attrUser) == null)
 			return null;
 
 		CommandResult commandResult = new CommandResult("/WEB-INF/view/insertProductView/insertProduct.jsp");

@@ -41,10 +41,10 @@ public class BuildSampleData {
 
 		insertUser();
 		insertCategory();
-		
+
 		// 여성의류
-		inputSampleProducts("여성 티셔츠","(여)티셔츠");
-		inputSampleProducts("여성 니트류","(여)니트");
+		inputSampleProducts("여성 티셔츠", "(여)티셔츠");
+		inputSampleProducts("여성 니트류", "(여)니트");
 		inputSampleProducts("여성 조끼류", "(여)조끼");
 		inputSampleProducts("원피스", "(여)원피스");
 		inputSampleProducts("기타 여성복", "(여)바지");
@@ -70,15 +70,15 @@ public class BuildSampleData {
 		inputSampleProducts("헤어", "비달사순");
 		inputSampleProducts("아로마", "아로마 손 청결제");
 
-		// 잡화 
+		// 잡화
 		inputSampleProducts("신발", "NIKE");
 		inputSampleProducts("지갑", "장지갑");
 		inputSampleProducts("모자", "흑간지모자");
 		inputSampleProducts("벨트", "성인용벨트");
-		inputSampleProducts("안경", "선글라스"); 
+		inputSampleProducts("안경", "선글라스");
 
 		// 출산/아동
- 
+
 		inputSampleProducts("유아의류", "면귀저기");
 		inputSampleProducts("신생아의류", "종이귀저기");
 		inputSampleProducts("유아도서", "MAXIM");
@@ -90,13 +90,13 @@ public class BuildSampleData {
 		inputSampleProducts("의자", "듀오벡");
 		inputSampleProducts("침대", "물침대");
 		inputSampleProducts("쇼파", "레이지보이");
-		inputSampleProducts("싱크대", "싱크대용품"); 
+		inputSampleProducts("싱크대", "싱크대용품");
 
 		// 게임
 		inputSampleProducts("닌텐도", "닌텐도DS");
 		inputSampleProducts("PSP", "PS3");
 		inputSampleProducts("Wii", "Wii");
-		inputSampleProducts("XBox", "XBox"); 
+		inputSampleProducts("XBox", "XBox");
 
 		// 가전
 		inputSampleProducts("TV", "홈씨어터");
@@ -104,7 +104,7 @@ public class BuildSampleData {
 		inputSampleProducts("냉장고", "디오스");
 		inputSampleProducts("선풍기", "휴대용선풍기");
 		inputSampleProducts("세탁기", "LG세탁기");
-		inputSampleProducts("청소기", "자동진공청소기"); 
+		inputSampleProducts("청소기", "자동진공청소기");
 
 		// 모바일
 		inputSampleProducts("SKT", "SKT-iPhone");
@@ -112,14 +112,14 @@ public class BuildSampleData {
 		inputSampleProducts("LGU+", "LGU+-iphone");
 		inputSampleProducts("휴대폰주변기기", "휴대폰액세서리");
 		inputSampleProducts("휴대폰주변기기", "스마트패드");
-		inputSampleProducts("휴대폰주변기기", "스마트폰액정"); 
+		inputSampleProducts("휴대폰주변기기", "스마트폰액정");
 
 		// 레저
 		inputSampleProducts("헬스", "헬스장갑");
 		inputSampleProducts("요가", "요가깔개");
 		inputSampleProducts("스키", "스키용품");
 		inputSampleProducts("보드", "보드용품");
-		inputSampleProducts("등산", "등산스틱"); 
+		inputSampleProducts("등산", "등산스틱");
 
 		// 도서
 		inputSampleProducts("외국어", "Eng대학교재");
@@ -127,12 +127,12 @@ public class BuildSampleData {
 		inputSampleProducts("문학", "소림사");
 		inputSampleProducts("수필", "김소월시집");
 		inputSampleProducts("교재", "공업수학");
-		
+
 		// 묻고 답하기 코멘트 추가
 		inputSampleComment();
 
 		sqlSession.commit();
-		
+
 		System.out.println("Insertion Completed");
 	}
 
@@ -141,16 +141,16 @@ public class BuildSampleData {
 		Board board = boardMapper.getBoardByName(Constant.askAndReplyBoard);
 		Product product = productMapper.getProductById(1);
 		User user = userMapper.getUserById(product.getUserId());
- 
+
 		List<Post> posts = new ArrayList<>();
-		posts.add( new Post("comment1", board.getBoardId(), null, 0) );
-		posts.add( new Post("comment11", board.getBoardId(), 1, 0) ); 
-		posts.add( new Post("comment111", board.getBoardId(), 2, 0) ); 
-		posts.add( new Post("comment2", board.getBoardId(), null, 0) ); 
-		posts.add( new Post("comment21", board.getBoardId(), 4, 0) ); 
-		
-		for(Post post : posts) { 
-			postMapper.insertPostByProc(new PostProc(post,user,product));
+		posts.add(new Post("comment1", board.getBoardId(), null, 0));
+		posts.add(new Post("comment11", board.getBoardId(), 1, 0));
+		posts.add(new Post("comment111", board.getBoardId(), 2, 0));
+		posts.add(new Post("comment2", board.getBoardId(), null, 0));
+		posts.add(new Post("comment21", board.getBoardId(), 4, 0));
+
+		for (Post post : posts) {
+			postMapper.insertPostByProc(new PostProc(post, user, product));
 		}
 	}
 
@@ -166,7 +166,7 @@ public class BuildSampleData {
 		categoryMapper.insertRootCategory(new Category("모바일"));
 		categoryMapper.insertRootCategory(new Category("레저"));
 		categoryMapper.insertRootCategory(new Category("도서"));
-		
+
 		Category parentCategory = categoryMapper.getCategoryByName("여성의류");
 		categoryMapper.insertChildCategory(new Category(parentCategory, "여성 티셔츠"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "여성 니트류"));
@@ -174,7 +174,7 @@ public class BuildSampleData {
 		categoryMapper.insertChildCategory(new Category(parentCategory, "원피스"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "여성 속옷"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "기타 여성복"));
-		
+
 		parentCategory = categoryMapper.getCategoryByName("남성의류");
 		categoryMapper.insertChildCategory(new Category(parentCategory, "남성 티셔츠"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "남성 니트류"));
@@ -182,65 +182,65 @@ public class BuildSampleData {
 		categoryMapper.insertChildCategory(new Category(parentCategory, "남성 자켓"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "남성 속옷"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "기타 남성복"));
-	
+
 		parentCategory = categoryMapper.getCategoryByName("화장품");
 		categoryMapper.insertChildCategory(new Category(parentCategory, "메이크업"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "향수"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "바디"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "헤어"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "아로마"));
-		
+
 		parentCategory = categoryMapper.getCategoryByName("잡화");
 		categoryMapper.insertChildCategory(new Category(parentCategory, "신발"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "지갑"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "벨트"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "모자"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "안경"));
-		
+
 		parentCategory = categoryMapper.getCategoryByName("출산/아동");
 		categoryMapper.insertChildCategory(new Category(parentCategory, "유아의류"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "신생아의류"));
-		categoryMapper.insertChildCategory(new Category(parentCategory, "유아도서")); 
+		categoryMapper.insertChildCategory(new Category(parentCategory, "유아도서"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "아동의류"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "완구"));
-		
+
 		parentCategory = categoryMapper.getCategoryByName("가구");
 		categoryMapper.insertChildCategory(new Category(parentCategory, "책상"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "의자"));
-		categoryMapper.insertChildCategory(new Category(parentCategory, "침대")); 
+		categoryMapper.insertChildCategory(new Category(parentCategory, "침대"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "쇼파"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "싱크대"));
-		
+
 		parentCategory = categoryMapper.getCategoryByName("게임");
 		categoryMapper.insertChildCategory(new Category(parentCategory, "닌텐도"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "PSP"));
-		categoryMapper.insertChildCategory(new Category(parentCategory, "Wii")); 
-		categoryMapper.insertChildCategory(new Category(parentCategory, "XBox")); 
-		
+		categoryMapper.insertChildCategory(new Category(parentCategory, "Wii"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "XBox"));
+
 		parentCategory = categoryMapper.getCategoryByName("가전");
 		categoryMapper.insertChildCategory(new Category(parentCategory, "TV"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "냉장고"));
-		categoryMapper.insertChildCategory(new Category(parentCategory, "선풍기")); 
+		categoryMapper.insertChildCategory(new Category(parentCategory, "선풍기"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "세탁기"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "청소기"));
-		
+
 		parentCategory = categoryMapper.getCategoryByName("모바일");
 		categoryMapper.insertChildCategory(new Category(parentCategory, "SKT"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "KT"));
-		categoryMapper.insertChildCategory(new Category(parentCategory, "LGU+")); 
+		categoryMapper.insertChildCategory(new Category(parentCategory, "LGU+"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "휴대폰주변기기"));
-		
+
 		parentCategory = categoryMapper.getCategoryByName("레저");
 		categoryMapper.insertChildCategory(new Category(parentCategory, "헬스"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "요가"));
-		categoryMapper.insertChildCategory(new Category(parentCategory, "스키")); 
+		categoryMapper.insertChildCategory(new Category(parentCategory, "스키"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "보드"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "등산"));
-		
+
 		parentCategory = categoryMapper.getCategoryByName("도서");
 		categoryMapper.insertChildCategory(new Category(parentCategory, "외국어"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "소설"));
-		categoryMapper.insertChildCategory(new Category(parentCategory, "문학")); 
+		categoryMapper.insertChildCategory(new Category(parentCategory, "문학"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "수필"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "교재"));
 	}
@@ -262,11 +262,13 @@ public class BuildSampleData {
 			for (int i = 0; i < 4; i++) {
 				String postRandomNumHead = "" + Format.randInt(100, 999);
 				String postRandomNumTail = "" + Format.randInt(100, 999);
-				
-				AddressProc addrProc = new AddressProc(new Address(user.getUserId(), null, "basicAdd" + i, "detailAdd" + i, postRandomNumHead, postRandomNumTail, user.getName(), user.getPhone()));
+
+				AddressProc addrProc = new AddressProc(new Address(user.getUserId(), null, "detailAdd" + i, postRandomNumHead, postRandomNumTail,
+						user.getName(), user.getPhone()));
 				userMapper.insertAddressProc(addrProc);
 
-				addrProc = new AddressProc(new Address(user.getUserId(), addrProc.getInsertedAddressId(), "basicAddrRoad", "detailAddRoad", postRandomNumHead, postRandomNumTail, user.getName(), user.getPhone()));
+				addrProc = new AddressProc(new Address(user.getUserId(), addrProc.getInsertedAddressId(), "detailAddRoad" + i, postRandomNumHead,
+						postRandomNumTail, user.getName(), user.getPhone()));
 				userMapper.insertAddressProc(addrProc);
 			}
 		}
@@ -274,9 +276,9 @@ public class BuildSampleData {
 
 	private static void inputSampleProducts(String categoryName, String productNameHeader) {
 		int categoryId = categoryMapper.getCategoryByName(categoryName).getCategoryId();
-		if(categoryId <= 0 )
+		if (categoryId <= 0)
 			return;
-		
+
 		StringBuilder imageStrBuilder = new StringBuilder();
 		String tagNameHeader = productNameHeader + "tag";
 		String descriptionHeader = productNameHeader + "desc";
@@ -289,7 +291,7 @@ public class BuildSampleData {
 			imageStrBuilder.append("/content/image/product_image/sample3.jpg,");
 			imageStrBuilder.append("/content/image/product_image/sample4.jpg");
 			productMapper.insertProductProc(new ProductProc(Format.randInt(1, 9), categoryId, productNameHeader + i, 100 * (i + 1), Format.randInt(1,
-					1000), i%2 + 1 , 204, tagNameHeader + i, descriptionHeader + i, Format.randInt(1, 10000), true, true, false, imageStrBuilder
+					1000), i % 2 + 1, 204, tagNameHeader + i, descriptionHeader + i, Format.randInt(1, 10000), true, true, false, imageStrBuilder
 					.toString()));
 		}
 	}

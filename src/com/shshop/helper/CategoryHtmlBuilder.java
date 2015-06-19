@@ -7,7 +7,6 @@ import com.shshop.domain.Category;
 
 public class CategoryHtmlBuilder {
 	private String name;
-	private Category category;
 	private List<CategoryHtmlBuilder> items = new ArrayList<>();
 
 	public CategoryHtmlBuilder(String name) {
@@ -15,7 +14,6 @@ public class CategoryHtmlBuilder {
 	}
 
 	public CategoryHtmlBuilder(Category category) {
-		this.category = category;
 		this.name = category.getName();
 	}
 
@@ -38,7 +36,7 @@ public class CategoryHtmlBuilder {
 			return result.toString();
 		}
 	}
-	
+
 	public String toStringWithoutSearch() {
 		StringBuilder result = new StringBuilder();
 
@@ -92,7 +90,7 @@ public class CategoryHtmlBuilder {
 
 		return result.toString();
 	}
-	
+
 	public String buildHtml2() {
 		StringBuilder result = new StringBuilder();
 		result.append(this.toStringWithoutSearch());
@@ -116,7 +114,6 @@ public class CategoryHtmlBuilder {
 
 		return result.toString();
 	}
-
 
 	public String getName() {
 		return name;

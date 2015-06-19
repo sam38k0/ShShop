@@ -10,6 +10,6 @@ public class CommentPostCommend implements Command {
 
 	@Override
 	public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
-		return new PostCommentService(request,response).addComment();
+		return new PostCommentService().addComment(request);
 	}
 }

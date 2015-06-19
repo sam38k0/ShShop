@@ -6,7 +6,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -22,16 +21,11 @@ import com.shshop.util.MyBatisUtil;
 
 public class AuthenticatorService {
 	private SqlSession sqlSession = null;
-	private HttpServletRequest request;
-	private HttpServletResponse response;
 
-	public AuthenticatorService(HttpServletRequest request,
-			HttpServletResponse response) {
-		this.request = request;
-		this.response = response;
+	public AuthenticatorService() {
 	}
 
-	public CommandResult doLoginProcess() throws IOException {
+	public CommandResult doLoginProcess(HttpServletRequest request) throws IOException {
 
 		CommandResult result = null;
 
@@ -42,8 +36,7 @@ public class AuthenticatorService {
 			boolean hasValidEmail = false;
 			boolean hasPassword = false;
 
-			if (email != null && email.trim().length() > 0
-					&& RegExpressionHelper.isValidEmail(email)) {
+			if (email != null && email.trim().length() > 0 && RegExpressionHelper.isValidEmail(email)) {
 				hasValidEmail = true;
 			}
 
@@ -124,8 +117,7 @@ public class AuthenticatorService {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 
 		try {
-			ProductMapper productMapper = sqlSession
-					.getMapper(ProductMapper.class);
+			ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
 			productMapper.insertProduct(product);
 			sqlSession.commit();
 		} finally {
@@ -137,7 +129,7 @@ public class AuthenticatorService {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 
 		int countBefore = 0, countAfter = 0;
-		
+
 		try {
 			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 			countBefore = userMapper.getUserCount();
@@ -150,18 +142,18 @@ public class AuthenticatorService {
 		} finally {
 			sqlSession.close();
 		}
-		
+
 		if (countAfter == countBefore + 1)
 			return new CommandResult(Constant.textPlain, Constant.Success);
 		else
 			return new CommandResult(Constant.textPlain, Constant.Failed);
 	}
-	
+
 	public User getViewSingleUser(Integer userId) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-		
+
 		User user = null;
-		
+
 		try {
 			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 			user = userMapper.getSingleUser(userId);
@@ -170,10 +162,10 @@ public class AuthenticatorService {
 		}
 		return user;
 	}
-	
+
 	public User getSelectUserId(String email) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-		
+
 		User user;
 		try {
 			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
@@ -181,13 +173,13 @@ public class AuthenticatorService {
 		} finally {
 			sqlSession.close();
 		}
-		
+
 		return user;
 	}
-	
+
 	public void userDataUpdate(User user) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-		
+
 		try {
 			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 			userMapper.updateUser(user);
@@ -196,51 +188,51 @@ public class AuthenticatorService {
 			sqlSession.close();
 		}
 	}
-	
+
 	public List<Product> getProductTypeCount() {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		List<Product> product;
-		
+
 		try {
 			ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
 			product = productMapper.selectMainCount();
-			
+
 		} finally {
 			sqlSession.close();
 		}
-		
+
 		return product;
 	}
-	
+
 	public List<Product> getProductTypeDate() {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		List<Product> product;
-		
+
 		try {
 			ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
 			product = productMapper.selectMainDate();
 		} finally {
 			sqlSession.close();
 		}
-		
+
 		return product;
 	}
-	
+
 	public List<Address> getUserAddress(Integer userId) {
-		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession(); 
-		
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+
 		try {
 			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 			List<Address> addresses = userMapper.getUserAddress(userId);
-			return addresses; 
+			return addresses;
 		} finally {
 			sqlSession.close();
-		} 
+		}
 	}
-	
+
 	public void insertUserAddress(Address address) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-		
+
 		try {
 			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 			userMapper.insertAddress(address);
@@ -249,10 +241,10 @@ public class AuthenticatorService {
 			sqlSession.close();
 		}
 	}
-	
+
 	public void updateUserAddress(Address address) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-		
+
 		try {
 			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 			userMapper.updateUserAddress(address);

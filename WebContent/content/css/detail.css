@@ -1,38 +1,5 @@
 @charset "utf-8";
 
-
-html, body, div, span, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, address, em, img, strong, sub, sup, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-}
-
-html {
-  width: 100%;
-  height: 100%;
-  overflow-y: scroll;
-  font-family: "돋움",dotum,"굴림",gulim,arial;
-  color: #333;
-}
-
-body {
-  width: 100%;
-  height: 100%;
-  font-size: 12px;
-  background-color: #EEE;
-}
-
-div {
-  display: block;
-}
-
-a {
-  color: #333;
-  text-decoration: none;
-  cursor: pointer;
-}
-
 ol, ul, dl, li, dt, dd {
   list-style: none;
 }
@@ -67,13 +34,12 @@ ul, menu, dir {
 }
 
 textarea {
-  font-size: 12px!important;
+  font-size: 13px!important;
   letter-spacing: 0!important;
   line-height: 14px;
   color: #333;
   padding: 3px;
   border: solid 1px #cbcbcb;
-  font-family: "돋움",dotum,"굴림",gulim;
   resize: none;
   overflow: hidden;
 }
@@ -105,7 +71,7 @@ a.btnShop {
   background-position: 0 -631px;
   width: 103px;
   line-height: 21px;
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: -1px;
   color: #666;
   padding: 0 0 0 7px;
@@ -148,11 +114,6 @@ a.btn_gray2 span {
   width: 100%;
   height: 100%;
   min-width: 1000px;
-}
-
-#contentArea {
-  width: 100%;
-  background-color: #FFF;
 }
 
 #section {
@@ -218,9 +179,6 @@ div.detailView {
   position: relative;
   width: 1000px;
   margin: 0 auto;
-  background: url(../image/bg_category_bt.gif) repeat-x bottom;
-  background-color: #FFF;
-  padding: 0 0 3px 0;
 }
 
 div.detailView div.detailBox {
@@ -473,7 +431,7 @@ div.detailArea div.userBox div.userList ul.userArticle li {
   background-position: left -233px;
   padding: 0 0 0 7px;
   line-height: 21px;
-  font-size: 11px;
+  font-size: 13px;
   color: #666;
   letter-spacing: -1px;
 }
@@ -504,7 +462,7 @@ div.openBox a.cnt_close {
 }
 
 div.openBox div.phone {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: bold;
   color: #333;
   padding: 7px 10px 7px 20px;
@@ -571,7 +529,7 @@ div.cmtWrite {
   background-color: #e2f0f9;
   border: solid 1px #c1d7e6;
   padding: 5px;
-  font-size: 11px;
+  font-size: 13px;
   color: #666;
   letter-spacing: -1px;
   margin: 5px 0 0 0;
@@ -714,18 +672,18 @@ div.graybox div.itembox li p a {
 div.graybox div.itembox li p strong {
 	display: block;
 	padding: 7px 0 0 0;
-	font-size: 11px;
+	font-size: 13px;
 	letter-spacing: -1px;
 	font-weight: normal;
 }
 
 div.graybox div.itembox li p span.price {
 	padding: 3px 0 0 0;
-	font-size: 11px;
+	font-size: 13px;
 }
 
 div.graybox div.itembox li p span.time {
-	font-size: 11px;
+	font-size: 13px;
 	padding: 4px 0 0 0;
 }
 
@@ -861,7 +819,7 @@ div.cmtView2 dl dt {
 
 p.functionCmt {
   clear: both;
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: -1px;
   padding: 5px 0 0 0;
 }
@@ -913,7 +871,7 @@ div.detailCnt div.detailCntR div.tipBoxWrap div.tipPrivate {
 
 div.detailCnt div.detailCntR div.tipBoxWrap div.tipBox {
   color: #8f845f;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: -1px;
   padding: 2px 10px;
   line-height: 16px;

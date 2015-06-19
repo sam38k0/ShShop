@@ -22,7 +22,7 @@ public class RegExpressionUtilTest {
 	public void emailAddressValidationTest() {
 		assertTrue(RegExpressionHelper.isValidEmail("xxxxx@naver.com"));
 	}
-	
+
 	@Test
 	public void emailAddressValidationTest2() {
 		assertTrue(!RegExpressionHelper.isValidEmail("xxxxx@naver"));

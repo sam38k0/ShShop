@@ -17,7 +17,7 @@ public class LoginCommand implements Command {
 		CommandResult commandResult = null;
 
 		try {
-			commandResult = new AuthenticatorService(request, response).doLoginProcess();
+			commandResult = new AuthenticatorService().doLoginProcess(request);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

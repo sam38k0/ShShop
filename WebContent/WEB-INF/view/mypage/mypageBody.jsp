@@ -55,7 +55,7 @@
             </div>
         </li>
         <li id="buy_list" >
-            <div  class="deal_header">구매 거래 리스트 
+        	<div  class="deal_header">구매 거래 리스트 
                 <select name="" id="">
                     <option value="전체 거래 리스트">전체 거래 리스트</option>
                     <option value="배송대기 상품">배송대기 상품</option>
@@ -166,7 +166,6 @@
 						<input type="text" id="sample6_postcode1"> -
 						<input type="text" id="sample6_postcode2">
 						<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-						<input type="text" id="sample6_address" placeholder="주소" name="basicAdd" value='${address.basicAdd}'>
 						<input type="text" id="sample6_address2" placeholder="상세주소" name="detailAdd" value='${address.detailAdd}'>
 					</div>
 				</td>
@@ -188,10 +187,9 @@
 				<td class="user_table_line">
 					<p>은행명 : </p><input type="text" name='bankName' value='${user.bankName}' class='change_input'><br>
 					<p>계좌번호 : </p><input type="text" name='bankNum' value='${user.bankNum}' class='change_input'><br>
-					</td>
-				</tr>
-			</table>
-			<input type='button' name='cancle' value='취소'><button type='submit'>수정</button>
-		</form>
-	</div>
+				</td>
+			</tr>
+		</table>
+		<input type='button' name='cancle' value='취소'><button type='submit'>수정</button>
+	</form>
 </div>
