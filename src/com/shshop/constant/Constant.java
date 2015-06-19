@@ -23,6 +23,7 @@ public class Constant {
 	public static final String showOrderView = "/showOrderView";
 	public static final String changeOrderAddr = "/changeOrderAddr";
 	public static final String deleteOrderAddr = "/deleteOrderAddr";
+	public static final String addAddress = "/addAddress";
 
 	// Attribute
 	public static final String attrUser = "user";
@@ -70,6 +71,7 @@ public class Constant {
 	public static final String noProduct = "There is no product information.";
 	public static final String noComment = "There is no comment information.";
 	public static final String noAddress = "There is no user address information";
+	public static final String overAddrlimitInput = "This input exceeded the size that can be input.( Maximum 5 )";
 
 	// Ajax
 	public static final String Success = "Success";
@@ -81,5 +83,4 @@ public class Constant {
 
 	// BoardName
 	public static final String askAndReplyBoard = "askAndReply";
-
 }

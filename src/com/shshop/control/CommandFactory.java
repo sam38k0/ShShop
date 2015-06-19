@@ -1,5 +1,6 @@
 package com.shshop.control;
 
+import com.shshop.command.AddAddrCommand;
 import com.shshop.command.ChangeOrderAddrCommand;
 import com.shshop.command.CheckLoginStateCommand;
 import com.shshop.command.Command;
@@ -77,6 +78,9 @@ public class CommandFactory {
 			
 		case Constant.deleteOrderAddr:
 			return new DeleteOrderAddrCommand();
+			
+		case Constant.addAddress:
+			return new AddAddrCommand();
 
 		default:
 			return null;

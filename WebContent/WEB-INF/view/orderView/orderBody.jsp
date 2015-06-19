@@ -238,9 +238,15 @@
                                                value=""
                                                class="ipubx" 
                                                style="width:320px;vertical-align:middle;" readonly="readonly" />
-                                        <a href="#" title="주소록에 추가" class="bw add_adrs">주소록에 추가</a>
+                                        <a href="#" title="주소록에 추가" id="addNewAddress" class="bw add_adrs">주소록에 추가</a>
+                                    </p> 
+                                    <p style="line-height:20px;">상세 주소&nbsp;&nbsp;&nbsp;
+                                        <input type="text" id="txtAddressNewDetail"  class="ipubx" 
+                                               value="<c:out value=""/>"
+                                               style="width:320px;vertical-align:middle;" required/>
                                     </p> 
                                 </td>
+                                
                             </tr>
 
                             <tr id="trDelvMobNoNormalNew" style="">
@@ -280,12 +286,12 @@
                                     </a>
                                     <br/>
                                     <p style="margin:5px 0;">도로명 주소
-                                        <input type="text" id="txtAddressByStExisting<c:out value="${addressInfos.index}"/>" class="ipubx" onblur="fnAddressModifyApply();" 
+                                        <input type="text" id="txtAddressByStExisting<c:out value="${addressInfos.index}"/>" class="ipubx"
                                                value="<c:out value="${addressInfo.addressNew.fullAddress}"/>"  
                                                style="width:320px;vertical-align:middle;" readonly="readonly" />
                                     </p>
                                     <p style="line-height:20px;">지번 주소&nbsp;&nbsp;&nbsp;
-                                        <input type="text" id="txtAddressByOldExisting<c:out value="${addressInfos.index}"/>" onblur="fnAddressModifyApply();" 
+                                        <input type="text" id="txtAddressByOldExisting<c:out value="${addressInfos.index}"/>"
                                                value="<c:out value="${addressInfo.addressOrigin.fullAddress}"/>"  
                                                class="ipubx" 
                                                style="width:320px;vertical-align:middle;" readonly="readonly" />
@@ -586,7 +592,7 @@
 					                        </th>
 					                    </tr>
 					                </thead>
-					                <tbody>
+					                <tbody id="addressInfoTable">
 										<c:forEach var="addressInfo" varStatus="addressInfos" items="${requestScope.orderViewInfo.addressesPair}">
 										<tr id="addressInfoItem<c:out value="${addressInfos.index}"/>">
 					                        <td valign="top">

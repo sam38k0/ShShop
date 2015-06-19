@@ -97,6 +97,55 @@
         }).open();
     }
     
+    function addAddressInfo(index, name, postHead, postTail, fullAddr, fullAddrNew, phoneNumber) {
+    	var result = "\
+    	    <tr id=\"addressInfoItem$INDX$\">\
+            <td valign=\"top\">\
+                <input type=\"checkbox\" id=\"chkMemberAddress$INDX$\" name=\"chkMemberAddress\" value=\"$INDX$\" class=\"chkbx\">\
+            </td>\
+            <td valign=\"top\">\
+                <a href=\"#\" id=\"memberAddressName$INDX$\">$ADDRNAME$</a>\
+            </td>\
+            <td valign=\"top\">\
+                $USERNAME$\
+            </td>\
+            <td class=\"le\" valign=\"top\">\
+                <div class=\"putAddrWrap\">\
+                    <div class=\"putAddrLft\">\
+                        <img class=\"addr_item\" src=\"https://secimage.yes24.com/sysimage/orderN/btn_putAddr02.gif\" width=\"30\" height=\"13\" alt=\"도로명\">\
+                    </div>\
+                    <div class=\"putAddrRgt\">\
+                        <span class=\"putAddrTxt\"><a href=\"#\" id=\"memberZipCodeNew$INDX$\">($POSTHEAD$-$POSTTAIL$)$FULLADDRNEW$</a></span>\
+                    </div>\
+                </div>\
+                <div class=\"putAddrWrap mgt5\">\
+                    <div class=\"putAddrLft\">\
+                        <img class=\"addr_item\" src=\"https://secimage.yes24.com/sysimage/orderN/btn_putAddr03.gif\" width=\"30\" height=\"13\" alt=\"지번\">\
+                    </div>\
+                    <div class=\"putAddrRgt\">\
+                        <span class=\"putAddrTxt grayTxt\">\
+    					    <a class=\"grayTxt\" href=\"#\" id=\"memberZipCode$INDX$\">($POSTHEAD$-$POSTTAIL$)$FULLADDR$</a></span>\
+                    </div>\
+                </div>\
+            </td>\
+            <td valign=\"top\" id=\"memberPhoneNumber$INDX$\">$PHONE$</td>\
+            <td valign=\"top\">\
+                <a href=\"#\" id=\"addressDelete$INDX$\" title=\"삭제하기\" class=\"bw delet_s\">삭제하기</a>\
+                <a href=\"#\" id=\"addressModify$INDX$\" title=\"수정\" class=\"bw modif\">수정</a>\
+            </td>\
+        </tr>";
+    				 
+        result = result.replace('$INDX$', index);
+        result = result.replace('$ADDRNAME$', name);
+        result = result.replace('$POSTHEAD$', postHead);
+        result = result.replace('$POSTTAIL$', postTail);
+        result = result.replace('$FULLADDRNEW$', fullAddrNew);
+        result = result.replace('$FULLADDR$', fullAddr);
+        result = result.replace('$PHONE$', phoneNumber);
+        
+    	return result;
+    }
+    
     function makePhoneSelectHtml(phoneNumberHead) { 
 
 		var arrPhoneHeaders = ["<option value=\"010\">010</option>", 
@@ -166,6 +215,23 @@
 		
 		fnLayerHideById('divAddressNew' + indx);
 		openModalDialog('divAddressList', 500);
+	}
+	
+	function addAddressData(text) {
+		response = text;
+		response = $.parseJSON(response);
+		
+		var indx = response.addrIndex;
+		var name = response.addressName;
+		var phoneNumber = response.addressPhoneNumber;
+		var zipHead = response.addrPostNumHeader;
+		var zipTail = response.addrPostNumTail;
+		var basicAdd = response.addrBasicAdd;
+		var basicAddNew = response.addrNewBasicAdd;
+		var detailAdd = response.addrDetailAdd;
+		
+		var appendText = addAddressInfo(indx, name, zipHead, zipTail, basicAdd + detailAdd, basicAddNew + detailAdd);
+		$("#addressInfoTable").append(appendText);
 	}
 	
 	function deleteAddressData(text) {
@@ -313,6 +379,40 @@
 					'addrPhoneNumber' : addrPhoneNumber
 				},
 				success : changeAddressData,
+				error : function(ajaxContext) {
+					alert("변경된 주소를 업데이트 하지 못했습니다.");
+				}
+			});
+	    });
+	    
+	    
+	    
+	    $('#addNewAddress').click(function(){
+	    	var addrName = $('#txtOrdNmNormalNew').val(); 
+	    	var addrZipCodeHead = $('#txtZipCode1New').val(); 
+	    	var addrZipCodeTail = $('#txtZipCode2New').val(); 
+	    	var addrBasicNew = $('#txtAddressByStNew').val(); 
+	    	var addrBasicOld = $('#txtAddressByOldNew').val(); 
+	    	var addrDetail = $('#txtAddressNewDetail').val();
+	    	var addrPhoneHead = $('#ddlRcvrMobTelNo1NormalNew').val();
+	    	var addrPhoneMid = $('#txtRcvrMobTelNo2NormalNew').val();
+	    	var addrPhoneTail = $('#txtRcvrMobTelNo3NormalNew').val();
+			var addrPhoneNumber = addrPhoneHead + "-" + addrPhoneMid + "-" + addrPhoneTail;
+			
+			$.ajax({
+				type : 'POST',
+				url : 'addAddress',
+				data : {
+					'orderKey' : '${requestScope.orderKey}',
+					'addrName' : addrName,
+					'addrZipCodeHead' : addrZipCodeHead,
+					'addrZipCodeTail' : addrZipCodeTail,
+					'addrBasicNew' : addrBasicNew,
+					'addrBasicOld' : addrBasicOld,
+					'addrDetail' : addrDetail,
+					'addrPhoneNumber' : addrPhoneNumber
+				},
+				success : addAddressData,
 				error : function(ajaxContext) {
 					alert("변경된 주소를 업데이트 하지 못했습니다.");
 				}

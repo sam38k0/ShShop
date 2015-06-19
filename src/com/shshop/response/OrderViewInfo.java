@@ -150,4 +150,8 @@ public class OrderViewInfo {
 	public List<AddressPair> getAddressesPair() {
 		return addressesPair;
 	}
+	
+	public void addAddressPair(AddressPair addressPair) {
+		addressesPair.add(addressPair);
+	}
 }
