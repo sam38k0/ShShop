@@ -5,28 +5,6 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> 
 
 <script type="text/javascript">
-	function pageSet(text) {
-		response = text;
-		response = $.parseJSON(response);
-		 
-		var indx = response.addrIndex;
-		var name = response.addressName;
-		var phoneNumber = response.addressPhoneNumber;
-		var zipHead = response.addrPostNumHeader;
-		var zipTail = response.addrPostNumTail;
-		var basicAdd = response.addrBasicAdd;
-		var basicAddNew = response.addrNewBasicAdd;
-		var detailAdd = response.addrDetailAdd;
-		
-		$('#memberAddressName' + indx).text("" + name);
-		$('#memberZipCode' + indx).text("(" + zipHead + "-" + zipTail +")" + basicAdd + " " + detailAdd);
-		$('#memberZipCodeNew' + indx).text("(" + zipHead + "-" + zipTail +")" + basicAddNew + " " + detailAdd);
-		$('#memberPhoneNumber' + indx).val(phoneNumber);
-		
-		fnLayerHideById('divAddressNew' + indx);
-		openModalDialog('divAddressList', 500);
-		
-	}
 
 	function fnLayerHideById(layerName) {
 	    $('#' + layerName).css('display', 'none');
@@ -118,6 +96,36 @@
             }
         }).open();
     }
+    
+	function changeAddressData(text) {
+		response = text;
+		response = $.parseJSON(response);
+		
+		var indx = response.addrIndex;
+		var name = response.addressName;
+		var phoneNumber = response.addressPhoneNumber;
+		var zipHead = response.addrPostNumHeader;
+		var zipTail = response.addrPostNumTail;
+		var basicAdd = response.addrBasicAdd;
+		var basicAddNew = response.addrNewBasicAdd;
+		var detailAdd = response.addrDetailAdd;
+		
+		$('#memberAddressName' + indx).text("" + name);
+		$('#memberZipCode' + indx).text("(" + zipHead + "-" + zipTail +")" + basicAdd + " " + detailAdd);
+		$('#memberZipCodeNew' + indx).text("(" + zipHead + "-" + zipTail +")" + basicAddNew + " " + detailAdd);
+		$('#memberPhoneNumber' + indx).val(phoneNumber);
+		
+		fnLayerHideById('divAddressNew' + indx);
+		openModalDialog('divAddressList', 500);
+	}
+	
+	function deleteAddressData(text) {
+		response = text;
+		response = $.parseJSON(response);
+		var indx = response.addrIndex;
+		$('#addressInfoItem' + indx).empty();
+		//openModalDialog('divAddressList', 500);
+	}
 	
 	$(document).ready(function() {
 		pageInitialize();
@@ -224,7 +232,6 @@
 	    
 	    $('.sch_address').click(function(){
 	    	var id = $(this).attr('id');
-	    	
 	    	var indx = id.replace('aZipFinderSub', '');
 	    	setPostCode('txtZipCd1New'+ indx,'txtZipCd2New'+ indx,'txtAddressNewBySt'+ indx,'txtAddressNewByOld'+ indx);
 	    });
@@ -256,9 +263,27 @@
 					'addrDetail' : addrDetail,
 					'addrPhoneNumber' : addrPhoneNumber
 				},
-				success : pageSet,
+				success : changeAddressData,
 				error : function(ajaxContext) {
 					alert("변경된 주소를 업데이트 하지 못했습니다.");
+				}
+			});
+	    });
+	    
+	    $('.delet_s').click(function(){
+	    	var id = $(this).attr('id');
+	    	
+	    	var indx = id.replace('addressDelete', '');
+			$.ajax({
+				type : 'POST',
+				url : 'deleteOrderAddr',
+				data : {
+					'orderKey' : '${requestScope.orderKey}',
+					'addressIndex' : indx
+				},
+				success : deleteAddressData,
+				error : function(ajaxContext) {
+					alert("주소를 삭제하지 못했습니다.");
 				}
 			});
 	    });

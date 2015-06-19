@@ -22,6 +22,7 @@ public class Constant {
 	public static final String commentPostAction = "/commentPostAction";
 	public static final String showOrderView = "/showOrderView";
 	public static final String changeOrderAddr = "/changeOrderAddr";
+	public static final String deleteOrderAddr = "/deleteOrderAddr";
 
 	// Attribute
 	public static final String attrUser = "user";

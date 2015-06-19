@@ -30,7 +30,6 @@ public class ChangeOrderAddrCommand implements Command {
 
 		AddressPair selectedAddress = orderViewInfo.getAddressesPair().get(Integer.parseInt(strAddressIndex));
 
-		selectedAddress.setAddressIndx(Integer.parseInt(strAddressIndex));
 		selectedAddress.setName(addrName);
 		selectedAddress.setPostNumHeader(postNumHeader);
 		selectedAddress.setPostNumTail(postNumTail);
@@ -41,10 +40,11 @@ public class ChangeOrderAddrCommand implements Command {
 		AuthenticatorService authenticatorService = new AuthenticatorService();
 		authenticatorService.updateUserAddress(selectedAddress.getAddressNew());
 		authenticatorService.updateUserAddress(selectedAddress.getAddressOrigin());
-
+		
+		request.setAttribute(Constant.attrAddressIndex, strAddressIndex);
 		request.setAttribute(Constant.attrSelectedAddressResult, selectedAddress);
 
-		return new CommandResult("/WEB-INF/view/orderView/selectAddrActionJsonData.jsp");
+		return new CommandResult("/WEB-INF/view/orderView/addressEditJsonData.jsp");
 	}
 
 }

@@ -583,7 +583,7 @@
 					                </thead>
 					                <tbody>
 										<c:forEach var="addressInfo" varStatus="addressInfos" items="${requestScope.orderViewInfo.addressesPair}">
-										<tr>
+										<tr id="addressInfoItem<c:out value="${addressInfos.index}"/>">
 					                        <td valign="top">
 					                            <input type="checkbox" 
 							                           id="chkMemberAddress<c:out value="${addressInfos.index}"/>" 

@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <json:object>
-	<json:property name="addrIndex" value="${selectedAddressResult.addressIndx}" />
+	<json:property name="addrIndex" value="${addressIndex}" />
 	
 	<json:property name="addressName" value="${selectedAddressResult.addressOrigin.name}" />
 	<json:property name="addressPhoneNumber" value="${selectedAddressResult.addressOrigin.phoneNumber}" />

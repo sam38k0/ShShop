@@ -253,4 +253,16 @@ public class AuthenticatorService {
 			sqlSession.close();
 		}
 	}
+	
+	public void deleteUserAddress(Address address) {
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+
+		try {
+			AddressMapper addressMapper = sqlSession.getMapper(AddressMapper.class);
+			addressMapper.deleteAddress(address.getIdAddress());
+			sqlSession.commit();
+		} finally {
+			sqlSession.close();
+		}
+	}
 }
