@@ -8,6 +8,7 @@ public class Address implements Serializable {
 	private Integer parentIdAddress;
 	private Integer userId;
 	private String name;
+	private String basicAdd;
 	private String detailAdd;
 	private String postNumHeader;
 	private String postNumTail;
@@ -20,9 +21,10 @@ public class Address implements Serializable {
 
 	}
 
-	public Address(Integer userId, Integer parentIdAddress, String detailAdd, String postNumHeader, String postNumTail, String name,
+	public Address(Integer userId, Integer parentIdAddress, String basicAdd, String detailAdd, String postNumHeader, String postNumTail, String name,
 			String phoneNumber) {
 		this.setUserId(userId);
+		this.setBasicAdd(basicAdd);
 		this.setDetailAdd(detailAdd);
 		this.setParentIdAddress(parentIdAddress);
 		this.setPostNumHeader(postNumHeader);
@@ -164,5 +166,17 @@ public class Address implements Serializable {
 		}
 
 		return phoneOptionHtmlBuilder.toString();
+	}
+
+	public String getBasicAdd() {
+		return basicAdd;
+	}
+
+	public void setBasicAdd(String basicAdd) {
+		this.basicAdd = basicAdd;
+	}
+	
+	public String getFullAddress() {
+		return basicAdd + "  " + detailAdd;
 	}
 }

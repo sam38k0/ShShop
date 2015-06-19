@@ -23,6 +23,19 @@ public class AddressProc {
 	public void setUserId(Integer userId) {
 		address.setUserId(userId);
 	}
+	
+	public String getBasicAdd() {
+		return address.getBasicAdd();
+	}
+	
+	public void setBasicAdd(String basicAdd) {
+		address.setBasicAdd(basicAdd);
+	}
+	
+	public String getFullAddress() {
+		return address.getFullAddress();
+	}
+
 
 	public String getDetailAdd() {
 		return address.getDetailAdd();

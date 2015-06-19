@@ -20,8 +20,9 @@ public class ChangeOrderAddrCommand implements Command {
 		String addrName = request.getParameter(Constant.attrAddrName);
 		String postNumHeader = request.getParameter(Constant.attrAddrZipCodeHead);
 		String postNumTail = request.getParameter(Constant.attrAddrZipCodeTail);
-		String detailAddrNew = request.getParameter(Constant.attrAddrDetailNew);
-		String detailAddrOld = request.getParameter(Constant.attrAddrDetailOld);
+		String basicAddNew = request.getParameter(Constant.attrAddrBasicNew);
+		String basicAdd = request.getParameter(Constant.attrAddrBasicOld);
+		String detailAdd = request.getParameter(Constant.attrAddrDetail);
 		String phoneNumber = request.getParameter(Constant.attrAddrPhoneNumber);
 
 		HttpSession session = request.getSession();
@@ -32,7 +33,8 @@ public class ChangeOrderAddrCommand implements Command {
 		selectedAddress.setName(addrName);
 		selectedAddress.setPostNumHeader(postNumHeader);
 		selectedAddress.setPostNumTail(postNumTail);
-		selectedAddress.setDetailAdd(detailAddrOld, detailAddrNew);
+		selectedAddress.setBasicAdd(basicAdd, basicAddNew);
+		selectedAddress.setDetailAdd(detailAdd);
 		selectedAddress.setPhoneNumber(phoneNumber);
 
 		AuthenticatorService authenticatorService = new AuthenticatorService();

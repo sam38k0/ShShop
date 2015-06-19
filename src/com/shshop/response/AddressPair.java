@@ -28,9 +28,14 @@ public class AddressPair {
 		this.addressNew = addressNew;
 	}
 
-	public void setDetailAdd(String detailAddrOld, String detailAddrNew) {
-		addressNew.setDetailAdd(detailAddrNew);
-		addressOrigin.setDetailAdd(detailAddrOld);
+	public void setBasicAdd(String basicAdd, String basicAddNew) {
+		addressOrigin.setBasicAdd(basicAdd);
+		addressNew.setBasicAdd(basicAddNew);
+	}
+	
+	public void setDetailAdd(String detailAdd) {
+		addressOrigin.setDetailAdd(detailAdd);
+		addressNew.setDetailAdd(detailAdd);
 	}
 
 	public void setPostNumHeader(String postNumHeader) {

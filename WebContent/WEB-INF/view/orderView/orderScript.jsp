@@ -220,8 +220,9 @@
 	    	var addrName = $('#txtAddrNickNew' + indx).val(); 
 	    	var addrZipCodeHead = $('#txtZipCd1New' + indx).val(); 
 	    	var addrZipCodeTail = $('#txtZipCd2New' + indx).val(); 
-	    	var addrDetailNew = $('#txtAddressNewBySt' + indx).val(); 
-	    	var addrDetailOld = $('#txtAddressNewByOld' + indx).val(); 
+	    	var addrBasicNew = $('#txtAddressNewBySt' + indx).val(); 
+	    	var addrBasicOld = $('#txtAddressNewByOld' + indx).val(); 
+	    	var addrDetail = $('#txtAddressDetail' + indx).val();
 	    	var addrPhoneNumber = $('#txtMobNoNew' + indx).val();
 
 			$.ajax({
@@ -233,8 +234,9 @@
 					'addrName' : addrName,
 					'addrZipCodeHead' : addrZipCodeHead,
 					'addrZipCodeTail' : addrZipCodeTail,
-					'addrDetailNew' : addrDetailNew,
-					'addrDetailOld' : addrDetailOld,
+					'addrBasicNew' : addrBasicNew,
+					'addrBasicOld' : addrBasicOld,
+					'addrDetail' : addrDetail,
 					'addrPhoneNumber' : addrPhoneNumber
 				},
 				success : pageSet,

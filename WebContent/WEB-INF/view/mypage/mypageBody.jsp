@@ -83,7 +83,7 @@
 	                <td>${sellOrder.order.orderId}</td>
 	                <td><img src="<c:out value="${sellOrder.productImg.imagePath}"/> "><span>${sellOrder.product.productId}</span><br>${sellOrder.product.name}</td>
 	                <td>${sellOrder.product.price}</td>
-	                <td>${sellOrder.address.basicAdd} ${sellOrder.address.detailAdd}</td>
+	                <td>${sellOrder.address.fullAddress}</td>
 	                <td>${sellOrder.user.name} <br> ${sellOrder.user.phone}</td>
 	                <td>
 	                    <span>배송 대기</span><br>
@@ -166,6 +166,7 @@
 						<input type="text" id="sample6_postcode1"> -
 						<input type="text" id="sample6_postcode2">
 						<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+						<input type="text" id="sample6_address" placeholder="주소" name="basicAdd" value='${address.basicAdd}'>
 						<input type="text" id="sample6_address2" placeholder="상세주소" name="detailAdd" value='${address.detailAdd}'>
 					</div>
 				</td>

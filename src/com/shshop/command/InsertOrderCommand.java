@@ -23,18 +23,19 @@ public class InsertOrderCommand implements Command {
 		Integer productId = Integer.parseInt(request.getParameter("productId"));
 		Address address = null;
 		String detailAdd = request.getParameter("detailAdd");
+		String basicAdd = request.getParameter("basicAdd");
 
 		AuthenticatorService attService = new AuthenticatorService();
 
 		if (detailAdd == null) {
 			address = attService.getUserAddress(user.getUserId()).get(0);
 			if (address == null) {
-				address = new Address(userId, null, "", "111", "222", user.getName(), user.getPhone());
+				address = new Address(userId, null, "", "", "111", "222", user.getName(), user.getPhone());
 				attService.insertUserAddress(address);
 				address = attService.getUserAddress(userId).get(0);
 			}
 		} else {
-			address = new Address(userId, null, detailAdd, "111", "222", user.getName(), user.getPhone());
+			address = new Address(userId, null, basicAdd, detailAdd, "111", "222", user.getName(), user.getPhone());
 			attService.insertUserAddress(address);
 			address = attService.getUserAddress(userId).get(0);
 		}

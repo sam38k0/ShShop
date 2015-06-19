@@ -41,7 +41,7 @@ public class AddressMapperTest {
 
 		User user = userMapper.getUserByEmail("aa@gmail.com", "11111111");
 
-		AddressProc addressProc = new AddressProc(new Address(user.getUserId(), null, "detailAdd", "000", "111", "addrName", "111-222-3333"));
+		AddressProc addressProc = new AddressProc(new Address(user.getUserId(), null, "basicAdd", "detailAdd", "000", "111", "addrName", "111-222-3333"));
 		addressMapper.insertAddressProc(addressProc);
 
 		assertTrue(addressProc.getInsertedAddressId() > 0);
@@ -53,7 +53,7 @@ public class AddressMapperTest {
 
 		User user = userMapper.getUserByEmail("aa@gmail.com", "11111111");
 
-		AddressProc addressProc = new AddressProc(new Address(user.getUserId(), null, "detailAdd", "000", "111", "addrName", "111-222-3333"));
+		AddressProc addressProc = new AddressProc(new Address(user.getUserId(), null, "basicAdd", "detailAdd", "000", "111", "addrName", "111-222-3333"));
 		addressMapper.insertAddressProc(addressProc);
 
 		int addressId = addressProc.getInsertedAddressId();

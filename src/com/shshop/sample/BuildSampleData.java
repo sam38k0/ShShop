@@ -266,11 +266,11 @@ public class BuildSampleData {
 				String postRandomNumHead = "" + Format.randInt(100, 999);
 				String postRandomNumTail = "" + Format.randInt(100, 999);
 
-				AddressProc addrProc = new AddressProc(new Address(user.getUserId(), null, "detailAdd" + i, postRandomNumHead, postRandomNumTail,
+				AddressProc addrProc = new AddressProc(new Address(user.getUserId(), null,"basicAdd" + i,  "detailAdd" + i, postRandomNumHead, postRandomNumTail,
 						user.getName(), user.getPhone()));
 				addressMapper.insertAddressProc(addrProc);
 
-				addrProc = new AddressProc(new Address(user.getUserId(), addrProc.getInsertedAddressId(), "detailAddRoad" + i, postRandomNumHead,
+				addrProc = new AddressProc(new Address(user.getUserId(), addrProc.getInsertedAddressId(),"basicAddRoad" + i, "detailAddRoad" + i, postRandomNumHead,
 						postRandomNumTail, user.getName(), user.getPhone()));
 				addressMapper.insertAddressProc(addrProc);
 			}

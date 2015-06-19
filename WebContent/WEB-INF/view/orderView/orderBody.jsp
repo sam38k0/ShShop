@@ -181,12 +181,12 @@
                                     <br/>
                                     <p style="margin:5px 0;">도로명 주소
                                         <input type="text" id="txtAddressByStBasic" class="ipubx"
-                                               value="<c:out value="${requestScope.orderViewInfo.basicAddressNew.fullAddress} "/>" 
+                                        	   value="<c:out value="${requestScope.orderViewInfo.basicAddressNew.fullAddress}"/>"
                                                style="width:320px;vertical-align:middle;" readonly="readonly" />
                                     </p>
                                     <p style="line-height:20px;">지번 주소&nbsp;&nbsp;&nbsp;
                                         <input type="text" id="txtAddressByOldBasic"  class="ipubx" 
-                                               value="<c:out value="${requestScope.orderViewInfo.basicAddressOrigin.detailAdd}"/>"
+                                               value="<c:out value="${requestScope.orderViewInfo.basicAddressOrigin.fullAddress}"/>"
                                                style="width:320px;vertical-align:middle;" readonly="readonly" />
                                     </p> 
                                 </td>
@@ -276,12 +276,12 @@
                                     <br/>
                                     <p style="margin:5px 0;">도로명 주소
                                         <input type="text" id="txtAddressByStExisting<c:out value="${addressInfos.index}"/>" class="ipubx" onblur="fnAddressModifyApply();" 
-                                               value="<c:out value="${addressInfo.addressNew.detailAdd}"/>"  
+                                               value="<c:out value="${addressInfo.addressNew.fullAddress}"/>"  
                                                style="width:320px;vertical-align:middle;" readonly="readonly" />
                                     </p>
                                     <p style="line-height:20px;">지번 주소&nbsp;&nbsp;&nbsp;
                                         <input type="text" id="txtAddressByOldExisting<c:out value="${addressInfos.index}"/>" onblur="fnAddressModifyApply();" 
-                                               value="<c:out value="${addressInfo.addressOrigin.detailAdd}"/>"  
+                                               value="<c:out value="${addressInfo.addressOrigin.fullAddress}"/>"  
                                                class="ipubx" 
                                                style="width:320px;vertical-align:middle;" readonly="readonly" />
                                     </p> 
@@ -608,7 +608,7 @@
 					                                        <a href="#" >
 					                                        (<c:out value="${addressInfo.addressNew.postNumHeader}"/>-
 					                                        <c:out value="${addressInfo.addressNew.postNumTail}"/>)
-					                                        <c:out value="${addressInfo.addressNew.detailAdd}"/>
+					                                        <c:out value="${addressInfo.addressNew.fullAddress}"/>
 					                                        </a>
 					                                    </span>
 					                                </div>
@@ -622,7 +622,7 @@
 					                                        <a class="grayTxt" href="#" >
 					                                        (<c:out value="${addressInfo.addressOrigin.postNumHeader}"/>-
 					                                        <c:out value="${addressInfo.addressOrigin.postNumTail}"/>)
-					                                        <c:out value="${addressInfo.addressOrigin.detailAdd}"/>
+					                                        <c:out value="${addressInfo.addressOrigin.fullAddress}"/>
 					                                        </a>
 					                                    </span>
 					                                </div>
@@ -675,12 +675,18 @@
 											<a id="aZipFinderSub<c:out value="${addressInfos.index}"/>" href="#" title="주소 찾기" class="bw sch_address">주소 찾기</a><br>
 											<p style="margin:5px 0">
 												도로명 주소 <input type="text" id="txtAddressNewBySt<c:out value="${addressInfos.index}"/>" 
-																  value="<c:out value="${addressInfo.addressNew.detailAdd}"/>" 
+																  value="<c:out value="${addressInfo.addressNew.basicAdd}"/>" 
 																  class="ipubx" style="width:300px;" readonly="readonly">
 											</p>
 											<p style="margin-bottom:5px;">
 												지번 주소&nbsp;&nbsp;&nbsp; 
 												<input type="text" id="txtAddressNewByOld<c:out value="${addressInfos.index}"/>" 
+													   value="<c:out value="${addressInfo.addressOrigin.basicAdd}"/>"
+													   class="ipubx" style="width:300px;" readonly="readonly">
+											</p>
+											<p style="margin-bottom:5px;">
+												상세 주소&nbsp;&nbsp;&nbsp; 
+												<input type="text" id="txtAddressDetail<c:out value="${addressInfos.index}"/>" 
 													   value="<c:out value="${addressInfo.addressOrigin.detailAdd}"/>"
 													   class="ipubx" style="width:300px;" readonly="readonly">
 											</p>

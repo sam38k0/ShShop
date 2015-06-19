@@ -47,8 +47,9 @@ public class Constant {
 	public static final String attrAddrName = "addrName";
 	public static final String attrAddrZipCodeHead = "addrZipCodeHead";
 	public static final String attrAddrZipCodeTail = "addrZipCodeTail";
-	public static final String attrAddrDetailNew = "addrDetailNew";
-	public static final String attrAddrDetailOld = "addrDetailOld";
+	public static final String attrAddrBasicNew = "addrBasicNew";
+	public static final String attrAddrBasicOld = "addrBasicOld";
+	public static final String attrAddrDetail = "addrDetail";
 	public static final String attrAddrPhoneNumber = "addrPhoneNumber";
 
 	// DD Parameter

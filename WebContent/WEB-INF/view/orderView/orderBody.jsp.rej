@@ -1,9 +1,0 @@
-diff a/WebContent/WEB-INF/view/orderView/orderBody.jsp b/WebContent/WEB-INF/view/orderView/orderBody.jsp	(rejected hunks)
-@@ -181,7 +181,6 @@
-                                     <br/>
-                                     <p style="margin:5px 0;">도로명 주소
-                                         <input type="text" id="txtAddressByStBasic" class="ipubx"
--                                               value="<c:out value="${requestScope.orderViewInfo.basicAddressNew.fullAddress} "/>" 
-                                                value="<c:out value="${requestScope.orderViewInfo.basicAddressNew.detailAdd} "/>" 
-                                                style="width:320px;vertical-align:middle;" readonly="readonly" />
-                                     </p>
