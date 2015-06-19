@@ -2,7 +2,6 @@ package com.shshop.mapper.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -11,11 +10,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.shshop.domain.Address;
-import com.shshop.domain.AddressProc;
 import com.shshop.domain.Product;
 import com.shshop.domain.User;
 import com.shshop.helper.Format;
+import com.shshop.mapper.AddressMapper;
 import com.shshop.mapper.UserMapper;
 import com.shshop.util.MyBatisUtil;
 
@@ -23,11 +21,13 @@ public class UserMapperTest {
 
 	SqlSession sqlSession = null;
 	UserMapper userMapper = null;
+	AddressMapper addressMapper = null;
 
 	@Before
 	public void setUp() throws Exception {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		userMapper = sqlSession.getMapper(UserMapper.class);
+		addressMapper = sqlSession.getMapper(AddressMapper.class);
 	}
 
 	@After
@@ -117,32 +117,4 @@ public class UserMapperTest {
 		int countAfter = userMapper.getUserCount();
 		assertEquals("testAddUser", countBefore + 1, countAfter);
 	}
-
-	@Test
-	public void testInsertAddressProc() {
-		userMapper.insertUserByEmail(new User("aa@gmail.com", "11111111"));
-
-		List<User> users = userMapper.getAllUsers();
-
-		User user = users.get(0);
-
-		AddressProc addressProc = new AddressProc(new Address(user.getUserId(), null, "detailAdd", "000", "111", "addrName", "111-222-3333"));
-		userMapper.insertAddressProc(addressProc);
-
-		assertTrue(addressProc.getInsertedAddressId() > 0);
-	}
-	//
-	// @Test
-	// public void testUpdateAddress() {
-	//
-	// }
-
-	// @Test
-	// public void testAddUser() {
-	// int countBefore = userMapper.getUserCount();
-	// userMapper.insertUserByEmail(new User("aaaa", "1234"));
-	// userMapper.insertUserByEmail(new User("bbbb", "11111"));
-	// int countAfter = userMapper.getUserCount();
-	// assertEquals("testAddUser", countBefore + 2, countAfter);
-	// }
 }

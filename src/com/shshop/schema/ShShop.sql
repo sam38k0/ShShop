@@ -38,14 +38,13 @@ CREATE INDEX `PK_cr_user_email`ON `cr_user` (`email` ASC);
 
 CREATE TABLE `cr_address` (
 	`id_address` 		SMALLINT   UNSIGNED NOT NULL AUTO_INCREMENT, -- id_address
-	`id_parent_address` SMALLINT  DEFAULT NULL,     -- null 이면 지번, 아니면 지번 주소 id 를 가지는 도로명 주소
-	`id_user`    		SMALLINT   UNSIGNED NOT NULL,  -- id_user
-	`basic_add`       	VARCHAR(64)  NULL, -- 동주소
-	`detail_add`        VARCHAR(255) NULL, -- 상세주소
-	`post_num_header`   VARCHAR(3)   NOT NULL,  -- 우편번호 앞 번호
-	`post_num_tail`     VARCHAR(3)   NOT NULL,  -- 우편번호 뒷 번호
+	`id_parent_address` SMALLINT  DEFAULT NULL, -- null 이면 지번, 아니면 지번 주소 id 를 가지는 도로명 주소
+	`id_user`    		SMALLINT   UNSIGNED NOT NULL, -- id_user
+	`detail_add`        VARCHAR(255) NOT NULL, -- 상세주소
+	`post_num_header`   VARCHAR(3)   NOT NULL, -- 우편번호 앞 번호
+	`post_num_tail`     VARCHAR(3)   NOT NULL, -- 우편번호 뒷 번호
 	`name`              VARCHAR(50)  NOT NULL, -- 주소별명
-    `phone_number`      VARCHAR(30)  NULL,    -- 핸드폰번호
+    `phone_number`      VARCHAR(30)  NOT NULL, -- 핸드폰번호
 	
     CONSTRAINT `PK_cr_address`
 		PRIMARY KEY (`id_address`),
