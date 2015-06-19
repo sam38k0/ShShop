@@ -1,0 +1,58 @@
+/* 마이페이지 */
+#mypage_area{position: relative;width: 100%;}
+/* 마이페이지 메뉴 탭 */
+.mypage_tap{width:100%; height:60px;line-height:60px;border-bottom: 1px solid #fe695a}
+.mypage_tap li{float: left; width: 150px;text-align: center;}
+.mypage_tap li a{display: inline-block; color: #999999; font-size: 20px; font-weight: bold}
+.mypage_tap li a:hover{color:#fe695a}
+
+#deal_wrap{position:relative;float:left;width:100%}
+.deal_left{float:left;width:195px;height:200px;padding:10px;margin-top: 50px;background-color:#ededed;box-sizing: border-box}
+.deal_left th{text-align:center; height:30px;}
+.deal_left td{font-size: 14px}
+.deal_left td:nth-child(odd){width:130px}
+.deal_left td:nth-child(even){width:30px;text-align:right}
+
+.deal_rigth{position:relative;float:left;width:790px}
+.deal_rigth li{float:left;width:270px}
+.deal_header{width:100%;height:60px;border-bottom:1px solid #0058e9}
+.deal_header span{display:block;float:left;width:150px; height:30px;line-height:30px; margin-top:25px;text-align:right}
+.deal_header .deal_SelectWrap{float:left;position:relative;width:120px; height:30px; line-height:30px;margin-top:25px;}
+.deal_SelectWrap .deal_SelectText{text-align:center}
+.deal_SelectWrap .deal_SelectText em{font-style: normal}
+.deal_header .deal_boxUI{display:none;position:absolute;top:30px;left:10px;z-index:10}
+.deal_header .deal_boxUI li{text-indent:0.5em;background-color:#fff}
+.deal_header .deal_boxUI li:hover{width:120px;background-color:#ededed}
+
+.mypage_board{float:left;width:790px}
+.mypage_board_type{width:100%;}
+.mypage_board_type td:nth-child(1){width:70px}
+.mypage_board_type td:nth-child(2){width:240px}
+.mypage_board_type td:nth-child(3){width:80px}
+.mypage_board_type td:nth-child(4){width:220px}
+.mypage_board_type td:nth-child(5){width:90px}
+.mypage_board_type td:nth-child(6){width:90px}
+
+
+#buy_list{display:none}
+#sell_board_list{display:none}
+#buy_table{display:none}
+/* 개인정보 영역 */
+#user_wrap{position: relative; float: left; width: 800px; margin-top: 15px; margin-left: 30px;}
+#user_wrap table{width: 100%; border: none;background-color: #ddd}
+#user_wrap tr{border: none}
+#user_wrap th{text-align: left; height: 50px;width: 150px;text-indent: 1em;background-color: aliceblue}
+#user_wrap td{background-color: cadetblue;text-align: center}
+#user_wrap td.user_table_line{width: 500px;text-indent: 1em;text-align: left}
+#name_change{width: 450px}
+#phone_change{width: 450px}
+#pass_change{width: 600px}
+#add_change{width: 560px}
+#ktalk_change{width: 450px}
+.user_change{position: absolute;width: 100%; left: 30%; top:30%;display: none;background-color: aliceblue;padding: 15px}
+.user_change .closeBtn{margin-top: 5px}
+.user_change span{display: block; float: left; width: 150px;height: 25px;line-height: 25px}
+.user_change input[type="text"]{height: 25px}
+#pass_change input[type="password"]{height: 25px;border-radius: 0;margin-bottom: 10px}
+#pass_change input[type="button"]{margin-top: 25px;margin-left: 20px}
+.user_change .pass_wrap{float: left}

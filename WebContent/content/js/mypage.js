@@ -29,4 +29,28 @@ $(document).ready(function() {
 	    	}
         });
     });
+	
+	var $layer = $(".deal_SelectText");
+	var $current = $(".deal_boxUI");
+	var $curli = $(".deal_boxUI li");
+	
+	$layer.on('click',function() {
+		$current.slideToggle("fast");
+	});
+	
+	if ($current) {
+		if(!$curli.hasClass("deal_selects"))
+			$curli.first().addClass("deal_selects");
+		
+		$curli.click(function(e) {
+			var inx = parseInt($(this).index()) +1;
+			
+			$('.deal_SelectText').text($(this).text());
+			
+			$(e.currentTarget).addClass("deal_selects").siblings().removeClass("deal_selects");
+			$current.hide();
+		});
+	}
+	
+	
 });

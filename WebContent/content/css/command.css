@@ -1,12 +1,19 @@
 @charset "UTF-8";
 
 /* 초기화 */
-ul{margin: 0; padding: 0}
-li{list-style: none}
-a{text-decoration: none}
-img{border: 0}
-body{width: 100%; margin: 0;padding: 0}
-.wrap{position: relative; width: 1000px;height:100%;margin: 0 auto}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+​
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+​
+body { line-height: 1; }
+​
+ol, ul { list-style: none; }
+​
+blockquote, q { quotes: none; }
+​
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+​
+table { border-collapse: collapse; border-spacing: 0; }
 
 /* 부팅 페이지*/
 #bootlogo{width: 335px; margin: 0 auto;padding-top:250px;}
@@ -158,30 +165,3 @@ body{width: 100%; margin: 0;padding: 0}
 .img_grid span{position: absolute; width: 100%; height: 50px; line-height: 50px;color:#fff; font-weight: bold;text-align: center; display: block; background-color: blueviolet;bottom: 0; display: none}
 .img_grid a:hover span{display: block}
 
-/* 마이페이지 */
-#mypage_area{position: relative;width: 100%; margin-top: 150px}
-/* 마이페이지 메뉴 탭 */
-.mypage_tap{position: relative; float: left; width: 600px; margin-top: 30px;margin-left: 30px; background-color: aliceblue}
-.mypage_tap ul{width: 100%; padding: 0}
-.mypage_tap li{float: left; width: 150px;text-align: center;border: 1px solid #ccc; background-color: blue}
-.mypage_tap li a{display: block; padding: 25px; color: aliceblue; font-size: 20px; font-weight: bold}
-
-/* 개인정보 영역 */
-#user_wrap{position: relative; float: left; width: 800px; margin-top: 15px; margin-left: 30px;}
-#user_wrap table{width: 100%; border: none;background-color: #ddd}
-#user_wrap tr{border: none}
-#user_wrap th{text-align: left; height: 50px;width: 150px;text-indent: 1em;background-color: aliceblue}
-#user_wrap td{background-color: cadetblue;text-align: center}
-#user_wrap td.user_table_line{width: 500px;text-indent: 1em;text-align: left}
-#name_change{width: 450px}
-#phone_change{width: 450px}
-#pass_change{width: 600px}
-#add_change{width: 560px}
-#ktalk_change{width: 450px}
-.user_change{position: absolute;width: 100%; left: 30%; top:30%;display: none;background-color: aliceblue;padding: 15px}
-.user_change .closeBtn{margin-top: 5px}
-.user_change span{display: block; float: left; width: 150px;height: 25px;line-height: 25px}
-.user_change input[type="text"]{height: 25px}
-#pass_change input[type="password"]{height: 25px;border-radius: 0;margin-bottom: 10px}
-#pass_change input[type="button"]{margin-top: 25px;margin-left: 20px}
-.user_change .pass_wrap{float: left}
