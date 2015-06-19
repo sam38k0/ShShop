@@ -16,6 +16,7 @@ import com.shshop.domain.Product;
 import com.shshop.domain.ProductProc;
 import com.shshop.domain.User;
 import com.shshop.helper.Format;
+import com.shshop.mapper.AddressMapper;
 import com.shshop.mapper.BoardMapper;
 import com.shshop.mapper.CategoryMapper;
 import com.shshop.mapper.PostMapper;
@@ -30,6 +31,7 @@ public class BuildSampleData {
 	static CategoryMapper categoryMapper = null;
 	static PostMapper postMapper = null;
 	static BoardMapper boardMapper = null;
+	static AddressMapper addressMapper = null;
 
 	public static void main(String[] args) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
@@ -38,6 +40,7 @@ public class BuildSampleData {
 		productMapper = sqlSession.getMapper(ProductMapper.class);
 		postMapper = sqlSession.getMapper(PostMapper.class);
 		boardMapper = sqlSession.getMapper(BoardMapper.class);
+		addressMapper = sqlSession.getMapper(AddressMapper.class);
 
 		insertUser();
 		insertCategory();
@@ -265,11 +268,11 @@ public class BuildSampleData {
 
 				AddressProc addrProc = new AddressProc(new Address(user.getUserId(), null, "detailAdd" + i, postRandomNumHead, postRandomNumTail,
 						user.getName(), user.getPhone()));
-				userMapper.insertAddressProc(addrProc);
+				addressMapper.insertAddressProc(addrProc);
 
 				addrProc = new AddressProc(new Address(user.getUserId(), addrProc.getInsertedAddressId(), "detailAddRoad" + i, postRandomNumHead,
 						postRandomNumTail, user.getName(), user.getPhone()));
-				userMapper.insertAddressProc(addrProc);
+				addressMapper.insertAddressProc(addrProc);
 			}
 		}
 	}

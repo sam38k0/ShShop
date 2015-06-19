@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -15,6 +14,7 @@ import com.shshop.domain.Address;
 import com.shshop.domain.Product;
 import com.shshop.domain.User;
 import com.shshop.helper.RegExpressionHelper;
+import com.shshop.mapper.AddressMapper;
 import com.shshop.mapper.ProductMapper;
 import com.shshop.mapper.UserMapper;
 import com.shshop.util.MyBatisUtil;
@@ -234,8 +234,8 @@ public class AuthenticatorService {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 
 		try {
-			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-			userMapper.insertAddress(address);
+			AddressMapper addressMapper = sqlSession.getMapper(AddressMapper.class);
+			addressMapper.insertAddress(address);
 			sqlSession.commit();
 		} finally {
 			sqlSession.close();
@@ -246,8 +246,8 @@ public class AuthenticatorService {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 
 		try {
-			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-			userMapper.updateUserAddress(address);
+			AddressMapper addressMapper = sqlSession.getMapper(AddressMapper.class);
+			addressMapper.updateAddress(address);
 			sqlSession.commit();
 		} finally {
 			sqlSession.close();

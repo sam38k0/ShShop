@@ -77,32 +77,23 @@
     function setPostCode(postCodeHeadId, postCodeTailId,roadId,jibunId ) {
         new daum.Postcode({
             oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var fullAddrRoad = ''; // 최종 주소 변수
-                var fullAddrJibun = ''; // 최종 주소 변수
-                var extraAddr = ''; // 조합형 주소 변수
+                var fullAddrRoad = ''; 
+                var fullAddrJibun = ''; 
+                var extraAddr = '';
 
                 fullAddrRoad = data.roadAddress;
                 fullAddrJibun = data.jibunAddress; 
 
-                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
                 if(data.userSelectedType === 'R'){
-                    //법정동명이 있을 경우 추가한다.
                     if(data.bname !== ''){
                         extraAddr += data.bname;
                     }
-                    // 건물명이 있을 경우 추가한다.
                     if(data.buildingName !== ''){
                         extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                     }
-                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
                     fullAddrJibun += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
                 }
 
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById(postCodeHeadId).value = data.postcode1;
                 document.getElementById(postCodeTailId).value = data.postcode2;
                 document.getElementById(roadId).value = fullAddrRoad;
@@ -199,19 +190,6 @@
 			fnLayerHideById('basicAddressSettings');
 			fnLayerHideById('divAddressList');
 			fnLayerShowById('existingAddressSettings' + addrIndex);
-			
-			/* 	$.ajax({
-					type : "POST",
-					url : "changeOrderAddr",
-					data : {
-						"orderKey" : '${requestScope.orderKey}',
-						"addressIndex" : addrIndex
-					},
-					success : pageSet,
-					error : function(ajaxContext) {
-					}
-				}); 
-			*/
 		});
 		
 	    $("#aZipFind").click(function() {
@@ -225,6 +203,45 @@
 	    	var addressNewId = 'divAddressNew' + indx;
 	    	fnLayerHideById('divAddressList');
 	    	openModalDialog(addressNewId, 500);
+	    });
+	    
+	    $('.sch_address').click(function(){
+	    	var id = $(this).attr('id');
+	    	
+	    	var indx = id.replace('aZipFinderSub', '');
+	    	setPostCode('txtZipCd1New'+ indx,'txtZipCd2New'+ indx,'txtAddressNewBySt'+ indx,'txtAddressNewByOld'+ indx);
+	    });
+	    
+	    $('.cfrm').click(function(){
+	    	var id = $(this).attr('id');
+	    	
+	    	var indx = id.replace('btnAddrModify', '');
+	    	
+	    	var addrName = $('#txtAddrNickNew' + indx).val(); 
+	    	var addrZipCodeHead = $('#txtZipCd1New' + indx).val(); 
+	    	var addrZipCodeTail = $('#txtZipCd2New' + indx).val(); 
+	    	var addrDetailNew = $('#txtAddressNewBySt' + indx).val(); 
+	    	var addrDetailOld = $('#txtAddressNewByOld' + indx).val(); 
+	    	var addrPhoneNumber = $('#txtMobNoNew' + indx).val();
+
+			$.ajax({
+				type : 'POST',
+				url : 'changeOrderAddr',
+				data : {
+					'orderKey' : '${requestScope.orderKey}',
+					'addressIndex' : indx,
+					'addrName' : addrName,
+					'addrZipCodeHead' : addrZipCodeHead,
+					'addrZipCodeTail' : addrZipCodeTail,
+					'addrDetailNew' : addrDetailNew,
+					'addrDetailOld' : addrDetailOld,
+					'addrPhoneNumber' : addrPhoneNumber
+				},
+				success : pageSet,
+				error : function(ajaxContext) {
+					alert("변경된 주소를 업데이트 하지 못했습니다.");
+				}
+			});
 	    });
 	});
 </script>

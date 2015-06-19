@@ -1,0 +1,9 @@
+diff a/src/com/shshop/util/shshop.properties b/src/com/shshop/util/shshop.properties	(rejected hunks)
+@@ -68,7 +68,6 @@
+ products = #{products}
+ image_paths = #{imagePaths}
+ id_address = #{idAddress}
+-basic_add = #{basicAdd}
+ detail_add = #{detailAdd}
+ id_order=#{orderId}
+ amount=#{amount}

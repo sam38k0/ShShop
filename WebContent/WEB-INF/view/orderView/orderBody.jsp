@@ -181,7 +181,7 @@
                                     <br/>
                                     <p style="margin:5px 0;">도로명 주소
                                         <input type="text" id="txtAddressByStBasic" class="ipubx"
-                                               value="<c:out value="${requestScope.orderViewInfo.basicAddressNew.detailAdd} "/>" 
+                                               value="<c:out value="${requestScope.orderViewInfo.basicAddressNew.fullAddress} "/>" 
                                                style="width:320px;vertical-align:middle;" readonly="readonly" />
                                     </p>
                                     <p style="line-height:20px;">지번 주소&nbsp;&nbsp;&nbsp;
@@ -670,8 +670,8 @@
 					                    <th>주소</th>	
 										<td>
 											<input type="text" id="txtZipCd1New<c:out value="${addressInfos.index}"/>" 
-												   value="<c:out value="${addressInfo.addressOrigin.phoneNumberHead}"/>" readonly="readonly" class="ipubx" style="width:30px"> - 
-											<input type="text" id="txtZipCd2New" value="<c:out value="${addressInfo.addressOrigin.phoneNumberTail}"/>" readonly="readonly" class="ipubx" style="width:30px"> 
+												   value="<c:out value="${addressInfo.addressOrigin.postNumHeader}"/>" readonly="readonly" class="ipubx" style="width:30px"> - 
+											<input type="text" id="txtZipCd2New<c:out value="${addressInfos.index}"/>" value="<c:out value="${addressInfo.addressOrigin.postNumTail}"/>" readonly="readonly" class="ipubx" style="width:30px"> 
 											<a id="aZipFinderSub<c:out value="${addressInfos.index}"/>" href="#" title="주소 찾기" class="bw sch_address">주소 찾기</a><br>
 											<p style="margin:5px 0">
 												도로명 주소 <input type="text" id="txtAddressNewBySt<c:out value="${addressInfos.index}"/>" 
@@ -705,7 +705,7 @@
 					            </tbody></table>
 					        </div>
 					        <div>
-					            <a href="javascript:fnLayerHideById('divAddressNew');" title="닫기" class="close">닫기</a>
+					            <a href="javascript:fnLayerHideById('divAddressNew<c:out value="${addressInfos.index}"/>');" title="닫기" class="close">닫기</a>
 					        </div>
 					    </div>
 					</div>

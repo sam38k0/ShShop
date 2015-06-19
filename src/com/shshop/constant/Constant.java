@@ -44,6 +44,12 @@ public class Constant {
 	public static final String attrOrderKey = "orderKey";
 	public static final String attrAddressIndex = "addressIndex";
 	public static final String attrSelectedAddressResult = "selectedAddressResult";
+	public static final String attrAddrName = "addrName";
+	public static final String attrAddrZipCodeHead = "addrZipCodeHead";
+	public static final String attrAddrZipCodeTail = "addrZipCodeTail";
+	public static final String attrAddrDetailNew = "addrDetailNew";
+	public static final String attrAddrDetailOld = "addrDetailOld";
+	public static final String attrAddrPhoneNumber = "addrPhoneNumber";
 
 	// DD Parameter
 	public static final String paramFileUpload = "file-upload";
