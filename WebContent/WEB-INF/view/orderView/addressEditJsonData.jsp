@@ -7,6 +7,10 @@
 	
 	<json:property name="addressName" value="${selectedAddressResult.addressOrigin.name}" />
 	<json:property name="addressPhoneNumber" value="${selectedAddressResult.addressOrigin.phoneNumber}" />
+ 	<json:property name="addressPhoneNumberHead" value="${selectedAddressResult.addressOrigin.phoneNumberHead}" />
+ 	 <json:property name="addressPhoneNumberMid" value="${selectedAddressResult.addressOrigin.phoneNumberMid}" />
+ 	 <json:property name="addressPhoneNumberTail" value="${selectedAddressResult.addressOrigin.phoneNumberTail}" />
+ 	
  	<json:property name="addrPostNumHeader" value="${selectedAddressResult.addressOrigin.postNumHeader}" />
  	<json:property name="addrPostNumTail" value="${selectedAddressResult.addressOrigin.postNumTail}" />
  	

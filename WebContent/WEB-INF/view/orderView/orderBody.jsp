@@ -181,12 +181,17 @@
                                     <br/>
                                     <p style="margin:5px 0;">도로명 주소
                                         <input type="text" id="txtAddressByStBasic" class="ipubx"
-                                        	   value="<c:out value="${requestScope.orderViewInfo.basicAddressNew.fullAddress}"/>"
+                                        	   value="<c:out value="${requestScope.orderViewInfo.basicAddressNew.basicAdd}"/>"
                                                style="width:320px;vertical-align:middle;" readonly="readonly" />
                                     </p>
                                     <p style="line-height:20px;">지번 주소&nbsp;&nbsp;&nbsp;
                                         <input type="text" id="txtAddressByOldBasic"  class="ipubx" 
-                                               value="<c:out value="${requestScope.orderViewInfo.basicAddressOrigin.fullAddress}"/>"
+                                               value="<c:out value="${requestScope.orderViewInfo.basicAddressOrigin.basicAdd}"/>"
+                                               style="width:320px;vertical-align:middle;" readonly="readonly" />
+                                    </p>
+                                    <p style="line-height:20px;">상세 주소&nbsp;&nbsp;&nbsp;
+                                        <input type="text" id="txtAddressDetail"  class="ipubx" 
+                                               value="<c:out value="${requestScope.orderViewInfo.basicAddressOrigin.detailAdd}"/>"
                                                style="width:320px;vertical-align:middle;" readonly="readonly" />
                                     </p> 
                                 </td>
