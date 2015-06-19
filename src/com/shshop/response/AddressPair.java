@@ -3,6 +3,7 @@ package com.shshop.response;
 import com.shshop.domain.Address;
 
 public class AddressPair {
+	private int addressIndx;
 	private Address addressOrigin;
 	private Address addressNew;
 
@@ -56,5 +57,13 @@ public class AddressPair {
 	public void setPhoneNumber(String phoneNumber) {
 		addressNew.setPhoneNumber(phoneNumber);
 		addressOrigin.setPhoneNumber(phoneNumber);
+	}
+
+	public int getAddressIndx() {
+		return addressIndx;
+	}
+
+	public void setAddressIndx(int addressIndx) {
+		this.addressIndx = addressIndx;
 	}
 }

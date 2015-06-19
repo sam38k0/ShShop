@@ -592,7 +592,7 @@
 							                           class="chkbx">
 					                        </td>
 					                        <td valign="top">
-					                            <a href="#" >${addressInfo.addressOrigin.name}</a>
+					                            <a href="#" id="memberAddressName<c:out value="${addressInfos.index}"/>">${addressInfo.addressOrigin.name}</a>
 					                        </td>
 					                        <td valign="top">
 					                           	 ${requestScope.orderViewInfo.user.name}
@@ -605,7 +605,7 @@
 					                                </div>
 					                                <div class="putAddrRgt">
 					                                    <span class="putAddrTxt">
-					                                        <a href="#" >
+					                                        <a href="#" id="memberZipCodeNew<c:out value="${addressInfos.index}"/>">
 					                                        (<c:out value="${addressInfo.addressNew.postNumHeader}"/>-
 					                                        <c:out value="${addressInfo.addressNew.postNumTail}"/>)
 					                                        <c:out value="${addressInfo.addressNew.fullAddress}"/>
@@ -619,7 +619,8 @@
 					                                </div>
 					                                <div class="putAddrRgt">
 					                                    <span class="putAddrTxt grayTxt">
-					                                        <a class="grayTxt" href="#" >
+					                                        <a class="grayTxt" href="#" 
+					                                           id="memberZipCode<c:out value="${addressInfos.index}"/>">
 					                                        (<c:out value="${addressInfo.addressOrigin.postNumHeader}"/>-
 					                                        <c:out value="${addressInfo.addressOrigin.postNumTail}"/>)
 					                                        <c:out value="${addressInfo.addressOrigin.fullAddress}"/>
@@ -628,7 +629,7 @@
 					                                </div>
 					                            </div>
 					                        </td>
-					                        <td valign="top">
+					                        <td valign="top"  id="memberPhoneNumber<c:out value="${addressInfos.index}"/>">
 					                            ${addressInfo.addressOrigin.phoneNumber}
 					                        </td>
 					                        <td valign="top">
@@ -688,7 +689,7 @@
 												상세 주소&nbsp;&nbsp;&nbsp; 
 												<input type="text" id="txtAddressDetail<c:out value="${addressInfos.index}"/>" 
 													   value="<c:out value="${addressInfo.addressOrigin.detailAdd}"/>"
-													   class="ipubx" style="width:300px;" readonly="readonly">
+													   class="ipubx" style="width:300px;">
 											</p>
 										</td>	
 					                </tr>              

@@ -8,7 +8,24 @@
 	function pageSet(text) {
 		response = text;
 		response = $.parseJSON(response);
-		//registerEvent(); 
+		 
+		var indx = response.addrIndex;
+		var name = response.addressName;
+		var phoneNumber = response.addressPhoneNumber;
+		var zipHead = response.addrPostNumHeader;
+		var zipTail = response.addrPostNumTail;
+		var basicAdd = response.addrBasicAdd;
+		var basicAddNew = response.addrNewBasicAdd;
+		var detailAdd = response.addrDetailAdd;
+		
+		$('#memberAddressName' + indx).text("" + name);
+		$('#memberZipCode' + indx).text("(" + zipHead + "-" + zipTail +")" + basicAdd + " " + detailAdd);
+		$('#memberZipCodeNew' + indx).text("(" + zipHead + "-" + zipTail +")" + basicAddNew + " " + detailAdd);
+		$('#memberPhoneNumber' + indx).val(phoneNumber);
+		
+		fnLayerHideById('divAddressNew' + indx);
+		openModalDialog('divAddressList', 500);
+		
 	}
 
 	function fnLayerHideById(layerName) {

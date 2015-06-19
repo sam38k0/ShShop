@@ -30,6 +30,7 @@ public class ChangeOrderAddrCommand implements Command {
 
 		AddressPair selectedAddress = orderViewInfo.getAddressesPair().get(Integer.parseInt(strAddressIndex));
 
+		selectedAddress.setAddressIndx(Integer.parseInt(strAddressIndex));
 		selectedAddress.setName(addrName);
 		selectedAddress.setPostNumHeader(postNumHeader);
 		selectedAddress.setPostNumTail(postNumTail);
