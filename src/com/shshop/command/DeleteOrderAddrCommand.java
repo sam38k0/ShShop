@@ -20,8 +20,12 @@ public class DeleteOrderAddrCommand implements Command {
 		HttpSession session = request.getSession();
 		OrderViewInfo orderViewInfo = (OrderViewInfo) session.getAttribute(orderKey);
 
-		AddressPair selectedAddress = orderViewInfo.getAddressesPair().get(Integer.parseInt(strAddressIndex));
+		int removingIndx = Integer.parseInt(strAddressIndex);
 		
+		AddressPair selectedAddress = orderViewInfo.getAddressesPair().get(removingIndx);
+		orderViewInfo.removeAddressPair(removingIndx);
+		
+		//Remove DB Data
 		AuthenticatorService authenticatorService = new AuthenticatorService();
 		authenticatorService.deleteUserAddress(selectedAddress.getAddressNew());
 		authenticatorService.deleteUserAddress(selectedAddress.getAddressOrigin());

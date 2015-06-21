@@ -148,6 +148,64 @@
     	return result;
     }
     
+    function addAddressInfoDetail(index, addrname, username, postHead, postTail, fullAddr, fullAddrNew, phoneHead, phoneMid, phoneTail) {
+    	var result = "\
+    		<table cellpadding=\"0\" class=\"tbl_pay\"  id=\"existingAddressSettings$INDX$\" style=\"display:none\">\
+	        <tr id=\"trOrdNmNormal\" style=\"\">\
+	        <th>배송지명</th>\
+	        <td><input id=\"txtOrdNmNormalExisting$INDX$\" type=\"text\" value=\"$ADDRNAME$\" class=\"ipubx\" /></td>\
+		    </tr>\
+		    <tr id=\"trDelvAddrNormalExisting$INDX$\" style=\"\">\
+		        <th>\
+		          	  배송주소\
+		        </th>\
+		        <td>\
+		            <input type=\"text\" id=\"txtZipCode1Existing$INDX$\" value=\"$POSTHEAD$\" class=\"ipubx\" style=\"width: 40px\" readonly=\"readonly\" /> -\
+		            <input type=\"text\" id=\"txtZipCode2Existing$INDX$\" value=\"$POSTTAIL$\" class=\"ipubx\" style=\"width: 40px\" readonly=\"readonly\" />\
+		            </a>\
+		            <br/>\
+		            <p style=\"margin:5px 0;\">도로명 주소\
+		                <input type=\"text\" id=\"txtAddressByStExisting$INDX$\" class=\"ipubx\"\
+		                       value=\"$FULLADDRNEW$\"\
+		                       style=\"width:320px;vertical-align:middle;\" readonly=\"readonly\" />\
+		            </p>\
+		            <p style=\"line-height:20px;\">지번 주소&nbsp;&nbsp;&nbsp;\
+		                <input type=\"text\" id=\"txtAddressByOldExisting$INDX$\"\
+		                       value=\"$FULLADDR$\"\
+		                       class=\"ipubx\"\
+		                       style=\"width:320px;vertical-align:middle;\" readonly=\"readonly\" />\
+		            </p>\
+		        </td>\
+		    </tr>\
+		    <tr id=\"trDelvMobNoNormalExisting$INDX$\" style=\"\">\
+		        <th>\
+		           	 핸드폰\
+		        </th>\
+		        <td class=\"num_p\" style=\"height: 22px;\">\
+		            <select id=\"ddlRcvrMobTelNo1NormalExisting$INDX$\" style=\"width: 50px; margin-bottom: 1px; vertical-align: bottom\">\
+		                <option value=\"\">선택</option>";
+	
+		  result += makePhoneSelectHtml(phoneHead);
+		  
+		  result +=  "  </select> -\
+		            <input type=\"text\" id=\"txtRcvrMobTelNo2NormalExisting$INDX$\" value=\"$PHONEMID$\" class=\"ipubx\" maxlength=\"4\"/> -\
+		            <input type=\"text\" id=\"txtRcvrMobTelNo3NormalExisting$INDX$\" value=\"$PHONETAIL$\" class=\"ipubx\" maxlength=\"4\"/>\
+		        </td>\
+		    </tr>\
+		    </table>";
+		    
+	      result = result.split('$INDX$').join(index);
+	      result = result.split('$ADDRNAME$').join(addrname);
+	      result = result.split('$POSTHEAD$').join(postHead);
+	      result = result.split('$POSTTAIL$').join(postTail);
+	      result = result.split('$FULLADDRNEW$').join(fullAddrNew);
+	      result = result.split('$FULLADDR$').join(fullAddr);
+	      result = result.split('$PHONEMID$').join(phoneMid);
+	      result = result.split('$PHONETAIL$').join(phoneTail);
+	      
+	      return result;
+    }
+    
     function makePhoneSelectHtml(phoneNumberHead) { 
 
 		var arrPhoneHeaders = ["<option value=\"010\">010</option>", 
@@ -222,21 +280,34 @@
 	}
 	
 	function addAddressData(text) {
-		response = text;
-		response = $.parseJSON(response);
-		
-		var indx = response.addrIndex;
-		var userName = response.userName;
-		var addrName = response.addressName;
-		var phoneNumber = response.addressPhoneNumber;
-		var zipHead = response.addrPostNumHeader;
-		var zipTail = response.addrPostNumTail;
-		var basicAdd = response.addrBasicAdd;
-		var basicAddNew = response.addrNewBasicAdd;
-		var detailAdd = response.addrDetailAdd;
-		
-		var appendText = addAddressInfo(indx, addrName, userName, zipHead, zipTail, basicAdd + detailAdd, basicAddNew + detailAdd);
-		$("#addressInfoTable").append(appendText);
+ 
+		if( text.toLowerCase() == ("This input exceeded the size that can be input.( Maximum 5 )").toLowerCase()) {
+			alert("최대 등록 가능 주소 개수는 5 개를 넘을 수 없습니다.");	
+		} else {
+			response = text;
+			response = $.parseJSON(response);
+			
+			var indx = response.addrIndex;
+			var userName = response.userName;
+			var addrName = response.addressName;
+			var phoneNumber = response.addressPhoneNumber;
+			var zipHead = response.addrPostNumHeader;
+			var zipTail = response.addrPostNumTail;
+			var basicAdd = response.addrBasicAdd;
+			var basicAddNew = response.addrNewBasicAdd;
+			var detailAdd = response.addrDetailAdd;
+			var phoneHead = response.addressPhoneNumberHead;
+			var phoneMid = response.addressPhoneNumberMid;
+			var phoneTail = response.addressPhoneNumberTail;
+			
+			var appendText = addAddressInfo(indx, addrName, userName, zipHead, zipTail, basicAdd + detailAdd, basicAddNew + detailAdd, phoneNumber);
+			$("#addressInfoTable tbody").append(appendText);
+		    	
+			var appendTextDetail = addAddressInfoDetail(indx, addrName, userName, zipHead, zipTail, basicAdd + detailAdd, basicAddNew + detailAdd, phoneHead, phoneMid, phoneTail);
+			alert(appendTextDetail);
+			$("#existingAddressLayer").append(appendTextDetail);
+		}
+
 		fnAjaxLoaderLayerHide("divAjaxLoader");
 		registerEvent();
 	}

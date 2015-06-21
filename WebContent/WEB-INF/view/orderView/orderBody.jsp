@@ -269,7 +269,7 @@
                                 </td>
                             </tr>
                         </table>
-
+						<div id="existingAddressLayer">
 						<c:forEach var="addressInfo" varStatus="addressInfos" items="${requestScope.orderViewInfo.addressesPair}">
 						<table cellpadding="0" class="tbl_pay"  id="existingAddressSettings<c:out value="${addressInfos.index}"/>" style="display:none">
                             <tr id="trOrdNmNormal" style="">
@@ -315,6 +315,7 @@
                             </tr>
                         </table>
                         </c:forEach>
+                        </div>
                     </div>
                 </div>
                 <!-- 배송주소 // -->
@@ -565,7 +566,7 @@
 					                   ${requestScope.orderViewInfo.user.name} 의 주소록(<strong>${requestScope.orderViewInfo.addressesPairSize}</strong>) ( 최대 5개까지 등록 가능 )
 					                </li>
 					            </ul>
-					            <table class="tbl_l">
+					            <table class="tbl_l" id="addressInfoTable">
 					                <colgroup>
 					                    <col width="34">
 					                    <col width="60">
@@ -593,7 +594,7 @@
 					                        </th>
 					                    </tr>
 					                </thead>
-					                <tbody id="addressInfoTable">
+					                <tbody>
 										<c:forEach var="addressInfo" varStatus="addressInfos" items="${requestScope.orderViewInfo.addressesPair}">
 										<tr id="addressInfoItem<c:out value="${addressInfos.index}"/>">
 					                        <td valign="top">

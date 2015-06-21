@@ -23,7 +23,7 @@ public class AddAddrCommand implements Command {
 
 		String orderKey = request.getParameter(Constant.attrOrderKey);
 		OrderViewInfo orderViewInfo = (OrderViewInfo) session.getAttribute(orderKey);
-		if (orderViewInfo.getAddressesPairSize() >= 5) {
+		if (orderViewInfo.getAddressesPairVaildSize() >= 5) {
 			return new CommandResult(Constant.textPlain, Constant.overAddrlimitInput);
 		}
 

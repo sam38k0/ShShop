@@ -3,6 +3,7 @@ package com.shshop.response;
 import com.shshop.domain.Address;
 
 public class AddressPair {
+	private boolean isDeleted = false;
 	private String userName;
 	private Address addressOrigin;
 	private Address addressNew;
@@ -64,5 +65,13 @@ public class AddressPair {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public boolean isDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 }
