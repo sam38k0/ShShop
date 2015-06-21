@@ -49,7 +49,7 @@ public class AddAddrCommand implements Command {
 		orderViewInfo.addAddressPair(addedAddressPair);
 		
 		request.setAttribute(Constant.attrUserName, user.getName());
-		request.setAttribute(Constant.attrAddressIndex, orderViewInfo.getAddressesPairSize());
+		request.setAttribute(Constant.attrAddressIndex, orderViewInfo.getAddressesPairSize()-1);
 		request.setAttribute(Constant.attrSelectedAddressResult, addedAddressPair);
 
 		return new CommandResult("/WEB-INF/view/orderView/addressEditJsonData.jsp");

@@ -3,18 +3,9 @@
 <jsp:useBean id="adminBean" class="com.shshop.system.AdminBean" scope="session" />
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> 
-<script src="${adminBean.contextPath}/content/js/common.js"></script>
 
 <script type="text/javascript">
 
-	function fnLayerHideById(layerName) {
-	    $('#' + layerName).css('display', 'none');
-	}
-	
-	function fnLayerShowById(layerName) {
-	    $('#' + layerName).css('display', 'block');
-	}
-	
 	function pageInitialize(event) {
 		fnLayerShowById('divPayMthdCard');
 		fnLayerHideById('divPayMthdBankRTime');
@@ -27,21 +18,8 @@
 		fnLayerHideById('divAddressNew');
 	}
 	
-	function openModalDialog(layerName, offsetTop) {
- 
-		var $window = $(window);
-		var outerHeight = $('#' + layerName).outerHeight();
-		var outerWidth = $('#' + layerName).outerWidth();
-		
-		var topPos = Math.max($window.height() - outerHeight, 0) / 2;
-		var leftPos = Math.max($window.width() - outerWidth, 0) / 2;
-
-		$('#' + layerName).css({
-			//top : topPos + $window.scrollTop() + offsetTop,
-			top : offsetTop,
-			left : leftPos + $window.scrollLeft()
-		}); 
-		
+	function openModalDialog(refLayerName, layerName) {
+		fnPopupLayerShowFixedPosition(refLayerName, layerName)
 		fnLayerShowById(layerName);
 	}
 	 
@@ -274,7 +252,7 @@
 		}
 		
 		fnLayerHideById('divAddressNew' + indx);
-		openModalDialog('divAddressList', 500);
+		openModalDialog('rdoDelvAddrSetModeNew', 'divAddressList');
 		fnAjaxLoaderLayerHide("divAjaxLoader");
 		registerEvent();
 	}
@@ -304,7 +282,6 @@
 			$("#addressInfoTable tbody").append(appendText);
 		    	
 			var appendTextDetail = addAddressInfoDetail(indx, addrName, userName, zipHead, zipTail, basicAdd + detailAdd, basicAddNew + detailAdd, phoneHead, phoneMid, phoneTail);
-			alert(appendTextDetail);
 			$("#existingAddressLayer").append(appendTextDetail);
 		}
 
@@ -375,7 +352,7 @@
 
 			case 'rdoDelvAddrSetModeList'://주소록
 				$(this).attr('checked', 'checked');
-				openModalDialog('divAddressList', 500);
+				openModalDialog('rdoDelvAddrSetModeNew','divAddressList');
 				break;
 
 			case 'rdoDelvAddrSetModeNew': //새로입력
@@ -430,7 +407,7 @@
 	    	var indx = id.replace('addressModify', '');
 	    	var addressNewId = 'divAddressNew' + indx;
 	    	fnLayerHideById('divAddressList');
-	    	openModalDialog(addressNewId, 500);
+	    	openModalDialog('rdoDelvAddrSetModeNew', addressNewId);
 	    });
 	    
 	    $('.sch_address').click(function(){
