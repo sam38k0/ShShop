@@ -5,6 +5,7 @@
 <jsp:useBean id ="adminBean" class ="com.shshop.system.AdminBean" scope ="session"/>
 
 <div id="yesWrap">
+	<div id="divAjaxLoader" align="center" style="position: absolute;"></div>
     <div id="wrapperContent">
         <div id="divGoodsOrderDetail" style="">
                 <!--// 상품확인 -->
@@ -41,12 +42,12 @@
 						<c:forEach var="orderInfo" varStatus="orderInfos" items="${requestScope.orderViewInfo.orderInfos}">
 						<tr class='last'>
                                 <td class='goods_img le'>
-                                    <a href='http://www.yes24.com/24/Goods/18242263' class='pd_a' target='_blank'>
+                                    <a href='#' class='pd_a' target='_blank'>
                                         <img src="<c:out value="${adminBean.contextPath}"/><c:out value="${orderInfo.imagePath}"/> " alt='' class='pdimg' target='_blank' />
                                     </a>
                                 </td>
                                 <td>
-                                    <a href='http://www.yes24.com/24/Goods/18242263' class='pd_a'>${orderInfo.product.name}</a>
+                                    <a href='#' class='pd_a'>${orderInfo.product.name}</a>
                                 </td>
                                 <td>
                                     ${orderInfo.product.price}

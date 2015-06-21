@@ -48,6 +48,7 @@ public class AddAddrCommand implements Command {
 		AddressPair addedAddressPair = new AddressPair(address, addressNew);
 		orderViewInfo.addAddressPair(addedAddressPair);
 		
+		request.setAttribute(Constant.attrUserName, user.getName());
 		request.setAttribute(Constant.attrAddressIndex, orderViewInfo.getAddressesPairSize());
 		request.setAttribute(Constant.attrSelectedAddressResult, addedAddressPair);
 

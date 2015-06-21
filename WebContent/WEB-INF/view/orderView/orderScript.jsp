@@ -3,6 +3,7 @@
 <jsp:useBean id="adminBean" class="com.shshop.system.AdminBean" scope="session" />
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> 
+<script src="${adminBean.contextPath}/content/js/common.js"></script>
 
 <script type="text/javascript">
 
@@ -97,7 +98,7 @@
         }).open();
     }
     
-    function addAddressInfo(index, name, postHead, postTail, fullAddr, fullAddrNew, phoneNumber) {
+    function addAddressInfo(index, addrname, username, postHead, postTail, fullAddr, fullAddrNew, phoneNumber) {
     	var result = "\
     	    <tr id=\"addressInfoItem$INDX$\">\
             <td valign=\"top\">\
@@ -135,13 +136,14 @@
             </td>\
         </tr>";
     				 
-        result = result.replace('$INDX$', index);
-        result = result.replace('$ADDRNAME$', name);
-        result = result.replace('$POSTHEAD$', postHead);
-        result = result.replace('$POSTTAIL$', postTail);
-        result = result.replace('$FULLADDRNEW$', fullAddrNew);
-        result = result.replace('$FULLADDR$', fullAddr);
-        result = result.replace('$PHONE$', phoneNumber);
+        result = result.split('$INDX$').join(index);
+        result = result.split('$USERNAME$').join(username);
+        result = result.split('$ADDRNAME$').join(addrname);
+        result = result.split('$POSTHEAD$').join(postHead);
+        result = result.split('$POSTTAIL$').join(postTail);
+        result = result.split('$FULLADDRNEW$').join(fullAddrNew);
+        result = result.split('$FULLADDR$').join(fullAddr);
+        result = result.split('$PHONE$').join(phoneNumber);
         
     	return result;
     }
@@ -215,6 +217,8 @@
 		
 		fnLayerHideById('divAddressNew' + indx);
 		openModalDialog('divAddressList', 500);
+		fnAjaxLoaderLayerHide("divAjaxLoader");
+		registerEvent();
 	}
 	
 	function addAddressData(text) {
@@ -222,7 +226,8 @@
 		response = $.parseJSON(response);
 		
 		var indx = response.addrIndex;
-		var name = response.addressName;
+		var userName = response.userName;
+		var addrName = response.addressName;
 		var phoneNumber = response.addressPhoneNumber;
 		var zipHead = response.addrPostNumHeader;
 		var zipTail = response.addrPostNumTail;
@@ -230,8 +235,10 @@
 		var basicAddNew = response.addrNewBasicAdd;
 		var detailAdd = response.addrDetailAdd;
 		
-		var appendText = addAddressInfo(indx, name, zipHead, zipTail, basicAdd + detailAdd, basicAddNew + detailAdd);
+		var appendText = addAddressInfo(indx, addrName, userName, zipHead, zipTail, basicAdd + detailAdd, basicAddNew + detailAdd);
 		$("#addressInfoTable").append(appendText);
+		fnAjaxLoaderLayerHide("divAjaxLoader");
+		registerEvent();
 	}
 	
 	function deleteAddressData(text) {
@@ -239,11 +246,11 @@
 		response = $.parseJSON(response);
 		var indx = response.addrIndex;
 		$('#addressInfoItem' + indx).empty();
-		//openModalDialog('divAddressList', 500);
+		fnAjaxLoaderLayerHide("divAjaxLoader");
+		registerEvent();
 	}
 	
-	$(document).ready(function() {
-		pageInitialize();
+	function registerEvent() {
 
 		$('input[type=radio][name=rdoPaymentMethod]').on('change', function() {
 			$('input[type=radio][name=rdoPaymentMethod]').attr('checked', '');
@@ -301,6 +308,16 @@
 				break;
 
 			case 'rdoDelvAddrSetModeNew': //새로입력
+		    	$('#txtOrdNmNormalNew').val(''); 
+		    	$('#txtZipCode1New').val(''); 
+		    	$('#txtZipCode2New').val(''); 
+		    	$('#txtAddressByStNew').val(''); 
+		    	$('#txtAddressByOldNew').val(''); 
+		    	$('#txtAddressNewDetail').val('');
+		    	$('#ddlRcvrMobTelNo1NormalNew').val('');
+		    	$('#txtRcvrMobTelNo2NormalNew').val('');
+		    	$('#txtRcvrMobTelNo3NormalNew').val('');
+	 
 				$(this).attr('checked', 'checked');
 				fnLayerShowById('newAddressSettings');
 				fnLayerHideById('basicAddressSettings');
@@ -381,11 +398,11 @@
 				success : changeAddressData,
 				error : function(ajaxContext) {
 					alert("변경된 주소를 업데이트 하지 못했습니다.");
+					fnAjaxLoaderLayerHide("divAjaxLoader");
+					registerEvent();
 				}
 			});
 	    });
-	    
-	    
 	    
 	    $('#addNewAddress').click(function(){
 	    	var addrName = $('#txtOrdNmNormalNew').val(); 
@@ -415,11 +432,14 @@
 				success : addAddressData,
 				error : function(ajaxContext) {
 					alert("변경된 주소를 업데이트 하지 못했습니다.");
+					fnAjaxLoaderLayerHide("divAjaxLoader");
+					registerEvent();
 				}
 			});
 	    });
 	    
 	    $('.delet_s').click(function(){
+	    	fnAjaxLoaderLayerShow("divAjaxLoader", true, false, window.event);
 	    	var id = $(this).attr('id');
 	    	
 	    	var indx = id.replace('addressDelete', '');
@@ -433,9 +453,16 @@
 				success : deleteAddressData,
 				error : function(ajaxContext) {
 					alert("주소를 삭제하지 못했습니다.");
+					fnAjaxLoaderLayerHide("divAjaxLoader");
+					registerEvent();
 				}
 			});
 	    });
+	}
+	
+	$(document).ready(function() {
+		pageInitialize();
+		registerEvent();
 	});
 </script>
 

@@ -17,6 +17,7 @@ import com.shshop.command.OrderStateCommand;
 import com.shshop.command.SearchActionCommand;
 import com.shshop.command.SearchCategoryCommand;
 import com.shshop.command.SearchViewCommand;
+import com.shshop.command.ShoppingCartCommand;
 import com.shshop.command.ShowDetailViewCommand;
 import com.shshop.command.SimilarItemSearchCommand;
 import com.shshop.command.UserDataChangeCommand;
@@ -81,6 +82,9 @@ public class CommandFactory {
 			
 		case Constant.addAddress:
 			return new AddAddrCommand();
+			
+		case Constant.showShoppingCartForm:
+			return new ShoppingCartCommand();
 
 		default:
 			return null;

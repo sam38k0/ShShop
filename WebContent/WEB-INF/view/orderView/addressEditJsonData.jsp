@@ -4,6 +4,7 @@
 
 <json:object>
 	<json:property name="addrIndex" value="${addressIndex}" />
+	<json:property name="userName" value="${userName}" />
 	
 	<json:property name="addressName" value="${selectedAddressResult.addressOrigin.name}" />
 	<json:property name="addressPhoneNumber" value="${selectedAddressResult.addressOrigin.phoneNumber}" />

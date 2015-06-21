@@ -24,6 +24,7 @@ public class Constant {
 	public static final String changeOrderAddr = "/changeOrderAddr";
 	public static final String deleteOrderAddr = "/deleteOrderAddr";
 	public static final String addAddress = "/addAddress";
+	public static final String showShoppingCartForm = "/showShoppingCartView";
 
 	// Attribute
 	public static final String attrUser = "user";
@@ -45,6 +46,7 @@ public class Constant {
 	public static final String attrOrderViewInfo = "orderViewInfo";
 	public static final String attrOrderKey = "orderKey";
 	public static final String attrAddressIndex = "addressIndex";
+	public static final String attrUserName = "userName";
 	public static final String attrSelectedAddressResult = "selectedAddressResult";
 	public static final String attrAddrName = "addrName";
 	public static final String attrAddrZipCodeHead = "addrZipCodeHead";
@@ -73,7 +75,7 @@ public class Constant {
 	public static final String noAddress = "There is no user address information";
 	public static final String overAddrlimitInput = "This input exceeded the size that can be input.( Maximum 5 )";
 
-	// Ajax
+	// Ajax Response
 	public static final String Success = "Success";
 	public static final String Failed = "Failed";
 	public static final String onLogin = "onLogin";
@@ -81,6 +83,6 @@ public class Constant {
 	// Path
 	public static final String contextPath = "/ShShop/WebContent";
 
-	// BoardName
+	// DB Constant 
 	public static final String askAndReplyBoard = "askAndReply";
 }
