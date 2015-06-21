@@ -148,7 +148,7 @@ public class OrderViewInfo {
 				totalQuantity += orderInfo.getQuantity();
 			}
 
-			totalDescription = "" + orderInfos.size() + " 종 ( " + totalQuantity + ") 개";
+			totalDescription = "" + orderInfos.size() + "종(" + totalQuantity + ")개";
 		} catch (Exception e) {
 			totalDescription = "";
 		}

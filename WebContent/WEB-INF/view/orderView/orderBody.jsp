@@ -90,7 +90,7 @@
 								<th><em class="tot5">최종 결제금액</em></th>
 							</tr>
 							<tr>
-								<td>${requestScope.orderViewInfo.totalDescription}</td>
+								<td><em>${requestScope.orderViewInfo.totalDescription}</em></td>
 								<td><em>${requestScope.orderViewInfo.productsTotalPrice}</em>원</td>
 								<td><em id="txtTotalDelvFare">${requestScope.orderViewInfo.shippingTotalPrice}</em>원</td>
 								<td class="clr1">
