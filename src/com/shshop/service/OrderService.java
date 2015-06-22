@@ -203,7 +203,10 @@ public class OrderService {
 		} finally {
 			sqlSession.close();
 		}
- 
-		return new CommandResult(Constant.textHtml, Constant.Success);
+		
+		request.setAttribute(Constant.attrOrderIndex, strOrderIndex);
+		request.setAttribute(Constant.attrTotalPrice, orderInfo.getPrice()); 
+
+		return new CommandResult("/WEB-INF/view/shoppingCartView/changeItemCountJsonData.jsp");
 	}
 }

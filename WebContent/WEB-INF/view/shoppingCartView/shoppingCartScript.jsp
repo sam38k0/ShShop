@@ -56,9 +56,11 @@
 			}
 		});
 		
-		//deliveryFee = parseInt($('#txtTotalDelvFare').text());
+		var strDeliveryFee = fnReplaceAll($('#txtTotalDelvFare em').text(),',','');
+ 
+		deliveryFee = parseInt(strDeliveryFee);
 		
-		totalAmount = totalPriceOfItems;
+		totalAmount = deliveryFee + totalPriceOfItems;
 		
 		totalDescription = "" + totalItems + " 종(" + totalQuantity + ")개";
 		
@@ -70,21 +72,24 @@
  
 	// 아이템의 수량 변경에 대한 리턴
 	function fnAjaxChangeShippingItemCount(text) {
-		response = text;
-		if(response != 'Success') {
-			alert("변경된 수량으로 업데이트 하지 못했습니다."); 
-		} else {
-			
-		}
-		
 		fnAjaxLoaderLayerHide("divAjaxLoader");
+		
+		response = text;
+		response = $.parseJSON(response);
+		
+		var orderIndex = response.orderIndex;
+		var totalPrice = response.totalPrice;
+		
+		$('#totalPricOfItem' + orderIndex).text(totalPrice + '원');
+		$('#totalPricOfItem' + orderIndex).attr('value', totalPrice);
+		
+		fnResetCartSummary();
 		fnRegisterEvent();
 	}
 	
 	function fnRegisterEvent() {
 	    $('#chkCartHeader').change(function() {
 	    	fnCheckedChangeChildCart();
-	    	fnResetCartSummary();
 	    	fnResetCartSummary();
 	    });
 	    
@@ -95,7 +100,8 @@
 	    $('.chgnum').click(function() {
 			var checkedId = $(this).attr('id');
 			var indx = checkedId.replace('hdnOriginalGoodsCnt', '');
-			var newQuantity = parseInt($('#txtGoodsCnt' + indx).attr('value'));
+			var newQuantity = parseInt($('#txtGoodsCnt' + indx).val());
+			$('#txtGoodsCnt' + indx).attr('value', newQuantity);
 			
 			if(newQuantity <= 0) {
 				alert('유효하지 않은 수량을 입력하셨습니다.');
@@ -115,7 +121,7 @@
 				error : function(ajaxContext) {
 					alert("변경된 수량으로 업데이트 하지 못했습니다.");
 					fnAjaxLoaderLayerHide("divAjaxLoader");
-					registerEvent();
+					fnRegisterEvent();
 				}
 			});
 	    });

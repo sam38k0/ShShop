@@ -58,7 +58,8 @@ public class Constant {
 	public static final String attrAddrPhoneNumber = "addrPhoneNumber";
 	public static final String attrOrderIndex = "orderIndex";
 	public static final String attrItemNewQuantity = "itemNewQuantity";
-
+	public static final String attrTotalPrice = "totalPrice";
+	
 	// DD Parameter
 	public static final String paramFileUpload = "file-upload";
 	public static final String paramFileUploadAbsolutePath = "file-upload-absolute";
