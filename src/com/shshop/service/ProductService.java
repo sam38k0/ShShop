@@ -493,4 +493,17 @@ public class ProductService {
 		}
 		return productImg;
 	}
+	
+	public List<Product> getProductsById(int userId) {
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		List<Product> product;
+
+		try {
+			ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+			product = productMapper.getProducts(userId);
+		} finally {
+			sqlSession.close();
+		}
+		return product;
+	}
 }

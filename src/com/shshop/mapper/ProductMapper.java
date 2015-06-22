@@ -29,6 +29,8 @@ public interface ProductMapper {
 	public List<Product> selectMainCount();
 
 	public List<Product> selectMainDate();
+	
+	public List<Product> getProducts(@Param("userId") Integer userId);
 
 	public int insertProductProc(ProductProc productProc);
 }

@@ -67,6 +67,10 @@
 	<select id='selectMainDate' resultMap='Product'>
 		SELECT * FROM `ps_product` ORDER BY `date_created` DESC LIMIT 0, 80;
 	</select>
+	
+	<select id='getProducts' resultMap='Product' parameterType='${UserType}'>
+		select * from `ps_product` where `id_user`=${id_user}
+	</select>
 		
 	<insert id="insertProductProc" parameterType='${ProductProcType}' statementType="CALLABLE">
     {

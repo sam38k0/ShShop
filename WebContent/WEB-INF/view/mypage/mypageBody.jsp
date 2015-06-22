@@ -4,8 +4,8 @@
 <jsp:useBean id ="adminBean" class ="com.shshop.system.AdminBean" scope ="session"/>
 
 <ul class="mypage_tap">
-    <li><a href="#">거래정보</a></li>
-    <li><a href="#">개인정보</a></li>
+    <li><a href="#" class="deal_info">거래정보</a></li>
+    <li><a href="#" class="user_info">개인정보</a></li>
 </ul>
 <div id="deal_wrap" >
     <div class="deal_left">
@@ -87,13 +87,12 @@
 		        <c:forEach var = 'sellOrder' items='${sellOrderInfoList.orderInfos}'>
 		            <tr>
 		                <td>${sellOrder.order.orderId}</td>
-		                <td><img src="<c:out value="${sellOrder.productImg.imagePath}"/> "><span>${sellOrder.product.productId}</span><br>${sellOrder.product.name}</td>
+		                <td><img src="<c:out value="${sellOrder.productImg.imagePath}"/> "><span>${sellOrder.product.productId}</span><em>${sellOrder.product.name}</em></td>
 		                <td>${sellOrder.product.price}</td>
-		                <td>${sellOrder.address.fullAddress}</td>
+		                <td>${sellOrder.address.basicAdd}<br>${sellOrder.address.detailAdd}</td>
 		                <td>${sellOrder.user.name} <br> ${sellOrder.user.phone}</td>
 		                <td>
-		                    <span>배송 대기</span><br>
-		                    <a href="#">송장 등록</a>
+		                    <span>배송 대기</span><br><a href="#">송장 등록</a>
 		                    <div class="parcel_service">
 		                       	 택배사 
 		                        <select name="" id="">
@@ -118,26 +117,38 @@
 		            <th>거래상태</th>
 		        </tr>
 		        <c:forEach var = 'buyOrder' items='${buyOrderInfoList.orderInfos}'>
-		        <tr>
-		            <td>${buyOrder.order.orderId}</td>
-		            <td><span>${buyOrder.product.productId}</span><br>${buyOrder.product.name}</td>
-		            <td>${buyOrder.product.price}</td>
-		            <td>${buyOrder.address.basicAdd}<br>${buyOrder.address.detailAdd}</td>
-		            <td>${buyOrder.user.name}<br>${buyOrder.user.phone}</td>
-		            <td>
-		                <span>배송 대기</span><br>
-		            </td>
-		        </tr>
+			        <tr>
+			            <td>${buyOrder.order.orderId}</td>
+			            <td><img src="<c:out value="${buyOrder.productImg.imagePath}"/> "><span>${buyOrder.product.productId}</span><em>${buyOrder.product.name}</em></td>
+			            <td>${buyOrder.product.price}</td>
+			            <td>${buyOrder.address.basicAdd}<br>${buyOrder.address.detailAdd}</td>
+			            <td>${buyOrder.user.name}<br>${buyOrder.user.phone}</td>
+			            <td>
+			                <span>배송 대기</span><br>
+			            </td>
+			        </tr>
 		        </c:forEach>
 		    </table>
 		
 		    <table id="board_table" class="mypage_board_type">
-		        <tr>
-		            <th></th>
-		        </tr>
-		        <tr>
-		            <td></td>
-		        </tr>
+	            <tr>
+					<th>게시번호</th>
+					<th>제목</th>
+					<th>가격</th>
+					<th>히트수</th>
+					<th>등록일</th>
+					<th>수정</th>
+				</tr>
+				<c:forEach var = 'product' items='${myProduct}'>
+		        	<tr>
+			            <td>${product.productId}</td>
+			            <td>${product.name}</td>
+			            <td>${product.price}</td>
+			            <td>${product.searchingCount}</td>
+			            <td>${product.dateCreated}</td>
+			            <td><input type="button" value="수정"></td>
+		        	</tr>
+		        </c:forEach>
 		    </table>
 	    </div>
     </div>
@@ -170,8 +181,8 @@
 				<th>주소</th>
 				<td class="user_table_line">
 					<div class="add_wrap">
-						<input type="text" id="sample6_postcode1"> -
-						<input type="text" id="sample6_postcode2">
+						<input type="text" id="sample6_postcode1" value='${address.postNumHeader}'> -
+						<input type="text" id="sample6_postcode2" value='${address.postNumTail}'>
 						<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 						<input type="text" id="sample6_address" placeholder="주소" name="basicAdd" value='${address.basicAdd}'>
 						<input type="text" id="sample6_address2" placeholder="상세주소" name="detailAdd" value='${address.detailAdd}'>
@@ -193,11 +204,14 @@
 			<tr>
 				<th>계좌정보</th>
 				<td class="user_table_line">
-					<p>은행명 : </p><input type="text" name='bankName' value='${user.bankName}' class='change_input'><br>
-					<p>계좌번호 : </p><input type="text" name='bankNum' value='${user.bankNum}' class='change_input'><br>
+					<p class="p_in">은행명 : </p><input type="text" name='bankName' value='${user.bankName}' class='change_input'><br>
+					<p class="p_in">계좌번호 : </p><input type="text" name='bankNum' value='${user.bankNum}' class='change_input'><br>
 				</td>
 			</tr>
 		</table>
-		<input type='button' name='cancle' value='취소'><button type='submit'>수정</button>
+		<div class="user_chinge">
+			<input type='button' name='cancle' value='Cencel'>
+			<button type='submit'>Save</button>
+		</div>
 	</form>
 </div>
