@@ -16,6 +16,7 @@ import com.shshop.control.CommandResult;
 import com.shshop.domain.Address;
 import com.shshop.domain.Category;
 import com.shshop.domain.Order;
+import com.shshop.domain.OrderProc;
 import com.shshop.domain.OrderState;
 import com.shshop.domain.Post;
 import com.shshop.domain.Product;
@@ -116,7 +117,7 @@ public class ProductService {
 		}
 	}
 
-	public OrderInfo createNewOrderInfo(HttpServletRequest request, Integer userId, Integer productId, int quantity, int shippingPrice, String orderRequest, OrderState orderState) {
+	public OrderInfo createNewOrderInfo(HttpServletRequest request, Integer userId, Integer productId, int quantity, int shippingPrice, String orderRequest,String strOrderState) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 
 		try {
@@ -136,8 +137,14 @@ public class ProductService {
 			}
  
 			Order order = new Order(userId, productId, userAddresses.get(0).getIdAddress(), quantity, product.getPrice()*quantity, shippingPrice, orderRequest);
+			
 			OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
-			orderMapper.insertOrder(order);
+			OrderProc orderProc = new OrderProc(order);
+			orderMapper.insertOrderProc(orderProc);
+			
+			int orderId = orderProc.getInsertedOrderId();
+			order.setOrderId(orderId);
+			OrderState orderState = new OrderState(orderId,strOrderState);
 			
 			OrderStateMapper orderStateMapper =sqlSession.getMapper(OrderStateMapper.class);
 			orderStateMapper.insertOrderState(orderState);

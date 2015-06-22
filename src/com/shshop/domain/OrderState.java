@@ -18,7 +18,9 @@ public class OrderState {
 	private boolean delivered = false; // 배송완료
 	private boolean deleted = false; // 주문취소
 
-	public OrderState(String orderState) {
+	public OrderState(Integer orderId, String orderState) {
+		this.orderId = orderId;
+		
 		switch(orderState) {
 		case OrderState.VirtualOrder:
 			setOrderState(true,false,false,false,false,false,false);

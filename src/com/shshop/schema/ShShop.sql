@@ -235,14 +235,14 @@ CREATE TABLE `or_order` (
 );
 
 CREATE TABLE `or_order_state` (
-	`id_order`      SMALLINT   UNSIGNED NOT NULL, -- id_order
-	`virtual_order` TINYINT(1) NULL,     -- 가상주문(장바구니상태)
-	`activated`     TINYINT(1) NULL,     -- 주문활성화여부
-	`paid`          TINYINT(1) NULL,     -- 지불완료
-	`sended_email`  TINYINT(1) NULL,     -- 이메일보냄
-	`shipped`       TINYINT(1) NULL,     -- 배송중
-	`delivered`     TINYINT(1) NULL,     -- 배송완료
-	`deleted`       TINYINT(1) NULL,     -- 주문취소
+	`id_order`       SMALLINT   UNSIGNED NOT NULL, -- id_order
+	`virtual_order`  TINYINT(1) NULL,     -- 가상주문(장바구니상태)
+	`activated`      TINYINT(1) NULL,     -- 주문활성화여부
+	`paid`           TINYINT(1) NULL,     -- 지불완료
+	`sended_email`   TINYINT(1) NULL,     -- 이메일보냄
+	`shipped`        TINYINT(1) NULL,     -- 배송중
+	`delivered`      TINYINT(1) NULL,     -- 배송완료
+	`deleted`        TINYINT(1) NULL,     -- 주문취소
 	
 	CONSTRAINT `PK_or_order_state`
 		PRIMARY KEY (`id_order`),
@@ -490,14 +490,26 @@ END $$
 DELIMITER ;
 
 
+DELIMITER $$
+DROP PROCEDURE IF EXISTS proc_insert_order $$
+CREATE PROCEDURE proc_insert_order (IN  `proc_id_user`           SMALLINT,
+									IN  `proc_id_product`        SMALLINT,
+									IN  `proc_id_address`        SMALLINT,
+									IN  `proc_amount`            INTEGER,
+									IN  `proc_cost`              INTEGER,
+									IN  `proc_delivery_cost`     INTEGER,
+									IN  `proc_order_request`   	 TEXT,
+                                    OUT `proc_inserted_order_id` INT)
+BEGIN 
+ 
+	INSERT into `or_order` (`id_user`, `id_product`, `id_address`, `amount`, `cost`, `delivery_cost`, `order_request`) 
+        VALUES (`proc_id_user`, `proc_id_product`,  `proc_id_address`, `proc_amount`, `proc_cost`, `proc_delivery_cost`, `proc_order_request`);
+        
+	SET `proc_inserted_order_id` = LAST_INSERT_ID();
+END $$
+DELIMITER ;
 
 
-SELECT t1.name AS lev1, t2.name as lev2, t3.name as lev3
-FROM `ps_category` AS t1
-LEFT JOIN `ps_category` AS t2 ON t2.`id_category_parent` = t1.`id_category`
-LEFT JOIN `ps_category` AS t3 ON t3.`id_category_parent` = t2.`id_category`
-LEFT JOIN `ps_category` AS t4 ON t4.`id_category_parent` = t3.`id_category`
-WHERE t1.name = '여성의류';
 
 
 /* -- Confirm ----------------------------------------------------------------------------------
@@ -648,5 +660,16 @@ END $$
 DELIMITER ;
 
  CALL proc_insert_address_test();
+
+ 
+-- Category Select Test -----------------------------------------------------------------
+
+SELECT t1.name AS lev1, t2.name as lev2, t3.name as lev3
+FROM `ps_category` AS t1
+LEFT JOIN `ps_category` AS t2 ON t2.`id_category_parent` = t1.`id_category`
+LEFT JOIN `ps_category` AS t3 ON t3.`id_category_parent` = t2.`id_category`
+LEFT JOIN `ps_category` AS t4 ON t4.`id_category_parent` = t3.`id_category`
+WHERE t1.name = '여성의류';
+
  
 */

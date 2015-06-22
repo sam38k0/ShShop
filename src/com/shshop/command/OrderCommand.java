@@ -36,9 +36,9 @@ public class OrderCommand implements Command {
 		OrderViewInfo orderViewInfo = new OrderViewInfo(user, addresses);
 		ProductService productService = new ProductService();
 		 
-		orderViewInfo.addOrderInfo(productService.createNewOrderInfo(request, user.getUserId(), 1, 3, 2500, "총알배송",  new OrderState(OrderState.VirtualOrder)));
-		orderViewInfo.addOrderInfo(productService.createNewOrderInfo(request, user.getUserId(), 2, 3, 5000, "당일배송",  new OrderState(OrderState.VirtualOrder)));
-		orderViewInfo.addOrderInfo(productService.createNewOrderInfo(request, user.getUserId(), 3, 3, 10000, "파손주의", new OrderState(OrderState.VirtualOrder)));
+		orderViewInfo.addOrderInfo(productService.createNewOrderInfo(request, user.getUserId(), 1, 3, 2500, "총알배송",  OrderState.VirtualOrder));
+		orderViewInfo.addOrderInfo(productService.createNewOrderInfo(request, user.getUserId(), 2, 3, 5000, "당일배송",  OrderState.VirtualOrder));
+		orderViewInfo.addOrderInfo(productService.createNewOrderInfo(request, user.getUserId(), 3, 3, 10000, "파손주의", OrderState.VirtualOrder));
 
 		String orderKey = UUID.randomUUID().toString();
 

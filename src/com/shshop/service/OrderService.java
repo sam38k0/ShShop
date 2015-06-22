@@ -11,6 +11,7 @@ import com.shshop.constant.Constant;
 import com.shshop.control.CommandResult;
 import com.shshop.domain.Address;
 import com.shshop.domain.Order;
+import com.shshop.domain.OrderProc;
 import com.shshop.domain.OrderState;
 import com.shshop.domain.Product;
 import com.shshop.domain.User;
@@ -34,7 +35,7 @@ public class OrderService {
 
 		try {
 			OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
-			orderMapper.insertOrder(order);
+			orderMapper.insertOrderProc(new OrderProc(order));
 			sqlSession.commit();
 		} finally {
 			sqlSession.close();

@@ -36,11 +36,11 @@ public class ShoppingCartCommand implements Command {
 		ProductService productService = new ProductService();
 
 		orderViewInfo.addOrderInfo(
-				productService.createNewOrderInfo(request, user.getUserId(), 1, 3, 2500, "주의", new OrderState(OrderState.VirtualOrder)));
+				productService.createNewOrderInfo(request, user.getUserId(), 1, 3, 2500, "주의", OrderState.VirtualOrder));
 		orderViewInfo.addOrderInfo(
-				productService.createNewOrderInfo(request, user.getUserId(), 2, 3, 5000, "주의", new OrderState(OrderState.VirtualOrder)));
+				productService.createNewOrderInfo(request, user.getUserId(), 2, 3, 5000, "주의", OrderState.VirtualOrder));
 		orderViewInfo.addOrderInfo(
-				productService.createNewOrderInfo(request, user.getUserId(), 3, 3, 10000, "주의", new OrderState(OrderState.VirtualOrder)));
+				productService.createNewOrderInfo(request, user.getUserId(), 3, 3, 10000, "주의", OrderState.VirtualOrder));
 
 		String orderKey = UUID.randomUUID().toString();
 
