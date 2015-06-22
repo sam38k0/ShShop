@@ -177,6 +177,21 @@ public class AuthenticatorService {
 
 		return user;
 	}
+	
+	public User getUserById(Integer userId) {
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+
+		User user;
+		try {
+			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+			user = userMapper.getUserById(userId);
+		} finally {
+			sqlSession.close();
+		}
+
+		return user;
+	}
+
 
 	public void userDataUpdate(User user) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();

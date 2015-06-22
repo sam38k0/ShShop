@@ -15,6 +15,7 @@ import com.shshop.domain.OrderState;
 import com.shshop.domain.Product;
 import com.shshop.domain.ProductImage;
 import com.shshop.domain.User;
+import com.shshop.service.AuthenticatorService;
 import com.shshop.service.OrderService;
 import com.shshop.service.ProductService;
 
@@ -28,15 +29,17 @@ public class OrderStateCommand implements Command {
 
 		OrderService orderService = new OrderService();
 		ProductService productService = new ProductService();
-
-		// 구매 리스트
+		AuthenticatorService authenticatorService = new AuthenticatorService();
+		
+		
+		// 판매자 정보
 		List<Order> buyOrder = orderService.selectBuyOrder(user.getUserId());
 		if (buyOrder != null && buyOrder.size() > 0) {
 			OrderInfomationList buyOrderInfoList = new OrderInfomationList();
 
 			for (Order order : buyOrder) {
-				User sellUser = orderService.selectSellInfo(order.getUserId());
 				Product product = orderService.selectProduct(order.getProductId());
+				User sellUser = authenticatorService.getUserById(product.getUserId());
 				ProductImage productImg = productService.getProductImg(order.getProductId());
 				Address sellAdd = orderService.selectSellAddress(order.getIdAddress());
 				OrderState buyState = orderService.selectOrderState(order.getOrderId());
@@ -48,20 +51,22 @@ public class OrderStateCommand implements Command {
 				request.setAttribute("buyOrderInfoList", buyOrderInfoList);
 		}
 
-		// 판매 리스트
+		// 구매자 정보
 		List<Order> sellOrder = orderService.selectSellOrder(user.getUserId());
+
 
 		if (sellOrder != null && sellOrder.size() > 0) {
 			OrderInfomationList sellOrderInfoList = new OrderInfomationList();
 
 			for (Order order : sellOrder) {
-				User buyUser = orderService.selectBuyInfo(order.getUserId());
+				
+				User buyer = authenticatorService.getUserById(order.getUserId());
 				Product product = orderService.selectProduct(order.getProductId());
 				ProductImage productImg = productService.getProductImg(order.getProductId());
 				Address buyAdd = orderService.selectBuyAddress(order.getOrderId());
 				OrderState sellState = orderService.selectOrderState(order.getOrderId());
 
-				sellOrderInfoList.addOrderInformation(buyUser, product, productImg, order, sellState, buyAdd);
+				sellOrderInfoList.addOrderInformation(buyer, product, productImg, order, sellState, buyAdd);
 			}
 
 			if (sellOrderInfoList.getOrderInfos().size() > 0)

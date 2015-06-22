@@ -67,18 +67,6 @@ public class OrderService {
 		return order;
 	}
 
-	public User selectBuyInfo(int userId) {
-		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-
-		User user;
-		try {
-			OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
-			user = orderMapper.getBuyUserInfo(userId);
-		} finally {
-			sqlSession.close();
-		}
-		return user;
-	}
 
 	public Address selectBuyAddress(int orderId) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
@@ -106,19 +94,7 @@ public class OrderService {
 		return order;
 	}
 
-	public User selectSellInfo(int userId) {
-		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-
-		User user;
-		try {
-			UserMapper orderMapper = sqlSession.getMapper(UserMapper.class);
-			user = orderMapper.getUserById(userId);
-		} finally {
-			sqlSession.close();
-		}
-		return user;
-	}
-
+	
 	public Address selectSellAddress(int addressId) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 

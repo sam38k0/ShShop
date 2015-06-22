@@ -20,11 +20,6 @@
 		SELECT * FROM `or_order` WHERE `id_user` = ${id_user}
 	</select>
 	
-	<select id='getBuyUserInfo' resultMap='${UserResultMap}'>
-		SELECT a.* FROM `cr_user` a inner join `or_order`  o on a.`id_user` = o.`id_user`
-		WHERE o.`id_order` = ${id_order} Group by a.`id_user`
-	</select>
-	
 	<select id='getBuyUserAdd' resultMap='${AddressResultMap}'>
 		SELECT a.* FROM `cr_address` a inner join `or_order` o on a.`id_address` = o.`id_address`
 		WHERE o.`id_order` = ${id_order}
