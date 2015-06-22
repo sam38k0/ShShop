@@ -9,7 +9,6 @@ public class OrderInfo {
 	private Order order;
 	private OrderState orderState;
 	private String imagePath;
-	private int quantity;
 	private int shippingPrice;
 	
 	public OrderInfo(Order order, OrderState orderState, Product product, String imagePath, int quantity, int shippingPrice) {
@@ -54,7 +53,7 @@ public class OrderInfo {
 	}
 	
 	public int getPrice() {
-		return product.getPrice() * quantity;
+		return product.getPrice() * order.getAmount();
 	}
 
 	public int getShippingPrice() {
