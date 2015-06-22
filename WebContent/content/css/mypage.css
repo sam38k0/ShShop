@@ -13,30 +13,44 @@
 .deal_left td:nth-child(odd){width:130px}
 .deal_left td:nth-child(even){width:30px;text-align:right}
 
-.deal_rigth{position:relative;float:left;width:790px}
-.deal_rigth li{float:left;width:270px}
+.deal_rigth{position:relative;float:right;width:790px}
+.deal_rigth li{float:left;width:260px}
 .deal_header{width:100%;height:60px;border-bottom:1px solid #0058e9}
-.deal_header span{display:block;float:left;width:150px; height:30px;line-height:30px; margin-top:25px;text-align:right}
+.deal_header a{display:block;float:left;width:140px; height:30px;line-height:30px;font-size:16px; font-weight:bold; color:#0058e9; margin-top:25px;text-align:right}
 .deal_header .deal_SelectWrap{float:left;position:relative;width:120px; height:30px; line-height:30px;margin-top:25px;}
-.deal_SelectWrap .deal_SelectText{text-align:center}
-.deal_SelectWrap .deal_SelectText em{font-style: normal}
-.deal_header .deal_boxUI{display:none;position:absolute;top:30px;left:10px;z-index:10}
-.deal_header .deal_boxUI li{text-indent:0.5em;background-color:#fff}
-.deal_header .deal_boxUI li:hover{width:120px;background-color:#ededed}
+.deal_SelectWrap .deal_SelectText{text-align:center; color: #0058e9}
+.deal_SelectWrap .deal_SelectText em{font-style: normal; color:#0058e9}
+.deal_header .deal_boxUI{display:none;position:absolute;top:30px;left:5px;width:120px;z-index:10}
+.deal_header .deal_boxUI li{width:100%;text-indent:0.5em;background-color:#fff}
+.deal_header .deal_boxUI li:hover{width:100%;background-color:#b8d2fc}
+.deal_header .deal_boxUI li em{display:none}
+.deal_SelectWrap .sell_SelectText{text-align:center; color: #0058e9}
+.deal_SelectWrap .sell_SelectText em{font-style: normal; color:#0058e9}
+.deal_header .sell_boxUI{display:none;position:absolute;top:30px;left:5px;width:120px;z-index:10}
+.deal_header .sell_boxUI li{width:100%;text-indent:0.5em;background-color:#fff}
+.deal_header .sell_boxUI li:hover{width:100%;background-color:#b8d2fc}
+.deal_header .sell_boxUI li em{display:none}
+#sell_board_list .deal_header a{margin-left:50px}
 
-.mypage_board{float:left;width:790px}
-.mypage_board_type{width:100%;}
-.mypage_board_type td:nth-child(1){width:70px}
-.mypage_board_type td:nth-child(2){width:240px}
-.mypage_board_type td:nth-child(3){width:80px}
-.mypage_board_type td:nth-child(4){width:220px}
-.mypage_board_type td:nth-child(5){width:90px}
-.mypage_board_type td:nth-child(6){width:90px}
+.mypage_board{float:right;width:790px; margin-top:15px}
+.mypage_board_type{width:100%;border-spacing:0;text-align:center}
+.mypage_board_type th{background-color:#ededed;height:35px;line-height:35px}
+.mypage_board_type th:nth-child(1){width:70px}
+.mypage_board_type th:nth-child(2){width:250px}
+.mypage_board_type th:nth-child(3){width:80px}
+.mypage_board_type th:nth-child(4){width:220px}
+.mypage_board_type th:nth-child(5){width:90px}
+.mypage_board_type th:nth-child(6){width:80px}
+.mypage_board_type td{height:90px}
+.mypage_board_type td:nth-child(2) img{float:left;width:82px;height:82px;margin-left:2px; margin-top:6px}
+
+.parcel_service{display:none}
 
 
-#buy_list{display:none}
-#sell_board_list{display:none}
+
 #buy_table{display:none}
+#board_table{display:none}
+#user_wrap{display:none}
 /* 개인정보 영역 */
 #user_wrap{position: relative; float: left; width: 800px; margin-top: 15px; margin-left: 30px;}
 #user_wrap table{width: 100%; border: none;background-color: #ddd}

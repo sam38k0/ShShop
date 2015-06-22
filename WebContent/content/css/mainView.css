@@ -1,16 +1,8 @@
 @charset "UTF-8";
 
-/* 초기화 */
-ul{margin: 0; padding: 0}
-li{list-style: none}
-a{text-decoration: none}
-img{border: 0}
-body{width: 100%; margin: 0;padding: 0}
-.wrap{position: relative; width: 1000px;height:100%;margin: 0 auto}
 
 /* 메인 영역*/
 /* 메인 상단 베너 영역*/
-#main_body{position: relative; width: 100%}
 #banner{position: relative; width: 100%;height: 200px; overflow: hidden}
 #banner img{width: 100%;height: 100%}
 .control{position: absolute;top: 45%;left: 0; width: 100%}
@@ -28,8 +20,7 @@ body{width: 100%; margin: 0;padding: 0}
 .main_content p{font-size:20px; color:#ff1800; line-height:40px; font-weight:bold; margin-bottom:15px;border-bottom: 1px solid #ff1800}
 .main_content .hot_item_area{width:100%;height:470px}
 .main_content .new_item_area{width:100%;height:470px}
-.main_content ul li span{display:block;height:45px;margin-top:10px}
-.hot_item span{width:100%;overflow:hidden}
+.main_content ul li span{display:block;width:100%;height:40px;margin-top:10px;overflow:hidden}
 .hot_item_area li{width: 120px; height: 210px;margin-left: 5px;margin-top: 10px;text-align:center}
 #hot_pages{width:150px; margin:0 auto}
 #hot_pages .hot_page{display:inline-block;text-indent:-999em; width:15px; height:15px; border-radius:10px;background-color:#c9c9c9;margin-right:10px}

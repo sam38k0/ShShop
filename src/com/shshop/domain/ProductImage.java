@@ -10,7 +10,7 @@ public class ProductImage implements Serializable {
 	private String imagePath;
 
 	public ProductImage() {
-
+		
 	}
 
 	public ProductImage(Integer productId, String imagePath) {

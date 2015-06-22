@@ -52,5 +52,25 @@ $(document).ready(function() {
 		});
 	}
 	
+	var $selllayer = $(".sell_SelectText");
+	var $sellcurrent = $(".sell_boxUI");
+	var $sellcurli = $(".sell_boxUI li");
 	
+	$selllayer.on('click',function() {
+		$sellcurrent.slideToggle("fast");
+	});
+	
+	if ($sellcurrent) {
+		if(!$sellcurli.hasClass("sell_selects"))
+			$sellcurli.first().addClass("sell_selects");
+		
+		$sellcurli.click(function(e) {
+			var inx = parseInt($(this).index()) +1;
+			
+			$('.sell_SelectText').text($(this).text());
+			
+			$(e.currentTarget).addClass("sell_selects").siblings().removeClass("sell_selects");
+			$sellcurrent.hide();
+		});
+	}
 });

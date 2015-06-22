@@ -38,101 +38,108 @@
             </tr>
         </table>
      </div>
-     <ul id="sell_wrap" class="deal_rigth">
-         <li id="sell_list" >
-            <div class="deal_header">
-            	<span>판매 거래 리스트</span> 
-            	<div class="deal_SelectWrap">
-					<div class="deal_SelectText">전체 거래<em>▼</em></div>
-					<ul class="deal_boxUI">
-						<li>전체 거래</li>
-						<li>배송대기 상품</li>
-						<li>배송진행 상품</li>
-						<li>거래완료 상품</li>
-						<li>악세서리</li>
-					</ul>
-				</div>
-            </div>
-        </li>
-        <li id="buy_list" >
-        	<div  class="deal_header">구매 거래 리스트 
-                <select name="" id="">
-                    <option value="전체 거래 리스트">전체 거래 리스트</option>
-                    <option value="배송대기 상품">배송대기 상품</option>
-                    <option value="배송진행 상품">배송진행 상품</option>
-                    <option value="거래완료 상품">거래완료 상품</option>
-                </select>
-            </div>
-        </li>
-        <li id="sell_board_list">
-            <p  class="deal_header">판매 게시물 리스트</p>
-        </li>
-    </ul>
-    <div class="mypage_board">
-	    <table id="sell_table" class="mypage_board_type">
-	        <tr>
-	            <th>거래번호</th>
-	            <th>상품 정보</th>
-	            <th>거래금액</th>
-	            <th>배송지 주소</th>
-	            <th>구매자정보</th>
-	            <th>거래상태</th>
-	        </tr>
-	        <c:forEach var = 'sellOrder' items='${sellOrderInfoList.orderInfos}'>
-	            <tr>
-	                <td>${sellOrder.order.orderId}</td>
-	                <td><img src="<c:out value="${sellOrder.productImg.imagePath}"/> "><span>${sellOrder.product.productId}</span><br>${sellOrder.product.name}</td>
-	                <td>${sellOrder.product.price}</td>
-	                <td>${sellOrder.address.fullAddress}</td>
-	                <td>${sellOrder.user.name} <br> ${sellOrder.user.phone}</td>
-	                <td>
-	                    <span>배송 대기</span><br>
-	                    <a href="#">송장 등록</a>
-	                    <div class="parcel_service">
-	                        택배사 
-	                        <select name="" id="">
-	                            <option value="">대한통운</option>
-	                            <option value="">한진택배</option>
-	                        </select>
-	                        <input type="text" value="송장 번호">
-	                        <input type="button" value="송장 등록">
-	                    </div>
-	                </td>
-	            </tr>
-	        </c:forEach>
-	    </table>
-	
-	    <table id="buy_table" class="mypage_board_type">
-	        <tr>
-	            <th>거래번호</th>
-	            <th>상품 정보</th>
-	            <th>거래금액</th>
-	            <th>배송지 주소</th>
-	            <th>구매자정보</th>
-	            <th>거래상태</th>
-	        </tr>
-	        <c:forEach var = 'buyOrder' items='${buyOrderInfoList.orderInfos}'>
-	        <tr>
-	            <td>${buyOrder.order.orderId}</td>
-	            <td><span>${buyOrder.product.productId}</span><br>${buyOrder.product.name}</td>
-	            <td>${buyOrder.product.price}</td>
-	            <td>${buyOrder.address.basicAdd} ${buyOrder.address.detailAdd}</td>
-	            <td>${buyOrder.user.name}<br>${buyOrder.user.phone}</td>
-	            <td>
-	                <span>배송 대기</span><br>
-	            </td>
-	        </tr>
-	        </c:forEach>
-	    </table>
-	
-	    <table id="board_table" class="mypage_board_type">
-	        <tr>
-	            <th></th>
-	        </tr>
-	        <tr>
-	            <td></td>
-	        </tr>
-	    </table>
+     <div class="deal_rigth">
+	     <ul id="sell_wrap">
+	         <li id="sell_list" >
+	            <div class="deal_header">
+	            	<a href="#">판매 거래 리스트</a> 
+	            	<div class="deal_SelectWrap">
+						<div class="deal_SelectText">전체 거래<em>▼</em></div>
+						<ul class="deal_boxUI">
+							<li>전체 거래 <em>▼</em></li>
+							<li>배송대기 상품 <em>▼</em></li>
+							<li>배송진행 상품 <em>▼</em></li>
+							<li>거래완료 상품 <em>▼</em></li>
+						</ul>
+					</div>
+	            </div>
+	        </li>
+	        <li id="buy_list" >
+	        	<div  class="deal_header">
+					<a href="#">구매 거래 리스트</a>  
+					<div class="deal_SelectWrap">
+	                	<div class="sell_SelectText">전체 거래<em>▼</em></div>
+						<ul class="sell_boxUI">
+							<li>전체 거래 <em>▼</em></li>
+							<li>배송대기 상품 <em>▼</em></li>
+							<li>배송진행 상품 <em>▼</em></li>
+							<li>거래완료 상품 <em>▼</em></li>
+						</ul>
+					</div>
+	            </div>
+	        </li>
+	        <li id="sell_board_list">
+	        	<div class="deal_header">
+	            	<a href="#">판매 게시물 리스트</a>
+	            </div>
+	        </li>
+	    </ul>
+	    <div class="mypage_board">
+		    <table id="sell_table" class="mypage_board_type">
+		        <tr>
+		            <th>거래번호</th>
+		            <th>상품 정보</th>
+		            <th>거래금액</th>
+		            <th>배송지 주소</th>
+		            <th>구매자정보</th>
+		            <th>거래상태</th>
+		        </tr>
+		        <c:forEach var = 'sellOrder' items='${sellOrderInfoList.orderInfos}'>
+		            <tr>
+		                <td>${sellOrder.order.orderId}</td>
+		                <td><img src="<c:out value="${sellOrder.productImg.imagePath}"/> "><span>${sellOrder.product.productId}</span><br>${sellOrder.product.name}</td>
+		                <td>${sellOrder.product.price}</td>
+		                <td>${sellOrder.address.fullAddress}</td>
+		                <td>${sellOrder.user.name} <br> ${sellOrder.user.phone}</td>
+		                <td>
+		                    <span>배송 대기</span><br>
+		                    <a href="#">송장 등록</a>
+		                    <div class="parcel_service">
+		                       	 택배사 
+		                        <select name="" id="">
+		                            <option value="">대한통운</option>
+		                            <option value="">한진택배</option>
+		                        </select>
+		                        <input type="text" value="송장 번호">
+		                        <input type="button" value="송장 등록">
+		                    </div>
+		                </td>
+		            </tr>
+		        </c:forEach>
+		    </table>
+		
+		    <table id="buy_table" class="mypage_board_type">
+		        <tr>
+		            <th>거래번호</th>
+		            <th>상품 정보</th>
+		            <th>거래금액</th>
+		            <th>배송지 주소</th>
+		            <th>구매자정보</th>
+		            <th>거래상태</th>
+		        </tr>
+		        <c:forEach var = 'buyOrder' items='${buyOrderInfoList.orderInfos}'>
+		        <tr>
+		            <td>${buyOrder.order.orderId}</td>
+		            <td><span>${buyOrder.product.productId}</span><br>${buyOrder.product.name}</td>
+		            <td>${buyOrder.product.price}</td>
+		            <td>${buyOrder.address.basicAdd}<br>${buyOrder.address.detailAdd}</td>
+		            <td>${buyOrder.user.name}<br>${buyOrder.user.phone}</td>
+		            <td>
+		                <span>배송 대기</span><br>
+		            </td>
+		        </tr>
+		        </c:forEach>
+		    </table>
+		
+		    <table id="board_table" class="mypage_board_type">
+		        <tr>
+		            <th></th>
+		        </tr>
+		        <tr>
+		            <td></td>
+		        </tr>
+		    </table>
+	    </div>
     </div>
 </div>
 

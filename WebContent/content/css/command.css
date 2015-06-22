@@ -1,20 +1,18 @@
 @charset "UTF-8";
 
 /* 초기화 */
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
-​article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
-
-​img,fieldset{border:0}
-ol, ul { list-style: none; }
+a:-webkit-any-link{text-decoration:none}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {margin:0; padding:0; border:0; font-size:100%; font:inherit; vertical-align:baseline}
+​article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block;}
+img,fieldset{border:0}
+ol, ul {list-style: none}
 ​a{color:#333; text-decoration:none}
-blockquote, q { quotes: none; }
+blockquote, q {quotes: none}
 ​input,select,textarea{font-size:100%; vertical-align:middle}
-em{font-style:normal}
-blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
-​table { border-collapse: collapse; border-spacing: 0; }
-​body {font-size:14px;font-family:Malgun Gothic, Dotuom, 돋움, AppleGothic, serif; line-height: 1; }
-em { font-style:normal; }
-body {font-size:14px;  font-family:Malgun Gothic, Dotum,돋움,AppleGothic,serif;  color:#333;}
+blockquote:before, blockquote:after, q:before, q:after {content:''; content:none}
+​table {border-collapse:collapse; border-spacing:0}
+em {font-style:normal}
+body {font-size:14px; font-family:Malgun Gothic, Dotum,돋움,AppleGothic,serif; color:#333}
 
 /* 부팅 페이지*/
 #bootlogo{width: 335px; margin: 0 auto;padding-top:250px;}
@@ -75,28 +73,10 @@ body {font-size:14px;  font-family:Malgun Gothic, Dotum,돋움,AppleGothic,serif
 #category>ul>li>ul>li>div>ul>li>a{color:#8f8f8f}
 #category>ul>li>ul>li>div>ul>li>a:hover{background-color:#eee;color:#f00;text-decoration:underline}
 
+/* 메인 초기화 */
+#main_body{position: relative; width: 100%}
+.wrap{position: relative; width: 1000px;height:100%;margin: 0 auto}
 
-/* 헤더 > 모달 영역 */
-/* #m_login{width: 500px; height: 350px;background-color: cadetblue;text-align: center}
-#m_join{width: 500px; height: 500px;background-color: firebrick;text-align: center}
-#m_password{width: 500px; height: 230px;background-color: cadetblue;text-align: center}
-
-.closeBtn{float: right;margin-top: 10px; margin-right: 10px}
-.m_logo{clear: both; width: 100% height:110px;margin: 0 auto; margin-top: 25px;font-size: 30px;font-weight: bold;background-color: fuchsia}
-.m_info{width: 450px;margin: 0 auto; padding: 0; margin-top: 20px; background-color: beige}
-.m_info li{height: 50px;line-height: 50px}
-.m_info span{display: inline-block; width: 170px;font-size: 20px;font-weight: bold}
-.m_info input[type="text"],[type="password"]{width: 270px; height: 30px; text-indent: 1em;border-radius: 10px}
-.m_submit{width: 150px;height: 50px;font-size: 20px;font-weight: bold;margin-top: 20px}
-.m_notlogin{width: 265px; height: 30px; line-height: 30px; margin: 0 auto; margin-top: 30px; background-color: antiquewhite}
-.m_notlogin li{float: left; margin: 0 15px}
-
-#m_login{display: none}
-#m_join{display: none}
-#m_join div{position: relative}
-#m_password{display: none}
-.join_error{display: none; position: absolute; left: 460px; top:-40px; text-align: left; width: 280px; line-height: 30px; border: 1px solid #ccc; background-color: aliceblue}
- */
 /* 푸터 영역 */
 .footwrap{width:100%; height:150px;background:url(../image/default/footer_background.png) repeat-x}
 .footer{width: 1000px; margin: 0 auto; height: 150px;text-align: center; font-size: 14px;color: dimgray;;background:url(../image/default/footer_background.png) repeat-x}
