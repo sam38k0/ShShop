@@ -30,6 +30,7 @@ $(document).ready(function() {
         });
     });
 	
+	/* 판매거래 셀렉트 */
 	var $layer = $(".deal_SelectText");
 	var $current = $(".deal_boxUI");
 	var $curli = $(".deal_boxUI li");
@@ -52,6 +53,7 @@ $(document).ready(function() {
 		});
 	}
 	
+	/* 구매거래 셀렉트 */
 	var $selllayer = $(".sell_SelectText");
 	var $sellcurrent = $(".sell_boxUI");
 	var $sellcurli = $(".sell_boxUI li");
@@ -73,4 +75,42 @@ $(document).ready(function() {
 			$sellcurrent.hide();
 		});
 	}
+	
+	/* 거래 정보 */
+	$(".deal_info").click(function() {
+		$("#user_wrap").hide();
+		$("#buy_table").hide();
+		$("#board_table").hide();
+		$("#deal_wrap").show();
+		$("#sell_table").show();
+	});
+	
+	/* 개인 정보 */
+	$(".user_info").click(function() {
+		$("#deal_wrap").hide();
+		$("#user_wrap").show();
+	});
+	
+	/* 판매 거래 리스트 */
+	$("#sell_list a").click(function() {
+		$("#buy_table").hide();
+		$("#board_table").hide();
+		$("#sell_table").show();
+	});
+	
+	/* 구매 거래 리스트 */
+	$("#buy_list a").click(function() {
+		$("#sell_table").hide();
+		$("#board_table").hide();
+		$("#buy_table").show();
+	});
+	
+	/* 판매 게시물 리스트 */
+	$("#sell_board_list a").click(function() {
+		$("#sell_table").hide();
+		$("#buy_table").hide();
+		$("#board_table").show();
+	});
+	
+	
 });

@@ -19,7 +19,7 @@ import com.shshop.service.AuthenticatorService;
 import com.shshop.service.OrderService;
 import com.shshop.service.ProductService;
 
-public class OrderStateCommand implements Command {
+public class MyPageCommand implements Command {
 
 	@Override
 	public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
@@ -69,7 +69,15 @@ public class OrderStateCommand implements Command {
 			if (sellOrderInfoList.getOrderInfos().size() > 0)
 				request.setAttribute("sellOrderInfoList", sellOrderInfoList);
 		}
-
+		
+		// 판매 등록 게시물 리스트
+		List<Product> myProductsList = productService.getProductsById(user.getUserId());
+		request.setAttribute("myProduct", myProductsList);
+		
+		// 개인 정보
+		request.setAttribute("user", authenticatorService.getViewSingleUser(user.getUserId()));
+		request.setAttribute("address", authenticatorService.getUserAddress(user.getUserId()).get(0));
+		
 		CommandResult comResult = new CommandResult("/WEB-INF/view/mypage/mypage.jsp");
 		return comResult;
 	}

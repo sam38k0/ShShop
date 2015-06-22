@@ -6,9 +6,9 @@
 .mypage_tap li a{display: inline-block; color: #999999; font-size: 20px; font-weight: bold}
 .mypage_tap li a:hover{color:#fe695a}
 
-#deal_wrap{position:relative;float:left;width:100%}
-.deal_left{float:left;width:195px;height:200px;padding:10px;margin-top: 50px;background-color:#ededed;box-sizing: border-box}
-.deal_left th{text-align:center; height:30px;}
+#deal_wrap{position:relative;float:left;width:100%; min-height:600px}
+.deal_left{float:left;width:195px;height:200px;padding-left:20px;margin-top: 50px;background-color:#ededed;box-sizing: border-box}
+.deal_left th{text-align:center; height:40px;padding-top:10px;font-weight:bold}
 .deal_left td{font-size: 14px}
 .deal_left td:nth-child(odd){width:130px}
 .deal_left td:nth-child(even){width:30px;text-align:right}
@@ -34,39 +34,38 @@
 
 .mypage_board{float:right;width:790px; margin-top:15px}
 .mypage_board_type{width:100%;border-spacing:0;text-align:center}
-.mypage_board_type th{background-color:#ededed;height:35px;line-height:35px}
+.mypage_board_type th{background-color:#ededed;height:35px;line-height:35px;font-weight:bold}
 .mypage_board_type th:nth-child(1){width:70px}
 .mypage_board_type th:nth-child(2){width:250px}
 .mypage_board_type th:nth-child(3){width:80px}
 .mypage_board_type th:nth-child(4){width:220px}
 .mypage_board_type th:nth-child(5){width:90px}
 .mypage_board_type th:nth-child(6){width:80px}
-.mypage_board_type td{height:90px}
-.mypage_board_type td:nth-child(2) img{float:left;width:82px;height:82px;margin-left:2px; margin-top:6px}
+.mypage_board_type td{height:90px;text-align:center}
+.mypage_board_type td:nth-child(2){overflow:hidden}
+.mypage_board_type td:nth-child(2) img{float:left;width:82px;height:82px;margin-left:2px; margin-top:3px}
+.mypage_board_type td:nth-child(2) span{float:left;margin-left:10px;margin-top:20px}
+.mypage_board_type td:nth-child(2) em{float:left;margin-top:45px;margin-left:-10px}
+.mypage_board_type tr{border-bottom:1px solid #ededed}
 
 .parcel_service{display:none}
 
-
-
+/* #sell_table{display:none} */
 #buy_table{display:none}
 #board_table{display:none}
 #user_wrap{display:none}
 /* 개인정보 영역 */
-#user_wrap{position: relative; float: left; width: 800px; margin-top: 15px; margin-left: 30px;}
-#user_wrap table{width: 100%; border: none;background-color: #ddd}
+#user_wrap{position: relative; float: left; width:100%;background-color:#f7fbff; margin-top: 15px;margin-bottom:15px}
+#user_wrap table{width: 100%; border: none}
 #user_wrap tr{border: none}
-#user_wrap th{text-align: left; height: 50px;width: 150px;text-indent: 1em;background-color: aliceblue}
-#user_wrap td{background-color: cadetblue;text-align: center}
-#user_wrap td.user_table_line{width: 500px;text-indent: 1em;text-align: left}
-#name_change{width: 450px}
-#phone_change{width: 450px}
-#pass_change{width: 600px}
-#add_change{width: 560px}
-#ktalk_change{width: 450px}
-.user_change{position: absolute;width: 100%; left: 30%; top:30%;display: none;background-color: aliceblue;padding: 15px}
-.user_change .closeBtn{margin-top: 5px}
-.user_change span{display: block; float: left; width: 150px;height: 25px;line-height: 25px}
-.user_change input[type="text"]{height: 25px}
-#pass_change input[type="password"]{height: 25px;border-radius: 0;margin-bottom: 10px}
-#pass_change input[type="button"]{margin-top: 25px;margin-left: 20px}
-.user_change .pass_wrap{float: left}
+#user_wrap th{text-align: left;width: 200px;text-indent: 4em;font-weight:bold}
+#user_wrap td{background-color: #f7fbff;padding:15px 0 15px 20px;text-align: left}
+.user_table_line input[type="text"]{width:270px; text-indent:1em}
+.user_table_line input[type="password"]{width:270px; text-indent:1em}
+#sample6_postcode1, #sample6_postcode2{width:60px;}
+#sample6_address, #sample6_address2{margin-top:10px}
+.user_table_line .p_in{display:inline-block; width:100px;margin-bottom:10px}
+.user_table_line textarea {width:500px; height:80px; padding:10px}
+.user_form .user_chinge{float:right; margin: 30px 100px 30px}
+.user_chinge input[type="button"]{width:50px; height:30px; background-color:#600f00;border:0;color:#fff}
+.user_chinge button{margin-left: 20px;width:50px; height:30px; background-color:#c11e00;border:0;color:#fff}
