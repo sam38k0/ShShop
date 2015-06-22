@@ -570,3 +570,24 @@ a.aws:link,a.aws:visited  {color:#888;}
 #wrapperContent {width:960px;margin:0 auto;text-align:left; }
 #wrapperContent .tit {width:400px !important;padding-left:20px !important;font-weight:bold !important;font-size:20px !important;color:#3074B5 !important; } 
  
+
+ /* Page */
+div.graybox {clear: both;position: relative;overflow: hidden;width: 998px;}
+div.graybox div.horizontal_box {position: relative;overflow: hidden;width: 948px;margin: 0 0 0 27px;}
+div.graybox div.itembox {position: relative;display: inline-block;}
+div.graybox div.itembox ul {float: left;width: 945px;padding: 20px 0 0 0;}
+div.graybox div.itembox li {position: relative;float: left;display: inline; width: 110px;height: 162px;text-align: center;padding: 0 0 11px 0;margin: 4px;}
+div.graybox div.itembox li p {float: left;background: url(../image/bg_itembox.gif) no-repeat;background-size:cover;padding: 12px 12px 0 12px;width: 86px;border-style: solid;border-width: 1px;}
+div.graybox div.itembox li p a {color: #333;text-decoration: none;cursor: pointer;width: 86px;height:86px;}
+div.graybox div.itembox li p strong {display: block;padding: 7px 0 0 0;font-size: 13px;letter-spacing: -1px;font-weight: normal;}
+div.graybox div.itembox li p span.price {padding: 3px 0 0 0;font-size: 13px;}
+div.graybox div.itembox li p span.time {font-size: 13px;padding: 4px 0 0 0;}
+p.moveBtn {width: 90px;height: 27px;margin: 0 auto;padding: 3px 0 0 0;}
+a.movepreB {float: left;background-position: -78px 0;width: 22px;height: 22px;text-indent: -1000em;overflow: hidden;display: inline-block;background: url(../image/all_btn_20130923.png) no-repeat;}
+a.movenextB {text-indent: -1000em;overflow: hidden;display: inline-block;background: url(../image/all_btn_20130923.png) no-repeat;}
+p.moveBtn span {float: left;width: 45px;color: #999;letter-spacing: 2px;text-align: center;padding: 4px 0 0 0;}
+p.moveBtn span strong {color: #333;}
+a.movepreB {float: left;background-position: -78px 0;width: 22px;height: 22px;}
+a.movenextB {float: left;background-position: -103px 0;width: 22px;height: 22px;}
+
+ 

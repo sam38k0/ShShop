@@ -5,6 +5,133 @@
 <script src="${adminBean.contextPath}/content/js/common.js"></script>
 
 <script type="text/javascript">
+ 
+ 	//페이지 처리
+	function fnPageSet(text) {
+ 		
+		response = text;
+		response = $.parseJSON(response);
+		var totalPageCount = response.totalPageCount;
+		var currentPage = response.currentPage;
+		var pageDivNum = response.pageDivNum;
+		var totalPrice = response.totalPrice;
+		var productsTotalPrice = response.productsTotalPrice;
+		
+		var trHTML = '';
+		var startIndex =  (currentPage-1) * pageDivNum;
+		
+		//Table
+		$.each(response.currentPageInfos, function(i, item) {
+ 			var index = i + startIndex;
+ 			
+			trHTML +=  
+            '<tr id=\"orderItemList\"' + index +'>' +
+            '<td class=\"cb\">' +
+            '   <input type=\"checkbox\" class=\"chkbx\" name=\"chkCartGoodsShShop\" id=\"chkCartGoodsShShop' + index +'\"/>' +
+            '</td>' +
+            '<td class=\"goods_img\">' +
+            '    <a href=\"#\" target=\"_new\" class=\"pd_a\">' +
+            '        <img src="/ShShopTest' + item.imageUrl + '\" class=\"pdimg\"/>' +
+            '    </a>' +
+            '</td>' +
+            '<td class=\"le\">' +
+            '   <a href=\"#\" class=\"pd_a\">'+ item.productName+'</a>' +
+            '    &nbsp;' +
+            '</td>' +
+            '<td>' + item.productPrice + '원</td>' +
+            '<td>' +
+            '    <input type=\"number\" id=\"txtGoodsCnt' + index +'\" name=\"txtGoodsCnt\" value="' + item.quantity + '\" class=\"ipubx num\" maxlength=\"4\" />' +
+            '    <br/>' +
+            '   <input type=\"hidden\" name=\"hdnOriginalGoodsCnt\" value=\"1\" class=\"ipubx num\" /><a href=\"#\" id=\"hdnOriginalGoodsCnt' + index +'\" title=\"변경\" class=\"bw chgnum\">변경</a>' +
+            '</td>' +
+            '<td><strong id=\"totalPricOfItem' + index +'\" value=\"'+ item.orderPrice +'\">'+ item.orderPrice +'원</strong>' +
+            '</td>' + 
+            '<td>' +
+            '    <p class=\"dvmsg\">1일 이내 <br/>배송예정</p>' + 
+            '</td>' + 
+            '<td class=\"goods_order\">' + 
+            '    <p class=\"ordbtnw\">' + 
+            '    <a href=\"#\" title=\"주문하기\" id=\"orderItem' + index +'\" class=\"bw ordpd\">주문하기</a>' + 
+            '    <a href=\"#\" title=\"삭제하기\" id=\"deleteItem' + index +'\" class=\"bw pddel\">삭제하기</a>' + 
+            '    </p>' +
+            '</td>' + 
+        	'</tr>';
+		});
+		
+		$('.cartTopItem tbody').empty();
+		$('.cartTopItem tbody').append(trHTML);
+		
+		trHTML =   
+        '<tr>' + 
+        '    <td colspan=\"9\" class=\"tot\">일반카트 상품 총 금액 : ' + 
+        '       <strong id=\"lblTotalAmountCart\">' + productsTotalPrice + '원</strong>' + 
+        '       <span class=\"dvi\"> | </span>' + 
+        '       ShShop포인트 총 적립액 : <strong id=\"lblTotalPointCart\">1,220원</strong> ' + 
+        '       <span id=\"spnTotalPointDetailCart\">(기본 : 1,220원)</span>' + 
+        '   </td>' + 
+        '</tr>';
+		
+		$('.cartTopItem tfoot').empty();
+		$('.cartTopItem tfoot').append(trHTML);
+ 
+		//Page Button
+		var btnHtml = '';
+		if(currentPage > 1) {
+			btnHtml += '<a href=\"#\" id=\"similar_item_list_prev\" class=\"movepreB\">이전 아이템</a>';
+		}
+		
+		btnHtml += '<span id=\"similar_item_list_page\">';
+		btnHtml += '<strong>'+ currentPage +'</strong>/' + totalPageCount;
+		btnHtml += '</span>'
+		
+		if(currentPage < totalPageCount)
+			btnHtml += '<a href=\"#\" id=\"similar_item_list_next\" class=\"movenextB\">다음 아이템</a>';
+	 
+		$('.moveBtn').empty();
+		$('.moveBtn').append(btnHtml);
+	 
+		//Event Reset
+		fnPageInitialize();
+		fnRegisterEvent();
+	}
+
+	function fnPagePrev(event) {
+		event.preventDefault();
+	 
+		var currentPage = response.currentPage -1;
+	
+		$.ajax({
+			type : "POST",
+			url : "setShoppingCartPage",
+			data : {
+				'orderKey' : '${requestScope.orderKey}',
+				'data-page' : currentPage,
+			},
+			success : fnPageSet,
+			error : function(ajaxContext) {
+			}
+		});
+		return false;
+	}
+	
+	function fnPageNext(event) {
+		event.preventDefault();
+	 
+		var currentPage = response.currentPage +1;
+	
+		$.ajax({
+			type : "POST",
+			url : "setShoppingCartPage",
+			data : {
+				'orderKey' : '${requestScope.orderKey}',
+				'data-page' : currentPage,
+			},
+			success : fnPageSet,
+			error : function(ajaxContext) {
+			}
+		});
+		return false;
+	}
 
 	//페이지 초기화
 	function fnPageInitialize(event) {
@@ -163,13 +290,24 @@
 					fnRegisterEvent();
 				}
 			});
-			
 	    });
+	    
+		$('#similar_item_list_prev').click(fnPagePrev);
+		$('#similar_item_list_next').click(fnPageNext);
 	}
 	
 	$(document).ready(function() {
-		fnPageInitialize();
-		fnRegisterEvent();
+		$.ajax({
+			type : "POST",
+			url : "setShoppingCartPage",
+			data : {
+				'orderKey' : '${requestScope.orderKey}',
+				'data-page' : '1',
+			},
+			success : fnPageSet,
+			error : function(ajaxContext) {
+			}
+		});
 	});
 </script>
 

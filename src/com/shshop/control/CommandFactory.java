@@ -20,6 +20,7 @@ import com.shshop.command.SearchActionCommand;
 import com.shshop.command.SearchCategoryCommand;
 import com.shshop.command.SearchViewCommand;
 import com.shshop.command.ShoppingCartCommand;
+import com.shshop.command.ShoppingCartPageCommand;
 import com.shshop.command.ShowDetailViewCommand;
 import com.shshop.command.SimilarItemSearchCommand;
 import com.shshop.command.UserDataChangeCommand;
@@ -93,6 +94,9 @@ public class CommandFactory {
 			
 		case Constant.deleteOrder:
 			return new DeleteOrderItemCommand();
+			
+		case Constant.setShoppingCartPage:
+			return new ShoppingCartPageCommand();
 
 		default:
 			return null;

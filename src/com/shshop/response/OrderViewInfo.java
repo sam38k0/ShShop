@@ -6,21 +6,24 @@ import java.util.List;
 
 import com.shshop.domain.Address;
 import com.shshop.domain.User;
+import com.shshop.helper.PageDivider;
 
 public class OrderViewInfo {
 	private List<OrderInfo> orderInfos = new ArrayList<>();
 	private List<AddressPair> addressesPair = new ArrayList<>();
+	private PageDivider<OrderInfo> pageDivider = null;
 	
 	private User user;
 	private String userPhoneNumberHead = "";
 	private String userPhoneNumberMid = "";
 	private String userPhoneNumberTail = "";
 
-	public OrderViewInfo(User user, List<Address> addresses) {
+	public OrderViewInfo(User user, List<Address> addresses, int currentPage, int pageDivNum) {
 		this.setUser(user);
 		this.setAddresses(addresses);
+		this.createPageDivider(currentPage, pageDivNum);
 	}
-	
+
 	public int getOrderInfoAvailableSize() {
 		int countAvailable = 0;
 		
@@ -67,7 +70,7 @@ public class OrderViewInfo {
 	public List<OrderInfo> getOrderInfos() {
 		return orderInfos;
 	}
-
+	
 	public void setOrderInfos(List<OrderInfo> orderInfos) {
 		this.orderInfos = new ArrayList<>();
 		for (OrderInfo orderInfo : orderInfos) {
@@ -179,5 +182,28 @@ public class OrderViewInfo {
 		//Remove Session Data (인덱스 번호를 유지해야 하므로 내부 데이터를 null 로 처리 )
 		AddressPair addressPair = addressesPair.get(indx);
 		addressPair.setDeleted(true);
+	}
+	
+	public List<OrderInfo> getCurrentPageOrderInfos() {
+		return getPageDivider().getCurrentPageData();
+	}
+	
+	public void setCurrentPage(int currentPage) {
+		if(currentPage <= 0)
+			currentPage = 1;
+		
+		getPageDivider().setCurrentPage(currentPage);
+	}
+	
+	private void createPageDivider(int currentPage, int pageDivNum) {
+		setPageDivider(new PageDivider<OrderInfo>(currentPage, pageDivNum, orderInfos));
+	}
+
+	public PageDivider<OrderInfo> getPageDivider() {
+		return pageDivider;
+	}
+
+	public void setPageDivider(PageDivider<OrderInfo> pageDivider) {
+		this.pageDivider = pageDivider;
 	}
 }

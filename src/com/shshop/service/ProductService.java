@@ -133,7 +133,7 @@ public class ProductService {
 				return null;
 
 			if (imagePath == "") {
-				// [TODO] : Set Default Image
+				return null;
 			}
  
 			Order order = new Order(userId, productId, userAddresses.get(0).getIdAddress(), quantity, product.getPrice()*quantity, shippingPrice, orderRequest);
@@ -162,7 +162,7 @@ public class ProductService {
 
 		String contextPath = request.getContextPath();
 
-		if (images != null) {
+		if (images != null && images.size() > 0) {
 			return images.get(0).getImagePath();
 		}
 
