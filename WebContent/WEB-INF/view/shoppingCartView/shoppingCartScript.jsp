@@ -85,6 +85,7 @@
 	    $('#chkCartHeader').change(function() {
 	    	fnCheckedChangeChildCart();
 	    	fnResetCartSummary();
+	    	fnResetCartSummary();
 	    });
 	    
 	    $('input:checkbox[name="chkCartGoodsShShop"]').change(function() {
