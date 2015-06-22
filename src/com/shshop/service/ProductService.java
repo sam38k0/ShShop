@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -14,7 +13,10 @@ import org.apache.ibatis.session.SqlSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.shshop.constant.Constant;
 import com.shshop.control.CommandResult;
+import com.shshop.domain.Address;
 import com.shshop.domain.Category;
+import com.shshop.domain.Order;
+import com.shshop.domain.OrderState;
 import com.shshop.domain.Post;
 import com.shshop.domain.Product;
 import com.shshop.domain.ProductDetail;
@@ -25,6 +27,8 @@ import com.shshop.helper.KeywordGuesser;
 import com.shshop.helper.PostHtmlBuilder;
 import com.shshop.helper.TimestampFileRenamePolicy;
 import com.shshop.mapper.CategoryMapper;
+import com.shshop.mapper.OrderMapper;
+import com.shshop.mapper.OrderStateMapper;
 import com.shshop.mapper.PostMapper;
 import com.shshop.mapper.ProductImageMapper;
 import com.shshop.mapper.ProductMapper;
@@ -112,27 +116,39 @@ public class ProductService {
 		}
 	}
 
-	public OrderInfo createNewOrderInfo(Integer productId, int quantity, int shippingPrice, HttpServletRequest request) {
+	public OrderInfo createNewOrderInfo(HttpServletRequest request, Integer userId, Integer productId, int quantity, int shippingPrice, String orderRequest, OrderState orderState) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 
 		try {
+			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+			User user = userMapper.getUserById(userId);
+			
+			List<Address> userAddresses = userMapper.getUserAddress(user.getUserId());
+			
 			Product product = getProductById(sqlSession, productId);
 			String imagePath = getProductFirstImagePaths(sqlSession, productId, request);
-
-			if (product == null)
+			
+			if (user == null || product == null || userAddresses == null || userAddresses.size() <= 0)
 				return null;
 
 			if (imagePath == "") {
 				// [TODO] : Set Default Image
 			}
-
-			return new OrderInfo(product, imagePath, quantity, shippingPrice);
+ 
+			Order order = new Order(userId, productId, userAddresses.get(0).getIdAddress(), quantity, product.getPrice()*quantity, shippingPrice, orderRequest);
+			OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+			orderMapper.insertOrder(order);
+			
+			OrderStateMapper orderStateMapper =sqlSession.getMapper(OrderStateMapper.class);
+			orderStateMapper.insertOrderState(orderState);
+			
+			return new OrderInfo(order, orderState, product, imagePath, quantity, shippingPrice);
 
 		} finally {
 			sqlSession.close();
 		}
 	}
-
+ 
 	private String getProductFirstImagePaths(SqlSession sqlSession, Integer productId, HttpServletRequest request) {
 		ProductImageMapper imageMapper = sqlSession.getMapper(ProductImageMapper.class);
 		List<ProductImage> images = imageMapper.getProductImages(productId);

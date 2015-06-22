@@ -60,9 +60,9 @@
                                     </td>
                                     <td>${orderInfo.product.price}원</td>
                                     <td>
-                                        <input type='text' id='txtGoodsCnt<c:out value="${orderInfos.index}"/>' name='txtGoodsCnt' value="<c:out value="${orderInfo.quantity}"/>" class='ipubx num' maxlength='4' />
+                                        <input type='number' id='txtGoodsCnt<c:out value="${orderInfos.index}"/>' name='txtGoodsCnt' value="<c:out value="${orderInfo.quantity}"/>" class='ipubx num' maxlength='4' />
                                         <br/>
-                                        <input type='hidden' id='hdnOriginalGoodsCnt<c:out value="${orderInfos.index}"/>' name='hdnOriginalGoodsCnt' value='1' class='ipubx num' /><a href='javascript:' title='변경' class='bw chgnum'>변경</a>
+                                        <input type='hidden' name='hdnOriginalGoodsCnt' value='1' class='ipubx num' /><a href='#' id='hdnOriginalGoodsCnt<c:out value="${orderInfos.index}"/>' title='변경' class='bw chgnum'>변경</a>
                                     </td>
                                     <td><strong id='totalPricOfItem<c:out value="${orderInfos.index}"/>' value='${orderInfo.price}'>${orderInfo.price}원</strong>
                                     </td>

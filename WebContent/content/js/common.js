@@ -43,8 +43,10 @@ function abspos(e) {
 
 // AJAX Loding Image 숨기기
 function fnAjaxLoaderLayerHide(divAjaxLoaderId) {
-	$("#" + divAjaxLoaderId).empty();
-	$("#" + divAjaxLoaderId).css("display", "none");
+	setTimeout(function(){ 
+		$("#" + divAjaxLoaderId).empty();
+		$("#" + divAjaxLoaderId).css("display", "none");
+    }, 1500);  
 }
 
 //문자열이 허용 Ascii Code 범위 인지 확인(숫자, 영문 대소문자, [ ], [.], [,], ['], ["], [-], [/]

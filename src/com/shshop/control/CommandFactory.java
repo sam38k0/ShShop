@@ -2,6 +2,7 @@ package com.shshop.control;
 
 import com.shshop.command.AddAddrCommand;
 import com.shshop.command.ChangeOrderAddrCommand;
+import com.shshop.command.ChangeOrderItemCountCommand;
 import com.shshop.command.CheckLoginStateCommand;
 import com.shshop.command.Command;
 import com.shshop.command.CommentPostCommend;
@@ -85,6 +86,9 @@ public class CommandFactory {
 			
 		case Constant.showShoppingCartForm:
 			return new ShoppingCartCommand();
+			
+		case Constant.changeOrderItemCount:
+			return new ChangeOrderItemCountCommand();
 
 		default:
 			return null;

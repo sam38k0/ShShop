@@ -2,8 +2,13 @@ package com.shshop.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 
+import com.shshop.constant.Constant;
+import com.shshop.control.CommandResult;
 import com.shshop.domain.Address;
 import com.shshop.domain.Order;
 import com.shshop.domain.OrderState;
@@ -14,6 +19,8 @@ import com.shshop.mapper.OrderMapper;
 import com.shshop.mapper.OrderStateMapper;
 import com.shshop.mapper.ProductMapper;
 import com.shshop.mapper.UserMapper;
+import com.shshop.response.OrderInfo;
+import com.shshop.response.OrderViewInfo;
 import com.shshop.util.MyBatisUtil;
 
 public class OrderService {
@@ -172,5 +179,30 @@ public class OrderService {
 			sqlSession.close();
 		}
 		return product;
+	}
+	
+	public CommandResult changeOrderItemCount(HttpServletRequest request) {
+		String orderKey = request.getParameter(Constant.attrOrderKey);
+		String strOrderIndex = request.getParameter(Constant.attrOrderIndex);
+		String strItemQuantity = request.getParameter(Constant.attrItemNewQuantity);
+		
+		HttpSession session = request.getSession();
+		OrderViewInfo orderViewInfo = (OrderViewInfo) session.getAttribute(orderKey);
+		
+		List<OrderInfo> orderInfos = orderViewInfo.getOrderInfos();
+		
+		OrderInfo orderInfo = orderInfos.get(Integer.parseInt(strOrderIndex));
+		orderInfo.setQuantity(Integer.parseInt(strItemQuantity));
+		
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		 
+		try {
+			OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+			orderMapper.updateOrder(orderInfo.getOrder());
+		} finally {
+			sqlSession.close();
+		}
+ 
+		return new CommandResult(Constant.textHtml, Constant.Success);
 	}
 }

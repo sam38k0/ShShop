@@ -25,6 +25,7 @@ public class Constant {
 	public static final String deleteOrderAddr = "/deleteOrderAddr";
 	public static final String addAddress = "/addAddress";
 	public static final String showShoppingCartForm = "/showShoppingCartView";
+	public static final String changeOrderItemCount = "/changeOrderItemCount";
 
 	// Attribute
 	public static final String attrUser = "user";
@@ -55,6 +56,8 @@ public class Constant {
 	public static final String attrAddrBasicOld = "addrBasicOld";
 	public static final String attrAddrDetail = "addrDetail";
 	public static final String attrAddrPhoneNumber = "addrPhoneNumber";
+	public static final String attrOrderIndex = "orderIndex";
+	public static final String attrItemNewQuantity = "itemNewQuantity";
 
 	// DD Parameter
 	public static final String paramFileUpload = "file-upload";

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import com.shshop.constant.Constant;
 import com.shshop.control.CommandResult;
 import com.shshop.domain.Address;
+import com.shshop.domain.OrderState;
 import com.shshop.domain.User;
 import com.shshop.response.OrderViewInfo;
 import com.shshop.service.AuthenticatorService;
@@ -33,9 +34,13 @@ public class ShoppingCartCommand implements Command {
 
 		OrderViewInfo orderViewInfo = new OrderViewInfo(user, addresses);
 		ProductService productService = new ProductService();
-		orderViewInfo.addOrderInfo(productService.createNewOrderInfo(1, 3, 2500, request));
-		orderViewInfo.addOrderInfo(productService.createNewOrderInfo(2, 3, 5000, request));
-		orderViewInfo.addOrderInfo(productService.createNewOrderInfo(3, 3, 10000, request));
+
+		orderViewInfo.addOrderInfo(
+				productService.createNewOrderInfo(request, user.getUserId(), 1, 3, 2500, "주의", new OrderState(OrderState.VirtualOrder)));
+		orderViewInfo.addOrderInfo(
+				productService.createNewOrderInfo(request, user.getUserId(), 2, 3, 5000, "주의", new OrderState(OrderState.VirtualOrder)));
+		orderViewInfo.addOrderInfo(
+				productService.createNewOrderInfo(request, user.getUserId(), 3, 3, 10000, "주의", new OrderState(OrderState.VirtualOrder)));
 
 		String orderKey = UUID.randomUUID().toString();
 

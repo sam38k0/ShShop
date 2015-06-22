@@ -20,9 +20,7 @@ public class Order implements Serializable {
 
 	}
 
-	public Order(Integer orderId, Integer userId, Integer productId, Integer idAddress, Integer amount, Integer cost, Integer deliveryCost,
-			String orderRequest) {
-		this.orderId = orderId;
+	public Order(Integer userId, Integer productId, Integer idAddress, Integer amount, Integer cost, Integer deliveryCost, String orderRequest) {
 		this.userId = userId;
 		this.productId = productId;
 		this.idAddress = idAddress;

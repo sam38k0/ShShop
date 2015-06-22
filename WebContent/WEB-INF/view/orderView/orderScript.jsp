@@ -417,6 +417,8 @@
 	    });
 	    
 	    $('.cfrm').click(function(){
+	    	fnAjaxLoaderLayerShow("divAjaxLoader", true, false, window.event);
+	    	
 	    	var id = $(this).attr('id');
 	    	
 	    	var indx = id.replace('btnAddrModify', '');
@@ -453,6 +455,8 @@
 	    });
 	    
 	    $('#addNewAddress').click(function(){
+	    	fnAjaxLoaderLayerShow("divAjaxLoader", true, false, window.event);
+	    	
 	    	var addrName = $('#txtOrdNmNormalNew').val(); 
 	    	var addrZipCodeHead = $('#txtZipCode1New').val(); 
 	    	var addrZipCodeTail = $('#txtZipCode2New').val(); 
@@ -488,6 +492,7 @@
 	    
 	    $('.delet_s').click(function(){
 	    	fnAjaxLoaderLayerShow("divAjaxLoader", true, false, window.event);
+	    	
 	    	var id = $(this).attr('id');
 	    	
 	    	var indx = id.replace('addressDelete', '');

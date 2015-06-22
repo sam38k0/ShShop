@@ -37,6 +37,7 @@
 		fnResetCartSummary();
 	}
 
+	//카트의 상품 정보 변경에 따른 뷰 변경
 	function fnResetCartSummary() {
 		var totalPriceOfItems = 0;
 		var totalQuantity = 0;
@@ -67,6 +68,18 @@
 		$('#totalDesciption').html("<em>" + totalDescription + "</em>");
 	}
  
+	// 아이템의 수량 변경에 대한 리턴
+	function fnAjaxChangeShippingItemCount(text) {
+		response = text;
+		if(response != 'Success') {
+			alert("변경된 수량으로 업데이트 하지 못했습니다."); 
+		} else {
+			
+		}
+		
+		fnAjaxLoaderLayerHide("divAjaxLoader");
+		fnRegisterEvent();
+	}
 	
 	function fnRegisterEvent() {
 	    $('#chkCartHeader').change(function() {
@@ -76,6 +89,34 @@
 	    
 	    $('input:checkbox[name="chkCartGoodsShShop"]').change(function() {
 	    	fnResetCartSummary();
+	    }); 
+	    
+	    $('.chgnum').click(function() {
+			var checkedId = $(this).attr('id');
+			var indx = checkedId.replace('hdnOriginalGoodsCnt', '');
+			var newQuantity = parseInt($('#txtGoodsCnt' + indx).attr('value'));
+			
+			if(newQuantity <= 0) {
+				alert('유효하지 않은 수량을 입력하셨습니다.');
+			}
+			
+			fnAjaxLoaderLayerShow("divAjaxLoader", true, false, window.event); 
+			
+			$.ajax({
+				type : 'POST',
+				url : 'changeOrderItemCount',
+				data : {
+					'orderKey' : '${requestScope.orderKey}',
+					'orderIndex' : indx,
+					'itemNewQuantity' : newQuantity
+				},
+				success : fnAjaxChangeShippingItemCount,
+				error : function(ajaxContext) {
+					alert("변경된 수량으로 업데이트 하지 못했습니다.");
+					fnAjaxLoaderLayerHide("divAjaxLoader");
+					registerEvent();
+				}
+			});
 	    });
 	}
 	
