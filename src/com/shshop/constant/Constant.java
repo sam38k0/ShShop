@@ -22,6 +22,10 @@ public class Constant {
 	public static final String commentPostAction = "/commentPostAction";
 	public static final String showOrderView = "/showOrderView";
 	public static final String changeOrderAddr = "/changeOrderAddr";
+	public static final String deleteOrderAddr = "/deleteOrderAddr";
+	public static final String addAddress = "/addAddress";
+	public static final String showShoppingCartForm = "/showShoppingCartView";
+	public static final String changeOrderItemCount = "/changeOrderItemCount";
 
 	// Attribute
 	public static final String attrUser = "user";
@@ -43,6 +47,7 @@ public class Constant {
 	public static final String attrOrderViewInfo = "orderViewInfo";
 	public static final String attrOrderKey = "orderKey";
 	public static final String attrAddressIndex = "addressIndex";
+	public static final String attrUserName = "userName";
 	public static final String attrSelectedAddressResult = "selectedAddressResult";
 	public static final String attrAddrName = "addrName";
 	public static final String attrAddrZipCodeHead = "addrZipCodeHead";
@@ -51,6 +56,8 @@ public class Constant {
 	public static final String attrAddrBasicOld = "addrBasicOld";
 	public static final String attrAddrDetail = "addrDetail";
 	public static final String attrAddrPhoneNumber = "addrPhoneNumber";
+	public static final String attrOrderIndex = "orderIndex";
+	public static final String attrItemNewQuantity = "itemNewQuantity";
 
 	// DD Parameter
 	public static final String paramFileUpload = "file-upload";
@@ -69,8 +76,9 @@ public class Constant {
 	public static final String noProduct = "There is no product information.";
 	public static final String noComment = "There is no comment information.";
 	public static final String noAddress = "There is no user address information";
+	public static final String overAddrlimitInput = "This input exceeded the size that can be input.( Maximum 5 )";
 
-	// Ajax
+	// Ajax Response
 	public static final String Success = "Success";
 	public static final String Failed = "Failed";
 	public static final String onLogin = "onLogin";
@@ -78,7 +86,6 @@ public class Constant {
 	// Path
 	public static final String contextPath = "/ShShop/WebContent";
 
-	// BoardName
+	// DB Constant 
 	public static final String askAndReplyBoard = "askAndReply";
-
 }

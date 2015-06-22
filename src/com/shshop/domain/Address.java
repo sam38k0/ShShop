@@ -133,6 +133,9 @@ public class Address implements Serializable {
 	public String getPhoneNumberHeadHtml() {
 
 		String phoneNumberHead = getPhoneNumberHead();
+		if(phoneNumberHead == null) {
+			phoneNumberHead = "010";
+		}
 
 		String[] arrPhoneHeaders = { "<option value=\"010\">010</option>", "<option value=\"011\">011</option>",
 				"<option value=\"016\">016</option>", "<option value=\"017\">017</option>", "<option value=\"018\">018</option>",

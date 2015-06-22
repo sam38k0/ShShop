@@ -39,6 +39,7 @@
 		<script src="${adminBean.contextPath}/content/js/initialize.js"></script>
 		<script src="${adminBean.contextPath}/content/js/user.js"></script>
 		<script src="${adminBean.contextPath}/content/js/selectList.js"></script>
+		<script src="${adminBean.contextPath}/content/js/common.js"></script>
 		
         <!-- Each JS -->     
 	 	<jsp:include page= '${sessionScope.adminBean.scriptPage}'/>

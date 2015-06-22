@@ -1,18 +1,24 @@
 package com.shshop.response;
 
+import com.shshop.domain.Order;
+import com.shshop.domain.OrderState;
 import com.shshop.domain.Product;
 
-public class OrderInfo {
+public class OrderInfo { 
 	private Product product;
+	private Order order;
+	private OrderState orderState;
 	private String imagePath;
 	private int quantity;
 	private int shippingPrice;
 	
-	public OrderInfo(Product product, String imagePath, int quantity, int shippingPrice) {
+	public OrderInfo(Order order, OrderState orderState, Product product, String imagePath, int quantity, int shippingPrice) {
+		this.setOrder(order);
 		this.setProduct(product);
 		this.setImagePath(imagePath);
 		this.setQuantity(quantity);
 		this.setShippingPrice(shippingPrice);
+		this.setOrderState(orderState);
 	}
 
 	public Product getProduct() {
@@ -32,11 +38,11 @@ public class OrderInfo {
 	}
 
 	public int getQuantity() {
-		return quantity;
+		return getOrder().getAmount();
 	}
 
 	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+		getOrder().setAmount(quantity);
 	}
 
 	public String getImagePath() {
@@ -57,5 +63,21 @@ public class OrderInfo {
 
 	public void setShippingPrice(int shippingPrice) {
 		this.shippingPrice = shippingPrice;
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+	public OrderState getOrderState() {
+		return orderState;
+	}
+
+	public void setOrderState(OrderState orderState) {
+		this.orderState = orderState;
 	}
 }

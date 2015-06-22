@@ -25,6 +25,15 @@ public class OrderViewInfo {
 		return addressesPair.size();
 	}
 	
+	public int getAddressesPairVaildSize() {
+		int count = 0;
+		for(AddressPair addrPair : addressesPair) {
+			if(!addrPair.isDeleted())
+				count++;
+		}
+		return count;
+	}
+	
 	public String getUserPhoneNumberHead() {
 		return userPhoneNumberHead;
 	}
@@ -139,7 +148,7 @@ public class OrderViewInfo {
 				totalQuantity += orderInfo.getQuantity();
 			}
 
-			totalDescription = "" + orderInfos.size() + " 종 ( " + totalQuantity + ") 개";
+			totalDescription = "" + orderInfos.size() + "종(" + totalQuantity + ")개";
 		} catch (Exception e) {
 			totalDescription = "";
 		}
@@ -149,5 +158,15 @@ public class OrderViewInfo {
 
 	public List<AddressPair> getAddressesPair() {
 		return addressesPair;
+	}
+	
+	public void addAddressPair(AddressPair addressPair) {
+		addressesPair.add(addressPair);
+	}
+	
+	public void removeAddressPair(int indx) {
+		//Remove Session Data (인덱스 번호를 유지해야 하므로 내부 데이터를 null 로 처리 )
+		AddressPair addressPair = addressesPair.get(indx);
+		addressPair.setDeleted(true);
 	}
 }

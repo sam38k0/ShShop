@@ -51,7 +51,7 @@
 .plyr_c li, .plyr_c td, .plyr_c p {line-height:18px !important;}
 .plyr_c img {vertical-align:top;}
 .plyr_c em {font-style:normal;}
-.plyr_c textarea {font:12px µ¸¿ò;}
+.plyr_c textarea {font:12px ï¿½ï¿½ï¿½ï¿½;}
 .plyr_c .info11 {font-size:11px;color:#888;letter-spacing:-1px;}
 .plyr_c .info12 {font-size:12px;color:#888;display:inline-block;}
 .plyr_c .chkbx {width:13px;height:13px;vertical-align:middle;}
@@ -111,7 +111,7 @@
 .plyr_c th .recia {background-position:50% -750px;}
 .plyr_c .scard_w {border-top:1px solid #d7d7d7;padding:15px 0 5px 0;background:url(https://secimage.yes24.com/sysimage/orderN/bg_2col.gif) 0 0 repeat-y;}
 .plyr_c .tbl_pay {width:600px;}
-.plyr_c .tbl_pay .clr2 em{font-size:17px;font-family:verdana;letter-spacing:-1px;}
+.plyr_c .tbl_pay .clr2 em{letter-spacing:-1px;}
 .plyr_c .tbl_pay .last td {padding-bottom:15px;}
 .plyr_c .tbl_pay th {width:95px;color:#3a85c8;font-weight:normal;text-align:left;vertical-align:top;}
 .plyr_c .tbl_pay th, .plyr_c .tbl_pay td {padding:0 0 10px 20px;}
@@ -233,7 +233,7 @@
 .tbl_ocb th,.tbl_ocb td {background:#eaf3f8;padding:10px;}
 .tbl_ocb th {color:#3c3c3c;font-size:14px;font-weight:bold;letter-spacing:-1px;border:none;}
 .tbl_ocb td {color:#a13b66;font-weight:bold;border:none;text-align:right;}
-.tbl_ocb td em {font-size:18px;font-family:verdana;letter-spacing:-1px;}
+.tbl_ocb td em {letter-spacing:-1px;}
 
 .gcard_l {float:left;margin:0 0 15px 0;}
 .gcard_l li {border:1px solid #9fc7e1;width:224px;.width:242px;height:30px;.height:40px;float:left;margin:0 0 0 -1px;padding:10px 0 0 17px;font-weight:bold;letter-spacing:-1px;background:url(https://secimage.yes24.com/sysimage/orderN/dot3.gif) 10px 17px no-repeat;position:relative;}

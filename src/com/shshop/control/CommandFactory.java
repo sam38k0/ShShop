@@ -1,9 +1,12 @@
 package com.shshop.control;
 
+import com.shshop.command.AddAddrCommand;
 import com.shshop.command.ChangeOrderAddrCommand;
+import com.shshop.command.ChangeOrderItemCountCommand;
 import com.shshop.command.CheckLoginStateCommand;
 import com.shshop.command.Command;
 import com.shshop.command.CommentPostCommend;
+import com.shshop.command.DeleteOrderAddrCommand;
 import com.shshop.command.InsertProductCommand;
 import com.shshop.command.InsertProductViewCommand;
 import com.shshop.command.JoinCommand;
@@ -15,6 +18,7 @@ import com.shshop.command.OrderStateCommand;
 import com.shshop.command.SearchActionCommand;
 import com.shshop.command.SearchCategoryCommand;
 import com.shshop.command.SearchViewCommand;
+import com.shshop.command.ShoppingCartCommand;
 import com.shshop.command.ShowDetailViewCommand;
 import com.shshop.command.SimilarItemSearchCommand;
 import com.shshop.command.UserDataChangeCommand;
@@ -73,6 +77,18 @@ public class CommandFactory {
 
 		case Constant.changeOrderAddr:
 			return new ChangeOrderAddrCommand();
+			
+		case Constant.deleteOrderAddr:
+			return new DeleteOrderAddrCommand();
+			
+		case Constant.addAddress:
+			return new AddAddrCommand();
+			
+		case Constant.showShoppingCartForm:
+			return new ShoppingCartCommand();
+			
+		case Constant.changeOrderItemCount:
+			return new ChangeOrderItemCountCommand();
 
 		default:
 			return null;

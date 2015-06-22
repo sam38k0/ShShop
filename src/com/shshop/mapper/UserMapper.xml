@@ -36,8 +36,6 @@
 		SELECT * FROM `cr_address` WHERE `id_user`= ${id_user};
 	</select>
 	
-
-
 	<insert id='insertUser' parameterType='${UserType}' useGeneratedKeys='true' keyProperty='${id_user}'>
 		INSERT INTO `cr_user`
 		(`email`, `password`, `name`, `phone`, `ktalk_id`,`birthday`,`bio`)

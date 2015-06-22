@@ -5,6 +5,7 @@
 <jsp:useBean id ="adminBean" class ="com.shshop.system.AdminBean" scope ="session"/>
 
 <div id="yesWrap">
+	<div id="divAjaxLoader" align="center" style="position: absolute;"></div>
     <div id="wrapperContent">
         <div id="divGoodsOrderDetail" style="">
                 <!--// 상품확인 -->
@@ -41,12 +42,12 @@
 						<c:forEach var="orderInfo" varStatus="orderInfos" items="${requestScope.orderViewInfo.orderInfos}">
 						<tr class='last'>
                                 <td class='goods_img le'>
-                                    <a href='http://www.yes24.com/24/Goods/18242263' class='pd_a' target='_blank'>
+                                    <a href='#' class='pd_a' target='_blank'>
                                         <img src="<c:out value="${adminBean.contextPath}"/><c:out value="${orderInfo.imagePath}"/> " alt='' class='pdimg' target='_blank' />
                                     </a>
                                 </td>
                                 <td>
-                                    <a href='http://www.yes24.com/24/Goods/18242263' class='pd_a'>${orderInfo.product.name}</a>
+                                    <a href='#' class='pd_a'>${orderInfo.product.name}</a>
                                 </td>
                                 <td>
                                     ${orderInfo.product.price}
@@ -89,7 +90,7 @@
 								<th><em class="tot5">최종 결제금액</em></th>
 							</tr>
 							<tr>
-								<td>${requestScope.orderViewInfo.totalDescription}</td>
+								<td><em>${requestScope.orderViewInfo.totalDescription}</em></td>
 								<td><em>${requestScope.orderViewInfo.productsTotalPrice}</em>원</td>
 								<td><em id="txtTotalDelvFare">${requestScope.orderViewInfo.shippingTotalPrice}</em>원</td>
 								<td class="clr1">
@@ -181,12 +182,17 @@
                                     <br/>
                                     <p style="margin:5px 0;">도로명 주소
                                         <input type="text" id="txtAddressByStBasic" class="ipubx"
-                                        	   value="<c:out value="${requestScope.orderViewInfo.basicAddressNew.fullAddress}"/>"
+                                        	   value="<c:out value="${requestScope.orderViewInfo.basicAddressNew.basicAdd}"/>"
                                                style="width:320px;vertical-align:middle;" readonly="readonly" />
                                     </p>
                                     <p style="line-height:20px;">지번 주소&nbsp;&nbsp;&nbsp;
                                         <input type="text" id="txtAddressByOldBasic"  class="ipubx" 
-                                               value="<c:out value="${requestScope.orderViewInfo.basicAddressOrigin.fullAddress}"/>"
+                                               value="<c:out value="${requestScope.orderViewInfo.basicAddressOrigin.basicAdd}"/>"
+                                               style="width:320px;vertical-align:middle;" readonly="readonly" />
+                                    </p>
+                                    <p style="line-height:20px;">상세 주소&nbsp;&nbsp;&nbsp;
+                                        <input type="text" id="txtAddressDetail"  class="ipubx" 
+                                               value="<c:out value="${requestScope.orderViewInfo.basicAddressOrigin.detailAdd}"/>"
                                                style="width:320px;vertical-align:middle;" readonly="readonly" />
                                     </p> 
                                 </td>
@@ -233,9 +239,15 @@
                                                value=""
                                                class="ipubx" 
                                                style="width:320px;vertical-align:middle;" readonly="readonly" />
-                                        <a href="#" title="주소록에 추가" class="bw add_adrs">주소록에 추가</a>
+                                        <a href="#" title="주소록에 추가" id="addNewAddress" class="bw add_adrs">주소록에 추가</a>
+                                    </p> 
+                                    <p style="line-height:20px;">상세 주소&nbsp;&nbsp;&nbsp;
+                                        <input type="text" id="txtAddressNewDetail"  class="ipubx" 
+                                               value="<c:out value=""/>"
+                                               style="width:320px;vertical-align:middle;" required/>
                                     </p> 
                                 </td>
+                                
                             </tr>
 
                             <tr id="trDelvMobNoNormalNew" style="">
@@ -257,7 +269,7 @@
                                 </td>
                             </tr>
                         </table>
-
+						<div id="existingAddressLayer">
 						<c:forEach var="addressInfo" varStatus="addressInfos" items="${requestScope.orderViewInfo.addressesPair}">
 						<table cellpadding="0" class="tbl_pay"  id="existingAddressSettings<c:out value="${addressInfos.index}"/>" style="display:none">
                             <tr id="trOrdNmNormal" style="">
@@ -275,12 +287,12 @@
                                     </a>
                                     <br/>
                                     <p style="margin:5px 0;">도로명 주소
-                                        <input type="text" id="txtAddressByStExisting<c:out value="${addressInfos.index}"/>" class="ipubx" onblur="fnAddressModifyApply();" 
+                                        <input type="text" id="txtAddressByStExisting<c:out value="${addressInfos.index}"/>" class="ipubx"
                                                value="<c:out value="${addressInfo.addressNew.fullAddress}"/>"  
                                                style="width:320px;vertical-align:middle;" readonly="readonly" />
                                     </p>
                                     <p style="line-height:20px;">지번 주소&nbsp;&nbsp;&nbsp;
-                                        <input type="text" id="txtAddressByOldExisting<c:out value="${addressInfos.index}"/>" onblur="fnAddressModifyApply();" 
+                                        <input type="text" id="txtAddressByOldExisting<c:out value="${addressInfos.index}"/>"
                                                value="<c:out value="${addressInfo.addressOrigin.fullAddress}"/>"  
                                                class="ipubx" 
                                                style="width:320px;vertical-align:middle;" readonly="readonly" />
@@ -303,6 +315,7 @@
                             </tr>
                         </table>
                         </c:forEach>
+                        </div>
                     </div>
                 </div>
                 <!-- 배송주소 // -->
@@ -553,7 +566,7 @@
 					                   ${requestScope.orderViewInfo.user.name} 의 주소록(<strong>${requestScope.orderViewInfo.addressesPairSize}</strong>) ( 최대 5개까지 등록 가능 )
 					                </li>
 					            </ul>
-					            <table class="tbl_l">
+					            <table class="tbl_l" id="addressInfoTable">
 					                <colgroup>
 					                    <col width="34">
 					                    <col width="60">
@@ -583,7 +596,7 @@
 					                </thead>
 					                <tbody>
 										<c:forEach var="addressInfo" varStatus="addressInfos" items="${requestScope.orderViewInfo.addressesPair}">
-										<tr>
+										<tr id="addressInfoItem<c:out value="${addressInfos.index}"/>">
 					                        <td valign="top">
 					                            <input type="checkbox" 
 							                           id="chkMemberAddress<c:out value="${addressInfos.index}"/>" 
@@ -592,7 +605,7 @@
 							                           class="chkbx">
 					                        </td>
 					                        <td valign="top">
-					                            <a href="#" >${addressInfo.addressOrigin.name}</a>
+					                            <a href="#" id="memberAddressName<c:out value="${addressInfos.index}"/>">${addressInfo.addressOrigin.name}</a>
 					                        </td>
 					                        <td valign="top">
 					                           	 ${requestScope.orderViewInfo.user.name}
@@ -605,7 +618,7 @@
 					                                </div>
 					                                <div class="putAddrRgt">
 					                                    <span class="putAddrTxt">
-					                                        <a href="#" >
+					                                        <a href="#" id="memberZipCodeNew<c:out value="${addressInfos.index}"/>">
 					                                        (<c:out value="${addressInfo.addressNew.postNumHeader}"/>-
 					                                        <c:out value="${addressInfo.addressNew.postNumTail}"/>)
 					                                        <c:out value="${addressInfo.addressNew.fullAddress}"/>
@@ -619,7 +632,8 @@
 					                                </div>
 					                                <div class="putAddrRgt">
 					                                    <span class="putAddrTxt grayTxt">
-					                                        <a class="grayTxt" href="#" >
+					                                        <a class="grayTxt" href="#" 
+					                                           id="memberZipCode<c:out value="${addressInfos.index}"/>">
 					                                        (<c:out value="${addressInfo.addressOrigin.postNumHeader}"/>-
 					                                        <c:out value="${addressInfo.addressOrigin.postNumTail}"/>)
 					                                        <c:out value="${addressInfo.addressOrigin.fullAddress}"/>
@@ -628,7 +642,7 @@
 					                                </div>
 					                            </div>
 					                        </td>
-					                        <td valign="top">
+					                        <td valign="top"  id="memberPhoneNumber<c:out value="${addressInfos.index}"/>">
 					                            ${addressInfo.addressOrigin.phoneNumber}
 					                        </td>
 					                        <td valign="top">
@@ -688,7 +702,7 @@
 												상세 주소&nbsp;&nbsp;&nbsp; 
 												<input type="text" id="txtAddressDetail<c:out value="${addressInfos.index}"/>" 
 													   value="<c:out value="${addressInfo.addressOrigin.detailAdd}"/>"
-													   class="ipubx" style="width:300px;" readonly="readonly">
+													   class="ipubx" style="width:300px;">
 											</p>
 										</td>	
 					                </tr>              

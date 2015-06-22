@@ -9,10 +9,13 @@ ol, ul {list-style: none}
 ​a{color:#333; text-decoration:none}
 blockquote, q {quotes: none}
 ​input,select,textarea{font-size:100%; vertical-align:middle}
-blockquote:before, blockquote:after, q:before, q:after {content:''; content:none}
-​table {border-collapse:collapse; border-spacing:0}
-em {font-style:normal}
-body {font-size:14px; font-family:Malgun Gothic, Dotum,돋움,AppleGothic,serif; color:#333}
+em{font-style:normal}
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+​table { border-collapse: collapse;}
+​body {font-size:14px;font-family:Malgun Gothic, Dotuom, 돋움, AppleGothic, serif; line-height: 1; }
+em { font-style:normal; }
+body {font-size:14px;  font-family:Malgun Gothic, Dotum,돋움,AppleGothic,serif;  color:#333;}
+table {border-collapse:collapse;}
 
 /* 부팅 페이지*/
 #bootlogo{width: 335px; margin: 0 auto;padding-top:250px;}

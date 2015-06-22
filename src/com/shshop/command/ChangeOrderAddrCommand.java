@@ -40,10 +40,11 @@ public class ChangeOrderAddrCommand implements Command {
 		AuthenticatorService authenticatorService = new AuthenticatorService();
 		authenticatorService.updateUserAddress(selectedAddress.getAddressNew());
 		authenticatorService.updateUserAddress(selectedAddress.getAddressOrigin());
-
+		
+		request.setAttribute(Constant.attrAddressIndex, strAddressIndex);
 		request.setAttribute(Constant.attrSelectedAddressResult, selectedAddress);
 
-		return new CommandResult("/WEB-INF/view/orderView/selectAddrActionJsonData.jsp");
+		return new CommandResult("/WEB-INF/view/orderView/addressEditJsonData.jsp");
 	}
 
 }

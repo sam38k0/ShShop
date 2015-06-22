@@ -6,10 +6,11 @@ import org.apache.ibatis.annotations.Param;
 
 import com.shshop.domain.Address;
 import com.shshop.domain.Order;
+import com.shshop.domain.OrderProc;
 import com.shshop.domain.User;
 
 public interface OrderMapper {
-	public void insertOrder(Order order);
+	public void insertOrderProc(OrderProc orderProc);
 
 	public void updateOrder(Order order);
 
