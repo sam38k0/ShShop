@@ -104,7 +104,7 @@
 								<div class="userList">
 									<div class="userPhoto snsNo">
 										<p>
-											<a href="/@1469660"> <img id="member_image" src="//image.hellomarket.com/common/photo_user_w32.gif">
+											<a href="/@1469660"> <img id="member_image" src="${adminBean.contextPath}/content/image/photo_user_w32.gif">
 											</a>
 										</p>
 										<ul id="member_sns" class="userSns">

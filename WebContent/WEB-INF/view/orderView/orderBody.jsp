@@ -95,7 +95,7 @@
 								<td><em id="txtTotalDelvFare">${requestScope.orderViewInfo.shippingTotalPrice}</em>원</td>
 								<td class="clr1">
 									<em id="txtSaleAmount">0</em>원
-									<input type="hidden" id="hdnYes24Sale" value="0">
+									<input type="hidden" id="hdnSale" value="0">
 								</td>
 								<td class="clr2">
 									<em id="txtTotalAmount">${requestScope.orderViewInfo.totalPrice}</em>원
@@ -325,12 +325,6 @@
                     <div class="col2">
                         <div class="added_w" id="divPayMethodValues" style="">
 
-                            <!--// Hidden Filed Counter -->
-                            <input type="hidden" name="ModelCounterYes24" id="ModelCounterYes24" value="1" />
-                            <input type="hidden" name="ModelCounterDigital" id="ModelCounterDigital" value="0" />
-                            <input type="hidden" name="ModelCounterCosmetic" id="ModelCounterCosmetic" value="0" />
-                            <input type="hidden" name="ModelCounterVendor" id="ModelCounterVendor" value="0" />
-
                             <!-- // 부가옵션 -->
                             <div style="" class="added">
                                 <table cellpadding="0" cellspacing="0" class="tbl_pay">
@@ -382,7 +376,7 @@
                             
                             <div class="btn_area">
                                 <a id="btnPayment" href="#">
-                                    <img src="https://secimage.yes24.com/sysimage/orderN/b_pay.gif" alt="결제하기" />
+                                    <img src="${adminBean.contextPath}/content/image/b_pay.gif" alt="결제하기" />
                                 </a>
                             </div>
                         </div>
@@ -613,7 +607,7 @@
 					                        <td class="le" valign="top">
 					                            <div class="putAddrWrap">
 					                                <div class="putAddrLft">
-					                                    <img class="addr_item" src="https://secimage.yes24.com/sysimage/orderN/btn_putAddr02.gif" 
+					                                    <img class="addr_item" src="${adminBean.contextPath}/content/image/btn_putAddr02.gif" 
 					                                        width="30" height="13" alt="도로명">
 					                                </div>
 					                                <div class="putAddrRgt">
@@ -628,7 +622,7 @@
 					                            </div>
 					                            <div class="putAddrWrap mgt5">
 					                                <div class="putAddrLft">
-					                                    <img class="addr_item" src="https://secimage.yes24.com/sysimage/orderN/btn_putAddr03.gif" width="30" height="13" alt="지번">
+					                                    <img class="addr_item" src="${adminBean.contextPath}/content/image/btn_putAddr03.gif" width="30" height="13" alt="지번">
 					                                </div>
 					                                <div class="putAddrRgt">
 					                                    <span class="putAddrTxt grayTxt">

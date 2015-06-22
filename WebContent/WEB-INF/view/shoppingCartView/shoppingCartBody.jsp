@@ -50,7 +50,7 @@
                                         <input type='checkbox' class='chkbx' name='chkCartGoodsShShop' id='chkCartGoodsShShop<c:out value="${orderInfos.index}"/>'/>
                                     </td>
                                     <td class='goods_img'>
-                                        <a href='http://www.yes24.com/24/Goods/11686227' target='_new' class='pd_a'>
+                                        <a href='#' target='_new' class='pd_a'>
                                             <img src="<c:out value="${adminBean.contextPath}"/><c:out value="${orderInfo.imagePath}"/>" alt='' class='pdimg'/>
                                         </a>
                                     </td>
@@ -83,7 +83,7 @@
                                     <td colspan='9' class='tot'>일반카트 상품 총 금액 : 
                                         <strong id='lblTotalAmountCart'>${requestScope.orderViewInfo.productsTotalPrice}원</strong>
                                         <span class='dvi'> | </span>
-                                        ShShop포인트 총 적립액 : <strong id='lblTotalPointCartYes24'>1,220원</strong> 
+                                        ShShop포인트 총 적립액 : <strong id='lblTotalPointCart'>1,220원</strong> 
                                         <span id='spnTotalPointDetailCart'>(기본 : 1,220원)</span>
                                     </td>
                                 </tr>
@@ -119,7 +119,7 @@
 									<td id="txtTotalDelvFare"><em>${requestScope.orderViewInfo.shippingTotalPrice}</em>원</td>
 									<td class="clr1">
 										<em id="txtSaleAmount">0</em>원
-										<input type="hidden" id="hdnYes24Sale" value="0">
+										<input type="hidden" id="hdnSale" value="0">
 									</td>
 									<td class="clr2">
 										<em id="txtTotalAmount">${requestScope.orderViewInfo.totalPrice}</em>원
@@ -134,8 +134,8 @@
 					<!-- 상품확인 //-->
 
                     <div class='btn_area'>
-                        <a href='javascript:'><img id='btnOrderCart' src='http://image.yes24.com/sysimage/orderN/b_order.gif' alt='주문하기' /></a>
-                        <a href='http://www.yes24.com'><img src='http://image.yes24.com/sysimage/orderN/b_goshopping.gif' alt='쇼핑계속하기' /></a>
+                        <a href='#'><img id='btnOrderCart' src='${adminBean.contextPath}/content/image/b_order.gif' alt='주문하기' /></a>
+                        <a href='#'><img src='${adminBean.contextPath}/content/image/b_goshopping.gif' alt='쇼핑계속하기' /></a>
                     </div>
                 </div>
             </form>
