@@ -18,16 +18,14 @@
 		var productsTotalPrice = response.productsTotalPrice;
 		
 		var trHTML = '';
-		var startIndex =  (currentPage-1) * pageDivNum;
 		
 		//Table
 		$.each(response.currentPageInfos, function(i, item) {
- 			var index = i + startIndex;
  			
 			trHTML +=  
-            '<tr id=\"orderItemList\"' + index +'>' +
+            '<tr id=\"orderItemList\"' + i +'>' +
             '<td class=\"cb\">' +
-            '   <input type=\"checkbox\" class=\"chkbx\" name=\"chkCartGoodsShShop\" id=\"chkCartGoodsShShop' + index +'\"/>' +
+            '   <input type=\"checkbox\" class=\"chkbx\" name=\"chkCartGoodsShShop\" id=\"chkCartGoodsShShop' + i +'\"/>' +
             '</td>' +
             '<td class=\"goods_img\">' +
             '    <a href=\"#\" target=\"_new\" class=\"pd_a\">' +
@@ -40,19 +38,19 @@
             '</td>' +
             '<td>' + item.productPrice + '원</td>' +
             '<td>' +
-            '    <input type=\"number\" id=\"txtGoodsCnt' + index +'\" name=\"txtGoodsCnt\" value="' + item.quantity + '\" class=\"ipubx num\" maxlength=\"4\" />' +
+            '    <input type=\"number\" id=\"txtGoodsCnt' + i +'\" name=\"txtGoodsCnt\" value="' + item.quantity + '\" class=\"ipubx num\" maxlength=\"4\" />' +
             '    <br/>' +
-            '   <input type=\"hidden\" name=\"hdnOriginalGoodsCnt\" value=\"1\" class=\"ipubx num\" /><a href=\"#\" id=\"hdnOriginalGoodsCnt' + index +'\" title=\"변경\" class=\"bw chgnum\">변경</a>' +
+            '   <input type=\"hidden\" name=\"hdnOriginalGoodsCnt\" value=\"1\" class=\"ipubx num\" /><a href=\"#\" id=\"hdnOriginalGoodsCnt' + i +'\" title=\"변경\" class=\"bw chgnum\">변경</a>' +
             '</td>' +
-            '<td><strong id=\"totalPricOfItem' + index +'\" value=\"'+ item.orderPrice +'\">'+ item.orderPrice +'원</strong>' +
+            '<td><strong id=\"totalPricOfItem' + i +'\" value=\"'+ item.orderPrice +'\">'+ item.orderPrice +'원</strong>' +
             '</td>' + 
             '<td>' +
             '    <p class=\"dvmsg\">1일 이내 <br/>배송예정</p>' + 
             '</td>' + 
             '<td class=\"goods_order\">' + 
             '    <p class=\"ordbtnw\">' + 
-            '    <a href=\"#\" title=\"주문하기\" id=\"orderItem' + index +'\" class=\"bw ordpd\">주문하기</a>' + 
-            '    <a href=\"#\" title=\"삭제하기\" id=\"deleteItem' + index +'\" class=\"bw pddel\">삭제하기</a>' + 
+            '    <a href=\"#\" title=\"주문하기\" id=\"orderItem' + i +'\" class=\"bw ordpd\">주문하기</a>' + 
+            '    <a href=\"#\" title=\"삭제하기\" id=\"deleteItem' + i +'\" class=\"bw pddel\">삭제하기</a>' + 
             '    </p>' +
             '</td>' + 
         	'</tr>';
@@ -217,14 +215,7 @@
 	// 아이템 삭제에 대한 리턴
 	function fnAjaxDeleteShippingItem(text) {
 		fnAjaxLoaderLayerHide("divAjaxLoader");
-		
-		response = text;
-		response = $.parseJSON(response);
-		
-		var orderIndex = response.orderIndex;
-		
-		$('#orderItemList' + orderIndex).remove();
-		
+		fnPageSet(text);
 		fnResetCartSummary();
 		fnRegisterEvent();
 	}
@@ -239,7 +230,9 @@
 	    	fnResetCartSummary();
 	    }); 
 	    
-	    $('.chgnum').click(function() {
+	    $('.chgnum').unbind('click').bind('click', function (e) {
+	    	event.preventDefault();
+	    	
 			var checkedId = $(this).attr('id');
 			var indx = checkedId.replace('hdnOriginalGoodsCnt', '');
 			var newQuantity = parseInt($('#txtGoodsCnt' + indx).val());
@@ -269,7 +262,9 @@
 			});
 	    });
 	    
-	    $('.pddel').click(function() {
+	    $('.pddel').unbind('click').bind('click', function (e) {
+	    	event.preventDefault();
+	    	
 			var checkedId = $(this).attr('id');
 			var indx = checkedId.replace('deleteItem', '');
 			

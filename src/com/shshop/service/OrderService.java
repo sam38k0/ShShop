@@ -191,9 +191,11 @@ public class OrderService {
 		HttpSession session = request.getSession();
 		OrderViewInfo orderViewInfo = (OrderViewInfo) session.getAttribute(orderKey);
 		
-		List<OrderInfo> orderInfos = orderViewInfo.getOrderInfos();
+		List<OrderInfo> orderInfos = orderViewInfo.getCurrentPageOrderInfos();
 		
-		OrderInfo orderInfo = orderInfos.get(Integer.parseInt(strOrderIndex)); 
+		int orderIndex = Integer.parseInt(strOrderIndex);
+
+		OrderInfo orderInfo = orderInfos.get(orderIndex); 
 		
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		 
@@ -204,10 +206,16 @@ public class OrderService {
 			sqlSession.close();
 		}
 		
-		orderInfo.setAvailable(false);//만들어진 html 의 index 를 포함한 id 를 맞추기 위해 데이터를 실제로 삭제하지는 않는다.
+		int currentPage = orderViewInfo.getPageDivider().getCurrentPage();
+		int pageDivNum = orderViewInfo.getPageDivider().getPageDivNum();
+		orderViewInfo.removOrderData((currentPage-1) * pageDivNum + orderIndex); 
 		
-		request.setAttribute(Constant.attrOrderIndex, strOrderIndex);
+		orderInfos = orderViewInfo.getCurrentPageOrderInfos();
+		
+		request.setAttribute(Constant.attrOrderViewInfo, orderViewInfo);
+		request.setAttribute(Constant.attrDataPage, currentPage);
+		request.setAttribute(Constant.attrCurrentPagesResult, orderInfos);
 
-		return new CommandResult("/WEB-INF/view/shoppingCartView/removeItemJsonData.jsp");
+		return new CommandResult("/WEB-INF/view/shoppingCartView/cartListJsonData.jsp");
 	}
 }

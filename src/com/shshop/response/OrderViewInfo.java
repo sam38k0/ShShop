@@ -206,4 +206,8 @@ public class OrderViewInfo {
 	public void setPageDivider(PageDivider<OrderInfo> pageDivider) {
 		this.pageDivider = pageDivider;
 	}
+
+	public void removOrderData(int orderIndex) {
+		orderInfos.remove(orderIndex);
+	}
 }
