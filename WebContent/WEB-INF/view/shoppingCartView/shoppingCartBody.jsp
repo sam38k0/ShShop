@@ -45,7 +45,7 @@
                             </thead>
                             <tbody>
                             	<c:forEach var="orderInfo" varStatus="orderInfos" items="${requestScope.orderViewInfo.orderInfos}">
-                                <tr>
+                                <tr id='orderItemList<c:out value="${orderInfos.index}"/>'>
                                     <td class='cb'>
                                         <input type='checkbox' class='chkbx' name='chkCartGoodsShShop' id='chkCartGoodsShShop<c:out value="${orderInfos.index}"/>'/>
                                     </td>
@@ -71,8 +71,8 @@
                                     </td>
                                     <td class='goods_order'>
                                         <p class='ordbtnw'>
-                                        <a href='#' title='주문하기' class='bw ordpd'>주문하기</a>
-                                        <a href='#' title='삭제하기' class='bw pddel'>삭제하기</a>
+                                        <a href='#' title='주문하기' id='orderItem<c:out value="${orderInfos.index}"/>' class='bw ordpd'>주문하기</a>
+                                        <a href='#' title='삭제하기' id='deleteItem<c:out value="${orderInfos.index}"/>' class='bw pddel'>삭제하기</a>
                                         </p>
                                     </td>
                                 </tr>

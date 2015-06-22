@@ -14,12 +14,10 @@ import com.shshop.domain.Order;
 import com.shshop.domain.OrderProc;
 import com.shshop.domain.OrderState;
 import com.shshop.domain.Product;
-import com.shshop.domain.User;
 import com.shshop.mapper.AddressMapper;
 import com.shshop.mapper.OrderMapper;
 import com.shshop.mapper.OrderStateMapper;
 import com.shshop.mapper.ProductMapper;
-import com.shshop.mapper.UserMapper;
 import com.shshop.response.OrderInfo;
 import com.shshop.response.OrderViewInfo;
 import com.shshop.util.MyBatisUtil;
@@ -184,5 +182,32 @@ public class OrderService {
 		request.setAttribute(Constant.attrTotalPrice, orderInfo.getPrice()); 
 
 		return new CommandResult("/WEB-INF/view/shoppingCartView/changeItemCountJsonData.jsp");
+	}
+
+	public CommandResult deleteOrderItemCount(HttpServletRequest request) {
+		String orderKey = request.getParameter(Constant.attrOrderKey);
+		String strOrderIndex = request.getParameter(Constant.attrOrderIndex);
+		
+		HttpSession session = request.getSession();
+		OrderViewInfo orderViewInfo = (OrderViewInfo) session.getAttribute(orderKey);
+		
+		List<OrderInfo> orderInfos = orderViewInfo.getOrderInfos();
+		
+		OrderInfo orderInfo = orderInfos.get(Integer.parseInt(strOrderIndex)); 
+		
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		 
+		try {
+			OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+			orderMapper.deleteOrder(orderInfo.getOrder());
+		} finally {
+			sqlSession.close();
+		}
+		
+		orderInfo.setAvailable(false);//만들어진 html 의 index 를 포함한 id 를 맞추기 위해 데이터를 실제로 삭제하지는 않는다.
+		
+		request.setAttribute(Constant.attrOrderIndex, strOrderIndex);
+
+		return new CommandResult("/WEB-INF/view/shoppingCartView/removeItemJsonData.jsp");
 	}
 }

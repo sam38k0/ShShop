@@ -7,6 +7,7 @@ import com.shshop.command.CheckLoginStateCommand;
 import com.shshop.command.Command;
 import com.shshop.command.CommentPostCommend;
 import com.shshop.command.DeleteOrderAddrCommand;
+import com.shshop.command.DeleteOrderItemCommand;
 import com.shshop.command.InsertProductCommand;
 import com.shshop.command.InsertProductViewCommand;
 import com.shshop.command.JoinCommand;
@@ -89,6 +90,9 @@ public class CommandFactory {
 			
 		case Constant.changeOrderItemCount:
 			return new ChangeOrderItemCountCommand();
+			
+		case Constant.deleteOrder:
+			return new DeleteOrderItemCommand();
 
 		default:
 			return null;

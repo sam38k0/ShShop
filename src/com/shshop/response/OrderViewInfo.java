@@ -20,6 +20,17 @@ public class OrderViewInfo {
 		this.setUser(user);
 		this.setAddresses(addresses);
 	}
+	
+	public int getOrderInfoAvailableSize() {
+		int countAvailable = 0;
+		
+		for(OrderInfo orderInfo : orderInfos) {
+			if(orderInfo.isAvailable())
+				countAvailable++;
+		}
+		
+		return countAvailable;
+	}
 
 	public int getAddressesPairSize() {
 		return addressesPair.size();

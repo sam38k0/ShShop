@@ -26,6 +26,7 @@ public class Constant {
 	public static final String addAddress = "/addAddress";
 	public static final String showShoppingCartForm = "/showShoppingCartView";
 	public static final String changeOrderItemCount = "/changeOrderItemCount";
+	public static final String deleteOrder = "/deleteOrder";
 
 	// Attribute
 	public static final String attrUser = "user";

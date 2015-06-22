@@ -40,7 +40,7 @@ public class ChangeOrderAddrCommand implements Command {
 		AuthenticatorService authenticatorService = new AuthenticatorService();
 		authenticatorService.updateUserAddress(selectedAddress.getAddressNew());
 		authenticatorService.updateUserAddress(selectedAddress.getAddressOrigin());
-		
+
 		request.setAttribute(Constant.attrAddressIndex, strAddressIndex);
 		request.setAttribute(Constant.attrSelectedAddressResult, selectedAddress);
 

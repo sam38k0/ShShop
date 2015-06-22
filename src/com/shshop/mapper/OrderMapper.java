@@ -19,4 +19,6 @@ public interface OrderMapper {
 	public Address getBuyUserAdd(@Param("orderId") int orderId);
 
 	public List<Order> getSellOrder(@Param("userId") int userId);
+	
+	public void deleteOrder(Order order);
 }

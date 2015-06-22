@@ -5,6 +5,7 @@ import com.shshop.domain.OrderState;
 import com.shshop.domain.Product;
 
 public class OrderInfo { 
+	private boolean isAvailable = true;
 	private Product product;
 	private Order order;
 	private OrderState orderState;
@@ -78,5 +79,13 @@ public class OrderInfo {
 
 	public void setOrderState(OrderState orderState) {
 		this.orderState = orderState;
+	}
+
+	public boolean isAvailable() {
+		return isAvailable;
+	}
+
+	public void setAvailable(boolean isAvailable) {
+		this.isAvailable = isAvailable;
 	}
 }

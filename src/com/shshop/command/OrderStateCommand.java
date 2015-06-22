@@ -30,8 +30,7 @@ public class OrderStateCommand implements Command {
 		OrderService orderService = new OrderService();
 		ProductService productService = new ProductService();
 		AuthenticatorService authenticatorService = new AuthenticatorService();
-		
-		
+
 		// 판매자 정보
 		List<Order> buyOrder = orderService.selectBuyOrder(user.getUserId());
 		if (buyOrder != null && buyOrder.size() > 0) {
@@ -39,12 +38,12 @@ public class OrderStateCommand implements Command {
 
 			for (Order order : buyOrder) {
 				Product product = orderService.selectProduct(order.getProductId());
-				User sellUser = authenticatorService.getUserById(product.getUserId());
+				User seller = authenticatorService.getUserById(product.getUserId());
 				ProductImage productImg = productService.getProductImg(order.getProductId());
 				Address sellAdd = orderService.selectSellAddress(order.getIdAddress());
 				OrderState buyState = orderService.selectOrderState(order.getOrderId());
 
-				buyOrderInfoList.addOrderInformation(sellUser, product, productImg, order, buyState, sellAdd);
+				buyOrderInfoList.addOrderInformation(seller, product, productImg, order, buyState, sellAdd);
 			}
 
 			if (buyOrderInfoList.getOrderInfos().size() > 0)
@@ -53,13 +52,11 @@ public class OrderStateCommand implements Command {
 
 		// 구매자 정보
 		List<Order> sellOrder = orderService.selectSellOrder(user.getUserId());
-
-
 		if (sellOrder != null && sellOrder.size() > 0) {
 			OrderInfomationList sellOrderInfoList = new OrderInfomationList();
 
 			for (Order order : sellOrder) {
-				
+
 				User buyer = authenticatorService.getUserById(order.getUserId());
 				Product product = orderService.selectProduct(order.getProductId());
 				ProductImage productImg = productService.getProductImg(order.getProductId());

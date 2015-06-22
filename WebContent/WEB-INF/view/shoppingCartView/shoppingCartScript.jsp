@@ -87,6 +87,21 @@
 		fnRegisterEvent();
 	}
 	
+	// 아이템 삭제에 대한 리턴
+	function fnAjaxDeleteShippingItem(text) {
+		fnAjaxLoaderLayerHide("divAjaxLoader");
+		
+		response = text;
+		response = $.parseJSON(response);
+		
+		var orderIndex = response.orderIndex;
+		
+		$('#orderItemList' + orderIndex).remove();
+		
+		fnResetCartSummary();
+		fnRegisterEvent();
+	}
+	
 	function fnRegisterEvent() {
 	    $('#chkCartHeader').change(function() {
 	    	fnCheckedChangeChildCart();
@@ -108,6 +123,7 @@
 			}
 			
 			fnAjaxLoaderLayerShow("divAjaxLoader", true, false, window.event); 
+			fnPopupLayerShowFixedPosition2('txtGoodsCnt' + indx,"divAjaxLoader",50,30);
 			
 			$.ajax({
 				type : 'POST',
@@ -124,6 +140,30 @@
 					fnRegisterEvent();
 				}
 			});
+	    });
+	    
+	    $('.pddel').click(function() {
+			var checkedId = $(this).attr('id');
+			var indx = checkedId.replace('deleteItem', '');
+			
+			fnAjaxLoaderLayerShow("divAjaxLoader", true, false, window.event); 
+			fnPopupLayerShowFixedPosition2(checkedId, "divAjaxLoader",50,30);
+			
+			$.ajax({
+				type : 'POST',
+				url : 'deleteOrder',
+				data : {
+					'orderKey' : '${requestScope.orderKey}',
+					'orderIndex' : indx
+				},
+				success : fnAjaxDeleteShippingItem,
+				error : function(ajaxContext) {
+					alert("해당 아이템을 삭제하지 못했습니다.");
+					fnAjaxLoaderLayerHide("divAjaxLoader");
+					fnRegisterEvent();
+				}
+			});
+			
 	    });
 	}
 	
