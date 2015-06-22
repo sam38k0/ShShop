@@ -3,10 +3,10 @@
   'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 
 <mapper namespace='com.shshop.mapper.OrderMapper'>	
+
 	<insert id="insertOrderProc" parameterType='${OrderProcType}' statementType="CALLABLE">
     {
-       call proc_insert_order(${id_user}, ${id_product}, ${id_address}, ${amount}, ${cost}, ${delivery_cost}, 
-       ${order_request}, #{imagePaths},#{insertedOrderId, mode=OUT, jdbcType=INTEGER})
+       call proc_insert_order(${id_user}, ${id_product}, ${id_address}, ${amount}, ${cost}, ${delivery_cost}, ${order_request}, #{insertedOrderId, mode=OUT, jdbcType=INTEGER})
     }
 	</insert>
 	

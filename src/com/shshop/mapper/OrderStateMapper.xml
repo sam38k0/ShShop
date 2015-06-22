@@ -4,7 +4,7 @@
 
 <mapper namespace='com.shshop.mapper.OrderStateMapper'>
 	<insert id='insertOrderState' parameterType='${OrderStateType}'>
-		insert into `or_order_state` (`id_order`, `virtualOrder`, `activated`, `paid`, `sendedEmail`, `shipped`, `delivered`, `deleted`)
+		insert into `or_order_state` (`id_order`, `virtual_order`, `activated`, `paid`, `sended_email`, `shipped`, `delivered`, `deleted`)
 		values (${id_order},${virtualOrder},${activated},${paid},${sendedEmail},${shipped},${delivered},${deleted});
 	</insert>
 	
