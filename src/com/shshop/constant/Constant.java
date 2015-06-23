@@ -26,6 +26,8 @@ public class Constant {
 	public static final String addAddress = "/addAddress";
 	public static final String showShoppingCartForm = "/showShoppingCartView";
 	public static final String changeOrderItemCount = "/changeOrderItemCount";
+	public static final String deleteOrder = "/deleteOrder";
+	public static final String setShoppingCartPage = "/setShoppingCartPage";
 
 	// Attribute
 	public static final String attrUser = "user";
@@ -38,6 +40,7 @@ public class Constant {
 	public static final String attrKeywords = "keywords";
 	public static final String attrCategoryName = "categoryName";
 	public static final String attrDataPage = "data-page";
+	public static final String attrDataPageDivNum = "data-page-divnum";
 	public static final String attrSort = "sort";
 	public static final String attrPriceFrom = "price_from";
 	public static final String attrPriceTo = "price_to";
@@ -59,6 +62,8 @@ public class Constant {
 	public static final String attrOrderIndex = "orderIndex";
 	public static final String attrItemNewQuantity = "itemNewQuantity";
 	public static final String attrTotalPrice = "totalPrice";
+	public static final String attrCurrentPagesResult = "currentPageResults";
+	public static final String attrTotalPageCount = "totalPageCount";
 	
 	// DD Parameter
 	public static final String paramFileUpload = "file-upload";

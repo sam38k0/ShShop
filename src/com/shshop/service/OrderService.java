@@ -14,12 +14,10 @@ import com.shshop.domain.Order;
 import com.shshop.domain.OrderProc;
 import com.shshop.domain.OrderState;
 import com.shshop.domain.Product;
-import com.shshop.domain.User;
 import com.shshop.mapper.AddressMapper;
 import com.shshop.mapper.OrderMapper;
 import com.shshop.mapper.OrderStateMapper;
 import com.shshop.mapper.ProductMapper;
-import com.shshop.mapper.UserMapper;
 import com.shshop.response.OrderInfo;
 import com.shshop.response.OrderViewInfo;
 import com.shshop.util.MyBatisUtil;
@@ -184,5 +182,40 @@ public class OrderService {
 		request.setAttribute(Constant.attrTotalPrice, orderInfo.getPrice()); 
 
 		return new CommandResult("/WEB-INF/view/shoppingCartView/changeItemCountJsonData.jsp");
+	}
+
+	public CommandResult deleteOrderItemCount(HttpServletRequest request) {
+		String orderKey = request.getParameter(Constant.attrOrderKey);
+		String strOrderIndex = request.getParameter(Constant.attrOrderIndex);
+		
+		HttpSession session = request.getSession();
+		OrderViewInfo orderViewInfo = (OrderViewInfo) session.getAttribute(orderKey);
+		
+		List<OrderInfo> orderInfos = orderViewInfo.getCurrentPageOrderInfos();
+		
+		int orderIndex = Integer.parseInt(strOrderIndex);
+
+		OrderInfo orderInfo = orderInfos.get(orderIndex); 
+		
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		 
+		try {
+			OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+			orderMapper.deleteOrder(orderInfo.getOrder());
+		} finally {
+			sqlSession.close();
+		}
+		
+		int currentPage = orderViewInfo.getPageDivider().getCurrentPage();
+		int pageDivNum = orderViewInfo.getPageDivider().getPageDivNum();
+		orderViewInfo.removOrderData((currentPage-1) * pageDivNum + orderIndex); 
+		
+		orderInfos = orderViewInfo.getCurrentPageOrderInfos();
+		
+		request.setAttribute(Constant.attrOrderViewInfo, orderViewInfo);
+		request.setAttribute(Constant.attrDataPage, currentPage);
+		request.setAttribute(Constant.attrCurrentPagesResult, orderInfos);
+
+		return new CommandResult("/WEB-INF/view/shoppingCartView/cartListJsonData.jsp");
 	}
 }

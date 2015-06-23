@@ -33,7 +33,7 @@ public class OrderCommand implements Command {
 			return new CommandResult(Constant.textPlain, Constant.noAddress);
 		}
 
-		OrderViewInfo orderViewInfo = new OrderViewInfo(user, addresses);
+		OrderViewInfo orderViewInfo = new OrderViewInfo(user, addresses, 1, 5);
 		ProductService productService = new ProductService();
 		 
 		orderViewInfo.addOrderInfo(productService.createNewOrderInfo(request, user.getUserId(), 1, 3, 2500, "총알배송",  OrderState.VirtualOrder));

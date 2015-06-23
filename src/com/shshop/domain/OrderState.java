@@ -9,6 +9,7 @@ public class OrderState {
 	public static final String Delivered = "delivered";
 	public static final String Deleted = "Deleted";
 	
+	private String orderState = "";
 	private Integer orderId;
 	private boolean virtualOrder = false; // 가상주문(장바구니 상태)
 	private boolean activated = false; // 주문 활성화 여부
@@ -20,6 +21,7 @@ public class OrderState {
 
 	public OrderState(Integer orderId, String orderState) {
 		this.orderId = orderId;
+		this.setOrderState(orderState);
 		
 		switch(orderState) {
 		case OrderState.VirtualOrder:
@@ -130,6 +132,14 @@ public class OrderState {
 		this.shipped = false;
 		this.delivered = false;
 		this.deleted = false;
+	}
+
+	public String getOrderState() {
+		return orderState;
+	}
+
+	public void setOrderState(String orderState) {
+		this.orderState = orderState;
 	}
 	
 }

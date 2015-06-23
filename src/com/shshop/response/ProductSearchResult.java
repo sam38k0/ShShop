@@ -7,8 +7,6 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
-import com.shshop.domain.Post;
-
 public class ProductSearchResult {
 	private static final int sortByDate = 1;
 	private static final int sortByHit = 2;

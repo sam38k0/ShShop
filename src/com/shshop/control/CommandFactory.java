@@ -7,6 +7,7 @@ import com.shshop.command.CheckLoginStateCommand;
 import com.shshop.command.Command;
 import com.shshop.command.CommentPostCommend;
 import com.shshop.command.DeleteOrderAddrCommand;
+import com.shshop.command.DeleteOrderItemCommand;
 import com.shshop.command.InsertProductCommand;
 import com.shshop.command.InsertProductViewCommand;
 import com.shshop.command.JoinCommand;
@@ -19,6 +20,7 @@ import com.shshop.command.SearchActionCommand;
 import com.shshop.command.SearchCategoryCommand;
 import com.shshop.command.SearchViewCommand;
 import com.shshop.command.ShoppingCartCommand;
+import com.shshop.command.ShoppingCartPageCommand;
 import com.shshop.command.ShowDetailViewCommand;
 import com.shshop.command.SimilarItemSearchCommand;
 import com.shshop.command.UserDataChangeCommand;
@@ -89,6 +91,12 @@ public class CommandFactory {
 			
 		case Constant.changeOrderItemCount:
 			return new ChangeOrderItemCountCommand();
+			
+		case Constant.deleteOrder:
+			return new DeleteOrderItemCommand();
+			
+		case Constant.setShoppingCartPage:
+			return new ShoppingCartPageCommand();
 
 		default:
 			return null;

@@ -46,7 +46,7 @@ function fnAjaxLoaderLayerHide(divAjaxLoaderId) {
 	setTimeout(function(){ 
 		$("#" + divAjaxLoaderId).empty();
 		$("#" + divAjaxLoaderId).css("display", "none");
-    }, 1500);  
+    }, 500);  
 }
 
 //문자열이 허용 Ascii Code 범위 인지 확인(숫자, 영문 대소문자, [ ], [.], [,], ['], ["], [-], [/]
@@ -111,8 +111,25 @@ function fnPopupLayerShowFixedPosition(milestoneName, layerName) {
 	var mHeight = parseInt($("#" + milestoneName).css("height").replace("px", ""));
 	var mWidth = parseInt($("#" + milestoneName).css("width").replace("px", ""));
 
-	var top = $("#" + milestoneName).offset().top + mHeight + 5;
+	var top = $("#" + milestoneName).offset().top + mHeight;
 	var left = $("#" + milestoneName).offset().left + ((mWidth / 2) | 0);
+
+	$("#" + layerName).css("position", "absolute");
+	$("#" + layerName).css("display", "");
+
+	var width = parseInt($("#" + layerName).css("width").replace("px", "")) / 2;
+	$("#" + layerName).offset({
+		top : top,
+		left : left - width
+	});
+}
+
+function fnPopupLayerShowFixedPosition2(milestoneName, layerName, offsetTop, offsetLeft) {
+	var mHeight = parseInt($("#" + milestoneName).css("height").replace("px", ""));
+	var mWidth = parseInt($("#" + milestoneName).css("width").replace("px", ""));
+
+	var top = $("#" + milestoneName).offset().top-offsetTop;
+	var left = $("#" + milestoneName).offset().left+offsetLeft;
 
 	$("#" + layerName).css("position", "absolute");
 	$("#" + layerName).css("display", "");

@@ -44,52 +44,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            	<c:forEach var="orderInfo" varStatus="orderInfos" items="${requestScope.orderViewInfo.orderInfos}">
-                                <tr>
-                                    <td class='cb'>
-                                        <input type='checkbox' class='chkbx' name='chkCartGoodsShShop' id='chkCartGoodsShShop<c:out value="${orderInfos.index}"/>'/>
-                                    </td>
-                                    <td class='goods_img'>
-                                        <a href='http://www.yes24.com/24/Goods/11686227' target='_new' class='pd_a'>
-                                            <img src="<c:out value="${adminBean.contextPath}"/><c:out value="${orderInfo.imagePath}"/>" alt='' class='pdimg'/>
-                                        </a>
-                                    </td>
-                                    <td class='le'>
-                                       <a href='#' class='pd_a'>${orderInfo.product.name}</a>
-                                        &nbsp;
-                                    </td>
-                                    <td>${orderInfo.product.price}원</td>
-                                    <td>
-                                        <input type='number' id='txtGoodsCnt<c:out value="${orderInfos.index}"/>' name='txtGoodsCnt' value="<c:out value="${orderInfo.quantity}"/>" class='ipubx num' maxlength='4' />
-                                        <br/>
-                                        <input type='hidden' name='hdnOriginalGoodsCnt' value='1' class='ipubx num' /><a href='#' id='hdnOriginalGoodsCnt<c:out value="${orderInfos.index}"/>' title='변경' class='bw chgnum'>변경</a>
-                                    </td>
-                                    <td><strong id='totalPricOfItem<c:out value="${orderInfos.index}"/>' value='${orderInfo.price}'>${orderInfo.price}원</strong>
-                                    </td>
-                                    <td>
-                                        <p class='dvmsg'>1일 이내 <br/>배송예정</p>
-                                    </td>
-                                    <td class='goods_order'>
-                                        <p class='ordbtnw'>
-                                        <a href='#' title='주문하기' class='bw ordpd'>주문하기</a>
-                                        <a href='#' title='삭제하기' class='bw pddel'>삭제하기</a>
-                                        </p>
-                                    </td>
-                                </tr>
-                                </c:forEach>
+                            <%-- 여기에 Product Data 삽입 --%>
                             </tbody>
+							
                             <tfoot>
-                                <tr>
-                                    <td colspan='9' class='tot'>일반카트 상품 총 금액 : 
-                                        <strong id='lblTotalAmountCart'>${requestScope.orderViewInfo.productsTotalPrice}원</strong>
-                                        <span class='dvi'> | </span>
-                                        ShShop포인트 총 적립액 : <strong id='lblTotalPointCartYes24'>1,220원</strong> 
-                                        <span id='spnTotalPointDetailCart'>(기본 : 1,220원)</span>
-                                    </td>
-                                </tr>
+                            <%-- 여기에 Table Footer Data 삽입--%>
                             </tfoot>
+
                         </table>
                     </div>
+                    <div class="graybox">
+						<p class="moveBtn">
+							<%-- 여기에 Button Control 추가 --%>
+						</p>
+					</div>
 					<div class="tot_price tot_price_pay">
 						<table class="tbl_p" cellspacing="0" cellpadding="0">
 							<colgroup>
@@ -119,7 +87,7 @@
 									<td id="txtTotalDelvFare"><em>${requestScope.orderViewInfo.shippingTotalPrice}</em>원</td>
 									<td class="clr1">
 										<em id="txtSaleAmount">0</em>원
-										<input type="hidden" id="hdnYes24Sale" value="0">
+										<input type="hidden" id="hdnSale" value="0">
 									</td>
 									<td class="clr2">
 										<em id="txtTotalAmount">${requestScope.orderViewInfo.totalPrice}</em>원
@@ -134,8 +102,8 @@
 					<!-- 상품확인 //-->
 
                     <div class='btn_area'>
-                        <a href='javascript:'><img id='btnOrderCart' src='http://image.yes24.com/sysimage/orderN/b_order.gif' alt='주문하기' /></a>
-                        <a href='http://www.yes24.com'><img src='http://image.yes24.com/sysimage/orderN/b_goshopping.gif' alt='쇼핑계속하기' /></a>
+                        <a href='#'><img id='btnOrderCart' src='${adminBean.contextPath}/content/image/b_order.gif' alt='주문하기' /></a>
+                        <a href='#'><img src='${adminBean.contextPath}/content/image/b_goshopping.gif' alt='쇼핑계속하기' /></a>
                     </div>
                 </div>
             </form>
