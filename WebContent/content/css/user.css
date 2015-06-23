@@ -1,322 +1,37 @@
 @charset "utf-8";
 
 /* ------------- MODAL STYLE -----------------*/
-.modal {
-    position: absolute;
-    width:100%; height:100%;
-    z-index: 1000;
-    background-color:rgba(0, 0, 46, .5);
-}
+.modal {position: fixed; width:100%; height:100%; z-index: 1000; background-color:rgba(0, 0, 46, 0.5);}
 
-.modal-close {
-    cursor: pointer;
-}
-
-#window {
-    background: #858585;
-    text-align: center;
-}
+.modal-close {cursor: pointer}
 
 /* ------------- Login Form STYLE -----------------*/
+#login-options form {width:630px; height:265px; margin: 0 auto; margin-top: 265px}
+#login-options .login_set{position:relative;width:100%;height:265px;background-color:#fff;overflow: hidden; padding:10px; box-sizing:border-box;border-radius:5px;border:2px solid #00aeff}
+#login-options .login_set .login_title{float:left;width:100%; height:70px;border-bottom:1px solid #61748c; margin-bottom:5px}
+#login-options .login_set h1{display:block;width:100%;font-size:25px;color:#61748c; margin-top:25px;font-weight:bold}
+#login-options .login_set .m_logo{position:absolute;top:25px;right:25px;width:200px; height:43px;}
+#login-options .login_set .m_logo img{width: 100%}
+.login_set .login_list{position:relative;width:100%}
+.login_set .login_list label{display:inline-block;width:100px;margin-left:50px;margin-top:25px;color:#b2b2b2; font-weight:bold}
+.login_set .login_list input[type="email"], input[type="password"], input[type="text"]{width: 250px}
+.login_set .login_list label.login_no_margin{margin-left:0;width:140px;}
+.login_set .login_list input[type="checkbox"]{margin-left:10px}
+.login_set .loginForm_btn{width:150px;margin:0 auto; margin-top:35px}
+.login_set .loginForm_btn #cancel{width:70px;height:30px;margin-right:5px;border:none;color:#fff;background-color:#c11e00;font-weight:bold;cursor: pointer;opacity:0.8;padding:0}
+.login_set .loginForm_btn #cancel:hover{opacity:1}
+.login_set .loginForm_btn #loginBtn{width:70px;height:30px;border:none;color:#fff;background-color:#600f00;font-weight:bold;cursor: pointer;opacity:0.8;padding:0}
+.login_set .loginForm_btn #loginBtn:hover{opacity:1}
 
-#login-options form {
-    max-width: 530px;
-    margin: 0 auto;
-    margin-top: 200px;
-}
-
-#login-options .one-third,
-#login-options .two-thirds {
-    background-color: #f8584a;
-    border: 12px solid #fff;
-    float: left;
-    padding: 10px;
-    margin: 10px;
-    color: #fff;
-    overflow: hidden;
-}
-
-#login-options .one-third {
-    width: 268px;
-}
-
-#login-options .two-thirds {
-    width: 530px;
-}
-
-#login-options .one-third fieldset {
-    border: none;
-    margin: 0.5em;
-}
-
-#login-options .two-thirds fieldset {
-    border: none;
-    margin: 2.5em;
-}
-
-#login-options .container .one-third,
-#login-options .container .two-thirds {
-    height: 35em;
-}
-
-#login-options .login .one-third,
-#login-options .login .two-thirds {
-    height: 20em;
-}
-
-#login-options legend {
-    font-size: 160%;
-    position: relative;
-    color: #fff;
-}
-
-#login-options .one-third legend {
-    top: -0.2em;
-    left: -0.6em;
-}
-
-#login-options .two-thirds legend {
-    top: -1em;
-    left: -1em;
-}
-
-#login-options label {
-    width: 100%;
-    display: block;
-}
-
-#login-options label[for="showPwd"] {
-    display: inline;
-}
-
-#login-options input {
-    border: none;
-    padding: 8px;
-    line-height: 1.2em;
-    margin-bottom: 1.4em;
-    font-size: 1.2em;
-}
-
-#login-options input[type="text"],
-#login-options input[type="email"],
-#login-options input[type="password"] {
-    width: 90%;
-}
-
-#login-options input[type="text"],
-#login-options input[type="email"],
-#login-options input[type="password"] {
-    box-shadow: inset 0 2px 2px #000;
-    border-radius: 5px;
-    outline: 0;
-}
-
-#login-options input[type="submit"],
-#login-options input[type="button"] {
-    background-color: #000;
-    border-radius: 5px;
-    color: #fff;
-    display: block;
-    float: right;
-    font-size: 1.2em;
-    margin-right: 1.4em;
-}
-
-#login-options input[type="submit"]:hover,
-#login-options input[type="button"]:hover {
-    background-color: #666;
-    cursor: pointer;
-    text-shadow: 2px 2px 2px #000;
-    box-shadow: inset 0 2px 2px #000;
-}
-
-
- /* ------------- Regiser User Form STYLE -----------------*/
- 
-#register_options .one-third,
-#register_container .two-thirds {
-    background-color: #f8584a;
-    border: 12px solid #fff;
-    float: left;
-    padding: 10px;
-    margin: 10px;
-    color: #fff;
-    overflow: hidden;
-}
-
-#register_options form {
-    max-width: 1000px;
-    margin: 0 auto;
-    margin-top:200px;
-}
-
-#register_options .one-third {
-    width: 268px;margin:0;
-}
-
-#register_options .two-thirds {
-    width: 530px;
-}
-
-#register_options .one-third fieldset {
-    border: none;
-    margin: 0.5em;
-}
-
-#register_options .two-thirds fieldset {
-    border: none;
-    margin: 2.5em;
-}
-
-#register_options .one-third,
-#register_options .two-thirds {
-    height: 40em;
-}
-
-#register_options #logo {
-    width: 220px;
-    height: 220px;
-    margin: 1em auto 2em auto;
-    display: block;
-}
-
-#register_options h2 {
-    font-weight: normal;
-    margin: 0;
-}
-
-#register_options p {
-    font-size: 0.8em;
-    line-height: 1.6em;
-    margin: 1em;
-}
-
-#register_options .welcome {
-    text-align: center;
-}
-
-#register_options p.intro {
-    margin: 2em;
-}
-/* FORM STYLES */
-
-#register_options legend {
-    font-size: 160%;
-    position: relative;
-    color: #fff;
-}
-
-#register_options .one-third legend {
-    top: -0.2em;
-    left: -0.6em;
-}
-
-#register_options .two-thirds legend {
-    top: -1em;
-    left: -1em;
-}
-
-#register_options label {
-    width: 100%;
-    display: block;
-}
-
-#register_options input {
-    border: none;
-    padding: 8px;
-    line-height: 1.2em;
-    margin-bottom: 1.4em;
-    font-size: 1.2em;
-}
-
-#register_options .register input[type="submit"] {
-    margin: 1em 0 0 0;
-}
-
-#register_options input[type="text"],
-#register_options input[type="email"],
-#register_options input[type="password"],
-#register_options input[type="date"],
-#register_options input[type="color"],
-#register_options input[type="number"] {
-    width: 90%;
-}
-
-#register_options input[type="text"],
-#register_options input[type="email"],
-#register_options input[type="number"],
-#register_options input[type="password"],
-#register_options input[type="date"],
-#register_options input[type="color"],
-#register_options #bio {
-    box-shadow: inset 0 2px 2px #000;
-    outline: 0;
-}
-
-#register_options input[type="submit"],
-#register_options input[type="button"] {
-    background-color: #000;
-    border-radius: 5px;
-    color: #fff;
-    display: block;
-    float: right;
-    font-size: 1.2em;
-    margin-right: 0.3em;
-}
-
-#register_options input[type="submit"]:hover,
-#register_options input[type="button"]:hover {
-    background-color: #666;
-    cursor: pointer;
-    text-shadow: 2px 2px 2px #000;
-    box-shadow: inset 0 2px 2px #000;
-}
-
-#register_options input[type="submit"] 
-#register_options input[type="button"] {
-    margin: 1em 0 0 0;
-}
-
-#register_options textarea {
-    width: 100%;
-    height: 5em;
-    clear: left;
-    border: none;
-}
-
-#register_options .req {
-    color: #000;
-    font-size: 0.6em;
-    position: relative;
-    top: -0.5em;
-}
-
-#register_options .hide {
-    display: none;
-}
-
-#register_options .fail,
-#register_options .pass {
-    background-repeat: no-repeat;
-    background-position: right center;
-}
-
-#register_options span.error {
-  padding-top: 1px;
-  margin-top: -1.4em;
-  margin-bottom: 1.4em;
-  display: block;
-  padding-left: 20px;
-  color: #242424;
-  background-image: url("../image/icon-warning.png");
-  background-position: left 3px;
-  background-repeat: no-repeat;
-  }
-
-.blind {
-	visibility: hidden;
-	position: absolute;
-	top: -10000px;
-	height: 1px;
-	width: 1px;
-}
+/* ------------- Regiser User Form STYLE -----------------*/
+#register_options{width:600px; margin:0 auto; margin-top:200px;}
+#register_options .join_set{position:relative;width:100%;height:600px;background-color:#fff;overflow: hidden; padding:10px; box-sizing:border-box;border-radius:5px;border:2px solid #00aeff}
+#register_options .join_title{float:left;width:100%; height:70px;border-bottom:1px solid #61748c; margin-bottom:5px}
+#register_options .join_title h1{display:block;width:100%;font-size:25px;color:#61748c; margin-top:25px;font-weight:bold}
+#register_options .join_title .m_logo{position:absolute;top:25px;right:25px;width:200px; height:43px;}
+#register_options .join_title .m_logo img{width: 100%}
+.join_set .join_list{position:relative;width:100%}
+.join_set .join_list label{display:inline-block;width:160px;height:50px;vertical-align:top;margin-left:50px;color:#b2b2b2; font-weight:bold}
+.join_set .join_list label span{position:absolute;left:50px; top:16px}
+.join_set .join_list input{width:250px;}
+.join_set .join_list textarea{width:250px;padding:5px;box-sizing:border-box}
