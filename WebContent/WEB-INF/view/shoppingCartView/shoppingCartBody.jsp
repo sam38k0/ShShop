@@ -6,9 +6,14 @@
 	<div id="divAjaxLoader" align="center" style="position: absolute;"></div>
     <div id="CartWrap">
         <div id="wrapperContent">   
- 			</br></br>
- 			
-            <!-- // 장바구니 -->
+ 			</br>
+			<div class="progbar">
+				<h1 class="cart">
+					<strong>카트</strong> &gt; 결제 &gt; 완료
+				</h1>
+			</div>
+
+			<!-- // 장바구니 -->
             <form name="frmCartList" method="post" action="" id="frmCartList" onkeydown="if (event.keyCode == 13) return false;">
                 <div id="divCart">
                     <div class='tbl_w cartTopItem'>

@@ -77,39 +77,6 @@ a.btnShop {
   padding: 0 0 0 7px;
 }
 
-div.viewTopArea div.leftArea a.btn_gray2 {
-  float: left;
-  width: 65px;
-  text-align: center;
-}
-
-a.btn_gray2 {
-  float: left;
-  padding-right: 10px;
-  line-height: 26px;
-  white-space: nowrap;
-  font-weight: bold;
-  color: #FFF;
-  vertical-align: middle;
-     font-weight: bold;
-    background: rgb(59,103,158); /* Old browsers */
-	background: -moz-linear-gradient(top, rgba(59,103,158,1) 0%, rgba(43,136,217,1) 50%, rgba(32,124,202,1) 51%, rgba(125,185,232,1) 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(59,103,158,1)), color-stop(50%,rgba(43,136,217,1)), color-stop(51%,rgba(32,124,202,1)), color-stop(100%,rgba(125,185,232,1))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, rgba(59,103,158,1) 0%,rgba(43,136,217,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, rgba(59,103,158,1) 0%,rgba(43,136,217,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top, rgba(59,103,158,1) 0%,rgba(43,136,217,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%); /* IE10+ */
-	background: linear-gradient(to bottom, rgba(59,103,158,1) 0%,rgba(43,136,217,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b679e', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
-
-}
-
-a.btn_gray2 span {
-  display: block;
-  padding: 0 0 0 10px;
-  background: url(../image/btn_pack.gif) no-repeat 0 -261px;
-}
-
-
 .price {
   color: #f46200!important;
 }
@@ -322,8 +289,8 @@ div.detailArea div.functionBtn ul li a {
 
 div.detailArea div.detailInfo {
   width: 425px;
-  min-height: 170px;
-  _height: 170px;
+  min-height: 200px;
+  height: 200px;
   overflow: hidden;
   margin: 0 0 10px 0;
 }
@@ -435,22 +402,6 @@ div.detailArea div.userBox div.userList ul.userArticle li {
   font-size: 13px;
   color: #666;
   letter-spacing: -1px;
-}
-
-div.openBox {
-  clear: both;
-  position: relative;
-  width: 428px;
-  border: solid 1px #D9D9D9;
-  margin: 10px 0;
-}
-
-div.openBox div.phone {
-  font-size: 13px;
-  font-weight: bold;
-  color: #333;
-  padding: 7px 10px 7px 20px;
-  line-height: 18px;
 }
 
 div.detailCnt {
@@ -641,7 +592,6 @@ div.graybox div.itembox li {
 	margin: 4px;
 }
 
- 
 div.graybox div.itembox li p {
 	float: left;
 	background: url(../image/bg_itembox.gif) no-repeat;
@@ -892,7 +842,5 @@ div.detailCnt div.detailCntR div.tipBoxWrap div.tipBox div.tipCnt ul li {
 div.detailCnt div.detailCntR div.tipBoxWrap div.tipB {
   height: 10px;
   background: url(../image/box_tip2.gif) bottom no-repeat;
-}
-
-
+} 
 

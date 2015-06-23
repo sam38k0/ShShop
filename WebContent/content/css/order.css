@@ -590,4 +590,8 @@ p.moveBtn span strong {color: #333;}
 a.movepreB {float: left;background-position: -78px 0;width: 22px;height: 22px;}
 a.movenextB {float: left;background-position: -103px 0;width: 22px;height: 22px;}
 
+/* ProgBar - 장바구니*/
+.progbar {position: relative;text-align: left;}
+.progbar {margin: 16px 0 36px 0;width: 960px;float: left;}
+.progbar h1 {float: left;width: 300px;height: 42px;text-indent: -9999em;background: url('../image/progress.gif') 0 0 no-repeat;}
  

@@ -7,7 +7,11 @@
 <div id="yesWrap">
 	<div id="divAjaxLoader" align="center" style="position: absolute;"></div>
     <div id="wrapperContent">
-        <div id="divGoodsOrderDetail" style="">
+    	<br>
+		<div class="progbar">
+		    <h1 class="pay">카트 &gt; <strong>결제</strong> &gt; 완료</h1>
+		</div>
+		<div id="divGoodsOrderDetail" style="">
                 <!--// 상품확인 -->
                 <div id="divGoods">
                 	</br></br>

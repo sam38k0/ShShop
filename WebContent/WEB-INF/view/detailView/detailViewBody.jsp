@@ -93,6 +93,12 @@
 											</c:otherwise>
 										</c:choose>
 									</dl>
+									<dl>
+										<dt>주문수량</dt>
+										<dd>
+											<input name="ORD_GOODS_CNT" type="number" class="ordNum" value="1">
+										</dd>
+									</dl>
 								</div>
 							</div>
 							<div class="userBox">
@@ -117,50 +123,44 @@
 									<ul class="userArticle">
 										<li>판매자 다른 아이템 <a href="#" id="item_view_ticnt_button">${productDetail.productOwnerItemCount}</a>건
 										</li>
-										<li>판매자 과거 거래한 아이템 <a href="#" id="item_view_dicnt_button">3</a>건
+										<li>
+										<c:choose>
+											<c:when test="${productDetail.productOwner.phone == '' || productDetail.productOwner.phone == null }">
+									       	휴대폰 번호 : 없음
+									    	</c:when>
+											<c:otherwise>
+									               휴대폰 번호 :  ${productDetail.productOwner.phone}
+									    	</c:otherwise>
+										</c:choose>
 										</li>
-										<li>판매자가 남긴 모든 글 <a href="#" id="item_view_tdcnt_button">0</a>건
+										<li>
+										<c:choose>
+											<c:when test="${productDetail.productOwner.ktalkId == '' || productDetail.productOwner.ktalkId == null }">
+									       	카카오톡 ID : 없음
+									    	</c:when>
+											<c:otherwise>
+									      	  카카오톡 ID : ${productDetail.productOwner.ktalkId}
+									    	</c:otherwise>
+										</c:choose>
+										</li>
+										<li>
+										<c:choose>
+											<c:when test="${productDetail.productOwner.email == '' || productDetail.productOwner.email == null }">
+									       	이메일 : 없음
+									    	</c:when>
+												<c:otherwise>
+									      	이메일 :  ${productDetail.productOwner.email}
+									    	</c:otherwise>
+											</c:choose>
 										</li>
 									</ul>
 								</div>
 							</div>
-							<!-- //userBox -->
-
-							<div id="item_view_phone_layer" class="openBox hide" style="display: block;">
-								<div class="phone">
-									<c:choose>
-									    <c:when test="${productDetail.productOwner.phone == '' || productDetail.productOwner.phone == null }">
-									       	휴대폰 번호 : 없음
-									    </c:when> 
-									    <c:otherwise>
-									               휴대폰 번호 :  ${productDetail.productOwner.phone}
-									    </c:otherwise>
-									</c:choose> 
-									<br>
-									<c:choose>
-									    <c:when test="${productDetail.productOwner.ktalkId == '' || productDetail.productOwner.ktalkId == null }">
-									       	카카오톡 ID : 없음
-									    </c:when> 
-									    <c:otherwise>
-									      	  카카오톡 ID : ${productDetail.productOwner.ktalkId}
-									    </c:otherwise>
-									</c:choose>
-									<br>
-									<c:choose>
-									    <c:when test="${productDetail.productOwner.email == '' || productDetail.productOwner.email == null }">
-									       	이메일 : 없음
-									    </c:when> 
-									    <c:otherwise>
-									      	이메일 :  ${productDetail.productOwner.email}
-									    </c:otherwise>
-									</c:choose>
-								</div>
-							</div>
-
+							<!-- //userBox --> 
 							<div class="functionBtn">
 								<ul>
-									<li><img title="카트에 넣기" alt="카트에 넣기" id="cart_btn" src="${adminBean.contextPath}/content/image/b_addtoCart.gif" style="cursor:pointer;margin: 2px"></li>
-									<li><img title="바로 구매하기" alt="바로 구매하기" src="${adminBean.contextPath}/content/image/b_buy.gif" style="cursor:pointer;margin: 2px;"></li>
+									<li><img title="카트에 넣기" alt="카트에 넣기" id="cart_btn" src="${adminBean.contextPath}/content/image/b_addtoCart.gif" style="cursor:pointer;margin: 10px;width:100px;height:60px;"></li>
+									<li><img title="바로 구매하기" alt="바로 구매하기" src="${adminBean.contextPath}/content/image/b_buy.gif" style="cursor:pointer;margin: 10px;width:100px;height:60px;"></li>
 								</ul> 
 							</div>
 						</div>
