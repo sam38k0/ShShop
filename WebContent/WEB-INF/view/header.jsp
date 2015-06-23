@@ -93,24 +93,25 @@
 		
 	<!-- 헤더 종료 -->
 </div>
-
+ 
 <!--- 로그인--->
 <div class="blind">
-<div class="m_login">
 	<div id="login-options">
 		<form id="loginForm" name="loginForm">
-			<div class="two-thirds column" id="main">
-				<fieldset>
-					<legend>Login</legend>
+			<div class="login_set column" id="main">
+				<div class="login_title"><h1>Login</h1><div class="m_logo"><img src="${adminBean.contextPath}/content/image/default/header_logo.png"></div></div>
+				<div class="login_list">
 					<label for="email">Email:</label> 
-					<input type="email" id="email" name="email" placeholder="you@yourdomain.com" required /> 
+					<input type="email" id="email" name="email" placeholder="you@yourdomain.com" required />
+				</div>
+				<div class="login_list">
 					<label for="pwd">Password:</label>
-					<input type="password" id="pwd" name="pwd" value="" required /> <br /> 
-					<input type="checkbox" id="showPwd"> <label for="showPwd">show password</label> 
-					<input id="cancel" type="button" value="Back" /> 
-					<input type='button' id='loginBtn' value="Login" /> 
-					<div id="message"></div>
-				</fieldset>
+					<input type="password" id="pwd" name="pwd" value="" required />
+					<input type="checkbox" id="showPwd"> <label for="showPwd" class="login_no_margin">show password</label> 
+				</div>
+				<div class="loginForm_btn">
+				<input id="cancel" type="button" value="Back" /><input type='button' id='loginBtn' value="Login" /></div>
+				<div id="message"></div>
 			</div>
 		</form>
 
@@ -122,51 +123,46 @@
 <div id="m_join">
 	<div id="register_options">
 		<form id="registerForm" name="register">
-			<div class="one-third column">
+			<%-- <div class="one-third column">
 				<img src="${adminBean.contextPath}/content/image/registerUser.png" alt="logo" id="logo" />
 				<h2 class="welcome">Become a Member</h2>
 				<p class="intro">ShShop 에 오신것을 환영합니다. ShShop 에서 다양한 중고 아이템들을 만나보세요. 다양한 중고 상품과 실시간으로 크고 작은 이벤트, 해택 및 안전한 거래를 하실 수 있습니다.</p>
-			</div>
-			<div class="one-third column">
-				<h2>Settings</h2>
-				<br />
-				<div class="name">
+			</div> --%>
+			<div class="join_set">
+				<div class="join_title"><h1>Login</h1><div class="m_logo"><img src="${adminBean.contextPath}/content/image/default/header_logo.png"></div></div>
+				<div class="name join_list">
 					<label for="name">Name:</label> 
 					<input type="text" placeholder="Enter your name" name="name" id="name-reg">
 				</div>
-				<div class="email">
+				<div class="email join_list">
 					<label for="email" class="required">Email:</label> 
 					<input type="email" placeholder="you@example.com" name="email" id="email-reg" required>
 				</div>
-				<div class="password">
-					<label for="password" class="required">Password: (min 8 characters)</label> 
+				<div class="password join_list">
+					<label for="password" class="required">Password:<span>(min 8 characters)</span></label> 
 					<input type="password" name="password" id="password-reg" required>
 				</div>
-				<div class="password">
+				<div class="password join_list">
 					<label for="conf-password" class="required">Confirm password:</label> 
 					<input type="password" name="conf-password" id="conf-password-reg" required>
 				</div>
-				<div class="ktalk">
+				<div class="ktalk join_list">
 					<label for="ktalk">Kakao Talk ID:</label> 
 					<input type="text" placeholder="Enter your Ktalk ID" name="ktalk" id="ktalk-reg">
 				</div>
-				<div class="phone">
+				<div class="phone join_list">
 					<label for="phone">Phone Number:</label> 
 					<input type="number" placeholder="Enter your Phone Num" name="phone" id="phone-reg">
 				</div>
-			</div>
-			<div class="one-third column">
-				<h2>Profile</h2>
-				<br />
-				<div class="birthday">
+				<div class="birthday join_list">
 					<label for="birthday">Birthday:</label> 
 					<input type="date" name="birthday" id="birthday-reg" placeholder="yyyy-mm-dd">
 				</div>
-				<div class="bio">
-					<label for="bio">Short Bio (max 140 characters):</label>
+				<div class="bio join_list">
+					<label for="bio">Short Bio:<span>(max 140 characters)</span></label>
 					<textarea name="bio" id="bio-reg" rows="5" cols="30"></textarea>
 				</div>
-				<div class="register">
+				<div class="register join_btn">
 					<input type="submit" value="Register"><br /> 
 					<input id="cancelReg" type="button" value="Back" />
 				</div>
@@ -174,7 +170,6 @@
 			</div>
 		</form>
 	</div>
-</div>
 </div>
 
 <!--- 비밀번호찾기 
