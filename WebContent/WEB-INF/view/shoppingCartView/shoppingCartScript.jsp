@@ -200,43 +200,50 @@
 			}
 		});
 	}
+	
+	function fnChangeItemCheckBox() {
+    	var uncheckedIndex = ''; 
+		$('input:checkbox[name="chkCartGoodsShShop"]').each(function(index) {
+			var id = $(this).attr('id');
+			var indx = id.replace('chkCartGoodsShShop', ''); 
+			
+			if ($(this).is(':checked') == false) { 
+				uncheckedIndex += indx + ',';
+			}
+		});
+		
+		$.ajax({
+			type : 'POST',
+			url : 'changeOrderItemChecked',
+			data : {
+				'orderKey' : '${requestScope.orderKey}',
+				'uncheckedIndx' : uncheckedIndex
+			},
+			success : fnPageSet,
+			error : function(ajaxContext) {
+				alert("해당 아이템의 업데이트에 실패하였습니다.");
+				fnAjaxLoaderLayerHide("divAjaxLoader");
+				fnRegisterEvent();
+			}
+		});
+	}
  
 	function fnRegisterEvent() {
 	    $('#chkCartHeader').change(function() {
-	    	
 	    	fnCheckedChangeChildCart();
 	    	
 			fnAjaxLoaderLayerShow("divAjaxLoader", true, false, window.event); 
 			fnPopupLayerShowFixedPosition2('chkCartHeader',"divAjaxLoader",50,30);	
 			
-	    	var uncheckedIndex = ''; 
-			$('input:checkbox[name="chkCartGoodsShShop"]').each(function(index) {
-				var id = $(this).attr('id');
-				var indx = id.replace('chkCartGoodsShShop', ''); 
-				
-				if ($(this).is(':checked') == false) { 
-					uncheckedIndex += indx + ',';
-				}
-			});
-			
-			$.ajax({
-				type : 'POST',
-				url : 'changeOrderItemChecked',
-				data : {
-					'orderKey' : '${requestScope.orderKey}',
-					'uncheckedIndx' : uncheckedIndex
-				},
-				success : fnPageSet,
-				error : function(ajaxContext) {
-					alert("변경된 수량으로 업데이트 하지 못했습니다.");
-					fnAjaxLoaderLayerHide("divAjaxLoader");
-					fnRegisterEvent();
-				}
-			});
+			fnChangeItemCheckBox();
 	    });
 	    
 	    $('input:checkbox[name="chkCartGoodsShShop"]').change(function() {
-	    	//fnResetCartSummary();
+	    	var id = $(this).attr('id');
+			fnAjaxLoaderLayerShow("divAjaxLoader", true, false, window.event); 
+			fnPopupLayerShowFixedPosition2(id,"divAjaxLoader",50,30);	
+			
+			fnChangeItemCheckBox();
 	    }); 
 	    
 	    $('.chgnum').unbind('click').bind('click', function (e) {
