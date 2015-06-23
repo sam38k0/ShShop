@@ -10,6 +10,8 @@ public class ProductDetail implements Serializable {
 	private Product product = null;
 	private User productOwner = null;
 	private String postResults = "";
+	private int productOwnerItemCount = 0;
+	private String productOwnerBasicAddress = "";
 
 	private List<String> imagePaths = new ArrayList<>();
 
@@ -51,6 +53,22 @@ public class ProductDetail implements Serializable {
 
 	public void setPostResults(String postResults) {
 		this.postResults = postResults;
+	}
+
+	public int getProductOwnerItemCount() {
+		return productOwnerItemCount;
+	}
+
+	public void setProductOwnerItemCount(int productOwnerOrderCount) {
+		this.productOwnerItemCount = productOwnerOrderCount;
+	}
+
+	public String getProductOwnerBasicAddress() {
+		return productOwnerBasicAddress;
+	}
+
+	public void setProductOwnerBasicAddress(String basicAddress, String detailAddress) {
+		this.productOwnerBasicAddress = basicAddress + " " + detailAddress;
 	}
 
 }

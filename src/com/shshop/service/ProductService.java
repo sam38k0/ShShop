@@ -27,6 +27,7 @@ import com.shshop.domain.User;
 import com.shshop.helper.KeywordGuesser;
 import com.shshop.helper.PostHtmlBuilder;
 import com.shshop.helper.TimestampFileRenamePolicy;
+import com.shshop.mapper.AddressMapper;
 import com.shshop.mapper.CategoryMapper;
 import com.shshop.mapper.OrderMapper;
 import com.shshop.mapper.OrderStateMapper;
@@ -109,6 +110,14 @@ public class ProductService {
 				System.out.println(postResults);
 				productInfo.setPostResults(postResults);
 			}
+			
+			List<Product> products = userMapper.getAllProducts(user.getUserId());
+			if(products != null)
+				productInfo.setProductOwnerItemCount(products.size());
+			
+			List<Address> addresses = userMapper.getUserAddress(user.getUserId());
+			if(addresses != null)
+				productInfo.setProductOwnerBasicAddress(addresses.get(0).getBasicAdd(), addresses.get(0).getDetailAdd());
 
 			return productInfo;
 

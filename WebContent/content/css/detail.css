@@ -86,12 +86,21 @@ div.viewTopArea div.leftArea a.btn_gray2 {
 a.btn_gray2 {
   float: left;
   padding-right: 10px;
-  background: url(../image/btn_pack.gif) no-repeat 100% -261px;
   line-height: 26px;
   white-space: nowrap;
   font-weight: bold;
   color: #FFF;
   vertical-align: middle;
+     font-weight: bold;
+    background: rgb(59,103,158); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(59,103,158,1) 0%, rgba(43,136,217,1) 50%, rgba(32,124,202,1) 51%, rgba(125,185,232,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(59,103,158,1)), color-stop(50%,rgba(43,136,217,1)), color-stop(51%,rgba(32,124,202,1)), color-stop(100%,rgba(125,185,232,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(59,103,158,1) 0%,rgba(43,136,217,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(59,103,158,1) 0%,rgba(43,136,217,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(59,103,158,1) 0%,rgba(43,136,217,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(59,103,158,1) 0%,rgba(43,136,217,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b679e', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
+
 }
 
 a.btn_gray2 span {
@@ -313,8 +322,8 @@ div.detailArea div.functionBtn ul li a {
 
 div.detailArea div.detailInfo {
   width: 425px;
-  min-height: 223px;
-  _height: 223px;
+  min-height: 170px;
+  _height: 170px;
   overflow: hidden;
   margin: 0 0 10px 0;
 }
@@ -376,25 +385,17 @@ div.detailArea div.userBox {
 
 div.detailArea div.userBox div.userInfo {
   overflow: hidden;
-  padding: 0 0 7px 0;
 }
 
 div.detailArea div.userBox div.userInfo div.userName {
   float: left;
   width: 280px;
-  padding: 4px 0 0 0;
 }
 
 div.detailArea div.userBox div.userInfo div.userName p.name {
   float: left;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: bold;
-  margin: 1px 10px 0 0;
-}
-
-ul.userLevel {
-  display: inline;
-  margin: 7px 0 0 0;
 }
 
 div.detailArea div.userBox div.userList {
@@ -406,7 +407,7 @@ div.detailArea div.userBox div.userList div.snsNo {
   margin: 6px 0 0 0;
 }
 
-div.detailArea div.userBox div.userList div.snsNo p img {
+div.detailArea div.userBox div.userList div.snsNo img {
   width: 70px!important;
   height: 70px!important;
   border: solid 1px #666;
@@ -442,23 +443,6 @@ div.openBox {
   width: 428px;
   border: solid 1px #D9D9D9;
   margin: 10px 0;
-}
-
-a.cnt_close {
-  text-indent: -1000em;
-  overflow: hidden;
-  display: inline-block;
-  background: url('../image/all_png.png') 0 -281px no-repeat;
-  width: 14px;
-  height: 14px;
-}
-
-
-div.openBox a.cnt_close {
-  position: absolute;
-  top: 7px;
-  right: 7px;
-  z-index: 1;
 }
 
 div.openBox div.phone {
@@ -519,7 +503,7 @@ div.openBox {
   clear: both;
   position: relative;
   width: 428px;
-  border: solid 1px #eb940a;
+  border: solid 1px #cbcbcb;
   margin: 10px 0;
 }
 
@@ -570,13 +554,20 @@ div.cmtWrite textarea {
 }
 
 .accordion-control {
-    background-color: #666;
     color: #fff;
     display: block;
     width: 100%;
     height: 30px;
+    font-weight: bold;
+    background: rgb(59,103,158); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(59,103,158,1) 0%, rgba(43,136,217,1) 50%, rgba(32,124,202,1) 51%, rgba(125,185,232,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(59,103,158,1)), color-stop(50%,rgba(43,136,217,1)), color-stop(51%,rgba(32,124,202,1)), color-stop(100%,rgba(125,185,232,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(59,103,158,1) 0%,rgba(43,136,217,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(59,103,158,1) 0%,rgba(43,136,217,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(59,103,158,1) 0%,rgba(43,136,217,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(59,103,158,1) 0%,rgba(43,136,217,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b679e', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
 }
-
 .accordion-panel {
     min-height: 300px;
     margin: 5px;

@@ -19,7 +19,7 @@ function pagePrev(event) {
 		type : "POST",
 		url : "similarItemAction",
 		data : {
-			"productId" : '${sessionScope.productDetail.product.productId}',
+			"productId" : '${productDetail.product.productId}',
 			"data-page" : currentPage
 		},
 		success : pageSet,
@@ -39,7 +39,7 @@ function pageNext(event) {
 		type : "POST",
 		url : "similarItemAction",
 		data : {
-			"productId" : '${sessionScope.productDetail.product.productId}',
+			"productId" : '${productDetail.product.productId}',
 			"data-page" : currentPage
 		},
 		success : pageSet,
@@ -61,7 +61,7 @@ function textAreaEnter(e) {
  			type : "POST",
  			url : "commentPostAction",
  			data : {
- 				"productId" : '${sessionScope.productDetail.product.productId}',
+ 				"productId" : '${productDetail.product.productId}',
  				"comment" : text
  			},
  			success : commentSet,
@@ -86,7 +86,7 @@ function textAreaChildEnter(e) {
  			type : "POST",
  			url : "commentPostAction",
  			data : {
- 				"productId" : '${sessionScope.productDetail.product.productId}',
+ 				"productId" : '${productDetail.product.productId}',
  				"comment" : text,
  				"parentId" : parentId
  			},
@@ -190,7 +190,7 @@ $(document).ready(function() {
 		type : "POST",
 		url : "similarItemAction",
 		data : {
-			"productId" : '${sessionScope.productDetail.product.productId}',
+			"productId" : '${productDetail.product.productId}',
 			"data-page" : "1"
 		},
 		success : pageSet,

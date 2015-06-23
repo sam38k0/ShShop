@@ -19,10 +19,8 @@ public class ShowDetailViewCommand implements Command {
 		if (productDetail == null)
 			return null;
 
-		HttpSession session = request.getSession();
-
-		synchronized (session) {
-			session.setAttribute(Constant.attrProductDetail, productDetail);
+		synchronized (request) {
+			request.setAttribute(Constant.attrProductDetail, productDetail);
 		}
 
 		CommandResult commandResult = new CommandResult("/WEB-INF/view/detailView/detailView.jsp");
