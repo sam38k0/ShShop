@@ -8,9 +8,6 @@
 <div class="headwrap">
 	<!-- 테스트용 > 개발 끝나고 지워야 함 -->
 	<div id="test">
-		<form id="showDetailViewForm" name="showDetailViewForm" method="post" action="showDetailView" style="position: absolute; z-index: 99999; left: 10px; top: 10px;">
-			<input type="submit" value="TestDetailView">
-		</form>
 		<form id="showOrderViewForm" name="showOrderViewForm" method="post" action="showOrderView" style="position: absolute; z-index: 99999; left: 10px; top: 40px;">
 			<input type="submit" value="TestOrderView">
 		</form>
