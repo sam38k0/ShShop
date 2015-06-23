@@ -13,24 +13,12 @@ public class ProductSearchResultParam {
 	private String location = "";
 	private String userLevel = "";
 	private int hitCount = 0;
+	private int productId = 0;
 
 	public ProductSearchResultParam() {
 
 	}
 	
-	public ProductSearchResultParam(String userName, String productName, int price, String dataCreated, boolean safeOrder,
-							 String imageUrl, String location, String userLevel, int hitCount){
-		this.userName = userName;
-		this.productName = productName;
-		this.price = price;
-		this.dataCreated = dataCreated;
-		this.safeOrder = safeOrder;
-		this.imageUrl = imageUrl;
-		this.location = location;
-		this.userLevel = userLevel;
-		this.hitCount = hitCount;
-	}
-
 	public ProductSearchResultParam(User user, Product product, String imageUrl) {
 		this.setUserName(user.getName());
 		this.setProductName(product.getName());
@@ -38,6 +26,7 @@ public class ProductSearchResultParam {
 		this.setDataCreated(product.getDateCreated().toString());
 		this.setImageUrl(imageUrl);
 		this.setHitCount(product.getSearchingCount());
+		this.setProductId(product.getProductId());
 	}
 
 	public String getUserName() {
@@ -110,5 +99,13 @@ public class ProductSearchResultParam {
 	
 	public void setHitCount(int hitCount) {
 		this.hitCount = hitCount;
+	}
+
+	public int getProductId() {
+		return productId;
+	}
+
+	public void setProductId(int productId) {
+		this.productId = productId;
 	}
 }

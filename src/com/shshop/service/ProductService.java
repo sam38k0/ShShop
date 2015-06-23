@@ -74,8 +74,19 @@ public class ProductService {
 		return new CommandResult("/WEB-INF/view/mainView/main.jsp");
 	}
 
-	public ProductDetail getProductInformation(Integer productId, HttpServletRequest request) {
+	public ProductDetail getProductDetail(HttpServletRequest request) {
 
+		String strProductId = request.getParameter("productId");
+		if(strProductId == null || strProductId == "")
+			return null;
+		
+		int productId = 0;
+		try {
+			productId = Integer.parseInt(strProductId);
+		} catch (NumberFormatException e) {
+			return null;
+		}
+		
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 
 		try {

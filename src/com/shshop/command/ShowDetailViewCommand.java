@@ -2,7 +2,6 @@ package com.shshop.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.shshop.constant.Constant;
 import com.shshop.control.CommandResult;
@@ -15,7 +14,7 @@ public class ShowDetailViewCommand implements Command {
 	public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
 
 		ProductService service = new ProductService();
-		ProductDetail productDetail = service.getProductInformation(1, request);
+		ProductDetail productDetail = service.getProductDetail(request);
 		if (productDetail == null)
 			return null;
 
