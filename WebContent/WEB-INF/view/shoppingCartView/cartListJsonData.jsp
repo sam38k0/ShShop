@@ -8,6 +8,9 @@
 	<json:property name="pageDivNum" value="${orderViewInfo.pageDivider.pageDivNum}" />
 	<json:property name="productsTotalPrice" value="${orderViewInfo.productsTotalPrice}" />
 	<json:property name="totalPrice" value="${orderViewInfo.totalPrice}" />
+	<json:property name="totalDescription" value="${orderViewInfo.totalDescription}" />
+	<json:property name="productsTotalPrice" value="${orderViewInfo.productsTotalPrice}" />
+	<json:property name="shippingTotalPrice" value="${orderViewInfo.shippingTotalPrice}" />
 	
 	<json:array name="currentPageInfos" var="item" items="${currentPageResults}">
 		<json:object>
@@ -18,6 +21,7 @@
  			<json:property name="shippingPrice" value="${item.shippingPrice}" />
  			<json:property name="quantity" value="${item.quantity}" />
  			<json:property name="orderPrice" value="${item.price}" />
+ 			<json:property name="isUnChecked" value="${item.unchecked}" />
 		</json:object>
 	</json:array>
 </json:object>

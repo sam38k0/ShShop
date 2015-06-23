@@ -21,7 +21,7 @@
 		
 		//Table
 		$.each(response.currentPageInfos, function(i, item) {
- 			
+
 			trHTML +=  
             '<tr id=\"orderItemList\"' + i +'>' +
             '<td class=\"cb\">' +
@@ -59,6 +59,17 @@
 		$('.cartTopItem tbody').empty();
 		$('.cartTopItem tbody').append(trHTML);
 		
+		//Set CheckBox
+		var hasUnchecked = false;
+		$.each(response.currentPageInfos, function(i, item) { 
+			if(item.isUnChecked) {
+				$('#chkCartGoodsShShop' + i).prop('checked',false);
+				hasUnchecked = true;
+			} else {
+				$('#chkCartGoodsShShop' + i).prop('checked',true);
+			}
+		});
+		
 		trHTML =   
         '<tr>' + 
         '    <td colspan=\"9\" class=\"tot\">일반카트 상품 총 금액 : ' + 
@@ -87,9 +98,39 @@
 	 
 		$('.moveBtn').empty();
 		$('.moveBtn').append(btnHtml);
+		
+		//Summery
+		var totalDescription = response.totalDescription;
+		var productsTotalPrice = response.productsTotalPrice;
+		var shippingTotalPrice = response.shippingTotalPrice;
+		
+		var trSummery = '';
+		trSummery +=
+		'<td id=\"totalDesciption\"><em>' + totalDescription + '</em></td>' +
+		'<td id=\"totalItemsPrice\"><em>' + productsTotalPrice + '</em>원</td>' +
+		'<td id=\"txtTotalDelvFare\"><em>' + shippingTotalPrice + '</em>원</td>' +
+		'<td class=\"clr1\">' +
+		'	<em id=\"txtSaleAmount\">0</em>원' +
+		'	<input type=\"hidden\" id=\"hdnSale\" value=\"0\">' +
+		'</td>' +
+		'<td class=\"clr2\">' +
+		'	<em id=\"txtTotalAmount\">' + totalPrice +'</em>원' +
+		'	<span id=\"spnGiftPackGbMemo2\" class=\"wfee\" display=\"none\" style=\"display: none;\">' +
+		'		(선물포장비 <strong class=\"ls0\">1,000원</strong> 포함)' +
+		'	</span>' +
+		'</td>';
+		
+		$('#summeryTotal').empty();
+		$('#summeryTotal').append(trSummery); 
 	 
 		//Event Reset
-		fnPageInitialize();
+		fnAjaxLoaderLayerHide("divAjaxLoader");
+		
+		if(!hasUnchecked)
+			$("#chkCartHeader").prop('checked', true);
+		else
+			$("#chkCartHeader").prop('checked', false);
+		
 		fnRegisterEvent();
 	}
 
@@ -158,76 +199,44 @@
 				$(this).prop('checked', checked);
 			}
 		});
-		
-		fnResetCartSummary();
-	}
-
-	//카트의 상품 정보 변경에 따른 뷰 변경
-	function fnResetCartSummary() {
-		var totalPriceOfItems = 0;
-		var totalQuantity = 0;
-		var totalItems = 0;
-		var deliveryFee = 0;
-		
-		$('input:checkbox[name="chkCartGoodsShShop"]').each(function(index) {
-			if ($(this).is(':checked')) { 
-				var checkedId = $(this).attr('id');
-				var indx = checkedId.replace('chkCartGoodsShShop', '');
-				var idTotalPriceOfItem = '#totalPricOfItem' + indx;
-				var idTotalQuantity = '#txtGoodsCnt' +indx;
-				totalPriceOfItems += parseInt($(idTotalPriceOfItem).attr('value'));
-				totalQuantity +=  parseInt($(idTotalQuantity).attr('value'));
-				totalItems += 1;
-			}
-		});
-		
-		var strDeliveryFee = fnReplaceAll($('#txtTotalDelvFare em').text(),',','');
- 
-		deliveryFee = parseInt(strDeliveryFee);
-		
-		totalAmount = deliveryFee + totalPriceOfItems;
-		
-		totalDescription = "" + totalItems + " 종(" + totalQuantity + ")개";
-		
-		$('#lblTotalAmountCart').text("" + totalPriceOfItems + "원");
-		$('#totalItemsPrice').html("<em>" + totalPriceOfItems + "</em>원");
-		$('#txtTotalAmount').text("" + totalAmount );
-		$('#totalDesciption').html("<em>" + totalDescription + "</em>");
 	}
  
-	// 아이템의 수량 변경에 대한 리턴
-	function fnAjaxChangeShippingItemCount(text) {
-		fnAjaxLoaderLayerHide("divAjaxLoader");
-		
-		response = text;
-		response = $.parseJSON(response);
-		
-		var orderIndex = response.orderIndex;
-		var totalPrice = response.totalPrice;
-		
-		$('#totalPricOfItem' + orderIndex).text(totalPrice + '원');
-		$('#totalPricOfItem' + orderIndex).attr('value', totalPrice);
-		
-		fnResetCartSummary();
-		fnRegisterEvent();
-	}
-	
-	// 아이템 삭제에 대한 리턴
-	function fnAjaxDeleteShippingItem(text) {
-		fnAjaxLoaderLayerHide("divAjaxLoader");
-		fnPageSet(text);
-		fnResetCartSummary();
-		fnRegisterEvent();
-	}
-	
 	function fnRegisterEvent() {
 	    $('#chkCartHeader').change(function() {
+	    	
 	    	fnCheckedChangeChildCart();
-	    	fnResetCartSummary();
+	    	
+			fnAjaxLoaderLayerShow("divAjaxLoader", true, false, window.event); 
+			fnPopupLayerShowFixedPosition2('chkCartHeader',"divAjaxLoader",50,30);	
+			
+	    	var uncheckedIndex = ''; 
+			$('input:checkbox[name="chkCartGoodsShShop"]').each(function(index) {
+				var id = $(this).attr('id');
+				var indx = id.replace('chkCartGoodsShShop', ''); 
+				
+				if ($(this).is(':checked') == false) { 
+					uncheckedIndex += indx + ',';
+				}
+			});
+			
+			$.ajax({
+				type : 'POST',
+				url : 'changeOrderItemChecked',
+				data : {
+					'orderKey' : '${requestScope.orderKey}',
+					'uncheckedIndx' : uncheckedIndex
+				},
+				success : fnPageSet,
+				error : function(ajaxContext) {
+					alert("변경된 수량으로 업데이트 하지 못했습니다.");
+					fnAjaxLoaderLayerHide("divAjaxLoader");
+					fnRegisterEvent();
+				}
+			});
 	    });
 	    
 	    $('input:checkbox[name="chkCartGoodsShShop"]').change(function() {
-	    	fnResetCartSummary();
+	    	//fnResetCartSummary();
 	    }); 
 	    
 	    $('.chgnum').unbind('click').bind('click', function (e) {
@@ -253,7 +262,7 @@
 					'orderIndex' : indx,
 					'itemNewQuantity' : newQuantity
 				},
-				success : fnAjaxChangeShippingItemCount,
+				success : fnPageSet,
 				error : function(ajaxContext) {
 					alert("변경된 수량으로 업데이트 하지 못했습니다.");
 					fnAjaxLoaderLayerHide("divAjaxLoader");
@@ -278,7 +287,7 @@
 					'orderKey' : '${requestScope.orderKey}',
 					'orderIndex' : indx
 				},
-				success : fnAjaxDeleteShippingItem,
+				success : fnPageSet,
 				error : function(ajaxContext) {
 					alert("해당 아이템을 삭제하지 못했습니다.");
 					fnAjaxLoaderLayerHide("divAjaxLoader");

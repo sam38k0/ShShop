@@ -57,6 +57,7 @@
 						<p class="moveBtn">
 							<%-- 여기에 Button Control 추가 --%>
 						</p>
+						<br><br>
 					</div>
 					<div class="tot_price tot_price_pay">
 						<table class="tbl_p" cellspacing="0" cellpadding="0">
@@ -81,7 +82,7 @@
 									<th rowspan="2"><span class="iw tt_ec">=</span></th>
 									<th><em class="tot5">최종 결제금액</em></th>
 								</tr>
-								<tr>
+								<tr id="summeryTotal">
 									<td id="totalDesciption"><em>${requestScope.orderViewInfo.totalDescription}</em></td>
 									<td id="totalItemsPrice"><em>${requestScope.orderViewInfo.productsTotalPrice}</em>원</td>
 									<td id="txtTotalDelvFare"><em>${requestScope.orderViewInfo.shippingTotalPrice}</em>원</td>

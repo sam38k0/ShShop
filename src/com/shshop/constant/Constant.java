@@ -28,6 +28,7 @@ public class Constant {
 	public static final String changeOrderItemCount = "/changeOrderItemCount";
 	public static final String deleteOrder = "/deleteOrder";
 	public static final String setShoppingCartPage = "/setShoppingCartPage";
+	public static final String changeOrderItemChecked = "/changeOrderItemChecked";
 
 	// Attribute
 	public static final String attrUser = "user";
@@ -64,6 +65,8 @@ public class Constant {
 	public static final String attrTotalPrice = "totalPrice";
 	public static final String attrCurrentPagesResult = "currentPageResults";
 	public static final String attrTotalPageCount = "totalPageCount";
+	public static final String attrUncheckedIndx = "uncheckedIndx";
+	public static final String attrCheckedIndex = "checkedIndex";
 	
 	// DD Parameter
 	public static final String paramFileUpload = "file-upload";

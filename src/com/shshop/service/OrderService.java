@@ -160,14 +160,16 @@ public class OrderService {
 		String orderKey = request.getParameter(Constant.attrOrderKey);
 		String strOrderIndex = request.getParameter(Constant.attrOrderIndex);
 		String strItemQuantity = request.getParameter(Constant.attrItemNewQuantity);
+		int orderIndex = Integer.parseInt(strOrderIndex);
+		int itemQuantity = Integer.parseInt(strItemQuantity);
 		
 		HttpSession session = request.getSession();
 		OrderViewInfo orderViewInfo = (OrderViewInfo) session.getAttribute(orderKey);
 		
-		List<OrderInfo> orderInfos = orderViewInfo.getOrderInfos();
+		List<OrderInfo> orderInfos = orderViewInfo.getCurrentPageOrderInfos();
 		
-		OrderInfo orderInfo = orderInfos.get(Integer.parseInt(strOrderIndex));
-		orderInfo.setQuantity(Integer.parseInt(strItemQuantity));
+		OrderInfo orderInfo = orderInfos.get(orderIndex);
+		orderInfo.setQuantity(itemQuantity);
 		
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		 
@@ -178,10 +180,17 @@ public class OrderService {
 			sqlSession.close();
 		}
 		
-		request.setAttribute(Constant.attrOrderIndex, strOrderIndex);
-		request.setAttribute(Constant.attrTotalPrice, orderInfo.getPrice()); 
+		int currentPage = orderViewInfo.getPageDivider().getCurrentPage();
+		int pageDivNum = orderViewInfo.getPageDivider().getPageDivNum();
+		orderViewInfo.changeItemQuantity((currentPage-1) * pageDivNum + orderIndex, itemQuantity); 
+		
+		orderInfos = orderViewInfo.getCurrentPageOrderInfos();
+		
+		request.setAttribute(Constant.attrOrderViewInfo, orderViewInfo);
+		request.setAttribute(Constant.attrDataPage, currentPage);
+		request.setAttribute(Constant.attrCurrentPagesResult, orderInfos);
 
-		return new CommandResult("/WEB-INF/view/shoppingCartView/changeItemCountJsonData.jsp");
+		return new CommandResult("/WEB-INF/view/shoppingCartView/cartListJsonData.jsp");
 	}
 
 	public CommandResult deleteOrderItemCount(HttpServletRequest request) {
