@@ -11,6 +11,7 @@ public class OrderInfo {
 	private OrderState orderState;
 	private String imagePath;
 	private int shippingPrice;
+	private boolean unchecked = false;
 	
 	public OrderInfo(Order order, OrderState orderState, Product product, String imagePath, int quantity, int shippingPrice) {
 		this.setOrder(order);
@@ -87,5 +88,13 @@ public class OrderInfo {
 
 	public void setAvailable(boolean isAvailable) {
 		this.isAvailable = isAvailable;
+	}
+
+	public boolean getUnchecked() {
+		return unchecked;
+	}
+
+	public void setUnchecked(boolean unchecked) {
+		this.unchecked = unchecked;
 	}
 }

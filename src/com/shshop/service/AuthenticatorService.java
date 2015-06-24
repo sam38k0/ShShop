@@ -12,10 +12,14 @@ import com.shshop.constant.Constant;
 import com.shshop.control.CommandResult;
 import com.shshop.domain.Address;
 import com.shshop.domain.AddressProc;
+import com.shshop.domain.Order;
+import com.shshop.domain.OrderState;
 import com.shshop.domain.Product;
 import com.shshop.domain.User;
 import com.shshop.helper.RegExpressionHelper;
 import com.shshop.mapper.AddressMapper;
+import com.shshop.mapper.OrderMapper;
+import com.shshop.mapper.OrderStateMapper;
 import com.shshop.mapper.ProductMapper;
 import com.shshop.mapper.UserMapper;
 import com.shshop.util.MyBatisUtil;
@@ -59,10 +63,13 @@ public class AuthenticatorService {
 				return new CommandResult(Constant.textHtml, Constant.noUser);
 			}
 
-			HttpSession session = request.getSession();
+			OrderService orderService = new OrderService();
+			int virtualOrderCount = orderService.getVirtualOrderCount(user.getUserId());
 
+			HttpSession session = request.getSession();
 			synchronized (session) {
 				session.setAttribute(Constant.attrUser, user);
+				session.setAttribute(Constant.attrVirtualOrderCount, virtualOrderCount);
 			}
 
 			return new CommandResult(Constant.textHtml, Constant.Success);

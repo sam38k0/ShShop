@@ -84,6 +84,9 @@ public class OrderViewInfo {
 	public String getTotalPrice() {
 		int totalPrice = 0;
 		for (OrderInfo orderInfo : orderInfos) {
+			if(orderInfo.getUnchecked())
+				continue;
+			
 			totalPrice += orderInfo.getProductTotalPrice();
 			totalPrice += orderInfo.getShippingPrice();
 		}
@@ -95,6 +98,9 @@ public class OrderViewInfo {
 	public String getShippingTotalPrice() {
 		int totalPrice = 0;
 		for (OrderInfo orderInfo : orderInfos) {
+			if(orderInfo.getUnchecked())
+				continue;
+			
 			totalPrice += orderInfo.getShippingPrice();
 		}
 
@@ -105,6 +111,9 @@ public class OrderViewInfo {
 	public String getProductsTotalPrice() {
 		int totalPrice = 0;
 		for (OrderInfo orderInfo : orderInfos) {
+			if(orderInfo.getUnchecked())
+				continue;
+			
 			totalPrice += orderInfo.getProductTotalPrice();
 		}
 
@@ -158,11 +167,15 @@ public class OrderViewInfo {
 		String totalDescription = "";
 		try {
 			int totalQuantity = 0;
+			int itemCount = 0;
 			for (OrderInfo orderInfo : orderInfos) {
+				if(orderInfo.getUnchecked())
+					continue;
+				itemCount ++;
 				totalQuantity += orderInfo.getQuantity();
 			}
 
-			totalDescription = "" + orderInfos.size() + "종(" + totalQuantity + ")개";
+			totalDescription = "" + itemCount + "종(" + totalQuantity + ")개";
 		} catch (Exception e) {
 			totalDescription = "";
 		}
@@ -188,6 +201,19 @@ public class OrderViewInfo {
 		return getPageDivider().getCurrentPageData();
 	}
 	
+	public void setCurrentPageOrderInfos(List<OrderInfo> newOrderInfo) {
+		int currentPage = getPageDivider().getCurrentPage();
+		int pageDivNum = getPageDivider().getPageDivNum();
+		
+		int startIndex = (currentPage - 1) * pageDivNum;
+		
+		//Replace Data
+		for(int i=0; i< newOrderInfo.size(); i++) {
+			OrderInfo orderInfo = orderInfos.get(startIndex + i);
+			orderInfo = newOrderInfo.get(i); 
+		}
+	}
+	
 	public void setCurrentPage(int currentPage) {
 		if(currentPage <= 0)
 			currentPage = 1;
@@ -209,5 +235,9 @@ public class OrderViewInfo {
 
 	public void removOrderData(int orderIndex) {
 		orderInfos.remove(orderIndex);
+	}
+
+	public void changeItemQuantity(int index, int itemQuantity) {
+		orderInfos.get(index).getOrder().setAmount(itemQuantity);
 	}
 }

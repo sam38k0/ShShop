@@ -32,7 +32,7 @@ public class MyPageCommand implements Command {
 		AuthenticatorService authenticatorService = new AuthenticatorService();
 
 		// 판매자 정보
-		List<Order> buyOrder = orderService.selectBuyOrder(user.getUserId());
+		List<Order> buyOrder = orderService.getOrder(user.getUserId());
 		if (buyOrder != null && buyOrder.size() > 0) {
 			OrderInfomationList buyOrderInfoList = new OrderInfomationList(1,5);
 			
@@ -41,7 +41,7 @@ public class MyPageCommand implements Command {
 				User seller = authenticatorService.getUserById(product.getUserId());
 				ProductImage productImg = productService.getProductImg(order.getProductId());
 				Address sellAdd = orderService.selectSellAddress(order.getIdAddress());
-				OrderState buyState = orderService.selectOrderState(order.getOrderId());
+				OrderState buyState = orderService.getOrderState(order);
 
 				buyOrderInfoList.addOrderInformation(seller, product, productImg, order, buyState, sellAdd);
 			}
@@ -61,7 +61,7 @@ public class MyPageCommand implements Command {
 				Product product = orderService.selectProduct(order.getProductId());
 				ProductImage productImg = productService.getProductImg(order.getProductId());
 				Address buyAdd = orderService.selectBuyAddress(order.getOrderId());
-				OrderState sellState = orderService.selectOrderState(order.getOrderId());
+				OrderState sellState = orderService.getOrderState(order);
 
 				sellOrderInfoList.addOrderInformation(buyer, product, productImg, order, sellState, buyAdd);
 			}

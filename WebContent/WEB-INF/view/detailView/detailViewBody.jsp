@@ -8,22 +8,19 @@
 		<div id="section">
 			<div id="contents">
 				<div class="viewTopArea">
-					<div class="leftArea">
-						<a href="#" id="item_top_list_button" class="btn_gray2"><span>목록</span></a>
-					</div>
 					<div class="rightArea">
-						<span class="date">수정일 : ${sessionScope.productDetail.product.dateUpdated}, 등록일 : ${sessionScope.productDetail.product.dateCreated} </span>
+						<span class="date">수정일 : ${productDetail.product.dateUpdated}, 등록일 : ${productDetail.product.dateCreated} </span>
 					</div>
 				</div>
 				<div class="detailView">
 					<div class="detailBox">
 						<div class="photoArea">
 							<div id="item_view_big_photo" class="bigPhoto">
-								<a href="#"><img src="<c:out value="${sessionScope.productDetail.imagePaths[0]}"/> "> </a>
+								<a href="#"><img src="<c:out value="${productDetail.imagePaths[0]}"/> "> </a>
 								<div class="text hide" style="display: none;"></div>
 							</div>
 							<ul id="item_view_mini_photo" class="miniPhoto">
-								<c:forEach var="imagePath" varStatus="imagePaths" items="${sessionScope.productDetail.imagePaths}">
+								<c:forEach var="imagePath" varStatus="imagePaths" items="${productDetail.imagePaths}">
 									<c:choose>
 										<c:when test="${imagePaths.index == 0}">
 											<li><img src="${imagePath}" rel="${imagePaths.index}" class="on"></li>
@@ -39,11 +36,11 @@
 							<div class="detailInfo">
 								<div id="item_view_title_text" class="title">
 									<c:choose>
-										<c:when test="${sessionScope.productDetail.product.name == '' || sessionScope.productDetail.product.name == null }">
+										<c:when test="${productDetail.product.name == '' || productDetail.product.name == null }">
 										       상품이름없음
 										</c:when>
 										<c:otherwise>
-										    ${sessionScope.productDetail.product.name}
+										    ${productDetail.product.name}
 										</c:otherwise>
 									</c:choose>
 								</div>
@@ -52,21 +49,35 @@
 									<dl>
 										<dt>가격</dt>
 										<dd>
-											<span id="item_view_price_text" class="price">${sessionScope.productDetail.product.price} 원</span>
+											<span id="item_view_price_text" class="price">${productDetail.product.price} 원</span>
+										</dd>
+									</dl>
+									<dl>
+										<dt>재고량</dt>
+										<dd>
+											<span id="item_view_price_text">${productDetail.product.stock} 개</span>
 										</dd>
 									</dl>
 									<dl>
 										<dt>지역</dt>
-										<dd></dd>
+										<c:choose>
+										<c:when test="${productDetail.productOwnerBasicAddress == '' || productDetail.productOwnerBasicAddress == null }">
+										       <dd>등록지역 없음</dd>
+										</c:when>
+										<c:otherwise>
+										   <dd>${productDetail.productOwnerBasicAddress}</dd>
+										</c:otherwise>
+									</c:choose>
+										
 									</dl>
 									<dl>
 										<dt>거래방법</dt>
 										<c:choose>
-											<c:when test="${sessionScope.productDetail.product.translationComment == '' || sessionScope.productDetail.product.translationComment == null }">
+											<c:when test="${productDetail.product.translationComment == '' || productDetail.product.translationComment == null }">
 											      <dd>등록하지 않음</dd>
 											</c:when>
 											<c:otherwise>
-											    <dd>${sessionScope.productDetail.product.translationComment}</dd>
+											    <dd>${productDetail.product.translationComment}</dd>
 											</c:otherwise>
 										</c:choose>
 									</dl>
@@ -74,13 +85,19 @@
 										<dt>희망연락방법</dt>
 										<c:choose>
 											<c:when
-												test="${sessionScope.productDetail.product.connectOptionComment == '' || sessionScope.productDetail.product.connectOptionComment == null }">
+												test="${productDetail.product.connectOptionComment == '' || productDetail.product.connectOptionComment == null }">
 												<dd>등록하지 않음</dd>
 											</c:when>
 											<c:otherwise>
-												<dd>${sessionScope.productDetail.product.connectOptionComment}</dd>
+												<dd>${productDetail.product.connectOptionComment}</dd>
 											</c:otherwise>
 										</c:choose>
+									</dl>
+									<dl>
+										<dt>주문수량</dt>
+										<dd>
+											<input id="ord_goods_cnt" type="number" class="ordNum" value="1">
+										</dd>
 									</dl>
 								</div>
 							</div>
@@ -89,76 +106,62 @@
 									<div class="userName">
 										<p class="name">
 											<c:choose>
-												<c:when test="${sessionScope.productDetail.productOwner.name == '' || sessionScope.productDetail.productOwner.name == null }">
+												<c:when test="${productDetail.productOwner.name == '' || productDetail.productOwner.name == null }">
 										       		<a href="#" data-midx="358549" data-domain="@1469660" data-nick="이름없음">이름없음</a>
 												</c:when>
 												<c:otherwise>
-										    		<a href="#" data-midx="358549" data-domain="@1469660" data-nick="${sessionScope.productDetail.productOwner.name}">${sessionScope.productDetail.productOwner.name}</a>
+										    		<a href="#" data-midx="358549" data-domain="@1469660" data-nick="${productDetail.productOwner.name}">${productDetail.productOwner.name}</a>
 												</c:otherwise>
 											</c:choose>
 										</p>
-										<ul class="userLevel">
-										</ul>
 									</div>
 								</div>
 								<div class="userList">
-									<div class="userPhoto snsNo">
-										<p>
-											<a href="/@1469660"> <img id="member_image" src="${adminBean.contextPath}/content/image/photo_user_w32.gif">
-											</a>
-										</p>
-										<ul id="member_sns" class="userSns">
-										</ul>
+									<div class="userPhoto snsNo"> 
+										<a href="#"> <img id="member_image" src="${adminBean.contextPath}/content/image/photo_user_w32.gif"></a> 
 									</div>
 									<ul class="userArticle">
-										<li>판매자 다른 아이템 <a href="/@1469660" id="item_view_ticnt_button">22</a>건
+										<li>판매자 다른 아이템 <a href="#" id="item_view_ticnt_button">${productDetail.productOwnerItemCount}</a>건
 										</li>
-										<li>판매자 과거 거래한 아이템 <a href="/item/pastList.hm?midx=358549" id="item_view_dicnt_button">3</a>건
+										<li>
+										<c:choose>
+											<c:when test="${productDetail.productOwner.phone == '' || productDetail.productOwner.phone == null }">
+									       	휴대폰 번호 : 없음
+									    	</c:when>
+											<c:otherwise>
+									               휴대폰 번호 :  ${productDetail.productOwner.phone}
+									    	</c:otherwise>
+										</c:choose>
 										</li>
-										<li>판매자가 남긴 모든 글 <a href="/search?q=초코바닐라♡&amp;sm=358549&amp;sd=cmm" id="item_view_tdcnt_button">0</a>건
+										<li>
+										<c:choose>
+											<c:when test="${productDetail.productOwner.ktalkId == '' || productDetail.productOwner.ktalkId == null }">
+									       	카카오톡 ID : 없음
+									    	</c:when>
+											<c:otherwise>
+									      	  카카오톡 ID : ${productDetail.productOwner.ktalkId}
+									    	</c:otherwise>
+										</c:choose>
+										</li>
+										<li>
+										<c:choose>
+											<c:when test="${productDetail.productOwner.email == '' || productDetail.productOwner.email == null }">
+									       	이메일 : 없음
+									    	</c:when>
+												<c:otherwise>
+									      	이메일 :  ${productDetail.productOwner.email}
+									    	</c:otherwise>
+											</c:choose>
 										</li>
 									</ul>
 								</div>
 							</div>
-							<!-- //userBox -->
-
-							<div id="item_view_phone_layer" class="openBox hide" style="display: block;">
-								<div class="phone">
-									<c:choose>
-									    <c:when test="${sessionScope.productDetail.productOwner.phone == '' || sessionScope.productDetail.productOwner.phone == null }">
-									       	휴대폰 번호 : 없음
-									    </c:when> 
-									    <c:otherwise>
-									               휴대폰 번호 :  ${sessionScope.productDetail.productOwner.phone}
-									    </c:otherwise>
-									</c:choose> 
-									<br>
-									<c:choose>
-									    <c:when test="${sessionScope.productDetail.productOwner.ktalkId == '' || sessionScope.productDetail.productOwner.ktalkId == null }">
-									       	카카오톡 ID : 없음
-									    </c:when> 
-									    <c:otherwise>
-									      	  카카오톡 ID : ${sessionScope.productDetail.productOwner.ktalkId}
-									    </c:otherwise>
-									</c:choose>
-									<br>
-									<c:choose>
-									    <c:when test="${sessionScope.productDetail.productOwner.email == '' || sessionScope.productDetail.productOwner.email == null }">
-									       	이메일 : 없음
-									    </c:when> 
-									    <c:otherwise>
-									      	이메일 :  ${sessionScope.productDetail.productOwner.email}
-									    </c:otherwise>
-									</c:choose>
-								</div>
-							</div>
-
+							<!-- //userBox --> 
 							<div class="functionBtn">
 								<ul>
-									<li><a href="#" data-flag="n" id="wish_button" data-id="7766636" class="zzim">구매하기</a></li>
-									<li><a href="#" data-flag="n" id="recommend_button" data-id="7766636" class="basket">장바구니</a></li>
-									<li><a href="#" data-flag="n" id="recommend_button" data-id="7766636" class="like">추천하기</a></li>
-								</ul>
+									<li><a id="virtualOrder" href="#"><img title="카트에 넣기" alt="카트에 넣기" id="cart_btn" src="${adminBean.contextPath}/content/image/b_addtoCart.gif" style="cursor:pointer;margin: 10px;width:100px;height:60px;"></a></li>
+									<li><a id="directOrder" href="#"><img title="바로 구매하기" alt="바로 구매하기" src="${adminBean.contextPath}/content/image/b_buy.gif" style="cursor:pointer;margin: 10px;width:100px;height:60px;"></a></li>
+								</ul> 
 							</div>
 						</div>
 					</div>
@@ -173,15 +176,15 @@
 									<div class="detailCntL">
 										<h3 class="h3_icon">재고</h3>
 										<div class="cntView">
-											${sessionScope.productDetail.product.stock} 개
+											${productDetail.product.stock} 개
 										</div>
 										<h3 class="h3_icon">상세설명</h3>
 										<div class="cntView">
-											${sessionScope.productDetail.product.description}
+											${productDetail.product.description}
 										</div>
 										<h3 class="h3_icon">댓글달기</h3>
 										<div id="comment_list" class="cmtView clearfix">
-											 ${sessionScope.productDetail.postResults}
+											 ${productDetail.postResults}
 											 <div class="cmtWrite">
 												<textarea placeholder="댓글을 입력하세요" class="cmtTextarea" style="width: 580px; height: 50px;"></textarea>
 											</div>

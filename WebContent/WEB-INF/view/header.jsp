@@ -8,9 +8,6 @@
 <div class="headwrap">
 	<!-- 테스트용 > 개발 끝나고 지워야 함 -->
 	<div id="test">
-		<form id="showDetailViewForm" name="showDetailViewForm" method="post" action="showDetailView" style="position: absolute; z-index: 99999; left: 10px; top: 10px;">
-			<input type="submit" value="TestDetailView">
-		</form>
 		<form id="showOrderViewForm" name="showOrderViewForm" method="post" action="showOrderView" style="position: absolute; z-index: 99999; left: 10px; top: 40px;">
 			<input type="submit" value="TestOrderView">
 		</form>
@@ -74,7 +71,17 @@
 			<li>ㆍ</li>
 			<li><a href="mypage">MYPAGE</a></li>
 			<li>ㆍ</li>
-			<li><a href="#">BASKET</a></li>
+			<li><a href="showShoppingCartView" id="virtualOrderHeader">BASKET( 
+				<c:choose>
+					<c:when test="${virtualOrderCount == null || virtualOrderCount == '' }">
+						0
+					</c:when>
+					<c:otherwise>
+						${virtualOrderCount}
+					</c:otherwise>
+				</c:choose> 
+				)</a>
+			</li>
 		</ul>
 		<!-- 로그인 후 서브 메뉴 종료 -->
 	</div>

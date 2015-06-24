@@ -19,6 +19,7 @@
  			<json:property name="hitCount" value="${item.hitCount}" />
  			<json:property name="userLevel" value="${item.userLevel}" />
  			<json:property name="totalPageNum" value="${totalPageNum}" />
+ 			<json:property name="productId" value="${item.productId}" />
 		</json:object>
 	</json:array>
 </json:object>

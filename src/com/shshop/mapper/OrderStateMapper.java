@@ -1,5 +1,7 @@
 package com.shshop.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.shshop.domain.OrderState;
@@ -9,5 +11,5 @@ public interface OrderStateMapper {
 
 	public void updateOrderState(OrderState orderState);
 
-	public OrderState selectOrderState(@Param("orderId") int orderId);
+	public List<OrderState> getOrderState(@Param("orderId") int orderId);
 }

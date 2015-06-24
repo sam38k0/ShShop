@@ -7,65 +7,62 @@
 <div id="yesWrap">
 	<div id="divAjaxLoader" align="center" style="position: absolute;"></div>
     <div id="wrapperContent">
-        <div id="divGoodsOrderDetail" style="">
+    	<br>
+		<div class="progbar">
+		    <h1 class="pay">카트 &gt; <strong>결제</strong> &gt; 완료</h1>
+		</div>
+		<div id="divGoodsOrderDetail" style="">
                 <!--// 상품확인 -->
                 <div id="divGoods">
                 	</br></br>
                     <h3><span class='tbl_t pdchk'>상품확인</span></h3>
-                    <table class='tbl_l'>
-                        <colgroup>
-                            <col width='70' />
-                            <col width='' />
-                            <col width='90' /> 
-                            <col width='70' />
-                            <col width='90' />
-                            <col width='80' />
-                        </colgroup>
-                        <thead>
-                            <tr>
-                                <th colspan='2'>
-                                    <em class='name'>상품명</em>
-                                </th>
-                                <th>
-                                    <em class='fpri'>가격</em>
-                                </th>
-                                <th>
-                                    <em class='numb'>수량</em>
-                                </th>
-                                <th>
-                                    <em class='tota'>합계</em>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
- 
-						<c:forEach var="orderInfo" varStatus="orderInfos" items="${requestScope.orderViewInfo.orderInfos}">
-						<tr class='last'>
-                                <td class='goods_img le'>
-                                    <a href='#' class='pd_a' target='_blank'>
-                                        <img src="<c:out value="${adminBean.contextPath}"/><c:out value="${orderInfo.imagePath}"/> " alt='' class='pdimg' target='_blank' />
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href='#' class='pd_a'>${orderInfo.product.name}</a>
-                                </td>
-                                <td>
-                                    ${orderInfo.product.price}
-                                </td>
- 
-                                <td>
-                                    ${orderInfo.quantity}
-                                </td>
-                                <td><strong> ${orderInfo.price}원</strong>
-                                </td>
-                            </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
+					<table class='tbl_l'>
+                            <colgroup>
+                                <col width='33' />
+                                <col width='60' />
+                                <col width='' />
+                                <col width='90' />
+                                <col width='70' />
+                                <col width='90' />
+                                <col width='80' />
+                                <col width='96' />
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th style='vertical-align:middle;'>
+                                		<input type='checkbox' class='chkbx' id='chkCartHeader'/>
+                            		</th>
+                                    <th colspan='2'><em class='name'>상품명</em>
+                                    </th>
+                                    <th><em class='fpri'>정가</em>
+                                    </th>
+                                    <th><em class='numb'>수량</em>
+                                    </th>
+                                    <th><em class='tota'>합계</em>
+                                    </th>
+                                    <th><em class='ddat'>배송일</em>
+                                    </th>
+                                    <th><em class='orde'>주문</em>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <%-- 여기에 Product Data 삽입 --%>
+                            </tbody>
+							
+                            <tfoot>
+                            <%-- 여기에 Table Footer Data 삽입--%>
+                            </tfoot>
+                        </table>
                     <div id='divDiscount' class='dc_area' style=''>
                     </div>
 	            </div>
-	
+	            <div class="graybox">
+					<p class="moveBtn">
+						<%-- 여기에 Button Control 추가 --%>
+					</p>
+					<br><br>
+				</div>
 				<div class="tot_price tot_price_pay">
 					<table class="tbl_p" cellspacing="0" cellpadding="0">
 						<colgroup>
@@ -80,7 +77,7 @@
 						</colgroup>
 						<tbody>
 							<tr>
-								<th><em class="tot1">총 상품수s</em></th>
+								<th><em class="tot1">총 상품수</em></th>
 								<th><em class="tot2">총 상품금액</em></th>
 								<th rowspan="2"><span class="iw tt_pl">+</span></th>
 								<th><em class="tot3">총 배송비</em></th>
@@ -89,10 +86,10 @@
 								<th rowspan="2"><span class="iw tt_ec">=</span></th>
 								<th><em class="tot5">최종 결제금액</em></th>
 							</tr>
-							<tr>
-								<td><em>${requestScope.orderViewInfo.totalDescription}</em></td>
-								<td><em>${requestScope.orderViewInfo.productsTotalPrice}</em>원</td>
-								<td><em id="txtTotalDelvFare">${requestScope.orderViewInfo.shippingTotalPrice}</em>원</td>
+							<tr id="summeryTotal">
+								<td id="totalDesciption"><em>${requestScope.orderViewInfo.totalDescription}</em></td>
+								<td id="totalItemsPrice"><em>${requestScope.orderViewInfo.productsTotalPrice}</em>원</td>
+								<td id="txtTotalDelvFare"><em>${requestScope.orderViewInfo.shippingTotalPrice}</em>원</td>
 								<td class="clr1">
 									<em id="txtSaleAmount">0</em>원
 									<input type="hidden" id="hdnSale" value="0">

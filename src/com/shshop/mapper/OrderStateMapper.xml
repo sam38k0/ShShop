@@ -5,28 +5,28 @@
 <mapper namespace='com.shshop.mapper.OrderStateMapper'>
 	<insert id='insertOrderState' parameterType='${OrderStateType}'>
 		insert into `or_order_state` (`id_order`, `virtual_order`, `activated`, `paid`, `sended_email`, `shipped`, `delivered`, `deleted`)
-		values (${id_order},${virtualOrder},${activated},${paid},${sendedEmail},${shipped},${delivered},${deleted});
+		values (${id_order},${virtual_order},${activated},${paid},${sended_email},${shipped},${delivered},${deleted});
 	</insert>
 	
 	<update id='updateOrderState' parameterType='${OrderStateType}'>
 		update `or_order_state` 
 		set `virtual_order` = ${virtual_order}, `activated` = ${activated}, `paid` = ${paid}, 
-			`sended_email` = ${sended_email}, `shipped` = ${shipped}, `delivered` = ${delivered}, `deleted` = ${delivered} 
-		where `id_order` = ${id_order}
+			`sended_email` = ${sended_email}, `shipped` = ${shipped}, `delivered` = ${delivered}, `deleted` = ${delivered}
+		where `id_order`=${id_order} ;
 	</update>
 	
-	<select id='selectOrderState' resultMap='OrderState'>
-		select * from `or_order_state` where `id_order`=${id_order}
+	<select id='getOrderState' resultMap='OrderState' parameterType='${OrderType}'>
+		select * from `or_order_state` where `id_order`=${id_order};
 	</select>
 	
 	<resultMap id="OrderState" type="${OrderStateType}">
 		<id property='orderId' column='id_order' />
-		<result property='virtualOrder' column='virtual_order' />
-		<result property='activated' column='activated' />
-		<result property='paid' column='paid' />
-		<result property='sendedEmail' column='sended_email' />
-		<result property='shipped' column='shipped' />
-		<result property='delivered' column='delivered' />
-		<result property='deleted' column='deleted' />
+		<result property='virtualOrder' column='virtual_order' javaType="Boolean" jdbcType="TINYINT" />
+		<result property='activated' column='activated'  javaType="Boolean" jdbcType="TINYINT"/>
+		<result property='paid' column='paid'  javaType="Boolean" jdbcType="TINYINT"/>
+		<result property='sendedEmail' column='sended_email'  javaType="Boolean" jdbcType="TINYINT"/>
+		<result property='shipped' column='shipped'  javaType="Boolean" jdbcType="TINYINT"/>
+		<result property='delivered' column='delivered'  javaType="Boolean" jdbcType="TINYINT"/>
+		<result property='deleted' column='deleted'  javaType="Boolean" jdbcType="TINYINT"/>
 	</resultMap>
 </mapper>
