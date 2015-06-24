@@ -388,8 +388,7 @@ public class OrderService {
 		OrderViewInfo orderViewInfo = new OrderViewInfo(user, addresses, 1, 5);
 		int productId = Integer.parseInt(strProductId);
 		int orderCount = Integer.parseInt(strOrderCount);
-		OrderInfo orderInfo = createNewOrderInfo(request, user.getUserId(), productId, orderCount, Format.randBetween(2500, 5000), "주의",
-				OrderState.VirtualOrder);
+		OrderInfo orderInfo = createNewOrderInfo(request, user.getUserId(), productId, orderCount, Format.randBetween(2500, 5000), "주의", OrderState.VirtualOrder);
 		if (orderInfo != null) {
 			orderViewInfo.addOrderInfo(orderInfo);
 

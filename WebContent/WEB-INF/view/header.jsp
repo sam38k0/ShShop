@@ -11,9 +11,6 @@
 		<form id="showOrderViewForm" name="showOrderViewForm" method="post" action="showOrderView" style="position: absolute; z-index: 99999; left: 10px; top: 40px;">
 			<input type="submit" value="TestOrderView">
 		</form>
-		<form id="showShoppingCartForm" name="showShoppingCartForm" method="post" action="showShoppingCartView" style="position: absolute; z-index: 99999; left: 10px; top: 70px;">
-			<input type="submit" value="TestShoppingCartView">
-		</form>
 	</div>
 	<!-- //테스트용 -->
 	

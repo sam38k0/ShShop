@@ -13,5 +13,4 @@ public class VirtualOrderCommand implements Command {
 		OrderService orderService = new OrderService();
 		return orderService.createVirtualOrder(request);
 	}
-
 }
