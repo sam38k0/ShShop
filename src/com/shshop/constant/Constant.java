@@ -70,6 +70,7 @@ public class Constant {
 	public static final String attrCheckedIndex = "checkedIndex";
 	public static final String attrVirtualOrderCount = "virtualOrderCount";
 	public static final String attrOrderCount = "orderCount";
+	public static final String attrLoginResult = "loginResult";
 	
 	// DD Parameter
 	public static final String paramFileUpload = "file-upload";

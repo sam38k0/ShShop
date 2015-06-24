@@ -70,9 +70,9 @@ public class AuthenticatorService {
 			synchronized (session) {
 				session.setAttribute(Constant.attrUser, user);
 				session.setAttribute(Constant.attrVirtualOrderCount, virtualOrderCount);
-			}
-
-			return new CommandResult(Constant.textHtml, Constant.Success);
+			}			
+ 
+			return new CommandResult("/WEB-INF/view/mainView/loginJsonData.jsp");
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -385,17 +385,21 @@ public class OrderService {
 			return new CommandResult(Constant.textPlain, Constant.noAddress);
 		}
 
-		OrderViewInfo orderViewInfo = new OrderViewInfo(user, addresses, 1, 5);
+		String orderKey = "orderKey_" + user.getUserId().toString();
+		
+		OrderViewInfo orderViewInfo = (OrderViewInfo)session.getAttribute(orderKey);
+		if(orderViewInfo == null ) {
+			orderViewInfo = new OrderViewInfo(user, addresses, 1, 5);
+			synchronized (session) {
+				session.setAttribute(orderKey, orderViewInfo);
+			}
+		}
+		
 		int productId = Integer.parseInt(strProductId);
 		int orderCount = Integer.parseInt(strOrderCount);
 		OrderInfo orderInfo = createNewOrderInfo(request, user.getUserId(), productId, orderCount, Format.randBetween(2500, 5000), "주의", OrderState.VirtualOrder);
 		if (orderInfo != null) {
 			orderViewInfo.addOrderInfo(orderInfo);
-
-			synchronized (session) {
-				String orderKey = UUID.randomUUID().toString();
-				session.setAttribute(orderKey, orderViewInfo);
-			}
 		}
 
 		int virtualOrderCount = getVirtualOrderCount(user.getUserId());

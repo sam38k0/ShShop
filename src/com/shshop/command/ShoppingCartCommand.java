@@ -52,7 +52,8 @@ public class ShoppingCartCommand implements Command {
 		}
 		
 		String orderKey = "orderKey_" + user.getUserId().toString();
-
+		
+		request.setAttribute(Constant.attrVirtualOrderCount, orderViewInfo.getOrderInfos().size());
 		request.setAttribute(Constant.attrOrderViewInfo, orderViewInfo);
 		request.setAttribute(Constant.attrOrderKey, orderKey);
 

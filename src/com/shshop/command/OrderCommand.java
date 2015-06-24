@@ -35,17 +35,9 @@ public class OrderCommand implements Command {
 			return new CommandResult(Constant.textPlain, Constant.noAddress);
 		}
 
-		OrderViewInfo orderViewInfo = new OrderViewInfo(user, addresses, 1, 5);
-		OrderService orderService = new OrderService();
-
-		for(int i = 0; i < 102; i++) {
-			OrderInfo orderInfo =  orderService.createNewOrderInfo(request, user.getUserId(), i, Format.randBetween(1, 10), Format.randBetween(2500, 5000), "주의", OrderState.VirtualOrder);
-			if(orderInfo != null)
-				orderViewInfo.addOrderInfo(orderInfo);
-		}		
-		
-		String orderKey = UUID.randomUUID().toString();
-
+		String orderKey = request.getParameter(Constant.attrOrderKey); 
+		OrderViewInfo orderViewInfo = (OrderViewInfo) session.getAttribute(orderKey);
+ 
 		request.setAttribute(Constant.attrOrderViewInfo, orderViewInfo);
 		request.setAttribute(Constant.attrOrderKey, orderKey);
 
