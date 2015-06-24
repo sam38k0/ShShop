@@ -88,7 +88,7 @@ public class CommandFactory {
 		case Constant.addAddress:
 			return new AddAddrCommand();
 			
-		case Constant.showShoppingCartForm:
+		case Constant.showShoppingCartView:
 			return new ShoppingCartCommand();
 			
 		case Constant.changeOrderItemCount:

@@ -16,7 +16,7 @@
 		WHERE `id_order` = ${id_order};
 	</update>
 	
-	<select id='getBuyOrder' resultMap='Order'>
+	<select id='getOrder' resultMap='Order'>
 		SELECT * FROM `or_order` WHERE `id_user` = ${id_user}
 	</select>
 	

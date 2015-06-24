@@ -137,11 +137,9 @@ public class ProductService {
 		}
 	}
  
-	public String getProductFirstImagePaths(SqlSession sqlSession, Integer productId, HttpServletRequest request) {
+	public String getProductFirstImagePaths(SqlSession sqlSession, Integer productId) {
 		ProductImageMapper imageMapper = sqlSession.getMapper(ProductImageMapper.class);
 		List<ProductImage> images = imageMapper.getProductImages(productId);
-
-		String contextPath = request.getContextPath();
 
 		if (images != null && images.size() > 0) {
 			return images.get(0).getImagePath();

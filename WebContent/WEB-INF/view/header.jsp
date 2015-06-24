@@ -71,7 +71,7 @@
 			<li>ㆍ</li>
 			<li><a href="mypage">MYPAGE</a></li>
 			<li>ㆍ</li>
-			<li><a href="#" id="virtualOrderHeader">BASKET( 
+			<li><a href="showShoppingCartView" id="virtualOrderHeader">BASKET( 
 				<c:choose>
 					<c:when test="${virtualOrderCount == null || virtualOrderCount == '' }">
 						0

@@ -14,7 +14,7 @@ public interface OrderMapper {
 
 	public void updateOrder(Order order);
 
-	public List<Order> getBuyOrder(@Param("userId") int userId); 
+	public List<Order> getOrder(@Param("userId") int userId); 
 	
 	public Address getBuyUserAdd(@Param("orderId") int orderId);
 
