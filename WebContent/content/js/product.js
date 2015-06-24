@@ -298,4 +298,10 @@ $(document).ready(function() {
 		$('#categoryResult').val(result);
 		categoryResultElem.readOnly = true;
 	});
+	
+	
+	
+	
+	
+	
 });

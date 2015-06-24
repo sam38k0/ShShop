@@ -129,7 +129,7 @@
 				<p class="intro">ShShop 에 오신것을 환영합니다. ShShop 에서 다양한 중고 아이템들을 만나보세요. 다양한 중고 상품과 실시간으로 크고 작은 이벤트, 해택 및 안전한 거래를 하실 수 있습니다.</p>
 			</div> --%>
 			<div class="join_set">
-				<div class="join_title"><h1>Login</h1><div class="m_logo"><img src="${adminBean.contextPath}/content/image/default/header_logo.png"></div></div>
+				<div class="join_title"><h1>Sign up</h1><div class="m_logo"><img src="${adminBean.contextPath}/content/image/default/header_logo.png"></div></div>
 				<div class="name join_list">
 					<label for="name">Name:</label> 
 					<input type="text" placeholder="Enter your name" name="name" id="name-reg">
@@ -163,8 +163,7 @@
 					<textarea name="bio" id="bio-reg" rows="5" cols="30"></textarea>
 				</div>
 				<div class="register join_btn">
-					<input type="submit" value="Register"><br /> 
-					<input id="cancelReg" type="button" value="Back" />
+					<input id="cancelReg" type="button" value="Back" /><input id="joinBtn" type="submit" value="Register">
 				</div>
 				<div id="message-reg"></div>
 			</div>

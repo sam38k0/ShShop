@@ -47,4 +47,31 @@
             }
         }).open();
     }
+    
+    function buyFnPageSet(text) {
+    	response = text;
+    	response = $.parseJSON(response);
+    	var buyTotalPageCount = response.buyTotalPageCount;
+    	var buyCurrentPage = response.buyCurrentPage;
+    	var buyPageDivNum = response.buyPageDivNum;
+    	
+    	var buyBtnHtml = '';
+		if(buyCurrentPage > 1) {
+			buyBtnHtml += '<a href=\"#\" id=\"similar_item_list_prev\" class=\"movepreB\">이전 아이템</a>';
+		}
+		
+		buyBtnHtml += '<span id=\"similar_item_list_page\">';
+		buyBtnHtml += '<strong>'+ buyCurrentPage +'</strong>/' + buyTotalPageCount;
+		buyBtnHtml += '</span>'
+		
+		if(buyCurrentPage < buyTotalPageCount)
+			buyBtnHtml += '<a href=\"#\" id=\"similar_item_list_next\" class=\"movenextB\">다음 아이템</a>';
+	 
+		$('.buyMoveBtn').empty();
+		$('.buyMoveBtn').append(buyBtnHtml);
+    }
+    
+    
+    
+    
 </script>

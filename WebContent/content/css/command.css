@@ -1,14 +1,14 @@
 @charset "UTF-8";
 
 /* 초기화 */
+
+​a{color:#333; text-decoration:none}
 a:-webkit-any-link{text-decoration:none}
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {margin:0; padding:0; border:0; font-size:100%; font:inherit}
 ​article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block;}
 img,fieldset{border:0}
 ol, ul {list-style: none}
-​a{color:#333; text-decoration:none}
 blockquote, q {quotes: none}
-​input,select,textarea{font-size:100%; vertical-align:middle}
 em{font-style:normal}
 blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
 ​table { border-collapse: collapse;}
@@ -54,15 +54,16 @@ table {border-collapse:collapse;}
 /* 헤더 > gnb 영역 */
 .gnb_before_login{position: absolute;top: 10px; right: 0;margin: 0}
 .gnb_before_login li{float: left}
-.gnb_before_login a{display: block; font-size:14px; color:#666;font-weight: bold}
-.gnb_after_login{position: absolute;top: 10px; right: 0;margin: 0}
+.gnb_before_login a{display: block; font-size:14px; color:#666;font-weight: bold;text-decoration:none}
+.gnb_after_login{display:none;position: absolute;top: 10px; right: 0;margin: 0}
 .gnb_after_login li{float: left}
-.gnb_after_login a{display: block; font-size:14px; color:#666;font-weight: bold}
+.gnb_after_login a{display: block; font-size:14px; color:#666;font-weight: bold;text-decoration:none}
+#link{display:none}
 
 /* 헤더 > 전체 카테고리 */
 .category_wrap{position:relative; width:100%;}
 #category{width:1000px;height:110px;margin:0 auto;padding-top:5px;background:url(../image/default/header_background.png) repeat-x 0 -92px}
-#category a{display: block; color:#fff; font-weight:bold; background-color:none}
+#category a{display: block; color:#fff; font-weight:bold; background-color:none;text-decoration:none}
 #category a:hover{background-color:#4b5767}
 #category > .allcategory > li{width:100%}
 #category > .allcategory > li > a {display:none}
@@ -70,10 +71,11 @@ table {border-collapse:collapse;}
 .allcategory li{float:left;width: 10%; height:50px; line-height:50px; border: none;text-align:center}
 #category:hover > .allcategory > li{display: block}
 #category .allcategory > li:hover li{display: block}
+#category>ul>li>ul>li>ul{display:none}
 #category>ul>li>ul>li>div{display:none;position:absolute;width:100%;height:auto;background-color:#eee;top:107px;left:0;z-index:10}
 #category>ul>li>ul>li>div>ul{width:1000px; height:auto;margin:0 auto}
 #category>ul>li>ul>li>div>ul>li{width:10%}
-#category>ul>li>ul>li>div>ul>li>a{color:#8f8f8f}
+#category>ul>li>ul>li>div>ul>li>a{color:#8f8f8f;text-decoration:none}
 #category>ul>li>ul>li>div>ul>li>a:hover{background-color:#eee;color:#f00;text-decoration:underline}
 
 /* 메인 초기화 */
@@ -89,7 +91,7 @@ table {border-collapse:collapse;}
 /* 푸터 컨텐츠*/
 .footcontent{display: inline-block; margin: 0;  padding: 0;  margin-top:20px; margin-bottom: 10px}
 .footcontent li{margin: 0 10px;font-weight: bold}
-.footcontent a{color:#000; font-size:15px}
+.footcontent a{color:#000; font-size:15px;text-decoration:none}
 /* 푸터 컴퍼니 영역*/
 .footcompany{display: inline-block;margin: 0;  padding: 0; margin-top:5px}
 .footcompany li{margin: 0 5px}

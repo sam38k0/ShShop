@@ -1,5 +1,31 @@
 @charset "UTF-8";
 
+.insertProduct_wrap {min-height:500px}
+.insertProduct_wrap table{width: 100%}
+.insertProduct_wrap th{width:150px}
+.insertProduct_wrap td{width:800px}
+
+#insertProduct_category li{float:left;width:100%}
+#insertProduct_category a{display: block; color:#ccc; font-weight:bold; background-color:none;text-decoration:none}
+/* #insertProduct_category a:hover{background-color:#4b5767} */
+#insertProduct_category > .allcategory > li > a {display:none}
+#insertProduct_category > ul > li > ul{width:800px;height:200px;margin: 0;padding: 0}
+.allcategory li{float:left;width: 5%; height:50px; line-height:50px; border: none;text-align:center}
+/* #insertProduct_category:hover > .allcategory > li{display: block}
+#insertProduct_category .allcategory > li:hover li{display: block}*/
+#insertProduct_category>ul>li>ul>li>ul{display:none}
+/*
+#insertProduct_category>ul>li>ul>li>div{display:none;position:absolute;width:100%;height:auto;background-color:#eee;top:107px;left:0;z-index:10}
+#insertProduct_category>ul>li>ul>li>div>ul{width:1000px; height:auto;margin:0 auto}
+#insertProduct_category>ul>li>ul>li>div>ul>li{width:10%}
+#insertProduct_category>ul>li>ul>li>div>ul>li>a{color:#8f8f8f;text-decoration:none}
+#insertProduct_category>ul>li>ul>li>div>ul>li>a:hover{background-color:#eee;color:#f00;text-decoration:underline}
+ */
+
+
+
+
+/* 
 .productTable {
 	border-collapse: collapse;
 	border: none;
@@ -108,4 +134,4 @@
 .connectionList li {
 	display: inline;
 	margin-right: 1.4em;
-}
+} */

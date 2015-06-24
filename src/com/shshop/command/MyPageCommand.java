@@ -34,8 +34,8 @@ public class MyPageCommand implements Command {
 		// 판매자 정보
 		List<Order> buyOrder = orderService.selectBuyOrder(user.getUserId());
 		if (buyOrder != null && buyOrder.size() > 0) {
-			OrderInfomationList buyOrderInfoList = new OrderInfomationList();
-
+			OrderInfomationList buyOrderInfoList = new OrderInfomationList(1,5);
+			
 			for (Order order : buyOrder) {
 				Product product = orderService.selectProduct(order.getProductId());
 				User seller = authenticatorService.getUserById(product.getUserId());
@@ -45,7 +45,7 @@ public class MyPageCommand implements Command {
 
 				buyOrderInfoList.addOrderInformation(seller, product, productImg, order, buyState, sellAdd);
 			}
-
+			
 			if (buyOrderInfoList.getOrderInfos().size() > 0)
 				request.setAttribute("buyOrderInfoList", buyOrderInfoList);
 		}
@@ -53,7 +53,7 @@ public class MyPageCommand implements Command {
 		// 구매자 정보
 		List<Order> sellOrder = orderService.selectSellOrder(user.getUserId());
 		if (sellOrder != null && sellOrder.size() > 0) {
-			OrderInfomationList sellOrderInfoList = new OrderInfomationList();
+			OrderInfomationList sellOrderInfoList = new OrderInfomationList(1,5);
 
 			for (Order order : sellOrder) {
 
@@ -72,6 +72,7 @@ public class MyPageCommand implements Command {
 		
 		// 판매 등록 게시물 리스트
 		List<Product> myProductsList = productService.getProductsById(user.getUserId());
+		/*PageDivider<Product> productPageDivider = new PageDivider<>(1, 10, myProductsList);*/
 		request.setAttribute("myProduct", myProductsList);
 		
 		// 개인 정보

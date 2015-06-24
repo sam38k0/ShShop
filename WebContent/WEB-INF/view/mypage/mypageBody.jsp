@@ -129,6 +129,9 @@
 			        </tr>
 		        </c:forEach>
 		    </table>
+		    <div class="buyMoveBtn">
+		    	
+		    </div>
 		
 		    <table id="board_table" class="mypage_board_type">
 	            <tr>
