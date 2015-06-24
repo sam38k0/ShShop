@@ -25,7 +25,7 @@
 			trHTML +=  
 	        '<tr id=\"orderItemList\"' + i +'>' +
 	        '<td class=\"cb\">' +
-	        '   <input type=\"checkbox\" class=\"chkbx\" name=\"chkCartGoodsShShop\" id=\"chkCartGoodsShShop' + i +'\"/>' +
+	        '   <input type=\"hidden\" class=\"chkbx\" name=\"chkCartGoodsShShop\" id=\"chkCartGoodsShShop' + i +'\"/>' +
 	        '</td>' +
 	        '<td class=\"goods_img\">' +
 	        '    <a href=\"#\" target=\"_new\" class=\"pd_a\">' +
@@ -813,7 +813,7 @@
 		$(document).ready(function() {
 			$.ajax({
 				type : "POST",
-				url : "setShoppingCartPage",
+				url : "orderPage",
 				data : {
 					'orderKey' : '${requestScope.orderKey}',
 					'data-page' : '1',

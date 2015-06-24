@@ -30,6 +30,7 @@ public class Constant {
 	public static final String setShoppingCartPage = "/setShoppingCartPage";
 	public static final String changeOrderItemChecked = "/changeOrderItemChecked";
 	public static final String virtualOrder = "/virtualOrder";
+	public static final String serOrderPage = "/orderPage";
 
 	// Attribute
 	public static final String attrUser = "user";

@@ -21,6 +21,7 @@ import com.shshop.command.SearchActionCommand;
 import com.shshop.command.SearchCategoryCommand;
 import com.shshop.command.SearchViewCommand;
 import com.shshop.command.ShoppingCartCommand;
+import com.shshop.command.OrderPageCommand;
 import com.shshop.command.ShoppingCartPageCommand;
 import com.shshop.command.ShowDetailViewCommand;
 import com.shshop.command.SimilarItemSearchCommand;
@@ -105,6 +106,9 @@ public class CommandFactory {
 			
 		case Constant.virtualOrder:
 			return new VirtualOrderCommand();
+			
+		case Constant.serOrderPage:
+			return new OrderPageCommand();
 
 		default:
 			return null;

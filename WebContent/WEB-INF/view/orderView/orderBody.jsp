@@ -30,7 +30,7 @@
                             <thead>
                                 <tr>
                                     <th style='vertical-align:middle;'>
-                                		<input type='checkbox' class='chkbx' id='chkCartHeader'/>
+                                		<input type='hidden' class='chkbx' id='chkCartHeader'/>
                             		</th>
                                     <th colspan='2'><em class='name'>상품명</em>
                                     </th>
@@ -372,9 +372,12 @@
                             <!-- 부가옵션 // -->
                             
                             <div class="btn_area">
-                                <a id="btnPayment" href="#">
-                                    <img src="${adminBean.contextPath}/content/image/b_pay.gif" alt="결제하기" />
-                                </a>
+								<div id="divAjaxLoaderOrder" style="position: absolute; height: 100px; width: 240px; display: none;">
+									<img src="${adminBean.contextPath}/content/image/pay_loading.gif" style="padding-left: 40px;" id="imgAjaxLoaderOrder" />
+								</div>
+								<a id="btnPayment" href="#">
+	                                <img src="${adminBean.contextPath}/content/image/b_pay.gif" alt="결제하기" />
+	                            </a>
                             </div>
                         </div>
 
