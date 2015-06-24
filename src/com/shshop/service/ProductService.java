@@ -136,47 +136,8 @@ public class ProductService {
 			sqlSession.close();
 		}
 	}
-
-	public OrderInfo createNewOrderInfo(HttpServletRequest request, Integer userId, Integer productId, int quantity, int shippingPrice, String orderRequest,String strOrderState) {
-		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-
-		try {
-			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-			User user = userMapper.getUserById(userId);
-			
-			List<Address> userAddresses = userMapper.getUserAddress(user.getUserId());
-			
-			Product product = getProductById(sqlSession, productId);
-			String imagePath = getProductFirstImagePaths(sqlSession, productId, request);
-			
-			if (user == null || product == null || userAddresses == null || userAddresses.size() <= 0)
-				return null;
-
-			if (imagePath == "") {
-				return null;
-			}
  
-			Order order = new Order(userId, productId, userAddresses.get(0).getIdAddress(), quantity, product.getPrice()*quantity, shippingPrice, orderRequest);
-			
-			OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
-			OrderProc orderProc = new OrderProc(order);
-			orderMapper.insertOrderProc(orderProc);
-			
-			int orderId = orderProc.getInsertedOrderId();
-			order.setOrderId(orderId);
-			OrderState orderState = new OrderState(orderId,strOrderState);
-			
-			OrderStateMapper orderStateMapper =sqlSession.getMapper(OrderStateMapper.class);
-			orderStateMapper.insertOrderState(orderState);
-			
-			return new OrderInfo(order, orderState, product, imagePath, quantity, shippingPrice);
-
-		} finally {
-			sqlSession.close();
-		}
-	}
- 
-	private String getProductFirstImagePaths(SqlSession sqlSession, Integer productId, HttpServletRequest request) {
+	public String getProductFirstImagePaths(SqlSession sqlSession, Integer productId, HttpServletRequest request) {
 		ProductImageMapper imageMapper = sqlSession.getMapper(ProductImageMapper.class);
 		List<ProductImage> images = imageMapper.getProductImages(productId);
 
@@ -189,7 +150,7 @@ public class ProductService {
 		return "";
 	}
 
-	private Product getProductById(SqlSession sqlSession, int productId) {
+	public Product getProductById(SqlSession sqlSession, int productId) {
 		ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
 		Product product = productMapper.getProductById(productId);
 		return product;

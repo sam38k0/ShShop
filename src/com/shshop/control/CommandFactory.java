@@ -25,6 +25,7 @@ import com.shshop.command.ShoppingCartPageCommand;
 import com.shshop.command.ShowDetailViewCommand;
 import com.shshop.command.SimilarItemSearchCommand;
 import com.shshop.command.UserDataChangeCommand;
+import com.shshop.command.VirtualOrderCommand;
 import com.shshop.constant.Constant;
 
 public class CommandFactory {
@@ -101,6 +102,9 @@ public class CommandFactory {
 			
 		case Constant.changeOrderItemChecked:
 			return new ChangeOrderItemCheckedCommand();
+			
+		case Constant.virtualOrder:
+			return new VirtualOrderCommand();
 
 		default:
 			return null;

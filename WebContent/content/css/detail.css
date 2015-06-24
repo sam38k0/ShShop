@@ -279,14 +279,6 @@ div.detailArea div.functionBtn ul li {
   float: left;
 }
 
-div.detailArea div.functionBtn ul li a {
-  float: left;
-  background-position: 0 0;
-  height: 20px;
-  line-height: 20px;
-  margin: 0 20px 0 0;
-}
-
 div.detailArea div.detailInfo {
   width: 425px;
   min-height: 200px;
@@ -473,24 +465,6 @@ div.cmtWrite {
 div.cmtWrite textarea {
   border: solid 1px #d9d9d9;
 }
- 
-.functionBtn a {
-    background-color: #ed8e6c;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    padding: 7px 10px 9px 10px;
-    margin: 5px 0 20px 0;
-    float: right;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-}
-
-.functionBtn a:hover {
-    background-color: #ed612f;
-}
-
-
 
 /*--accordion--*/
 

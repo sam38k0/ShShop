@@ -1,6 +1,10 @@
 package com.shshop.domain;
 
-public class OrderState {
+import java.io.Serializable;
+
+public class OrderState implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	public static final String VirtualOrder = "virtualOrder";
 	public static final String Activated = "activated";
 	public static final String Paid = "paid";
@@ -8,20 +12,22 @@ public class OrderState {
 	public static final String Shipped = "shipped";
 	public static final String Delivered = "delivered";
 	public static final String Deleted = "Deleted";
-	
-	private String orderState = "";
+
 	private Integer orderId;
-	private boolean virtualOrder = false; // 가상주문(장바구니 상태)
-	private boolean activated = false; // 주문 활성화 여부
-	private boolean paid = false; // 지불완료
-	private boolean sendedEmail = false; // 이메일 보냄
-	private boolean shipped = false; // 배송중
-	private boolean delivered = false; // 배송완료
-	private boolean deleted = false; // 주문취소
+	private Boolean virtualOrder = false; // 가상주문(장바구니 상태)
+	private Boolean activated = false; // 주문 활성화 여부
+	private Boolean paid = false; // 지불완료
+	private Boolean sendedEmail = false; // 이메일 보냄
+	private Boolean shipped = false; // 배송중
+	private Boolean delivered = false; // 배송완료
+	private Boolean deleted = false; // 주문취소
+	
+	public OrderState() {
+		
+	}
 
 	public OrderState(Integer orderId, String orderState) {
 		this.orderId = orderId;
-		this.setOrderState(orderState);
 		
 		switch(orderState) {
 		case OrderState.VirtualOrder:
@@ -58,63 +64,63 @@ public class OrderState {
 		this.orderId = orderId;
 	}
 
-	public boolean isVirtualOrder() {
+	public Boolean getVirtualOrder() {
 		return virtualOrder;
 	}
 
-	public void setVirtualOrder(boolean virtualOrder) {
+	public void setVirtualOrder(Boolean virtualOrder) {
 		this.virtualOrder = virtualOrder;
 	}
 
-	public boolean isActivated() {
+	public Boolean getActivated() {
 		return activated;
 	}
 
-	public void setActivated(boolean activated) {
+	public void setActivated(Boolean activated) {
 		this.activated = activated;
 	}
 
-	public boolean isPaid() {
+	public Boolean getPaid() {
 		return paid;
 	}
 
-	public void setPaid(boolean paid) {
+	public void setPaid(Boolean paid) {
 		this.paid = paid;
 	}
 
-	public boolean isSendedEmail() {
+	public Boolean getSendedEmail() {
 		return sendedEmail;
 	}
 
-	public void setSendedEmail(boolean sendedEmail) {
+	public void setSendedEmail(Boolean sendedEmail) {
 		this.sendedEmail = sendedEmail;
 	}
 
-	public boolean isShipped() {
+	public Boolean getShipped() {
 		return shipped;
 	}
 
-	public void setShipped(boolean shipped) {
+	public void setShipped(Boolean shipped) {
 		this.shipped = shipped;
 	}
 
-	public boolean isDelivered() {
+	public Boolean getDelivered() {
 		return delivered;
 	}
 
-	public void setDelivered(boolean delivered) {
+	public void setDelivered(Boolean delivered) {
 		this.delivered = delivered;
 	}
 
-	public boolean isDeleted() {
+	public Boolean getDeleted() {
 		return deleted;
 	}
 
-	public void setDeleted(boolean deleted) {
+	public void setDeleted(Boolean deleted) {
 		this.deleted = deleted;
 	}
 	
-	private void setOrderState(boolean virtualOrder, boolean activated, boolean paid, boolean sendedEmail, boolean shipped, boolean delivered, boolean deleted) {
+	private void setOrderState(Boolean virtualOrder, Boolean activated, Boolean paid, Boolean sendedEmail, Boolean shipped, Boolean delivered, Boolean deleted) {
 		this.virtualOrder = virtualOrder;
 		this.activated = activated;
 		this.paid = paid;
@@ -135,11 +141,19 @@ public class OrderState {
 	}
 
 	public String getOrderState() {
-		return orderState;
-	}
-
-	public void setOrderState(String orderState) {
-		this.orderState = orderState;
-	}
-	
+		if(deleted)
+			return OrderState.VirtualOrder;
+		else if(delivered)
+			return OrderState.Delivered;
+		else if(shipped)
+			return OrderState.Shipped;
+		else if(sendedEmail)
+			return OrderState.SendedEmail;
+		else if(paid)
+			return OrderState.Paid;
+		else if(activated)
+			return OrderState.Activated;
+		else
+			return OrderState.VirtualOrder;
+	} 
 }

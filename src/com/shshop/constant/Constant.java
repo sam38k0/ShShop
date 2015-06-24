@@ -29,6 +29,7 @@ public class Constant {
 	public static final String deleteOrder = "/deleteOrder";
 	public static final String setShoppingCartPage = "/setShoppingCartPage";
 	public static final String changeOrderItemChecked = "/changeOrderItemChecked";
+	public static final String virtualOrder = "/virtualOrder";
 
 	// Attribute
 	public static final String attrUser = "user";
@@ -68,6 +69,7 @@ public class Constant {
 	public static final String attrUncheckedIndx = "uncheckedIndx";
 	public static final String attrCheckedIndex = "checkedIndex";
 	public static final String attrVirtualOrderCount = "virtualOrderCount";
+	public static final String attrOrderCount = "orderCount";
 	
 	// DD Parameter
 	public static final String paramFileUpload = "file-upload";

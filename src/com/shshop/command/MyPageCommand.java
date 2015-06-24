@@ -41,7 +41,7 @@ public class MyPageCommand implements Command {
 				User seller = authenticatorService.getUserById(product.getUserId());
 				ProductImage productImg = productService.getProductImg(order.getProductId());
 				Address sellAdd = orderService.selectSellAddress(order.getIdAddress());
-				OrderState buyState = orderService.selectOrderState(order.getOrderId());
+				OrderState buyState = orderService.getOrderState(order.getOrderId());
 
 				buyOrderInfoList.addOrderInformation(seller, product, productImg, order, buyState, sellAdd);
 			}
@@ -61,7 +61,7 @@ public class MyPageCommand implements Command {
 				Product product = orderService.selectProduct(order.getProductId());
 				ProductImage productImg = productService.getProductImg(order.getProductId());
 				Address buyAdd = orderService.selectBuyAddress(order.getOrderId());
-				OrderState sellState = orderService.selectOrderState(order.getOrderId());
+				OrderState sellState = orderService.getOrderState(order.getOrderId());
 
 				sellOrderInfoList.addOrderInformation(buyer, product, productImg, order, sellState, buyAdd);
 			}

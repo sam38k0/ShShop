@@ -120,8 +120,8 @@ function commentSet(text) {
 		$('#comment_list').empty();
 		$('#comment_list').html(response).contents();
 		$('#comment_list').append(commentAddElem);
-		registerEvent();
 	}
+	registerEvent();
 }
 
 
@@ -131,11 +131,62 @@ function cmtReplyClick(e) {
 	$(this).parent('.functionCmt').next('.cmtReplyHide').css("display","block");
 }
 
+function afterVirtualOrder(text) { 
+	response = text;
+	var noUser = 'There is no user information.';
+	var noAddress = "There is no user address information"; 
+	
+	if(response === noUser) {
+		alert("로그인이 필요한 서비스 입니다.");
+	} else if(response === noAddress) {
+		alert("기본 주소를 등록해 주세요.");
+	} else {
+		response = $.parseJSON(response);
+		var virtualOrderCount = response.virtualOrderCount;
+		var strBasket = 'BASKET(' + virtualOrderCount + ')';
+		$('#virtualOrderHeader').text(strBasket);
+	}
+	
+	registerEvent(); 
+}
+
+function virtualOrder(e) {
+	e.preventDefault();  
+	
+	var orderCount = $('#ord_goods_cnt').val();
+	$.ajax({
+		type : "POST",
+		url : "virtualOrder",
+		data : {
+			"productId" : '${productDetail.product.productId}',
+			"orderCount" : orderCount
+		},
+		success : afterVirtualOrder,
+		error : function(ajaxContext) {
+		}
+	});
+}
+
+/* function directOrder(e) {
+	e.preventDefault();  
+	$.ajax({
+		type : "POST",
+		url : "directOrder",
+		data : {
+			"productId" : '${productDetail.product.productId}',
+			"data-page" : "1"
+		},
+		success : pageSet,
+		error : function(ajaxContext) {
+		}
+	});
+} */
+
 function registerEvent() {
-	$('#similar_item_list_prev').click(pagePrev);
-	$('#similar_item_list_next').click(pageNext);
+	$('#similar_item_list_prev').unbind('click').bind('click', pagePrev);
+	$('#similar_item_list_next').unbind('click').bind('click', pageNext);
 	$('.cmtWrite textarea').keyup(textAreaEnter);
-	$('.cmtReply').click(cmtReplyClick);
+	$('.cmtReply').unbind('click').bind('click', cmtReplyClick);
 	$(".cmtReplyHide textarea").keyup(textAreaChildEnter);
 	$( "#ord_goods_cnt").change(function() {
 		if ($(this).val() > '${productDetail.product.stock}') {
@@ -144,6 +195,9 @@ function registerEvent() {
 			$(this).val(1);
 		}       
 	});
+
+	$('#virtualOrder').unbind('click').bind('click', virtualOrder);
+	//$('#directOrder').click(directOrder);
 }
 
 
