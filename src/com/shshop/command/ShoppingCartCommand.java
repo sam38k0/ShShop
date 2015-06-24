@@ -35,31 +35,35 @@ public class ShoppingCartCommand implements Command {
 			return new CommandResult(Constant.textPlain, Constant.noAddress);
 		}
 		
-		OrderService orderService = new OrderService();
-		
-		OrderViewInfo orderViewInfo = new OrderViewInfo(user, addresses, 1, 5);
-		List<Order> virtualOrders = orderService.getVirtualOrder(user.getUserId());
-
-		for(Order order: virtualOrders ) {
-			OrderState orderState = orderService.getOrderState(order);
-			Product product = orderService.getOrderProduct(order);
-			String imagePath = orderService.getOrderImagePath(order);
-			
-			OrderInfo orderInfo = new OrderInfo(order, orderState, product, imagePath, order.getAmount(), Format.randBetween(2500, 5000));
- 
-			if(orderInfo != null)
-				orderViewInfo.addOrderInfo(orderInfo);
-		}
-		
 		String orderKey = "orderKey_" + user.getUserId().toString();
+		
+		OrderViewInfo orderViewInfo = (OrderViewInfo)session.getAttribute(Constant.attrOrderViewInfo);
+		
+		if(orderViewInfo == null) {
+			orderViewInfo = new OrderViewInfo(user, addresses, 1, 5);
+			
+			synchronized (session) {
+				session.setAttribute(orderKey, orderViewInfo);
+			}
+			
+			OrderService orderService = new OrderService();
+			List<Order> virtualOrders = orderService.getVirtualOrder(user.getUserId());
+
+			for(Order order: virtualOrders ) {
+				OrderState orderState = orderService.getOrderState(order);
+				Product product = orderService.getOrderProduct(order);
+				String imagePath = orderService.getOrderImagePath(order);
+				
+				OrderInfo orderInfo = new OrderInfo(order, orderState, product, imagePath, order.getAmount(), Format.randBetween(2500, 5000));
+	 
+				if(orderInfo != null)
+					orderViewInfo.addOrderInfo(orderInfo);
+			}
+		}
 		
 		request.setAttribute(Constant.attrVirtualOrderCount, orderViewInfo.getOrderInfos().size());
 		request.setAttribute(Constant.attrOrderViewInfo, orderViewInfo);
 		request.setAttribute(Constant.attrOrderKey, orderKey);
-
-		synchronized (session) {
-			session.setAttribute(orderKey, orderViewInfo);
-		}
 
 		return new CommandResult("/WEB-INF/view/shoppingCartView/shoppingCart.jsp");
 	}
