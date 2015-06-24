@@ -137,6 +137,13 @@ function registerEvent() {
 	$('.cmtWrite textarea').keyup(textAreaEnter);
 	$('.cmtReply').click(cmtReplyClick);
 	$(".cmtReplyHide textarea").keyup(textAreaChildEnter);
+	$( "#ord_goods_cnt").change(function() {
+		if ($(this).val() > '${productDetail.product.stock}') {
+			$(this).val('${productDetail.product.stock}');
+		} else if ($(this).val() <= 0) {
+			$(this).val(1);
+		}       
+	});
 }
 
 

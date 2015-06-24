@@ -12,10 +12,14 @@ import com.shshop.constant.Constant;
 import com.shshop.control.CommandResult;
 import com.shshop.domain.Address;
 import com.shshop.domain.AddressProc;
+import com.shshop.domain.Order;
+import com.shshop.domain.OrderState;
 import com.shshop.domain.Product;
 import com.shshop.domain.User;
 import com.shshop.helper.RegExpressionHelper;
 import com.shshop.mapper.AddressMapper;
+import com.shshop.mapper.OrderMapper;
+import com.shshop.mapper.OrderStateMapper;
 import com.shshop.mapper.ProductMapper;
 import com.shshop.mapper.UserMapper;
 import com.shshop.util.MyBatisUtil;
@@ -61,8 +65,12 @@ public class AuthenticatorService {
 
 			HttpSession session = request.getSession();
 
+			
+			int virtualOrderCount = getVirtualOrderCount(user.getUserId());
+
 			synchronized (session) {
 				session.setAttribute(Constant.attrUser, user);
+				session.setAttribute(Constant.attrVirtualOrderCount, virtualOrderCount);
 			}
 
 			return new CommandResult(Constant.textHtml, Constant.Success);
@@ -72,6 +80,36 @@ public class AuthenticatorService {
 		}
 
 		return result;
+	}
+
+	private int getVirtualOrderCount(int userId) {
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		
+		int virtualOrderCount = 0;
+		
+		try {
+			OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+			OrderStateMapper orderStateMapper = sqlSession.getMapper(OrderStateMapper.class);
+			
+			List<Order>  orders = orderMapper.getBuyOrder(userId);
+			
+			for(Order order: orders) {
+				OrderState orderState = orderStateMapper.getOrderState(order.getOrderId());
+				if(orderState.getOrderState() == OrderState.VirtualOrder) {
+					virtualOrderCount++;
+				}
+			}
+			
+			return virtualOrderCount;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
+		} finally {
+			sqlSession.close();
+		}
+		
+		return virtualOrderCount;
 	}
 
 	public boolean canLogin(String email, String password) {

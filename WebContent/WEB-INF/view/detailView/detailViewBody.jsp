@@ -96,7 +96,7 @@
 									<dl>
 										<dt>주문수량</dt>
 										<dd>
-											<input name="ORD_GOODS_CNT" type="number" class="ordNum" value="1">
+											<input id="ord_goods_cnt" type="number" class="ordNum" value="1">
 										</dd>
 									</dl>
 								</div>

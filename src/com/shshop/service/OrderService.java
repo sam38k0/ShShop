@@ -136,7 +136,7 @@ public class OrderService {
 		OrderState orderState;
 		try {
 			OrderStateMapper osMapper = sqlSession.getMapper(OrderStateMapper.class);
-			orderState = osMapper.selectOrderState(orderId);
+			orderState = osMapper.getOrderState(orderId);
 		} finally {
 			sqlSession.close();
 		}

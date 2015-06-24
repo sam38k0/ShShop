@@ -15,7 +15,7 @@
 		where `id_order` = ${id_order}
 	</update>
 	
-	<select id='selectOrderState' resultMap='OrderState'>
+	<select id='getOrderState' resultMap='OrderState'>
 		select * from `or_order_state` where `id_order`=${id_order}
 	</select>
 	

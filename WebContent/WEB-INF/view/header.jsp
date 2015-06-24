@@ -71,7 +71,17 @@
 			<li>ㆍ</li>
 			<li><a href="mypage">MYPAGE</a></li>
 			<li>ㆍ</li>
-			<li><a href="#">BASKET</a></li>
+			<li><a href="#">BASKET( 
+				<c:choose>
+					<c:when test="${virtualOrderCount == null || virtualOrderCount == '' }">
+						0
+					</c:when>
+					<c:otherwise>
+						${virtualOrderCount}
+					</c:otherwise>
+				</c:choose> 
+				)</a>
+			</li>
 		</ul>
 		<!-- 로그인 후 서브 메뉴 종료 -->
 	</div>

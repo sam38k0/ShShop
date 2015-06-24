@@ -67,6 +67,7 @@ public class Constant {
 	public static final String attrTotalPageCount = "totalPageCount";
 	public static final String attrUncheckedIndx = "uncheckedIndx";
 	public static final String attrCheckedIndex = "checkedIndex";
+	public static final String attrVirtualOrderCount = "virtualOrderCount";
 	
 	// DD Parameter
 	public static final String paramFileUpload = "file-upload";

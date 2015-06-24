@@ -9,5 +9,5 @@ public interface OrderStateMapper {
 
 	public void updateOrderState(OrderState orderState);
 
-	public OrderState selectOrderState(@Param("orderId") int orderId);
+	public OrderState getOrderState(@Param("orderId") int orderId);
 }
