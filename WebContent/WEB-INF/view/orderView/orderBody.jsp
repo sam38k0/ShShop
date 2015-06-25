@@ -96,9 +96,6 @@
 								</td>
 								<td class="clr2">
 									<em id="txtTotalAmount">${requestScope.orderViewInfo.totalPrice}</em>원
-									<span id="spnGiftPackGbMemo2" class="wfee" display="none" style="display: none;">
-										(선물포장비 <strong class="ls0">1,000원</strong> 포함)
-									</span>
 								</td>
 							</tr>
 						</tbody>

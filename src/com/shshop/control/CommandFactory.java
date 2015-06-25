@@ -17,6 +17,7 @@ import com.shshop.command.LogoutCommand;
 import com.shshop.command.MainViewCommand;
 import com.shshop.command.OrderCommand;
 import com.shshop.command.MyPageCommand;
+import com.shshop.command.OrderCompletedCommand;
 import com.shshop.command.SearchActionCommand;
 import com.shshop.command.SearchCategoryCommand;
 import com.shshop.command.SearchViewCommand;
@@ -109,6 +110,9 @@ public class CommandFactory {
 			
 		case Constant.serOrderPage:
 			return new OrderPageCommand();
+			
+		case Constant.showOrderCompletedView:
+			return new OrderCompletedCommand();
 
 		default:
 			return null;

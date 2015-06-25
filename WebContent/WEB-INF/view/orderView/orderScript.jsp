@@ -310,7 +310,7 @@
             <td class=\"le\" valign=\"top\">\
                 <div class=\"putAddrWrap\">\
                     <div class=\"putAddrLft\">\
-                        <img class=\"addr_item\" src=\"https://secimage.yes24.com/sysimage/orderN/btn_putAddr02.gif\" width=\"30\" height=\"13\" alt=\"도로명\">\
+                        <img class=\"addr_item\" src=\"/ShShopTest/content/image/orderN/btn_putAddr02.gif\" width=\"30\" height=\"13\" alt=\"도로명\">\
                     </div>\
                     <div class=\"putAddrRgt\">\
                         <span class=\"putAddrTxt\"><a href=\"#\" id=\"memberZipCodeNew$INDX$\">($POSTHEAD$-$POSTTAIL$)$FULLADDRNEW$</a></span>\
@@ -318,7 +318,7 @@
                 </div>\
                 <div class=\"putAddrWrap mgt5\">\
                     <div class=\"putAddrLft\">\
-                        <img class=\"addr_item\" src=\"https://secimage.yes24.com/sysimage/orderN/btn_putAddr03.gif\" width=\"30\" height=\"13\" alt=\"지번\">\
+                        <img class=\"addr_item\" src=\"/ShShopTest/content/image/btn_putAddr03.gif\" width=\"30\" height=\"13\" alt=\"지번\">\
                     </div>\
                     <div class=\"putAddrRgt\">\
                         <span class=\"putAddrTxt grayTxt\">\
