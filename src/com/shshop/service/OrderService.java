@@ -39,8 +39,11 @@ public class OrderService {
 		try {
 			OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
 			orderMapper.insertOrderProc(new OrderProc(order));
-			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
 		} finally {
+			sqlSession.commit();
 			sqlSession.close();
 		}
 	}
@@ -51,8 +54,12 @@ public class OrderService {
 		try {
 			OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
 			orderMapper.updateOrder(order);
-			sqlSession.commit();
+			
+		}  catch (Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
 		} finally {
+			sqlSession.commit();
 			sqlSession.close();
 		}
 	}
@@ -118,20 +125,11 @@ public class OrderService {
 		try {
 			OrderStateMapper osMapper = sqlSession.getMapper(OrderStateMapper.class);
 			osMapper.insertOrderState(orderState);
-			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
 		} finally {
-			sqlSession.close();
-		}
-	}
-
-	public void updateOrderState(OrderState orderState) {
-		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-
-		try {
-			OrderStateMapper osMapper = sqlSession.getMapper(OrderStateMapper.class);
-			osMapper.updateOrderState(orderState);
 			sqlSession.commit();
-		} finally {
 			sqlSession.close();
 		}
 	}
@@ -142,12 +140,7 @@ public class OrderService {
 		OrderState orderState = null;
 		try {
 			OrderStateMapper osMapper = sqlSession.getMapper(OrderStateMapper.class);
-			List<OrderState> orderStates = osMapper.getOrderState(order.getOrderId());
-			if (orderStates != null && orderStates.size() == 1) {
-				orderState = orderStates.get(0);
-			} else {
-				System.out.println("오더 스테이트가 2개 이상있음. 문제있다..");
-			}
+			orderState = osMapper.getOrderState(order.getOrderId());
 		} finally {
 			sqlSession.close();
 		}
@@ -195,6 +188,7 @@ public class OrderService {
 			e.printStackTrace();
 			sqlSession.rollback();
 		} finally {
+			sqlSession.commit();
 			sqlSession.close();
 		}
 
@@ -233,6 +227,7 @@ public class OrderService {
 			e.printStackTrace();
 			sqlSession.rollback();
 		} finally {
+			sqlSession.commit();
 			sqlSession.close();
 		}
 
@@ -308,12 +303,9 @@ public class OrderService {
 			List<Order> orders = orderMapper.getOrder(userId);
 
 			for (Order order : orders) {
-				List<OrderState> orderStates = orderStateMapper.getOrderState(order.getOrderId());
-				if (orderStates != null && orderStates.size() > 1) {
-					System.out.println("오더 스테이트가 2개 이상이다.. 문제있음.");
-				}
-
-				if (orderStates.get(0).getOrderState() == OrderState.VirtualOrder) {
+				OrderState orderState = orderStateMapper.getOrderState(order.getOrderId());
+ 
+				if (orderState.getOrderState() == OrderState.VirtualOrder) {
 					virtualOrderCount++;
 				}
 			}
@@ -341,12 +333,9 @@ public class OrderService {
 			List<Order> orders = orderMapper.getOrder(userId);
 
 			for (Order order : orders) {
-				List<OrderState> orderStates = orderStateMapper.getOrderState(order.getOrderId());
-				if (orderStates != null && orderStates.size() > 1) {
-					System.out.println("오더 스테이트가 2개 이상이다.. 문제있음.");
-				}
-
-				if (orderStates.get(0).getOrderState() == OrderState.VirtualOrder) {
+				OrderState orderState = orderStateMapper.getOrderState(order.getOrderId());
+ 
+				if (orderState.getOrderState() == OrderState.VirtualOrder) {
 					if (virtualOrders == null)
 						virtualOrders = new ArrayList<>();
 					virtualOrders.add(order);
@@ -441,5 +430,22 @@ public class OrderService {
 		}
 		
 		return imagePath;
+	}
+	
+	public void updateCompletedOrder(Order order) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+
+		try {
+			OrderStateMapper orderStateMapper = sqlSession.getMapper(OrderStateMapper.class);
+			OrderState orderState = orderStateMapper.getOrderState(order.getOrderId());
+			orderState.setSendedEmail(true);
+			orderStateMapper.updateOrderState(orderState);
+		} catch (Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
 	}
 }

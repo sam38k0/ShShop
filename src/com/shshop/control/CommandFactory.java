@@ -8,6 +8,7 @@ import com.shshop.command.CheckLoginStateCommand;
 import com.shshop.command.Command;
 import com.shshop.command.CommentPostCommend;
 import com.shshop.command.DeleteOrderAddrCommand;
+import com.shshop.command.DeleteOrderInfoCommand;
 import com.shshop.command.DeleteOrderItemCommand;
 import com.shshop.command.InsertProductCommand;
 import com.shshop.command.InsertProductViewCommand;
@@ -113,6 +114,9 @@ public class CommandFactory {
 			
 		case Constant.showOrderCompletedView:
 			return new OrderCompletedCommand();
+			
+		case Constant.deleteOrderInfo:
+			return new DeleteOrderInfoCommand();
 
 		default:
 			return null;

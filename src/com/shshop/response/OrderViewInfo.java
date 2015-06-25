@@ -67,6 +67,13 @@ public class OrderViewInfo {
 
 		orderInfos.add(orderInfo);
 	}
+	
+/*	public void copyOrderInfo(OrderInfo orderInfo) {
+		if (!orderInfo.isOpen())
+			return;
+
+		orderInfos.add(new OrderInfo(orderInfo.getOrder(), orderInfo.getOrderState(), orderInfo.getProduct(), orderInfo.getImagePath(), orderInfo.getQuantity(), orderInfo.getShippingPrice()));
+	}*/
 
 	public List<OrderInfo> getOrderInfos() {
 		return orderInfos;

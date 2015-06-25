@@ -93,6 +93,14 @@
 	function fnRegisterEvent() {
 		$('#similar_item_list_prev').click(fnPagePrev);
 		$('#similar_item_list_next').click(fnPageNext);
+		$(window).on("beforeunload", function(){
+			$.ajax({
+				type : "POST",
+				url : "deleteOrderInfo",
+				error : function(ajaxContext) {
+				}
+			}); 
+	    });
 	}
  
 	$(document).ready(function() {

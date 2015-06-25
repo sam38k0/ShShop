@@ -32,6 +32,7 @@ public class Constant {
 	public static final String virtualOrder = "/virtualOrder";
 	public static final String serOrderPage = "/orderPage";
 	public static final String showOrderCompletedView = "/showOrderCompletedView";
+	public static final String deleteOrderInfo = "/deleteOrderInfo";
 
 	// Attribute
 	public static final String attrUser = "user";
@@ -52,6 +53,7 @@ public class Constant {
 	public static final String attrComment = "comment";
 	public static final String attrParentId = "parentId";
 	public static final String attrOrderViewInfo = "orderViewInfo";
+	public static final String attrOrderViewInfoCompleted = "orderViewInfoCompleted";
 	public static final String attrOrderKey = "orderKey";
 	public static final String attrAddressIndex = "addressIndex";
 	public static final String attrUserName = "userName";

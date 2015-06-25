@@ -21,12 +21,12 @@
 	
 	<resultMap id="OrderState" type="${OrderStateType}">
 		<id property='orderId' column='id_order' />
-		<result property='virtualOrder' column='virtual_order' javaType="Boolean" jdbcType="TINYINT" />
-		<result property='activated' column='activated'  javaType="Boolean" jdbcType="TINYINT"/>
-		<result property='paid' column='paid'  javaType="Boolean" jdbcType="TINYINT"/>
-		<result property='sendedEmail' column='sended_email'  javaType="Boolean" jdbcType="TINYINT"/>
-		<result property='shipped' column='shipped'  javaType="Boolean" jdbcType="TINYINT"/>
-		<result property='delivered' column='delivered'  javaType="Boolean" jdbcType="TINYINT"/>
-		<result property='deleted' column='deleted'  javaType="Boolean" jdbcType="TINYINT"/>
+		<result property='virtualOrder' column='virtual_order'  javaType="java.lang.Boolean" jdbcType="BOOLEAN"/>
+		<result property='activated' column='activated'  javaType="java.lang.Boolean" jdbcType="BOOLEAN"/>
+		<result property='paid' column='paid'  javaType="java.lang.Boolean" jdbcType="BOOLEAN"/>
+		<result property='sendedEmail' column='sended_email'  javaType="java.lang.Boolean"/>
+		<result property='shipped' column='shipped'  javaType="java.lang.Boolean" jdbcType="BOOLEAN"/>
+		<result property='delivered' column='delivered'  javaType="java.lang.Boolean" jdbcType="BOOLEAN"/>
+		<result property='deleted' column='deleted'  javaType="java.lang.Boolean" jdbcType="BOOLEAN"/>
 	</resultMap>
 </mapper>
