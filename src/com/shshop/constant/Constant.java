@@ -33,6 +33,8 @@ public class Constant {
 	public static final String serOrderPage = "/orderPage";
 	public static final String showOrderCompletedView = "/showOrderCompletedView";
 	public static final String deleteOrderInfo = "/deleteOrderInfo";
+	public static final String directOrder = "/directOrder";
+	public static final String showDirectOrderView = "/showDirectOrderView";
 
 	// Attribute
 	public static final String attrUser = "user";

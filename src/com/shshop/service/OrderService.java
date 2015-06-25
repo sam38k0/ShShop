@@ -352,52 +352,6 @@ public class OrderService {
 		return virtualOrders;
 	}
 
-	public CommandResult createVirtualOrder(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		User user = (User) session.getAttribute(Constant.attrUser);
-		if (user == null) {
-			return new CommandResult(Constant.textPlain, Constant.noUser);
-		}
-
-		String strProductId = request.getParameter(Constant.attrProductId);
-		String strOrderCount = request.getParameter(Constant.attrOrderCount);
-
-		if (strProductId == null || strProductId == "")
-			return null;
-
-		if (strOrderCount == null || strOrderCount == "")
-			return null;
-
-		AuthenticatorService authenticatorService = new AuthenticatorService();
-		List<Address> addresses = authenticatorService.getUserAddress(user.getUserId());
-		if (addresses == null) {
-			return new CommandResult(Constant.textPlain, Constant.noAddress);
-		}
-
-		String orderKey = "orderKey_" + user.getUserId().toString();
-		
-		OrderViewInfo orderViewInfo = (OrderViewInfo)session.getAttribute(orderKey);
-		if(orderViewInfo == null ) {
-			orderViewInfo = new OrderViewInfo(user, addresses, 1, 5);
-			synchronized (session) {
-				session.setAttribute(orderKey, orderViewInfo);
-			}
-		}
-		
-		int productId = Integer.parseInt(strProductId);
-		int orderCount = Integer.parseInt(strOrderCount);
-		OrderInfo orderInfo = createNewOrderInfo(request, user.getUserId(), productId, orderCount, Format.randBetween(2500, 5000), "주의", OrderState.VirtualOrder);
-		if (orderInfo != null) {
-			orderViewInfo.addOrderInfo(orderInfo);
-		}
-
-		int virtualOrderCount = getVirtualOrderCount(user.getUserId());
-
-		request.setAttribute(Constant.attrVirtualOrderCount, virtualOrderCount);
-
-		return new CommandResult("/WEB-INF/view/detailView/virtualOrderJsonData.jsp");
-	}
-
 	public Product getOrderProduct(Order order) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 
@@ -447,5 +401,65 @@ public class OrderService {
 			sqlSession.commit();
 			sqlSession.close();
 		}
+	}
+	
+	
+	public CommandResult createOrderByRequest(HttpServletRequest request, String orderState) {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute(Constant.attrUser);
+		if (user == null) {
+			return new CommandResult(Constant.textPlain, Constant.noUser);
+		}
+
+		String strProductId = request.getParameter(Constant.attrProductId);
+		String strOrderCount = request.getParameter(Constant.attrOrderCount);
+
+		if (strProductId == null || strProductId == "")
+			return null;
+
+		if (strOrderCount == null || strOrderCount == "")
+			return null;
+
+		AuthenticatorService authenticatorService = new AuthenticatorService();
+		List<Address> addresses = authenticatorService.getUserAddress(user.getUserId());
+		if (addresses == null) {
+			return new CommandResult(Constant.textPlain, Constant.noAddress);
+		}
+
+		String orderKey = "";
+		
+		// 직구와 장바구니 2개만 가능하다.
+		switch(orderState) {
+		case OrderState.VirtualOrder:
+			orderKey = "orderKey_" + user.getUserId().toString();
+			break;
+		case OrderState.Activated:
+			orderKey = "directOrderKey_" + user.getUserId().toString();
+			break;
+		default:
+			System.out.println("createOrderByRequest 의 orderState 값은 VirtualOrder 와 Activated 만 가능한데 잘못 셋팅함.");
+			return null;
+		}
+ 
+		OrderViewInfo orderViewInfo = (OrderViewInfo)session.getAttribute(orderKey);
+		if(orderViewInfo == null ) {
+			orderViewInfo = new OrderViewInfo(user, addresses, 1, 5);
+			synchronized (session) {
+				session.setAttribute(orderKey, orderViewInfo);
+			}
+		}
+		
+		int productId = Integer.parseInt(strProductId);
+		int orderCount = Integer.parseInt(strOrderCount);
+		OrderInfo orderInfo = createNewOrderInfo(request, user.getUserId(), productId, orderCount, Format.randBetween(2500, 5000), "주의", orderState);
+		if (orderInfo != null) {
+			orderViewInfo.addOrderInfo(orderInfo);
+		}
+
+		int virtualOrderCount = getVirtualOrderCount(user.getUserId());
+
+		request.setAttribute(Constant.attrVirtualOrderCount, virtualOrderCount);
+
+		return new CommandResult("/WEB-INF/view/detailView/virtualOrderJsonData.jsp");
 	}
 }

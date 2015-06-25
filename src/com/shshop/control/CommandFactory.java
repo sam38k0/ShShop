@@ -10,20 +10,22 @@ import com.shshop.command.CommentPostCommend;
 import com.shshop.command.DeleteOrderAddrCommand;
 import com.shshop.command.DeleteOrderInfoCommand;
 import com.shshop.command.DeleteOrderItemCommand;
+import com.shshop.command.DirectOrderCommand;
+import com.shshop.command.DirectOrderViewCommand;
 import com.shshop.command.InsertProductCommand;
 import com.shshop.command.InsertProductViewCommand;
 import com.shshop.command.JoinCommand;
 import com.shshop.command.LoginCommand;
 import com.shshop.command.LogoutCommand;
 import com.shshop.command.MainViewCommand;
-import com.shshop.command.OrderCommand;
 import com.shshop.command.MyPageCommand;
+import com.shshop.command.OrderCommand;
 import com.shshop.command.OrderCompletedCommand;
+import com.shshop.command.OrderPageCommand;
 import com.shshop.command.SearchActionCommand;
 import com.shshop.command.SearchCategoryCommand;
 import com.shshop.command.SearchViewCommand;
 import com.shshop.command.ShoppingCartCommand;
-import com.shshop.command.OrderPageCommand;
 import com.shshop.command.ShoppingCartPageCommand;
 import com.shshop.command.ShowDetailViewCommand;
 import com.shshop.command.SimilarItemSearchCommand;
@@ -117,7 +119,13 @@ public class CommandFactory {
 			
 		case Constant.deleteOrderInfo:
 			return new DeleteOrderInfoCommand();
+			
+		case Constant.directOrder:
+			return new DirectOrderCommand();
 
+		case Constant.showDirectOrderView:
+			return new DirectOrderViewCommand();
+			
 		default:
 			return null;
 		}

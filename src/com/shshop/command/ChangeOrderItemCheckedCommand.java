@@ -8,10 +8,8 @@ import javax.servlet.http.HttpSession;
 
 import com.shshop.constant.Constant;
 import com.shshop.control.CommandResult;
-import com.shshop.mapper.OrderMapper;
 import com.shshop.response.OrderInfo;
 import com.shshop.response.OrderViewInfo;
-import com.shshop.util.MyBatisUtil;
 
 public class ChangeOrderItemCheckedCommand implements Command {
 

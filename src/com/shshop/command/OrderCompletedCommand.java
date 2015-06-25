@@ -6,8 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.session.SqlSession;
-
 import com.shshop.constant.Constant;
 import com.shshop.control.CommandResult;
 import com.shshop.domain.Address;
@@ -16,12 +14,10 @@ import com.shshop.domain.OrderState;
 import com.shshop.domain.Product;
 import com.shshop.domain.User;
 import com.shshop.helper.Format;
-import com.shshop.mapper.OrderStateMapper;
 import com.shshop.response.OrderInfo;
 import com.shshop.response.OrderViewInfo;
 import com.shshop.service.AuthenticatorService;
 import com.shshop.service.OrderService;
-import com.shshop.util.MyBatisUtil;
 
 public class OrderCompletedCommand implements Command {
 
@@ -38,9 +34,26 @@ public class OrderCompletedCommand implements Command {
 		if (addresses == null) {
 			return new CommandResult(Constant.textPlain, Constant.noAddress);
 		}
-
-		String orderKey = "orderKey_" + user.getUserId().toString();
 		
+		OrderService orderService = new OrderService();
+		String orderKey = "orderKey_" + user.getUserId().toString();
+		String directOrderKey = "directOrderKey_" + user.getUserId().toString();
+		
+		//직구
+		OrderViewInfo directOrderViewInfo = (OrderViewInfo) session.getAttribute(directOrderKey);
+		if(directOrderViewInfo != null) { 
+			for(OrderInfo orderInfo: directOrderViewInfo.getOrderInfos()) {
+				Order order = orderInfo.getOrder();
+				orderService.updateCompletedOrder(order);
+			}
+			
+			request.setAttribute(Constant.attrOrderViewInfo, directOrderViewInfo);
+			request.setAttribute(Constant.attrOrderKey, directOrderKey);
+	 
+			return new CommandResult("/WEB-INF/view/orderCompletedView/orderCompleted.jsp");
+		}
+		
+		//장바구니
 		OrderViewInfo orderViewInfo = (OrderViewInfo) session.getAttribute(orderKey);
 		if(orderViewInfo == null) {
 			orderViewInfo = new OrderViewInfo(user, addresses, 1, 5);
@@ -49,7 +62,6 @@ public class OrderCompletedCommand implements Command {
 				session.setAttribute(orderKey, orderViewInfo);
 			}
 			
-			OrderService orderService = new OrderService();
 			List<Order> virtualOrders = orderService.getVirtualOrder(user.getUserId());
 
 			for(Order order: virtualOrders ) {
@@ -64,7 +76,6 @@ public class OrderCompletedCommand implements Command {
 			}
 		}
 		
-		OrderService orderService = new OrderService();
 		OrderViewInfo orderViewInfoWithoutUnckeked =  new OrderViewInfo(user, addresses, 1, 5);
 		for(OrderInfo orderInfo: orderViewInfo.getOrderInfos()) {
 			if(!orderInfo.getUnchecked())
@@ -73,13 +84,6 @@ public class OrderCompletedCommand implements Command {
 			Order order = orderInfo.getOrder();
 			orderService.updateCompletedOrder(order);
 		}
-		
-//		for(int i = 0; i < orderViewInfo.getOrderInfos().size(); i++) {
-//			if(orderViewInfo.getOrderInfos().get(i).getUnchecked())
-//				continue;
-//			
-//			orderViewInfo.getOrderInfos().remove(i--);
-//		}
 		
 		request.setAttribute(Constant.attrOrderViewInfo, orderViewInfoWithoutUnckeked);
 		request.setAttribute(Constant.attrOrderKey, orderKey);

@@ -13,10 +13,10 @@ import com.shshop.domain.User;
 import com.shshop.response.OrderViewInfo;
 import com.shshop.service.AuthenticatorService;
 
-public class DeleteOrderInfoCommand implements Command {
-
+public class DirectOrderViewCommand  implements Command{
 	@Override
 	public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
+
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute(Constant.attrUser);
 		if (user == null) {
@@ -28,27 +28,16 @@ public class DeleteOrderInfoCommand implements Command {
 		if (addresses == null) {
 			return new CommandResult(Constant.textPlain, Constant.noAddress);
 		}
-
-		//직구
-		String directOrderKey = "directOrderKey_" + user.getUserId().toString();
-		OrderViewInfo directderViewInfo = (OrderViewInfo) session.getAttribute(directOrderKey);
-		if (directderViewInfo != null) {
-			synchronized (session) {
-				session.setAttribute(directOrderKey, null);
-			}
-			return new CommandResult("text/html", "Success");
-		}
-
-		//장바구니
-		String orderKey = "orderKey_" + user.getUserId().toString();
-
-		OrderViewInfo orderViewInfo = (OrderViewInfo) session.getAttribute(orderKey);
-		if (orderViewInfo != null) {
-			synchronized (session) {
-				session.setAttribute(orderKey, null);
-			}
-		}
-
-		return new CommandResult("text/html", "Success");
+ 
+		String directOrderKey = "directOrderKey_" + user. getUserId().toString();
+		OrderViewInfo directOrderViewInfo = (OrderViewInfo) session.getAttribute(directOrderKey);
+		if(directOrderViewInfo != null) {
+			request.setAttribute(Constant.attrOrderViewInfo, directOrderViewInfo);
+			request.setAttribute(Constant.attrOrderKey, directOrderKey);
+			
+			return new CommandResult("/WEB-INF/view/orderView/order.jsp");
+		} 
+		
+		return null;
 	}
 }
