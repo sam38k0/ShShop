@@ -6,46 +6,46 @@
 
 <DIV id=yesWrap sizcache="13" sizset="1">
 	<br><br>
-	<DIV id=wrapperContent sizcache="12" sizset="308">
-		<DIV class=progbar sizcache="12" sizset="308">
+	<div id=wrapperContent sizcache="12" sizset="308">
+		<div class=progbar sizcache="12" sizset="308">
 			<H1 class=finish>
-				카트 &gt; 결제 &gt; <STRONG>완료</STRONG>
+				카트 &gt; 결제 &gt; <strong>완료</strong>
 			</H1>
-		</DIV>
-		<!--  prgress bar & 나의 계좌 // -->
-		<!--// 완료 메세지 -->
-		<DIV class=fns_t_w sizcache="12" sizset="315">
+		</div>
+		<div class=fns_t_w sizcache="12" sizset="315">
 			<H2 class=fns_t>
-				<SPAN class=msgl> 김대웅 </SPAN><SPAN class=msgr></SPAN>
+				<span class=msgl> ${requestScope.orderViewInfo.user.name} </span><span class=msgr></span>
 			</H2>
 			<P onclick="" id=txtcoupUseDAfter class=ordnum sizcache="12" sizset="315">
-				[주문번호 : <STRONG sizcache="12" sizset="315">123724421</STRONG>] 결제가 안전하게 처리되었습니다.
+				[주문번호 : <strong sizcache="12" sizset="315">${requestScope.orderViewInfo.orderNumber}</strong>] 결제가 안전하게 처리되었습니다.
 			</P>
-		</DIV>
+		</div>
 		
 		<!-- 배송지 정보 -->
-		<DIV class=dlv_adrs_w sizcache="12" sizset="317">
-			<H3>
-				<SPAN class="tbl_t dlv_adrsinf">배송지 정보</SPAN>
-			</H3>
-			<DIV class=dlv_adrs_bx>
-				<UL id=divNormalDlv class=dlv_l>
-					<LI>받는 분 : 김대웅</LI>
-					<LI class=clearfix>
-						<DIV class=putAddrLiLft>주소 :</DIV>
-						<DIV class=putAddrLiRgt>
-							<SPAN class="putAddrArea clearfix" style="vertical-aling: middle">
-							<IMG class=addr_item alt=도로명
+		<div class=dlv_adrs_w sizcache="12" sizset="317">
+			<h3>
+				<span class="tbl_t dlv_adrsinf">배송지 정보</span>
+			</h3>
+			<div class=dlv_adrs_bx>
+				<ul id=divNormalDlv class=dlv_l>
+					<li>받는 분 : ${requestScope.orderViewInfo.user.name}</LI>
+					<li class=clearfix>
+						<div class=putAddrLiLft>주소 :</div>
+						<div class=putAddrLiRgt>
+							<span class="putAddrArea clearfix" style="vertical-aling: middle">
+							<img class=addr_item alt=도로명
 								src="${adminBean.contextPath}/content/image/btn_putAddr02.gif" width=30 height=13> 
-								<EM class=putAddrTxt></EM>
-							</SPAN> 
-							<SPAN class="putAddrArea putAddrGray clearfix">
-							<IMG class=addr_item alt=지번 src="${adminBean.contextPath}/content/image/btn_putAddr03.gif" width=30 height=13> 
-								<EM class=putAddrTxt>(100-013) 서울특별시 중구 충무로3가 충무로3가 59-13 9 해피하우스 613호</EM> </SPAN>
-						</DIV>
-				</UL>
-			</DIV>
-		</DIV>
+								<em class=putAddrTxt><c:out value="${requestScope.orderViewInfo.basicAddressNew.basicAdd}"/>
+													 <c:out value="${requestScope.orderViewInfo.basicAddressOrigin.detailAdd}"/></em>
+							</span> 
+							<span class="putAddrArea putAddrGray clearfix">
+							<img class=addr_item alt=지번 src="${adminBean.contextPath}/content/image/btn_putAddr03.gif" width=30 height=13> 
+								<em class=putAddrTxt><c:out value="${requestScope.orderViewInfo.basicAddressOrigin.basicAdd}"/>
+													 <c:out value="${requestScope.orderViewInfo.basicAddressOrigin.detailAdd}"/></em> </span>
+						</div>
+				</ul>
+			</div>
+		</div>
 		<!--  // 배송지 정보  -->
 		
 		<!--// 주문상품 -->
@@ -53,6 +53,7 @@
 			<h3>
 				<span class="tbl_t ord_pd">주문상품</span>
 			</h3>
+			<div id="divGoods">
 			<table class="tbl_l fns_tbl_l" sizcache="12" sizset="318">
 				<colgroup>
 					<col width=70>
@@ -90,8 +91,16 @@
 					</tr>
 				 --%>
 				</tbody>
-			</TABLE>
-		</DIV>
+			</table>
+			</div>
+			<div class="graybox">
+				<p class="moveBtn">
+					<%-- 여기에 Button Control 추가 --%>
+				</p>
+				<br>
+				<br>
+			</div>
+		</div>
 		<div class="tot_price tot_price_pay">
 			<table class="tbl_p" cellspacing="0" cellpadding="0">
 				<colgroup>

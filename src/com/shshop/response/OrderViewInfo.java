@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.shshop.domain.Address;
 import com.shshop.domain.User;
+import com.shshop.helper.Format;
 import com.shshop.helper.PageDivider;
 
 public class OrderViewInfo {
@@ -239,5 +240,9 @@ public class OrderViewInfo {
 
 	public void changeItemQuantity(int index, int itemQuantity) {
 		orderInfos.get(index).getOrder().setAmount(itemQuantity);
+	}
+	
+	public int getOrderNumber() {
+		return Format.randBetween(10000, 100000000);
 	}
 }

@@ -37,7 +37,8 @@ public class OrderCommand implements Command {
 			return new CommandResult(Constant.textPlain, Constant.noAddress);
 		}
 
-		String orderKey = request.getParameter(Constant.attrOrderKey); 
+		String orderKey = "orderKey_" + user.getUserId().toString();
+		
 		OrderViewInfo orderViewInfo = (OrderViewInfo) session.getAttribute(orderKey);
 		if(orderViewInfo == null) {
 			orderViewInfo = new OrderViewInfo(user, addresses, 1, 5);

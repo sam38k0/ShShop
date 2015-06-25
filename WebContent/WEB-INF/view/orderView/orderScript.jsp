@@ -140,7 +140,7 @@
 	
 		$.ajax({
 			type : "POST",
-			url : "setShoppingCartPage",
+			url : "orderPage",
 			data : {
 				'orderKey' : '${requestScope.orderKey}',
 				'data-page' : currentPage,
@@ -159,7 +159,7 @@
 	
 		$.ajax({
 			type : "POST",
-			url : "setShoppingCartPage",
+			url : "orderPage",
 			data : {
 				'orderKey' : '${requestScope.orderKey}',
 				'data-page' : currentPage,
@@ -813,6 +813,10 @@
 	    	
 	    	setTimeout(function(){ 
 	    		$('#divAjaxLoaderOrder').css("display", "none");
+	    		
+	    		//조건체크
+	    		
+	    		
 	    		var href = $('#btnPayment').attr('href');
 		        location.href = href;
 	        }, 2000);  
