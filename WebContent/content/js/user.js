@@ -114,13 +114,15 @@ $(document).ready(function() {
 				data : form_data,
 				success : function(text) {
 					response = text;
-					if (response == 'Success') {
+					response = $.parseJSON(text);
+					if (typeof response != 'undefined') {
 						$("#email").val('');
 						$("#pwd").val('');
 						$("#message").val('');
 						$(".gnb_before_login").hide()
 						$(".gnb_after_login").show();
 						$("#link").show();
+						$("#virtualOrderHeader").text('BASKET(' + response.virtualOrderCount + ')');
 						modal.close();
 					} else {
 						$("#email").val('');

@@ -25,7 +25,7 @@
 			trHTML +=  
 	        '<tr id=\"orderItemList\"' + i +'>' +
 	        '<td class=\"cb\">' +
-	        '   <input type=\"checkbox\" class=\"chkbx\" name=\"chkCartGoodsShShop\" id=\"chkCartGoodsShShop' + i +'\"/>' +
+	        '   <input type=\"hidden\" class=\"chkbx\" name=\"chkCartGoodsShShop\" id=\"chkCartGoodsShShop' + i +'\"/>' +
 	        '</td>' +
 	        '<td class=\"goods_img\">' +
 	        '    <a href=\"#\" target=\"_new\" class=\"pd_a\">' +
@@ -140,7 +140,7 @@
 	
 		$.ajax({
 			type : "POST",
-			url : "setShoppingCartPage",
+			url : "orderPage",
 			data : {
 				'orderKey' : '${requestScope.orderKey}',
 				'data-page' : currentPage,
@@ -159,7 +159,7 @@
 	
 		$.ajax({
 			type : "POST",
-			url : "setShoppingCartPage",
+			url : "orderPage",
 			data : {
 				'orderKey' : '${requestScope.orderKey}',
 				'data-page' : currentPage,
@@ -310,7 +310,7 @@
             <td class=\"le\" valign=\"top\">\
                 <div class=\"putAddrWrap\">\
                     <div class=\"putAddrLft\">\
-                        <img class=\"addr_item\" src=\"https://secimage.yes24.com/sysimage/orderN/btn_putAddr02.gif\" width=\"30\" height=\"13\" alt=\"도로명\">\
+                        <img class=\"addr_item\" src=\"/ShShopTest/content/image/orderN/btn_putAddr02.gif\" width=\"30\" height=\"13\" alt=\"도로명\">\
                     </div>\
                     <div class=\"putAddrRgt\">\
                         <span class=\"putAddrTxt\"><a href=\"#\" id=\"memberZipCodeNew$INDX$\">($POSTHEAD$-$POSTTAIL$)$FULLADDRNEW$</a></span>\
@@ -318,7 +318,7 @@
                 </div>\
                 <div class=\"putAddrWrap mgt5\">\
                     <div class=\"putAddrLft\">\
-                        <img class=\"addr_item\" src=\"https://secimage.yes24.com/sysimage/orderN/btn_putAddr03.gif\" width=\"30\" height=\"13\" alt=\"지번\">\
+                        <img class=\"addr_item\" src=\"/ShShopTest/content/image/btn_putAddr03.gif\" width=\"30\" height=\"13\" alt=\"지번\">\
                     </div>\
                     <div class=\"putAddrRgt\">\
                         <span class=\"putAddrTxt grayTxt\">\
@@ -678,7 +678,7 @@
 			fnCheckedChangeHeader(name, id);
 		});
 
-		$('#addrChooser').click(function(event) {
+		$('#addrChooser').unbind('click').bind('click', function (e) {
 			event.preventDefault();
 			
 			var addrIndex = $(this).attr('value');
@@ -693,11 +693,11 @@
 			fnLayerShowById('existingAddressSettings' + addrIndex);
 		});
 		
-	    $("#aZipFind").click(function() {
+	    $("#aZipFind").unbind('click').bind('click', function (e) {
 	    	fnSetPostCode('txtZipCode1New','txtZipCode2New','txtAddressByStNew','txtAddressByOldNew');
 	    });
  
-	    $('.modif').click(function(){
+	    $('.modif').unbind('click').bind('click', function (e) {
 	    	var id = $(this).attr('id');
 	    	
 	    	var indx = id.replace('addressModify', '');
@@ -706,13 +706,13 @@
 	    	openModalDialog('rdoDelvAddrSetModeNew', addressNewId);
 	    });
 	    
-	    $('.sch_address').click(function(){
+	    $('.sch_address').unbind('click').bind('click', function (e) {
 	    	var id = $(this).attr('id');
 	    	var indx = id.replace('aZipFinderSub', '');
 	    	fnSetPostCode('txtZipCd1New'+ indx,'txtZipCd2New'+ indx,'txtAddressNewBySt'+ indx,'txtAddressNewByOld'+ indx);
 	    });
 	    
-	    $('.cfrm').click(function(){
+	    $('.cfrm').unbind('click').bind('click', function (e) {
 	    	fnAjaxLoaderLayerShow("divAjaxLoader", true, false, window.event);
 	    	
 	    	var id = $(this).attr('id');
@@ -750,7 +750,7 @@
 			});
 	    });
 	    
-	    $('#addNewAddress').click(function(){
+	    $('#addNewAddress').unbind('click').bind('click', function (e) {
 	    	fnAjaxLoaderLayerShow("divAjaxLoader", true, false, window.event);
 	    	
 	    	var addrName = $('#txtOrdNmNormalNew').val(); 
@@ -786,7 +786,7 @@
 			});
 	    });
 	    
-	    $('.delet_s').click(function(){
+	    $('.delet_s').unbind('click').bind('click', function (e) {
 	    	fnAjaxLoaderLayerShow("divAjaxLoader", true, false, window.event);
 	    	
 	    	var id = $(this).attr('id');
@@ -807,13 +807,31 @@
 				}
 			});
 	    });
+	    
+	    $('#btnPayment').unbind('click').bind('click', function (e) { 
+	    	$('#divAjaxLoaderOrder').css('display', 'block'); 
+	    	
+	    	setTimeout(function(){ 
+	    		$('#divAjaxLoaderOrder').css("display", "none");
+	    		
+	    		//조건체크
+	    		
+	    		
+	    		var href = $('#btnPayment').attr('href');
+		        location.href = href;
+	        }, 2000);  
+	    	
+
+ 
+	        return false;
+	    });
 	}
 	
 	$(document).ready(function() {
 		$(document).ready(function() {
 			$.ajax({
 				type : "POST",
-				url : "setShoppingCartPage",
+				url : "orderPage",
 				data : {
 					'orderKey' : '${requestScope.orderKey}',
 					'data-page' : '1',

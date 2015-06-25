@@ -39,8 +39,11 @@ public class OrderService {
 		try {
 			OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
 			orderMapper.insertOrderProc(new OrderProc(order));
-			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
 		} finally {
+			sqlSession.commit();
 			sqlSession.close();
 		}
 	}
@@ -51,8 +54,12 @@ public class OrderService {
 		try {
 			OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
 			orderMapper.updateOrder(order);
-			sqlSession.commit();
+			
+		}  catch (Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
 		} finally {
+			sqlSession.commit();
 			sqlSession.close();
 		}
 	}
@@ -118,20 +125,11 @@ public class OrderService {
 		try {
 			OrderStateMapper osMapper = sqlSession.getMapper(OrderStateMapper.class);
 			osMapper.insertOrderState(orderState);
-			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
 		} finally {
-			sqlSession.close();
-		}
-	}
-
-	public void updateOrderState(OrderState orderState) {
-		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-
-		try {
-			OrderStateMapper osMapper = sqlSession.getMapper(OrderStateMapper.class);
-			osMapper.updateOrderState(orderState);
 			sqlSession.commit();
-		} finally {
 			sqlSession.close();
 		}
 	}
@@ -142,12 +140,7 @@ public class OrderService {
 		OrderState orderState = null;
 		try {
 			OrderStateMapper osMapper = sqlSession.getMapper(OrderStateMapper.class);
-			List<OrderState> orderStates = osMapper.getOrderState(order.getOrderId());
-			if (orderStates != null && orderStates.size() == 1) {
-				orderState = orderStates.get(0);
-			} else {
-				System.out.println("오더 스테이트가 2개 이상있음. 문제있다..");
-			}
+			orderState = osMapper.getOrderState(order.getOrderId());
 		} finally {
 			sqlSession.close();
 		}
@@ -195,6 +188,7 @@ public class OrderService {
 			e.printStackTrace();
 			sqlSession.rollback();
 		} finally {
+			sqlSession.commit();
 			sqlSession.close();
 		}
 
@@ -233,6 +227,7 @@ public class OrderService {
 			e.printStackTrace();
 			sqlSession.rollback();
 		} finally {
+			sqlSession.commit();
 			sqlSession.close();
 		}
 
@@ -308,12 +303,9 @@ public class OrderService {
 			List<Order> orders = orderMapper.getOrder(userId);
 
 			for (Order order : orders) {
-				List<OrderState> orderStates = orderStateMapper.getOrderState(order.getOrderId());
-				if (orderStates != null && orderStates.size() > 1) {
-					System.out.println("오더 스테이트가 2개 이상이다.. 문제있음.");
-				}
-
-				if (orderStates.get(0).getOrderState() == OrderState.VirtualOrder) {
+				OrderState orderState = orderStateMapper.getOrderState(order.getOrderId());
+ 
+				if (orderState.getOrderState() == OrderState.VirtualOrder) {
 					virtualOrderCount++;
 				}
 			}
@@ -341,12 +333,9 @@ public class OrderService {
 			List<Order> orders = orderMapper.getOrder(userId);
 
 			for (Order order : orders) {
-				List<OrderState> orderStates = orderStateMapper.getOrderState(order.getOrderId());
-				if (orderStates != null && orderStates.size() > 1) {
-					System.out.println("오더 스테이트가 2개 이상이다.. 문제있음.");
-				}
-
-				if (orderStates.get(0).getOrderState() == OrderState.VirtualOrder) {
+				OrderState orderState = orderStateMapper.getOrderState(order.getOrderId());
+ 
+				if (orderState.getOrderState() == OrderState.VirtualOrder) {
 					if (virtualOrders == null)
 						virtualOrders = new ArrayList<>();
 					virtualOrders.add(order);
@@ -361,49 +350,6 @@ public class OrderService {
 		}
 
 		return virtualOrders;
-	}
-
-	public CommandResult createVirtualOrder(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		User user = (User) session.getAttribute(Constant.attrUser);
-		if (user == null) {
-			return new CommandResult(Constant.textPlain, Constant.noUser);
-		}
-
-		String strProductId = request.getParameter(Constant.attrProductId);
-		String strOrderCount = request.getParameter(Constant.attrOrderCount);
-
-		if (strProductId == null || strProductId == "")
-			return null;
-
-		if (strOrderCount == null || strOrderCount == "")
-			return null;
-
-		AuthenticatorService authenticatorService = new AuthenticatorService();
-		List<Address> addresses = authenticatorService.getUserAddress(user.getUserId());
-		if (addresses == null) {
-			return new CommandResult(Constant.textPlain, Constant.noAddress);
-		}
-
-		OrderViewInfo orderViewInfo = new OrderViewInfo(user, addresses, 1, 5);
-		int productId = Integer.parseInt(strProductId);
-		int orderCount = Integer.parseInt(strOrderCount);
-		OrderInfo orderInfo = createNewOrderInfo(request, user.getUserId(), productId, orderCount, Format.randBetween(2500, 5000), "주의",
-				OrderState.VirtualOrder);
-		if (orderInfo != null) {
-			orderViewInfo.addOrderInfo(orderInfo);
-
-			synchronized (session) {
-				String orderKey = UUID.randomUUID().toString();
-				session.setAttribute(orderKey, orderViewInfo);
-			}
-		}
-
-		int virtualOrderCount = getVirtualOrderCount(user.getUserId());
-
-		request.setAttribute(Constant.attrVirtualOrderCount, virtualOrderCount);
-
-		return new CommandResult("/WEB-INF/view/detailView/virtualOrderJsonData.jsp");
 	}
 
 	public Product getOrderProduct(Order order) {
@@ -438,5 +384,82 @@ public class OrderService {
 		}
 		
 		return imagePath;
+	}
+	
+	public void updateCompletedOrder(Order order) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+
+		try {
+			OrderStateMapper orderStateMapper = sqlSession.getMapper(OrderStateMapper.class);
+			OrderState orderState = orderStateMapper.getOrderState(order.getOrderId());
+			orderState.setSendedEmail(true);
+			orderStateMapper.updateOrderState(orderState);
+		} catch (Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+	}
+	
+	
+	public CommandResult createOrderByRequest(HttpServletRequest request, String orderState) {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute(Constant.attrUser);
+		if (user == null) {
+			return new CommandResult(Constant.textPlain, Constant.noUser);
+		}
+
+		String strProductId = request.getParameter(Constant.attrProductId);
+		String strOrderCount = request.getParameter(Constant.attrOrderCount);
+
+		if (strProductId == null || strProductId == "")
+			return null;
+
+		if (strOrderCount == null || strOrderCount == "")
+			return null;
+
+		AuthenticatorService authenticatorService = new AuthenticatorService();
+		List<Address> addresses = authenticatorService.getUserAddress(user.getUserId());
+		if (addresses == null) {
+			return new CommandResult(Constant.textPlain, Constant.noAddress);
+		}
+
+		String orderKey = "";
+		
+		// 직구와 장바구니 2개만 가능하다.
+		switch(orderState) {
+		case OrderState.VirtualOrder:
+			orderKey = "orderKey_" + user.getUserId().toString();
+			break;
+		case OrderState.Activated:
+			orderKey = "directOrderKey_" + user.getUserId().toString();
+			break;
+		default:
+			System.out.println("createOrderByRequest 의 orderState 값은 VirtualOrder 와 Activated 만 가능한데 잘못 셋팅함.");
+			return null;
+		}
+ 
+		OrderViewInfo orderViewInfo = (OrderViewInfo)session.getAttribute(orderKey);
+		if(orderViewInfo == null ) {
+			orderViewInfo = new OrderViewInfo(user, addresses, 1, 5);
+			synchronized (session) {
+				session.setAttribute(orderKey, orderViewInfo);
+			}
+		}
+		
+		int productId = Integer.parseInt(strProductId);
+		int orderCount = Integer.parseInt(strOrderCount);
+		OrderInfo orderInfo = createNewOrderInfo(request, user.getUserId(), productId, orderCount, Format.randBetween(2500, 5000), "주의", orderState);
+		if (orderInfo != null) {
+			orderViewInfo.addOrderInfo(orderInfo);
+		}
+
+		int virtualOrderCount = getVirtualOrderCount(user.getUserId());
+
+		request.setAttribute(Constant.attrVirtualOrderCount, virtualOrderCount);
+
+		return new CommandResult("/WEB-INF/view/detailView/virtualOrderJsonData.jsp");
 	}
 }

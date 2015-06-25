@@ -31,6 +31,11 @@ public class Constant {
 	public static final String changeOrderItemChecked = "/changeOrderItemChecked";
 	public static final String virtualOrder = "/virtualOrder";
 	public static final String setMypageListPaging = "/setMypageListPaging";
+	public static final String serOrderPage = "/orderPage";
+	public static final String showOrderCompletedView = "/showOrderCompletedView";
+	public static final String deleteOrderInfo = "/deleteOrderInfo";
+	public static final String directOrder = "/directOrder";
+	public static final String showDirectOrderView = "/showDirectOrderView";
 	
 	// Attribute
 	public static final String attrUser = "user";
@@ -51,6 +56,7 @@ public class Constant {
 	public static final String attrComment = "comment";
 	public static final String attrParentId = "parentId";
 	public static final String attrOrderViewInfo = "orderViewInfo";
+	public static final String attrOrderViewInfoCompleted = "orderViewInfoCompleted";
 	public static final String attrOrderKey = "orderKey";
 	public static final String attrAddressIndex = "addressIndex";
 	public static final String attrUserName = "userName";
@@ -77,6 +83,7 @@ public class Constant {
 	public static final String attrSellOrderKey = "sellOrderKey";
 	public static final String attrCurrentPagesResultBuying = "currentPageResultsBuying";
 	public static final String attrCurrentPagesResultSelling = "currentPageResultsSelling";
+	public static final String attrLoginResult = "loginResult";
 	
 	// DD Parameter
 	public static final String paramFileUpload = "file-upload";

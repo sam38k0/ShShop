@@ -108,7 +108,7 @@
 					<!-- 상품확인 //-->
 
                     <div class='btn_area'>
-                        <a href='#'><img id='btnOrderCart' src='${adminBean.contextPath}/content/image/b_order.gif' alt='주문하기' /></a>
+                        <a href='showOrderView?orderKey=<c:out value="${requestScope.orderKey}"/>'><img id='btnOrderCart' src='${adminBean.contextPath}/content/image/b_order.gif' alt='주문하기' /></a>
                         <a href='#'><img src='${adminBean.contextPath}/content/image/b_goshopping.gif' alt='쇼핑계속하기' /></a>
                     </div>
                 </div>

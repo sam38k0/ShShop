@@ -9,21 +9,21 @@ import javax.servlet.http.HttpSession;
 import com.shshop.constant.Constant;
 import com.shshop.control.CommandResult;
 import com.shshop.domain.Address;
-import com.shshop.domain.Order;
-import com.shshop.domain.OrderState;
-import com.shshop.domain.Product;
 import com.shshop.domain.User;
-import com.shshop.helper.Format;
 import com.shshop.response.OrderInfo;
 import com.shshop.response.OrderViewInfo;
 import com.shshop.service.AuthenticatorService;
-import com.shshop.service.OrderService;
 
-public class OrderCommand implements Command {
+public class OrderPageCommand implements Command {
 
 	@Override
 	public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
-
+		String orderKey = request.getParameter(Constant.attrOrderKey);
+		String dataPage = request.getParameter(Constant.attrDataPage);
+		if (dataPage == null || dataPage.equals("")) {
+			dataPage = "1";
+		}
+		
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute(Constant.attrUser);
 		if (user == null) {
@@ -35,41 +35,22 @@ public class OrderCommand implements Command {
 		if (addresses == null) {
 			return new CommandResult(Constant.textPlain, Constant.noAddress);
 		}
-
-		String orderKey = "orderKey_" + user.getUserId().toString();
-		
+ 
 		OrderViewInfo orderViewInfo = (OrderViewInfo) session.getAttribute(orderKey);
-		if(orderViewInfo == null) {
-			orderViewInfo = new OrderViewInfo(user, addresses, 1, 5);
-			
-			synchronized (session) {
-				session.setAttribute(orderKey, orderViewInfo);
-			}
-			
-			OrderService orderService = new OrderService();
-			List<Order> virtualOrders = orderService.getVirtualOrder(user.getUserId());
-
-			for(Order order: virtualOrders ) {
-				OrderState orderState = orderService.getOrderState(order);
-				Product product = orderService.getOrderProduct(order);
-				String imagePath = orderService.getOrderImagePath(order);
-				
-				OrderInfo orderInfo = new OrderInfo(order, orderState, product, imagePath, order.getAmount(), Format.randBetween(2500, 5000));
-	 
-				if(orderInfo != null)
-					orderViewInfo.addOrderInfo(orderInfo);
-			}
-		}
-		
 		OrderViewInfo orderViewInfoWithoutUnckeked =  new OrderViewInfo(user, addresses, 1, 5);
 		for(OrderInfo orderInfo: orderViewInfo.getOrderInfos()) {
 			if(!orderInfo.getUnchecked())
 				orderViewInfoWithoutUnckeked.addOrderInfo(orderInfo);
 		}
 		
-		request.setAttribute(Constant.attrOrderViewInfo, orderViewInfoWithoutUnckeked);
-		request.setAttribute(Constant.attrOrderKey, orderKey);
+		orderViewInfoWithoutUnckeked.setCurrentPage(Integer.parseInt(dataPage));
 
-		return new CommandResult("/WEB-INF/view/orderView/order.jsp");
+		List<OrderInfo> orderInfos = orderViewInfoWithoutUnckeked.getCurrentPageOrderInfos();
+		
+		request.setAttribute(Constant.attrOrderViewInfo, orderViewInfoWithoutUnckeked);
+		request.setAttribute(Constant.attrDataPage, dataPage);
+		request.setAttribute(Constant.attrCurrentPagesResult, orderInfos);
+
+		return new CommandResult("/WEB-INF/view/shoppingCartView/cartListJsonData.jsp");
 	}
 }

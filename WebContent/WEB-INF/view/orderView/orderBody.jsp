@@ -30,7 +30,7 @@
                             <thead>
                                 <tr>
                                     <th style='vertical-align:middle;'>
-                                		<input type='checkbox' class='chkbx' id='chkCartHeader'/>
+                                		<input type='hidden' class='chkbx' id='chkCartHeader'/>
                             		</th>
                                     <th colspan='2'><em class='name'>상품명</em>
                                     </th>
@@ -96,9 +96,6 @@
 								</td>
 								<td class="clr2">
 									<em id="txtTotalAmount">${requestScope.orderViewInfo.totalPrice}</em>원
-									<span id="spnGiftPackGbMemo2" class="wfee" display="none" style="display: none;">
-										(선물포장비 <strong class="ls0">1,000원</strong> 포함)
-									</span>
 								</td>
 							</tr>
 						</tbody>
@@ -370,12 +367,16 @@
                                 </table>
                             </div>
                             <!-- 부가옵션 // -->
-                            
+                            <!-- 결제버튼 -->
                             <div class="btn_area">
-                                <a id="btnPayment" href="#">
-                                    <img src="${adminBean.contextPath}/content/image/b_pay.gif" alt="결제하기" />
-                                </a>
+								<div id="divAjaxLoaderOrder" style="position: absolute; height: 80px; width: 200px; display: none;">
+									<img src="${adminBean.contextPath}/content/image/pay_loading.gif" style="padding-left: 40px; height: 80px; width: 200px; margin-left:15px; margin-top:-10px" id="imgAjaxLoaderOrder" />
+								</div>
+								<a id="btnPayment" href="showOrderCompletedView">
+	                                <img src="${adminBean.contextPath}/content/image/b_pay.gif" alt="결제하기" />
+	                            </a>
                             </div>
+                            <!-- 결제버튼// -->
                         </div>
 
                         <!-- 결제 방법 선택 -->

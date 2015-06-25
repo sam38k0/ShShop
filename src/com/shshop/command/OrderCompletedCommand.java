@@ -19,11 +19,10 @@ import com.shshop.response.OrderViewInfo;
 import com.shshop.service.AuthenticatorService;
 import com.shshop.service.OrderService;
 
-public class OrderCommand implements Command {
+public class OrderCompletedCommand implements Command {
 
 	@Override
 	public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
-
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute(Constant.attrUser);
 		if (user == null) {
@@ -35,9 +34,26 @@ public class OrderCommand implements Command {
 		if (addresses == null) {
 			return new CommandResult(Constant.textPlain, Constant.noAddress);
 		}
-
-		String orderKey = "orderKey_" + user.getUserId().toString();
 		
+		OrderService orderService = new OrderService();
+		String orderKey = "orderKey_" + user.getUserId().toString();
+		String directOrderKey = "directOrderKey_" + user.getUserId().toString();
+		
+		//직구
+		OrderViewInfo directOrderViewInfo = (OrderViewInfo) session.getAttribute(directOrderKey);
+		if(directOrderViewInfo != null) { 
+			for(OrderInfo orderInfo: directOrderViewInfo.getOrderInfos()) {
+				Order order = orderInfo.getOrder();
+				orderService.updateCompletedOrder(order);
+			}
+			
+			request.setAttribute(Constant.attrOrderViewInfo, directOrderViewInfo);
+			request.setAttribute(Constant.attrOrderKey, directOrderKey);
+	 
+			return new CommandResult("/WEB-INF/view/orderCompletedView/orderCompleted.jsp");
+		}
+		
+		//장바구니
 		OrderViewInfo orderViewInfo = (OrderViewInfo) session.getAttribute(orderKey);
 		if(orderViewInfo == null) {
 			orderViewInfo = new OrderViewInfo(user, addresses, 1, 5);
@@ -46,7 +62,6 @@ public class OrderCommand implements Command {
 				session.setAttribute(orderKey, orderViewInfo);
 			}
 			
-			OrderService orderService = new OrderService();
 			List<Order> virtualOrders = orderService.getVirtualOrder(user.getUserId());
 
 			for(Order order: virtualOrders ) {
@@ -65,11 +80,15 @@ public class OrderCommand implements Command {
 		for(OrderInfo orderInfo: orderViewInfo.getOrderInfos()) {
 			if(!orderInfo.getUnchecked())
 				orderViewInfoWithoutUnckeked.addOrderInfo(orderInfo);
+			
+			Order order = orderInfo.getOrder();
+			orderService.updateCompletedOrder(order);
 		}
 		
 		request.setAttribute(Constant.attrOrderViewInfo, orderViewInfoWithoutUnckeked);
 		request.setAttribute(Constant.attrOrderKey, orderKey);
-
-		return new CommandResult("/WEB-INF/view/orderView/order.jsp");
+ 
+		return new CommandResult("/WEB-INF/view/orderCompletedView/orderCompleted.jsp");
 	}
+
 }

@@ -7,11 +7,12 @@ import com.shshop.control.CommandResult;
 import com.shshop.domain.OrderState;
 import com.shshop.service.OrderService;
 
-public class VirtualOrderCommand implements Command {
+public class DirectOrderCommand implements Command {
 
 	@Override
 	public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
 		OrderService orderService = new OrderService();
-		return orderService.createOrderByRequest(request, OrderState.VirtualOrder);
+		return orderService.createOrderByRequest(request, OrderState.Activated);
 	}
+
 }

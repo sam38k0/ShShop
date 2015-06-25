@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.shshop.domain.Address;
 import com.shshop.domain.User;
+import com.shshop.helper.Format;
 import com.shshop.helper.PageDivider;
 
 public class OrderViewInfo {
@@ -66,6 +67,13 @@ public class OrderViewInfo {
 
 		orderInfos.add(orderInfo);
 	}
+	
+/*	public void copyOrderInfo(OrderInfo orderInfo) {
+		if (!orderInfo.isOpen())
+			return;
+
+		orderInfos.add(new OrderInfo(orderInfo.getOrder(), orderInfo.getOrderState(), orderInfo.getProduct(), orderInfo.getImagePath(), orderInfo.getQuantity(), orderInfo.getShippingPrice()));
+	}*/
 
 	public List<OrderInfo> getOrderInfos() {
 		return orderInfos;
@@ -239,5 +247,9 @@ public class OrderViewInfo {
 
 	public void changeItemQuantity(int index, int itemQuantity) {
 		orderInfos.get(index).getOrder().setAmount(itemQuantity);
+	}
+	
+	public int getOrderNumber() {
+		return Format.randBetween(10000, 100000000);
 	}
 }

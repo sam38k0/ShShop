@@ -160,7 +160,7 @@
 							<div class="functionBtn">
 								<ul>
 									<li><a id="virtualOrder" href="#"><img title="카트에 넣기" alt="카트에 넣기" id="cart_btn" src="${adminBean.contextPath}/content/image/b_addtoCart.gif" style="cursor:pointer;margin: 10px;width:100px;height:60px;"></a></li>
-									<li><a id="directOrder" href="#"><img title="바로 구매하기" alt="바로 구매하기" src="${adminBean.contextPath}/content/image/b_buy.gif" style="cursor:pointer;margin: 10px;width:100px;height:60px;"></a></li>
+									<li><a id="directOrder" href="showDirectOrderView?productId=<c:out value="${productDetail.product.productId}"/>"><img title="바로 구매하기" alt="바로 구매하기" src="${adminBean.contextPath}/content/image/b_buy.gif" style="cursor:pointer;margin: 10px;width:100px;height:60px;"></a></li>
 								</ul> 
 							</div>
 						</div>
