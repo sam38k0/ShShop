@@ -30,7 +30,8 @@ public class Constant {
 	public static final String setShoppingCartPage = "/setShoppingCartPage";
 	public static final String changeOrderItemChecked = "/changeOrderItemChecked";
 	public static final String virtualOrder = "/virtualOrder";
-
+	public static final String setMypageListPaging = "/setMypageListPaging";
+	
 	// Attribute
 	public static final String attrUser = "user";
 	public static final String attrEmail = "email";
@@ -70,6 +71,12 @@ public class Constant {
 	public static final String attrCheckedIndex = "checkedIndex";
 	public static final String attrVirtualOrderCount = "virtualOrderCount";
 	public static final String attrOrderCount = "orderCount";
+	public static final String attrBuyOrderInfoList = "buyOrderInfoList";
+	public static final String attrBuyOrderKey = "buyOrderKey";
+	public static final String attrSellOrderInfoList = "sellOrderInfoList";
+	public static final String attrSellOrderKey = "sellOrderKey";
+	public static final String attrCurrentPagesResultBuying = "currentPageResultsBuying";
+	public static final String attrCurrentPagesResultSelling = "currentPageResultsSelling";
 	
 	// DD Parameter
 	public static final String paramFileUpload = "file-upload";

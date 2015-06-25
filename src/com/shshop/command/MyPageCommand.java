@@ -23,9 +23,11 @@ public class MyPageCommand implements Command {
 
 	@Override
 	public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
-
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute(Constant.attrUser);
+		if (user == null) {
+			return new CommandResult(Constant.textPlain, Constant.noUser);
+		}
 
 		OrderService orderService = new OrderService();
 		ProductService productService = new ProductService();
@@ -39,15 +41,22 @@ public class MyPageCommand implements Command {
 			for (Order order : buyOrder) {
 				Product product = orderService.selectProduct(order.getProductId());
 				User seller = authenticatorService.getUserById(product.getUserId());
-				ProductImage productImg = productService.getProductImg(order.getProductId());
+				String imagePath = orderService.getOrderImagePath(order);
 				Address sellAdd = orderService.selectSellAddress(order.getIdAddress());
 				OrderState buyState = orderService.getOrderState(order);
 
-				buyOrderInfoList.addOrderInformation(seller, product, productImg, order, buyState, sellAdd);
+				buyOrderInfoList.addOrderInformation(seller, product, imagePath, order, buyState, sellAdd);
 			}
 			
-			if (buyOrderInfoList.getOrderInfos().size() > 0)
-				request.setAttribute("buyOrderInfoList", buyOrderInfoList);
+			if (buyOrderInfoList.getOrderInfos().size() > 0){
+				String buyOrderKey = "buyOrderKey_" + user.getUserId().toString();
+				request.setAttribute(Constant.attrBuyOrderInfoList, buyOrderInfoList);
+				request.setAttribute(Constant.attrBuyOrderKey, buyOrderKey);
+				
+				synchronized (session) {
+					session.setAttribute(buyOrderKey, buyOrderInfoList);
+				}
+			}
 		}
 
 		// 구매자 정보
@@ -59,21 +68,30 @@ public class MyPageCommand implements Command {
 
 				User buyer = authenticatorService.getUserById(order.getUserId());
 				Product product = orderService.selectProduct(order.getProductId());
-				ProductImage productImg = productService.getProductImg(order.getProductId());
+				String imagePath = orderService.getOrderImagePath(order);
 				Address buyAdd = orderService.selectBuyAddress(order.getOrderId());
 				OrderState sellState = orderService.getOrderState(order);
 
-				sellOrderInfoList.addOrderInformation(buyer, product, productImg, order, sellState, buyAdd);
+				sellOrderInfoList.addOrderInformation(buyer, product, imagePath, order, sellState, buyAdd);
 			}
 
-			if (sellOrderInfoList.getOrderInfos().size() > 0)
-				request.setAttribute("sellOrderInfoList", sellOrderInfoList);
+			if (sellOrderInfoList.getOrderInfos().size() > 0){
+				String sellOrderKey = "sellOrderKey_" + user.getUserId().toString();
+				request.setAttribute(Constant.attrSellOrderInfoList, sellOrderInfoList);
+				request.setAttribute(Constant.attrSellOrderKey, sellOrderKey);
+				
+				synchronized (session) {
+					session.setAttribute(sellOrderKey, sellOrderInfoList);
+				}
+			}
 		}
 		
 		// 판매 등록 게시물 리스트
 		List<Product> myProductsList = productService.getProductsById(user.getUserId());
-		/*PageDivider<Product> productPageDivider = new PageDivider<>(1, 10, myProductsList);*/
-		request.setAttribute("myProduct", myProductsList);
+		if (myProductsList != null && myProductsList.size() > 0) {
+			/*PageDivider<Product> productPageDivider = new PageDivider<>(1, 10, myProductsList);*/
+			request.setAttribute("myProduct", myProductsList);
+		}
 		
 		// 개인 정보
 		request.setAttribute("user", authenticatorService.getViewSingleUser(user.getUserId()));

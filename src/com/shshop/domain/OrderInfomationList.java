@@ -14,8 +14,8 @@ public class OrderInfomationList {
 		this.createPageDivider(currentPage, pageDivNum);
 	}
 	
-	public void addOrderInformation(User user, Product product, ProductImage productImg, Order order, OrderState orderState, Address address) {
-		getOrderInfos().add(new OrderInformation(user, product, productImg, order, orderState, address));
+	public void addOrderInformation(User user, Product product, String imagePath, Order order, OrderState orderState, Address address) {
+		getOrderInfos().add(new OrderInformation(user, product, imagePath, order, orderState, address));
 	}
 
 	public void addOrderInformation(OrderInformation orderInfo) {
@@ -28,6 +28,30 @@ public class OrderInfomationList {
 
 	public void setOrderInfos(List<OrderInformation> orderInfos) {
 		this.orderInfos = orderInfos;
+	}
+	
+	public List<OrderInformation> getCurrentPageOrderInfos() {
+		return getPageDivider().getCurrentPageData();
+	}
+	
+	public void setCurrentPageOrderInfos(List<OrderInformation> newOrderInfo) {
+		int currentPage = getPageDivider().getCurrentPage();
+		int pageDivNum = getPageDivider().getPageDivNum();
+		
+		int startIndex = (currentPage - 1) * pageDivNum;
+		
+		//Replace Data
+		for(int i=0; i< newOrderInfo.size(); i++) {
+			OrderInformation orderInfo = orderInfos.get(startIndex + i);
+			orderInfo = newOrderInfo.get(i); 
+		}
+	}
+	
+	public void setCurrentPage(int currentPage) {
+		if(currentPage <= 0)
+			currentPage = 1;
+		
+		getPageDivider().setCurrentPage(currentPage);
 	}
 	
 	private void createPageDivider(int currentPage, int pageDivNum) {

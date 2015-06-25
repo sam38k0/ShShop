@@ -79,10 +79,10 @@ $(document).ready(function() {
 	/* 거래 정보 */
 	$(".deal_info").click(function() {
 		$("#user_wrap").hide();
-		$("#buy_table").hide();
-		$("#board_table").hide();
+		$(".buy_table").hide();
+		$(".board_table").hide();
 		$("#deal_wrap").show();
-		$("#sell_table").show();
+		$(".sell_table").show();
 	});
 	
 	/* 개인 정보 */
@@ -91,25 +91,25 @@ $(document).ready(function() {
 		$("#user_wrap").show();
 	});
 	
-	/* 판매 거래 리스트 */
+	/* 판매 거래 리스트 
 	$("#sell_list a").click(function() {
 		$("#buy_table").hide();
 		$("#board_table").hide();
 		$("#sell_table").show();
 	});
 	
-	/* 구매 거래 리스트 */
+	 구매 거래 리스트 
 	$("#buy_list a").click(function() {
 		$("#sell_table").hide();
 		$("#board_table").hide();
 		$("#buy_table").show();
 	});
-	
-	/* 판매 게시물 리스트 */
+	*/
+	 /* 판매 게시물 리스트 */ 
 	$("#sell_board_list a").click(function() {
-		$("#sell_table").hide();
-		$("#buy_table").hide();
-		$("#board_table").show();
+		$('.sell_table').hide();
+		$('.buy_table').hide();
+		$(".board_table").show();
 	});
 	
 	

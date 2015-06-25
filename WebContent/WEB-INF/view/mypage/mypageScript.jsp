@@ -48,12 +48,77 @@
         }).open();
     }
     
+    function sellFnPageSet(text) {
+    	response = text;
+    	response = $.parseJSON(response);
+    	var sellTotalPageCount = response.sellTotalPageCount;
+    	var sellCurrentPage = response.sellCurrentPage;
+    	var sellPageDivNum = response.sellPageDivNum;
+    	
+    	var sellListHtml = '';
+    	
+    	$.each(response.currentPageInfosSelling, function(i,item) {
+    		
+    		sellListHtml += 
+    			 '<tr>'+
+		            '<td>' + item.orderId + '</td>'+
+		            '<td><img src="/ShShopTest' + item.imageUrl +'\"><span>' + item.productId + '</span><em>' + item.productName + '</em></td>'+
+		            '<td>' + item.orderPrice + '</td>' +
+		            '<td>' + item.basicAdd + '<br>' + item.detailAdd + '</td>' +
+		            '<td>' + item.userName + '<br>' + item.userPhone + '</td>' +
+		            '<td><span>배송 대기</span></td>' +
+		        '</tr>';
+    	});
+    	
+    	$('#sell_table tbody').empty();
+    	$('#sell_table tbody').append(sellListHtml);
+    	
+    	var sellBtnHtml = '';
+		if(sellCurrentPage > 1) {
+			sellBtnHtml += '<a href=\"#\" id=\"similar_item_list_prev\" class=\"movepreB\">이전 아이템</a>';
+		}
+		
+		sellBtnHtml += '<span id=\"similar_item_list_page\">';
+		sellBtnHtml += '<strong>'+ sellCurrentPage +'</strong>/' + sellTotalPageCount;
+		sellBtnHtml += '</span>'
+		
+		if(sellCurrentPage < sellTotalPageCount)
+			sellBtnHtml += '<a href=\"#\" id=\"similar_item_list_next\" class=\"movenextB\">다음 아이템</a>';
+	 
+		$('.sellMoveBtn').empty();
+		$('.sellMoveBtn').append(sellBtnHtml);
+		
+		$('.buy_table').hide();
+		$('.board_table').hide();
+		$('.sell_table').show();
+		
+		fnRegisterEvent();
+    }
+    
     function buyFnPageSet(text) {
     	response = text;
     	response = $.parseJSON(response);
     	var buyTotalPageCount = response.buyTotalPageCount;
     	var buyCurrentPage = response.buyCurrentPage;
     	var buyPageDivNum = response.buyPageDivNum;
+    	
+    	var buyListHtml = '';
+    	
+    	$.each(response.currentPageInfosBuying, function(i,item) {
+    		
+    		buyListHtml += 
+    			 '<tr>'+
+		            '<td>' + item.orderId + '</td>'+
+		            '<td><img src="/ShShopTest' + item.imageUrl +'\"><span>' + item.productId + '</span><em>' + item.productName + '</em></td>'+
+		            '<td>' + item.orderPrice + '</td>' +
+		            '<td>' + item.basicAdd + '<br>' + item.detailAdd + '</td>' +
+		            '<td>' + item.userName + '<br>' + item.userPhone + '</td>' +
+		            '<td><span>배송 대기</span></td>' +
+		        '</tr>';
+    	});
+    	
+    	$('#buy_table tbody').empty();
+    	$('#buy_table tbody').append(buyListHtml);
     	
     	var buyBtnHtml = '';
 		if(buyCurrentPage > 1) {
@@ -69,9 +134,99 @@
 	 
 		$('.buyMoveBtn').empty();
 		$('.buyMoveBtn').append(buyBtnHtml);
+		
+		$('.sell_table').hide();
+		$('.board_table').hide();
+		$('.buy_table').show();
+		
+		fnRegisterEvent();
+    } 
+    
+    function buyFnPagePrev(event) {
+		event.preventDefault();
+	 
+		var currentPage = response.currentPage -1;
+	
+		$.ajax({
+			type : "POST",
+			url : "setMypageListPaging",
+			data : {
+				'buyOrderKey' : '${requestScope.orderKey}',
+				'data-page' : currentPage
+			},
+			success : fnPageSet,
+			error : function(ajaxContext) {
+			}
+		});
+		return false;
+	}
+    
+    function buyFnPageNext(event) {
+		event.preventDefault();
+	 
+		var currentPage = response.currentPage +1;
+	
+		$.ajax({
+			type : "POST",
+			url : "setMypageListPaging",
+			data : {
+				'buyOrderKey' : '${requestScope.orderKey}',
+				'data-page' : currentPage
+			},
+			success : fnPageSet,
+			error : function(ajaxContext) {
+			}
+		});
+		return false;
+	}
+    
+    function fnRegisterEvent() {
+    	$('#idGoodsListOfbuying').unbind('click').bind('click', function (e) {
+    		$.ajax({
+    			type : "POST",
+    			url : "setMypageListPaging",
+    			data : {
+    				'buyOrderKey' : '${requestScope.buyOrderKey}',
+    				'sellOrderKey' : '${requestScope.sellOrderKey}',
+    				'data-page' : '1'
+    			},
+    			success : buyFnPageSet,
+    			error : function(ajaxContext) {
+    			}
+    		});
+    	});
+    	
+    	$('#idGoodsListOfSelling').unbind('click').bind('click', function (e) {
+			$.ajax({
+				type : "POST",
+				url : "setMypageListPaging",
+				data : {
+					'buyOrderKey' : '${requestScope.buyOrderKey}',
+    				'sellOrderKey' : '${requestScope.sellOrderKey}',
+					'data-page' : '1'
+				},
+				success : sellFnPageSet,
+				error : function(ajaxContext) {
+				}
+			});
+		});
     }
     
-    
-    
+    $(document).ready(function() {
+		$.ajax({
+			type : "POST",
+			url : "setMypageListPaging",
+			data : {
+				'buyOrderKey' : '${requestScope.buyOrderKey}',
+				'sellOrderKey' : '${requestScope.sellOrderKey}',
+				'data-page' : '1'
+			},
+			success : sellFnPageSet,
+			error : function(ajaxContext) {
+			}
+		});
+		
+		fnRegisterEvent();
+	});
     
 </script>
