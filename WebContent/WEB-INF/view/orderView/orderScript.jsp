@@ -678,7 +678,7 @@
 			fnCheckedChangeHeader(name, id);
 		});
 
-		$('#addrChooser').click(function(event) {
+		$('#addrChooser').unbind('click').bind('click', function (e) {
 			event.preventDefault();
 			
 			var addrIndex = $(this).attr('value');
@@ -693,11 +693,11 @@
 			fnLayerShowById('existingAddressSettings' + addrIndex);
 		});
 		
-	    $("#aZipFind").click(function() {
+	    $("#aZipFind").unbind('click').bind('click', function (e) {
 	    	fnSetPostCode('txtZipCode1New','txtZipCode2New','txtAddressByStNew','txtAddressByOldNew');
 	    });
  
-	    $('.modif').click(function(){
+	    $('.modif').unbind('click').bind('click', function (e) {
 	    	var id = $(this).attr('id');
 	    	
 	    	var indx = id.replace('addressModify', '');
@@ -706,13 +706,13 @@
 	    	openModalDialog('rdoDelvAddrSetModeNew', addressNewId);
 	    });
 	    
-	    $('.sch_address').click(function(){
+	    $('.sch_address').unbind('click').bind('click', function (e) {
 	    	var id = $(this).attr('id');
 	    	var indx = id.replace('aZipFinderSub', '');
 	    	fnSetPostCode('txtZipCd1New'+ indx,'txtZipCd2New'+ indx,'txtAddressNewBySt'+ indx,'txtAddressNewByOld'+ indx);
 	    });
 	    
-	    $('.cfrm').click(function(){
+	    $('.cfrm').unbind('click').bind('click', function (e) {
 	    	fnAjaxLoaderLayerShow("divAjaxLoader", true, false, window.event);
 	    	
 	    	var id = $(this).attr('id');
@@ -750,7 +750,7 @@
 			});
 	    });
 	    
-	    $('#addNewAddress').click(function(){
+	    $('#addNewAddress').unbind('click').bind('click', function (e) {
 	    	fnAjaxLoaderLayerShow("divAjaxLoader", true, false, window.event);
 	    	
 	    	var addrName = $('#txtOrdNmNormalNew').val(); 
@@ -786,7 +786,7 @@
 			});
 	    });
 	    
-	    $('.delet_s').click(function(){
+	    $('.delet_s').unbind('click').bind('click', function (e) {
 	    	fnAjaxLoaderLayerShow("divAjaxLoader", true, false, window.event);
 	    	
 	    	var id = $(this).attr('id');
@@ -806,6 +806,20 @@
 					fnRegisterEvent();
 				}
 			});
+	    });
+	    
+	    $('#btnPayment').unbind('click').bind('click', function (e) { 
+	    	$('#divAjaxLoaderOrder').css('display', 'block'); 
+	    	
+	    	setTimeout(function(){ 
+	    		$('#divAjaxLoaderOrder').css("display", "none");
+	    		var href = $('#btnPayment').attr('href');
+		        location.href = href;
+	        }, 2000);  
+	    	
+
+ 
+	        return false;
 	    });
 	}
 	

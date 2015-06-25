@@ -367,15 +367,16 @@
                                 </table>
                             </div>
                             <!-- 부가옵션 // -->
-                            
+                            <!-- 결제버튼 -->
                             <div class="btn_area">
-								<div id="divAjaxLoaderOrder" style="position: absolute; height: 100px; width: 240px; display: none;">
-									<img src="${adminBean.contextPath}/content/image/pay_loading.gif" style="padding-left: 40px;" id="imgAjaxLoaderOrder" />
+								<div id="divAjaxLoaderOrder" style="position: absolute; height: 80px; width: 200px; display: none;">
+									<img src="${adminBean.contextPath}/content/image/pay_loading.gif" style="padding-left: 40px; height: 80px; width: 200px; margin-left:15px; margin-top:-10px" id="imgAjaxLoaderOrder" />
 								</div>
-								<a id="btnPayment" href="#">
+								<a id="btnPayment" href="showOrderCompletedView">
 	                                <img src="${adminBean.contextPath}/content/image/b_pay.gif" alt="결제하기" />
 	                            </a>
                             </div>
+                            <!-- 결제버튼// -->
                         </div>
 
                         <!-- 결제 방법 선택 -->
