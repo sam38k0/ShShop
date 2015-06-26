@@ -10,7 +10,7 @@ USE `ShShop`;
  -- cr_user ----------------------------------------------------------------------------------
 
 CREATE TABLE `cr_user` (
-	`id_user`                 SMALLINT     UNSIGNED NOT NULL AUTO_INCREMENT, -- id_user
+	`id_user`                 INTEGER     UNSIGNED NOT NULL AUTO_INCREMENT, -- id_user
 	`name`                    VARCHAR(50)  NULL,    -- 유저명
 	`gender`                  TINYINT(1)   NULL,    -- 성별
 	`ktalk_id`                VARCHAR(50)  NULL,    -- 카카오톡아이디명
@@ -37,9 +37,9 @@ CREATE INDEX `PK_cr_user_email`ON `cr_user` (`email` ASC);
 -- address ----------------------------------------------------------------------------------
 
 CREATE TABLE `cr_address` (
-	`id_address` 		SMALLINT   UNSIGNED NOT NULL AUTO_INCREMENT, -- id_address
-	`id_parent_address` SMALLINT  DEFAULT NULL, -- null 이면 지번, 아니면 지번 주소 id 를 가지는 도로명 주소
-	`id_user`    		SMALLINT   UNSIGNED NOT NULL, -- id_user
+	`id_address` 		INTEGER   UNSIGNED NOT NULL AUTO_INCREMENT, -- id_address
+	`id_parent_address` INTEGER  DEFAULT NULL, -- null 이면 지번, 아니면 지번 주소 id 를 가지는 도로명 주소
+	`id_user`    		INTEGER   UNSIGNED NOT NULL, -- id_user
 	`basic_add`        	VARCHAR(64) NOT NULL, -- 주소
 	`detail_add`        VARCHAR(255) NOT NULL, -- 상세주소
 	`post_num_header`   VARCHAR(3)   NOT NULL, -- 우편번호 앞 번호
@@ -61,8 +61,8 @@ CREATE TABLE `cr_address` (
 -- ps_category ----------------------------------------------------------------------------------
 
 CREATE TABLE `ps_category` (
-	`id_category`        SMALLINT     UNSIGNED NOT NULL AUTO_INCREMENT, -- id_category
-	`id_category_parent` SMALLINT     UNSIGNED NULL DEFAULT NULL,     	-- id_category_parent
+	`id_category`        INTEGER     UNSIGNED NOT NULL AUTO_INCREMENT, -- id_category
+	`id_category_parent` INTEGER     UNSIGNED NULL DEFAULT NULL,     	-- id_category_parent
 	`name`               VARCHAR(50)  NOT NULL, -- 카테고리명
 	`date_created`       DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 카테고리 생성 날짜
 	`date_updated`       DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- 카테고리 업데이트된 날짜
@@ -81,8 +81,8 @@ CREATE INDEX `PK_ps_category_name` ON `ps_category` (`name` ASC);
 -- ps_product ----------------------------------------------------------------------------------
 
 CREATE TABLE `ps_product` (
-	`id_product`      SMALLINT     UNSIGNED NOT NULL AUTO_INCREMENT, -- id_product
-	`id_user`         SMALLINT     UNSIGNED NOT NULL,     			 -- id_user
+	`id_product`      INTEGER     UNSIGNED NOT NULL AUTO_INCREMENT, -- id_product
+	`id_user`         INTEGER     UNSIGNED NOT NULL,     			 -- id_user
 	`name`            VARCHAR(50)  NOT NULL, -- 제품이름
 	`price`           INTEGER      NOT NULL, -- 제품가격
 	`stock`           INTEGER      NOT NULL, -- 제고량
@@ -112,9 +112,9 @@ CREATE INDEX `PK_ps_product_name`ON `ps_product` (`name` ASC);
 -- ps_product_category ----------------------------------------------------------------------------------
  
 CREATE TABLE `ps_product_category` (
-	`id_product_category` SMALLINT     UNSIGNED NOT NULL AUTO_INCREMENT, 
-	`id_category` SMALLINT UNSIGNED NOT NULL, -- id_category
-	`id_product`  SMALLINT UNSIGNED NOT NULL, -- id_product
+	`id_product_category` INTEGER     UNSIGNED NOT NULL AUTO_INCREMENT, 
+	`id_category` INTEGER UNSIGNED NOT NULL, -- id_category
+	`id_product`  INTEGER UNSIGNED NOT NULL, -- id_product
  
       CONSTRAINT `PK_ps_product_category_id_product_category` 
 		PRIMARY KEY (`id_product_category`),
@@ -135,8 +135,8 @@ CREATE TABLE `ps_product_category` (
 -- ps_option ---------------------------------------------------------------------------------------
 
 CREATE TABLE `ps_option` (
-	`id_option`             SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT, 	-- id_option
-	`id_option_type_parent` SMALLINT UNSIGNED NULL DEFAULT NULL,     	-- id_option_parent
+	`id_option`             INTEGER UNSIGNED NOT NULL AUTO_INCREMENT, 	-- id_option
+	`id_option_type_parent` INTEGER UNSIGNED NULL DEFAULT NULL,     	-- id_option_parent
 	`option_name`           VARCHAR(50) NOT NULL,     -- 현재 옵션이름
     
 	 CONSTRAINT `PK_ps_option` 
@@ -157,8 +157,8 @@ CREATE UNIQUE INDEX `PK_ps_option` ON `ps_option` (
  -- ps_product_option ------------------------------------------------------------------------------
 
 CREATE TABLE `ps_product_option` (
-	`id_product` SMALLINT UNSIGNED NOT NULL, -- id_product
-	`id_option`  SMALLINT UNSIGNED NOT NULL, -- id_option
+	`id_product` INTEGER UNSIGNED NOT NULL, -- id_product
+	`id_option`  INTEGER UNSIGNED NOT NULL, -- id_option
     
 	CONSTRAINT `PK_ps_product_option`
 		PRIMARY KEY (`id_product`, `id_option`),
@@ -183,8 +183,8 @@ CREATE UNIQUE INDEX `PK_ps_product_option` ON `ps_product_option` (
 -- ps_image -------------------------------------------------------------------------------------
  
 CREATE TABLE `ps_image` (
-	`id_image`   SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT, -- id_image
-	`id_product` SMALLINT UNSIGNED NOT NULL,     -- id_product
+	`id_image`   INTEGER UNSIGNED NOT NULL AUTO_INCREMENT, -- id_image
+	`id_product` INTEGER UNSIGNED NOT NULL,     -- id_product
 	`path`       VARCHAR(255) NOT NULL,     -- 파일경로
     
 	CONSTRAINT `PK_ps_image` 
@@ -201,10 +201,10 @@ CREATE TABLE `ps_image` (
 -- or_order -------------------------------------------------------------------------------------
 
 CREATE TABLE `or_order` (
-	`id_order`        SMALLINT 	UNSIGNED NOT NULL AUTO_INCREMENT,
-	`id_user`         SMALLINT 	UNSIGNED NOT NULL,
-	`id_product`      SMALLINT 	UNSIGNED NOT NULL,
-	`id_address`      SMALLINT 	UNSIGNED NOT NULL,
+	`id_order`        INTEGER 	UNSIGNED NOT NULL AUTO_INCREMENT,
+	`id_user`         INTEGER 	UNSIGNED NOT NULL,
+	`id_product`      INTEGER 	UNSIGNED NOT NULL,
+	`id_address`      INTEGER 	UNSIGNED NOT NULL,
 	`amount`          INTEGER 	NULL,  -- 주문수량
 	`cost`            INTEGER 	NULL,  -- 주문가격
 	`delivery_cost`   INTEGER 	NULL,  -- 배송가격
@@ -235,14 +235,14 @@ CREATE TABLE `or_order` (
 );
 
 CREATE TABLE `or_order_state` (
-	`id_order`       SMALLINT   UNSIGNED NOT NULL, -- id_order
-	`virtual_order`  TINYINT(1) NULL,     -- 가상주문(장바구니상태)
-	`activated`      TINYINT(1) NULL,     -- 주문활성화여부
-	`paid`           TINYINT(1) NULL,     -- 지불완료
-	`sended_email`   TINYINT(1) NULL,     -- 이메일보냄
-	`shipped`        TINYINT(1) NULL,     -- 배송중
-	`delivered`      TINYINT(1) NULL,     -- 배송완료
-	`deleted`        TINYINT(1) NULL,     -- 주문취소
+	`id_order`       INTEGER   UNSIGNED NOT NULL, -- id_order
+	`virtual_order`  BOOLEAN  NOT NULL,     -- 가상주문(장바구니상태)
+	`activated`      BOOLEAN  NOT NULL,     -- 주문활성화여부
+	`paid`           BOOLEAN  NOT NULL,     -- 지불완료
+	`sended_email`   BOOLEAN  NOT NULL,     -- 이메일보냄
+	`shipped`        BOOLEAN  NOT NULL,     -- 배송중
+	`delivered`      BOOLEAN  NOT NULL,     -- 배송완료
+	`deleted`        BOOLEAN  NOT NULL,     -- 주문취소
 	
 	CONSTRAINT `PK_or_order_state`
 		PRIMARY KEY (`id_order`),
@@ -257,7 +257,7 @@ CREATE TABLE `or_order_state` (
 -- dt_board -------------------------------------------------------------------------------------
 
 CREATE TABLE `dt_board` (
-	`id_board` 	 SMALLINT     UNSIGNED NOT NULL AUTO_INCREMENT, -- id_board
+	`id_board` 	 INTEGER     UNSIGNED NOT NULL AUTO_INCREMENT, -- id_board
 	`board_name`  VARCHAR(50)  NOT NULL,      -- 보드이름
     
 	CONSTRAINT `PK_dt_board` 
@@ -267,9 +267,9 @@ CREATE TABLE `dt_board` (
 -- dt_post -------------------------------------------------------------------------------------
 
 CREATE TABLE `dt_post` (
-	`id_post`       	SMALLINT     UNSIGNED NOT NULL AUTO_INCREMENT, -- id_post
-	`id_board`      	SMALLINT 	 UNSIGNED NOT NULL, -- id_board
-    `id_post_parent`    SMALLINT     UNSIGNED DEFAULT NULL, -- 부모 코멘트 아이디
+	`id_post`       	INTEGER     UNSIGNED NOT NULL AUTO_INCREMENT, -- id_post
+	`id_board`      	INTEGER 	 UNSIGNED NOT NULL, -- id_board
+    `id_post_parent`    INTEGER     UNSIGNED DEFAULT NULL, -- 부모 코멘트 아이디
 	`comment`       	VARCHAR(128) NOT NULL,     -- 코멘트
 	`node_position` 	TINYINT(2)   NOT NULL,      -- 형제간의순서
     `date_created`    	DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 생성시간
@@ -287,10 +287,10 @@ CREATE TABLE `dt_post` (
 -- dt_product_post -------------------------------------------------------------------------------------
  
 CREATE TABLE `dt_product_post` (
-	`id_proudct_post`  SMALLINT     UNSIGNED NOT NULL AUTO_INCREMENT NOT NULL,  -- id_proudct_board
-	`id_product`        SMALLINT     UNSIGNED NOT NULL , -- id_product
-	`id_post`           SMALLINT     UNSIGNED NOT NULL , -- id_post
-    `id_board`			SMALLINT 	 UNSIGNED NOT NULL , -- id_board
+	`id_proudct_post`  INTEGER     UNSIGNED NOT NULL AUTO_INCREMENT NOT NULL,  -- id_proudct_board
+	`id_product`        INTEGER     UNSIGNED NOT NULL , -- id_product
+	`id_post`           INTEGER     UNSIGNED NOT NULL , -- id_post
+    `id_board`			INTEGER 	 UNSIGNED NOT NULL , -- id_board
 
 	CONSTRAINT `PK_dt_product_post` 
 		PRIMARY KEY (`id_proudct_post`),
@@ -315,10 +315,10 @@ CREATE TABLE `dt_product_post` (
 -- dt_user_post -------------------------------------------------------------------------------------
 
 CREATE TABLE `dt_user_post` (
-	`id_user_post`  SMALLINT	UNSIGNED NOT NULL AUTO_INCREMENT NOT NULL,  -- id_user_board
-	`id_post`      	SMALLINT	UNSIGNED NOT NULL, -- id_post
-	`id_user`       SMALLINT	UNSIGNED NOT NULL, -- id_user
-    `id_board`		SMALLINT 	 UNSIGNED NOT NULL , -- id_board
+	`id_user_post`  INTEGER	UNSIGNED NOT NULL AUTO_INCREMENT NOT NULL,  -- id_user_board
+	`id_post`      	INTEGER	UNSIGNED NOT NULL, -- id_post
+	`id_user`       INTEGER	UNSIGNED NOT NULL, -- id_user
+    `id_board`		INTEGER UNSIGNED NOT NULL , -- id_board
 	
     CONSTRAINT `PK_dt_user_post` 
 		PRIMARY KEY (`id_user_post`),
@@ -349,8 +349,8 @@ RETURN REPLACE(SUBSTRING(SUBSTRING_INDEX(x, delim, pos),
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS proc_insert_product $$
-CREATE PROCEDURE proc_insert_product (IN `proc_id_user`          SMALLINT,
-									  IN `proc_id_category`      SMALLINT,
+CREATE PROCEDURE proc_insert_product (IN `proc_id_user`          INTEGER,
+									  IN `proc_id_category`      INTEGER,
 									  IN `proc_name`             VARCHAR(50),
 									  IN `proc_price`            INTEGER,
 									  IN `proc_stock`            INTEGER,
@@ -403,10 +403,10 @@ DELIMITER ;
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS proc_insert_post $$
-CREATE PROCEDURE proc_insert_post (IN `proc_board_id`		SMALLINT,
-								   IN `proc_id_product`		SMALLINT,
-								   IN `proc_id_user`		SMALLINT,
-								   IN `proc_id_post_parent` SMALLINT,
+CREATE PROCEDURE proc_insert_post (IN `proc_board_id`		INTEGER,
+								   IN `proc_id_product`		INTEGER,
+								   IN `proc_id_user`		INTEGER,
+								   IN `proc_id_post_parent` INTEGER,
 								   IN `proc_comment`        VARCHAR(128),
 								   IN `proc_node_position`  TINYINT(2),
                                    OUT `proc_inserted_post_id` INT) 
@@ -463,8 +463,8 @@ DELIMITER ;
  
 DELIMITER $$
 DROP PROCEDURE IF EXISTS proc_insert_address $$
-CREATE PROCEDURE proc_insert_address ( IN `proc_id_user`			SMALLINT, 
-									   IN `proc_id_parent_address`  SMALLINT,
+CREATE PROCEDURE proc_insert_address ( IN `proc_id_user`			INTEGER, 
+									   IN `proc_id_parent_address`  INTEGER,
 								       IN `proc_basic_add`        	VARCHAR(64),
 								       IN `proc_detail_add`  		VARCHAR(255),
                                        IN `proc_post_num_header`  	VARCHAR(3),
@@ -492,9 +492,9 @@ DELIMITER ;
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS proc_insert_order $$
-CREATE PROCEDURE proc_insert_order (IN  `proc_id_user`           SMALLINT,
-									IN  `proc_id_product`        SMALLINT,
-									IN  `proc_id_address`        SMALLINT,
+CREATE PROCEDURE proc_insert_order (IN  `proc_id_user`           INTEGER,
+									IN  `proc_id_product`        INTEGER,
+									IN  `proc_id_address`        INTEGER,
 									IN  `proc_amount`            INTEGER,
 									IN  `proc_cost`              INTEGER,
 									IN  `proc_delivery_cost`     INTEGER,
@@ -509,8 +509,12 @@ BEGIN
 END $$
 DELIMITER ;
 
+select * from `or_order_state`;
 
-
+		update `or_order_state` 
+		set `virtual_order` = 1, `activated` = 1, `paid` = 1, 
+			`sended_email` = 1, `shipped` = 1, `delivered` = 1, `deleted` = 1
+		where `id_order`=1;
 
 /* -- Confirm ----------------------------------------------------------------------------------
  BEGIN;

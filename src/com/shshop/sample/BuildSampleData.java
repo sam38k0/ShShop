@@ -81,7 +81,6 @@ public class BuildSampleData {
 		inputSampleProducts("안경", "선글라스");
 
 		// 출산/아동
-
 		inputSampleProducts("유아의류", "면귀저기");
 		inputSampleProducts("신생아의류", "종이귀저기");
 		inputSampleProducts("유아도서", "MAXIM");
@@ -130,7 +129,61 @@ public class BuildSampleData {
 		inputSampleProducts("문학", "소림사");
 		inputSampleProducts("수필", "김소월시집");
 		inputSampleProducts("교재", "공업수학");
-
+		
+		// 자동차
+		inputSampleProducts("수입차", "폭스바겐");
+		inputSampleProducts("경차", "왕좌의 게임");
+		inputSampleProducts("스포츠카", "람보르기니");
+		inputSampleProducts("버스", "1t트럭");
+		inputSampleProducts("화물차", "레미콘");
+		
+		// 애완
+		inputSampleProducts("강아지", "푸들");
+		inputSampleProducts("고양이", "동냥이");
+		inputSampleProducts("기타애완", "햄스터");
+		inputSampleProducts("애완용품", "애견이발기"); 
+ 
+		// 미술
+		inputSampleProducts("서양작품", "정물화");
+		inputSampleProducts("동양작품", "동양화");
+		inputSampleProducts("미술용품", "사인펜");
+		inputSampleProducts("기타예술", "액자"); 
+ 
+		// 카메라
+		inputSampleProducts("DSLR", "니콘 D 5200");
+		inputSampleProducts("디카", "소니디카");
+		inputSampleProducts("필름카메라", "인스탁스");
+		inputSampleProducts("카메라렌즈", "SONY DSC-F707카메라.랜즈CIMCO");
+		inputSampleProducts("캠코더", "볼펜캠코더");
+		
+		// 음반
+		inputSampleProducts("수입음반", "앙드레가뇽");
+		inputSampleProducts("DVD", "클래식DVD");
+		inputSampleProducts("블루레이", "맘마미아");
+		inputSampleProducts("교육콘텐츠", "공인중개사 기본서 강의");
+		inputSampleProducts("기타음반", "내셔날지오그래픽");
+		
+		// 패션
+		inputSampleProducts("수제패션", "목걸이");
+		inputSampleProducts("수제리빙", "석고방향제");
+		inputSampleProducts("기타수제품", "달콤홍양");
+ 
+		// 포장식품
+		inputSampleProducts("건강기능식품", "케어칸");
+		inputSampleProducts("기타포장식품", "당일 장어꼬리"); 
+		
+		// PC
+		inputSampleProducts("데스크탑", "삼성 슬림 E6400");
+		inputSampleProducts("노트북", "12 인치 삼성넷북");
+		inputSampleProducts("모니터", "삼성전자 S27B240 무결점 LED 모니터");
+		inputSampleProducts("주변기기", "스마트 무선 광마우스");
+ 
+		//침구
+		inputSampleProducts("이불", "극세사 겨울 이불");
+		inputSampleProducts("커튼", "우드블라인드");
+		inputSampleProducts("카페트", "러그 카페트");
+		inputSampleProducts("욕실용품", "려~샴푸200ml4개,린스1");
+ 
 		// 묻고 답하기 코멘트 추가
 		inputSampleComment();
 
@@ -168,8 +221,18 @@ public class BuildSampleData {
 		categoryMapper.insertRootCategory(new Category("가전"));
 		categoryMapper.insertRootCategory(new Category("모바일"));
 		categoryMapper.insertRootCategory(new Category("레저"));
+		
 		categoryMapper.insertRootCategory(new Category("도서"));
-
+		categoryMapper.insertRootCategory(new Category("자동차"));
+		categoryMapper.insertRootCategory(new Category("애완"));
+		categoryMapper.insertRootCategory(new Category("미술"));
+		categoryMapper.insertRootCategory(new Category("카메라"));
+		categoryMapper.insertRootCategory(new Category("음반"));
+		categoryMapper.insertRootCategory(new Category("수제품")); 
+		categoryMapper.insertRootCategory(new Category("포장식품"));
+		categoryMapper.insertRootCategory(new Category("PC"));
+		categoryMapper.insertRootCategory(new Category("침구"));
+		 
 		Category parentCategory = categoryMapper.getCategoryByName("여성의류");
 		categoryMapper.insertChildCategory(new Category(parentCategory, "여성 티셔츠"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "여성 니트류"));
@@ -246,6 +309,61 @@ public class BuildSampleData {
 		categoryMapper.insertChildCategory(new Category(parentCategory, "문학"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "수필"));
 		categoryMapper.insertChildCategory(new Category(parentCategory, "교재"));
+
+		parentCategory = categoryMapper.getCategoryByName("자동차");
+		categoryMapper.insertChildCategory(new Category(parentCategory, "수입차"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "경차"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "스포츠카"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "버스"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "화물차"));
+
+		parentCategory = categoryMapper.getCategoryByName("애완");
+		categoryMapper.insertChildCategory(new Category(parentCategory, "강아지"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "고양이"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "기타애완"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "애완용품")); 
+
+		parentCategory = categoryMapper.getCategoryByName("미술");
+		categoryMapper.insertChildCategory(new Category(parentCategory, "서양작품"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "동양작품"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "미술용품"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "기타예술"));
+		
+		parentCategory = categoryMapper.getCategoryByName("카메라");
+		categoryMapper.insertChildCategory(new Category(parentCategory, "DSLR"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "디카"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "필름카메라"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "카메라렌즈"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "캠코더"));
+		
+		parentCategory = categoryMapper.getCategoryByName("음반");
+		categoryMapper.insertChildCategory(new Category(parentCategory, "수입음반"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "DVD"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "블루레이"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "교육콘텐츠"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "기타음반"));
+		
+		parentCategory = categoryMapper.getCategoryByName("수제품");
+		categoryMapper.insertChildCategory(new Category(parentCategory, "수제패션"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "수제리빙"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "기타수제품"));
+		
+
+		parentCategory = categoryMapper.getCategoryByName("포장식품");
+		categoryMapper.insertChildCategory(new Category(parentCategory, "건강기능식품"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "기타포장식품"));
+		
+		parentCategory = categoryMapper.getCategoryByName("PC");
+		categoryMapper.insertChildCategory(new Category(parentCategory, "데스크탑"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "노트북"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "모니터"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "주변기기"));
+		
+		parentCategory = categoryMapper.getCategoryByName("침구");
+		categoryMapper.insertChildCategory(new Category(parentCategory, "이불"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "커튼"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "카페트"));
+		categoryMapper.insertChildCategory(new Category(parentCategory, "욕실용품"));
 	}
 
 	private static void insertUser() {
@@ -286,7 +404,7 @@ public class BuildSampleData {
 		String tagNameHeader = productNameHeader + "tag";
 		String descriptionHeader = productNameHeader + "desc";
 
-		int count = Format.randInt(100, 200);
+		int count = Format.randInt(100, 500);
 		for (int i = 0; i < count; i++) {
 			imageStrBuilder.setLength(0);
 			imageStrBuilder.append("/content/image/product_image/sample1.jpg,");
