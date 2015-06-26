@@ -5,15 +5,7 @@
 
 <jsp:useBean id="adminBean" class="com.shshop.system.AdminBean" scope="session" />
 
-<div class="headwrap">
-	<!-- 테스트용 > 개발 끝나고 지워야 함 -->
-	<div id="test">
-		<form id="showOrderCompletedViewForm" name="showOrderCompletedViewForm" method="post" action="showOrderCompletedView" style="position: absolute; z-index: 99999; left: 10px; top: 40px;">
-			<input type="submit" value="TestOrderView">
-		</form>
-	</div>
-	<!-- //테스트용 -->
-	
+<div class="headwrap">	
 	<!-- 헤더 시작 -->
 	<div id="header">
 		<div id="header_logo"><a href="viewMain"><img src="${adminBean.contextPath}/content/image/default/header_logo.png"></a></div>

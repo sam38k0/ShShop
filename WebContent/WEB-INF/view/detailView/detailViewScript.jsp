@@ -54,7 +54,7 @@
 	    
 	 	if(code == 13) { //Enter keycode
 	 		var text = $(this).val();
-	 		if(text === null && text === '')
+	 		if(text === null || text === '')
 	 			return;
 	 	
 	 		$.ajax({

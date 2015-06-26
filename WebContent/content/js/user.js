@@ -95,7 +95,26 @@ function removeErrorMessage(el) {
 	errorContainer.remove();
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////
+
+function loginAreaEnter(e) {
+	var code = (e.keyCode ? e.keyCode : e.which);
+
+	if (code != 13)
+		return;
+	
+	var text = $(this).val();
+	if (text === null || text === '')
+		return;
+	
+	text = $('#email').val();
+	if (text === null  || text === '')
+		return;
+
+	$('#loginBtn').trigger('click');
+}
+
+
+// ////////////////////////////////////////////////////////////////////////////////////////
 
 $(document).ready(function() {
 	//로그인 > 유효성 체크를 서블릿에서 함
@@ -140,6 +159,11 @@ $(document).ready(function() {
 
 			return false;
 		});
+	}());
+	
+	(function() {
+		$("#email").keyup(loginAreaEnter);
+		$("#pwd").keyup(loginAreaEnter);
 	}());
 
 	//로그아웃
