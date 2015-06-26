@@ -151,11 +151,9 @@ $(document).ready(function() {
 				url : "logout",
 				success : function(text) {
 					response = text;
-					if (response == 'Success') {
-						$(".gnb_before_login").show();
-						$(".gnb_after_login").hide();
-						location.reload();
-					}
+					$(".gnb_before_login").show();
+					$(".gnb_after_login").hide();
+					location.href = 'viewMain';
 				}
 			});
 
