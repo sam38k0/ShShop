@@ -42,7 +42,7 @@
 	     <ul id="sell_wrap">
 	         <li id="sell_list" >
 	            <div class="deal_header">
-	            	<a href="#">판매 거래 리스트</a> 
+	            	<a href="#" id="idGoodsListOfSelling">판매 거래 리스트</a> 
 	            	<div class="deal_SelectWrap">
 						<div class="deal_SelectText">전체 거래<em>▼</em></div>
 						<ul class="deal_boxUI">
@@ -56,7 +56,7 @@
 	        </li>
 	        <li id="buy_list" >
 	        	<div  class="deal_header">
-					<a href="#">구매 거래 리스트</a>  
+					<a href="#" id="idGoodsListOfbuying">구매 거래 리스트</a>  
 					<div class="deal_SelectWrap">
 	                	<div class="sell_SelectText">전체 거래<em>▼</em></div>
 						<ul class="sell_boxUI">
@@ -75,81 +75,88 @@
 	        </li>
 	    </ul>
 	    <div class="mypage_board">
-		    <table id="sell_table" class="mypage_board_type">
-		        <tr>
-		            <th>거래번호</th>
-		            <th>상품 정보</th>
-		            <th>거래금액</th>
-		            <th>배송지 주소</th>
-		            <th>구매자정보</th>
-		            <th>거래상태</th>
-		        </tr>
-		        <c:forEach var = 'sellOrder' items='${sellOrderInfoList.orderInfos}'>
-		            <tr>
-		                <td>${sellOrder.order.orderId}</td>
-		                <td><img src="<c:out value="${sellOrder.productImg.imagePath}"/> "><span>${sellOrder.product.productId}</span><em>${sellOrder.product.name}</em></td>
-		                <td>${sellOrder.product.price}</td>
-		                <td>${sellOrder.address.basicAdd}<br>${sellOrder.address.detailAdd}</td>
-		                <td>${sellOrder.user.name} <br> ${sellOrder.user.phone}</td>
-		                <td>
-		                    <span>배송 대기</span><br><a href="#">송장 등록</a>
-		                    <div class="parcel_service">
-		                       	 택배사 
-		                        <select name="" id="">
-		                            <option value="">대한통운</option>
-		                            <option value="">한진택배</option>
-		                        </select>
-		                        <input type="text" value="송장 번호">
-		                        <input type="button" value="송장 등록">
-		                    </div>
-		                </td>
-		            </tr>
-		        </c:forEach>
-		    </table>
-		
-		    <table id="buy_table" class="mypage_board_type">
-		        <tr>
-		            <th>거래번호</th>
-		            <th>상품 정보</th>
-		            <th>거래금액</th>
-		            <th>배송지 주소</th>
-		            <th>구매자정보</th>
-		            <th>거래상태</th>
-		        </tr>
-		        <c:forEach var = 'buyOrder' items='${buyOrderInfoList.orderInfos}'>
-			        <tr>
-			            <td>${buyOrder.order.orderId}</td>
-			            <td><img src="<c:out value="${buyOrder.productImg.imagePath}"/> "><span>${buyOrder.product.productId}</span><em>${buyOrder.product.name}</em></td>
-			            <td>${buyOrder.product.price}</td>
-			            <td>${buyOrder.address.basicAdd}<br>${buyOrder.address.detailAdd}</td>
-			            <td>${buyOrder.user.name}<br>${buyOrder.user.phone}</td>
-			            <td>
-			                <span>배송 대기</span><br>
-			            </td>
-			        </tr>
-		        </c:forEach>
-		    </table>
-		
-		    <table id="board_table" class="mypage_board_type">
-	            <tr>
-					<th>게시번호</th>
-					<th>제목</th>
-					<th>가격</th>
-					<th>히트수</th>
-					<th>등록일</th>
-					<th>수정</th>
-				</tr>
-				<c:forEach var = 'product' items='${myProduct}'>
-		        	<tr>
-			            <td>${product.productId}</td>
-			            <td>${product.name}</td>
-			            <td>${product.price}</td>
-			            <td>${product.searchingCount}</td>
-			            <td>${product.dateCreated}</td>
-			            <td><input type="button" value="수정"></td>
-		        	</tr>
-		        </c:forEach>
-		    </table>
+	    	<div class="sell_table">
+			    <table id="sell_table" class="mypage_board_type">
+			    	<thead>
+				        <tr>
+				            <th>거래번호</th>
+				            <th>상품 정보</th>
+				            <th>거래금액</th>
+				            <th>배송지 주소</th>
+				            <th>구매자정보</th>
+				            <th>거래상태</th>
+				        </tr>
+			        </thead>
+			        <tbody>
+			        
+			        </tbody>
+			        
+			    </table>
+			    <div class="graybox">
+					<p class="sellMoveBtn">
+						<%-- 여기에 Button Control 추가 --%>
+					</p>
+					<br><br>
+				</div>
+		    </div>
+			
+			<div class="buy_table">
+			    <table id="buy_table" class="mypage_board_type">
+			    	<thead>
+				    	<tr>
+				            <th>거래번호</th>
+				            <th>상품 정보</th>
+				            <th>거래금액</th>
+				            <th>배송지 주소</th>
+				            <th>판매자정보</th>
+				            <th>거래상태</th>
+				        </tr>
+			    	</thead>
+			    	<tbody>
+			    		
+			    	</tbody>
+			        
+			    </table>
+			    <div class="graybox">
+					<p class="buyMoveBtn">
+						<%-- 여기에 Button Control 추가 --%>
+					</p>
+					<br><br>
+				</div>
+			</div>
+			
+			<div class="board_table">
+			    <table id="board_table" class="mypage_board_type">
+			    	<thead>
+			            <tr>
+							<th>게시번호</th>
+							<th>제목</th>
+							<th>가격</th>
+							<th>히트수</th>
+							<th>등록일</th>
+							<th>수정</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var = 'product' items='${myProduct}'>
+				        	<tr>
+					            <td>${product.productId}</td>
+					            <td>${product.name}</td>
+					            <td>${product.price}</td>
+					            <td>${product.searchingCount}</td>
+					            <td>${product.dateCreated}</td>
+					            <td><input type="button" value="수정"></td>
+				        	</tr>
+			        	</c:forEach>
+					</tbody>
+			    </table>
+			    <div class="graybox">
+					<p class="boardMoveBtn">
+						<%-- 여기에 Button Control 추가 --%>
+					</p>
+					<br><br>
+				</div>
+		    </div>
 	    </div>
     </div>
 </div>

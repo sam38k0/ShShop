@@ -1,17 +1,21 @@
 package com.shshop.domain;
 
-public class OrderInformation {
+import java.io.Serializable;
+
+public class OrderInformation implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private User user;
 	private Product product;
-	private ProductImage productImg;
+	private String imagePath;
 	private Order order;
 	private OrderState orderState;
 	private Address address;
+	private int totalPrice;
 
-	public OrderInformation(User user, Product product, ProductImage productImg, Order order, OrderState orderState, Address address) {
+	public OrderInformation(User user, Product product, String imagePath, Order order, OrderState orderState, Address address) {
 		this.setUser(user);
 		this.setProduct(product);
-		this.setProductImg(productImg);
+		this.setImagePath(imagePath);
 		this.setOrder(order);
 		this.setOrderState(orderState);
 		this.setAddress(address);
@@ -57,11 +61,19 @@ public class OrderInformation {
 		this.address = address;
 	}
 
-	public ProductImage getProductImg() {
-		return productImg;
+	public String getImagePath() {
+		return imagePath;
 	}
 
-	public void setProductImg(ProductImage productImg) {
-		this.productImg = productImg;
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+	
+	public void setTotalPrice(Order order) {
+		this.totalPrice = order.getCost();
+	}
+	
+	public int getTotalPrice() {
+		return totalPrice;
 	}
 }

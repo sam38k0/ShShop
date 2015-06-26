@@ -292,7 +292,7 @@ a.aws:link,a.aws:visited  {color:#888;}
 .dlv_w h4 {padding:0 0 10px 0;border-bottom:1px solid #d7d7d7;margin:0 0 15px 0;}
 .dlv_w .noti {display:inline-block;clear:both;margin:0 !important;padding:1px 0 2px 20px;}
 .dlv_w .noti:after { content:"."; display:block; height:0; clear:both; visibility:hidden; }
-*html .dlv_w .noti { height: 1px; }
+.dlv_w .noti { height: 1px; }
 .dlv_w .noti {display: block;}
 .dlv_w .dlv_l li { width:760px; } /* 재정의 */
 
@@ -411,8 +411,8 @@ a.aws:link,a.aws:visited  {color:#888;}
 .qdlv .nt {margin:0;color:#7592af;}
 .inf_mem {width:300px;float:right;padding:0 0 5px 0;}
 .inf_mem .tbl_pay {width:280px;border-top:1px solid #e6e6e6;margin: 0 0 10px 0;}
-.inf_mem th {width:65px;padding:13px 0 0 10px;}
-.inf_mem td {padding:10px 0 0 10px;}
+.inf_mem > table > th {display:block;width:65px;padding:13px 0 0 10px;}
+.inf_mem > table > td {padding:10px 0 0 10px;}
 .inf_mem .tbl_t {width:61px;height:13px;background-position:10px -220px;}
 .scard_w {width:620px;border-top:1px solid #d7d7d7;padding:15px 0 5px 0;}
 .scard_w .tbl_pay {width:620px;}

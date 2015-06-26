@@ -18,8 +18,9 @@ import com.shshop.command.JoinCommand;
 import com.shshop.command.LoginCommand;
 import com.shshop.command.LogoutCommand;
 import com.shshop.command.MainViewCommand;
-import com.shshop.command.MyPageCommand;
+import com.shshop.command.MypageListPagingCommand;
 import com.shshop.command.OrderCommand;
+import com.shshop.command.MyPageCommand;
 import com.shshop.command.OrderCompletedCommand;
 import com.shshop.command.OrderPageCommand;
 import com.shshop.command.SearchActionCommand;
@@ -110,6 +111,9 @@ public class CommandFactory {
 			
 		case Constant.virtualOrder:
 			return new VirtualOrderCommand();
+			
+		case Constant.setMypageListPaging:
+			return new MypageListPagingCommand();
 			
 		case Constant.serOrderPage:
 			return new OrderPageCommand();
