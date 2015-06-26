@@ -20,7 +20,7 @@
 		<p>[HOT] 인기상품</p>
 		<ul class="hot_item_area">
 			<c:forEach  var="productC" items="${productsC}">
-				<li class="hot_item"><img src="http://placehold.it/120x120" alt=""><span>${productC.name}</span><em>${productC.price}</em></li>
+				<li class="hot_item"><img src="/ShShopTest<c:out value='${productC.imagePath}'/>" alt=""><span>${productC.product.name}</span><em>${productC.product.price}</em></li>
 			</c:forEach>
 		</ul>
 	</div>
@@ -28,7 +28,7 @@
 		<p>[NEW] 신규상품</p>
 		<ul class="new_item_area">
 			<c:forEach  var="productD" items="${productsD}">
-				<li class="new_item"><img src="http://placehold.it/120x120" alt=""><span>${productD.name}</span><br><em>${productD.price}</em></li>
+				<li class="new_item"><img src="/ShShopTest<c:out value='${productD.imagePath}'/>" alt=""><span>${productD.product.name}</span><br><em>${productD.product.price}</em></li>
 			</c:forEach>
 		</ul>
 	</div>

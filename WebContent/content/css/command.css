@@ -30,7 +30,7 @@ table {border-collapse:collapse;}
 #viewMainForm input[type="submit"]:hover{background-color:#666}
 
 /* 헤더 영역*/
-.headwrap{position:relative; width:100% ; height:200px; background:url(../image/default/header_background.png) repeat-x}
+.headwrap{position:relative; width:100% ; height:192px}
 #header{position:relative; width:1000px; height:92px; margin:0 auto;}
 #header_logo img{float:left; width:200px; margin-top:30px}
 
@@ -62,18 +62,19 @@ table {border-collapse:collapse;}
 
 /* 헤더 > 전체 카테고리 */
 .category_wrap{position:relative; width:100%;}
-#category{width:1000px;height:110px;margin:0 auto;padding-top:5px;background:url(../image/default/header_background.png) repeat-x 0 -92px}
+#category{position:relative;width:1000px;height:100px;margin:0 auto;background-color:#CE9292;border-top: 2px solid #A65959;border-bottom: 2px solid #A65959;box-sizing:border-box}
 #category a{display: block; color:#fff; font-weight:bold; background-color:none;text-decoration:none}
-#category a:hover{background-color:#4b5767}
+#category a:hover{background-color:#D57676}
 #category > .allcategory > li{width:100%}
 #category > .allcategory > li > a {display:none}
 .allcategory{width: 100%;margin: 0;padding: 0}
-.allcategory li{float:left;width: 10%; height:50px; line-height:50px; border: none;text-align:center}
+.allcategory li{float:left;width: 10%; height:48px; line-height:48px; border: none;text-align:center}
 #category:hover > .allcategory > li{display: block}
 #category .allcategory > li:hover li{display: block}
+#category>ul>li>ul>li>a{font-size:17px}
 #category>ul>li>ul>li>ul{display:none}
-#category>ul>li>ul>li>div{display:none;position:absolute;width:100%;height:auto;background-color:#eee;top:107px;left:0;z-index:10}
-#category>ul>li>ul>li>div>ul{width:1000px; height:auto;margin:0 auto}
+#category>ul>li>ul>li>div{display:none;position:absolute;width:1000px;height:auto;background-color:#fff;top:98px;left:0;z-index:10;border: 2px solid #A65959;border-top:none;box-sizing:border-box}
+#category>ul>li>ul>li>div>ul{width:1000px; height:30px;margin:0 auto}
 #category>ul>li>ul>li>div>ul>li{width:10%}
 #category>ul>li>ul>li>div>ul>li>a{color:#8f8f8f;text-decoration:none}
 #category>ul>li>ul>li>div>ul>li>a:hover{background-color:#eee;color:#f00;text-decoration:underline}
@@ -83,8 +84,8 @@ table {border-collapse:collapse;}
 #main_body{position: relative; width: 100%}
 
 /* 푸터 영역 */
-.footwrap{width:100%; height:150px;background:url(../image/default/footer_background.png) repeat-x}
-.footer{width: 1000px; margin: 0 auto; height: 150px;text-align: center; font-size: 14px;color: dimgray;;background:url(../image/default/footer_background.png) repeat-x}
+.footwrap{width:100%; height:150px}
+.footer{width: 1000px; margin: 0 auto; height: 150px;text-align: center; font-size: 14px;color: dimgray;background:url(../image/default/footer_background.png) repeat-x}
 .footer li{float: left}
 .footer ul{clear: both; }
 .footer p{clear: left}
@@ -97,18 +98,23 @@ table {border-collapse:collapse;}
 .footcompany li{margin: 0 5px}
 .footwrap span{color:#000; font-weight: bold}
 
-.footer_area{background-color: black;width: 100%; height: 150px;clear: both}
+.footer_area{width: 100%; height: 150px;clear: both}
 
-/* 검색 후 페이지 */
+
+
+
+
+/* 
+검색 후 페이지
 #search_area{width: 100%; margin-top: 150px;background-color: blueviolet}
-/* 서브 카테고리 */
+서브 카테고리
 #sub_catagory{width: 100%; height: 50px;line-height: 50px; background-color:floralwhite}
 .sub_ctg{float: left}
 .sub_ctg li{float: left; margin-left: 40px;}
 .sub_key{float: right; width: 300px;margin-right: 30px}
 .sub_key span{float: left}
 .sub_key ul li{float: left;margin-left: 20px}
-/* 게시판 타입 영역 */
+게시판 타입 영역
 #search_type{width: 100%; height: 30px;line-height: 30px;background-color: dimgrey}
 #search_type ul li{float: left}
 #search_round {float: left}
@@ -118,9 +124,9 @@ table {border-collapse:collapse;}
 #search_type_choice{float: right;padding: 0 10px;background-color: forestgreen}
 #search_type_choice li{height: 30px;line-height: 30px}
 #search_type_choice li img{display: block;margin-top: 5px}
-/* 게시판 테이블 내용 */
+게시판 테이블 내용
 #search_list{width: 100%; background-color: firebrick}
-/* 게시판형 */
+게시판형
 #search_text{width: 100%;}
 #search_text .text_list{content: ""; display: block;clear: both}
 #search_text .text_list ul {width: 100%;text-align: center}
@@ -140,14 +146,14 @@ table {border-collapse:collapse;}
 .text_body .payment img{margin-top: 10px}
 .text_body .certify{line-height: 100px}
 .text_body .certify span{position: absolute; top:25px;left: 20px; height: 25px; color: aliceblue}
-/* 게시판+이미지형 */
+게시판+이미지형
 #search_img_text{width: 100%; padding-top: 25px;background-color: aqua;display: none;}
 #search_img_text .img_text_grid {float: left; width: 220px;height: 350px;margin-top: 25px; margin-left: 24px; margin-bottom: 25px; background-color:burlywood}
 .img_text_grid img{margin: 10px;}
-/* 이미지형 */
+이미지형
 #search_img{width: 100%;display: none}
 .img_grid{float: left; position: relative; width: 170px;height: 170px;margin:25px 0 25px 24px; background-color: azure}
 .img_grid img{display: block;margin: 10px}
 .img_grid span{position: absolute; width: 100%; height: 50px; line-height: 50px;color:#fff; font-weight: bold;text-align: center; display: block; background-color: blueviolet;bottom: 0; display: none}
-.img_grid a:hover span{display: block}
+.img_grid a:hover span{display: block} */
 

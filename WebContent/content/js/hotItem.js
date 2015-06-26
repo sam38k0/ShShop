@@ -1,16 +1,16 @@
 $(document).ready(function() {
     var rows = $(".hot_item_area").find(".hot_item").length;
-    //alert(rows);
     var per_page = 16;
     var no_pages = Math.ceil(rows/per_page);
-    //alert(no_pages)
-
+    
     var pageNumbers = $("<div id='hot_pages'></div>");
     for ( var i = 0;  i< no_pages; i++) {
         $("<span class='hot_page'>" + (i+1) + "</span>").appendTo(pageNumbers);
     }
-
+    
     pageNumbers.insertAfter(".hot_item_area");
+    
+    $(".hot_page:first").css("background-color","#757575");
     
     $(".hot_page").hover(function() {
         $(this).addClass("content_hov");

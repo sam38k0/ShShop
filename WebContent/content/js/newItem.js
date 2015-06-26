@@ -12,6 +12,8 @@ $(document).ready(function() {
 
                 pageNumbers.insertAfter(".new_item_area");
                 
+                $(".new_page:first").css("background-color","#757575");
+                
                 $(".new_page").hover(function() {
                     $(this).addClass("content_hov");
                 }, function() {

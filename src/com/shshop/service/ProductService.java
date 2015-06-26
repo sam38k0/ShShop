@@ -147,6 +147,23 @@ public class ProductService {
 
 		return "";
 	}
+	
+	public String getMainImagePath(Product product) {
+		String imagePath = "";
+		
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			ProductService psService = new ProductService(); 
+			imagePath = psService.getProductFirstImagePaths(sqlSession,product.getProductId());
+		} catch (Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
+		} finally {
+			sqlSession.close();
+		}
+		
+		return imagePath;
+	}
 
 	public Product getProductById(SqlSession sqlSession, int productId) {
 		ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
