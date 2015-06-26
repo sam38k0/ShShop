@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import com.shshop.constant.Constant;
 import com.shshop.control.CommandResult;
 import com.shshop.domain.Address;
+import com.shshop.domain.MypageByBoardList;
 import com.shshop.domain.Order;
 import com.shshop.domain.OrderInfomationList;
 import com.shshop.domain.OrderState;
@@ -89,8 +90,17 @@ public class MyPageCommand implements Command {
 		// 판매 등록 게시물 리스트
 		List<Product> myProductsList = productService.getProductsById(user.getUserId());
 		if (myProductsList != null && myProductsList.size() > 0) {
-			/*PageDivider<Product> productPageDivider = new PageDivider<>(1, 10, myProductsList);*/
-			request.setAttribute("myProduct", myProductsList);
+			MypageByBoardList boardInfo = new MypageByBoardList(myProductsList, 1, 10);
+			
+			if (boardInfo.getProducts().size() > 0) {
+				String myBoardKey = "myBoardKey_" + user.getUserId().toString();
+				request.setAttribute(Constant.attrMyProductsList, boardInfo);
+				request.setAttribute(Constant.attrMyBoardKey, myBoardKey);
+				
+				synchronized (session) {
+					session.setAttribute(myBoardKey, boardInfo);
+				}
+			}
 		}
 		
 		// 개인 정보

@@ -9,6 +9,9 @@
 	<json:property name="sellTotalPageCount" value="${sellOrderInfoList.pageDivider.totalPageCount}"/>
 	<json:property name="sellCurrentPage" value="${sellOrderInfoList.pageDivider.currentPage}"/>
 	<json:property name="sellPageDivNum" value="${sellOrderInfoList.pageDivider.pageDivNum}"/>
+	<json:property name="boardTotalPageCount" value="${boardInfo.pageDivider.totalPageCount}"/>
+	<json:property name="boardCurrentPage" value="${boardInfo.pageDivider.currentPage}"/>
+	<json:property name="boardPageDivNum" value="${boardInfo.pageDivider.pageDivNum}"/>
 	
 	<json:array name="currentPageInfosBuying" var="item" items="${currentPageResultsBuying}">
 		<json:object>
@@ -34,6 +37,15 @@
 			<json:property name="basicAdd" value="${item.address.basicAdd}"/>
 			<json:property name="detailAdd" value="${item.address.detailAdd}"/>
 			<json:property name="userPhone" value="${item.user.phone}"/>
+		</json:object>
+	</json:array>
+	<json:array name="currentPageInfosBoard" var="item" items="${currentPagesResultBoard}">
+		<json:object>
+			<json:property name="productId" value="${item.productId }"/>
+			<json:property name="productName" value="${item.name}" />
+			<json:property name="productPrice" value="${item.price}" />
+			<json:property name="searchingCount" value="${item.searchingCount}"/>
+			<json:property name="dateCreated" value="${item.dateCreated}"/>
 		</json:object>
 	</json:array>
 </json:object>
