@@ -83,7 +83,13 @@ public class Constant {
 	public static final String attrSellOrderKey = "sellOrderKey";
 	public static final String attrCurrentPagesResultBuying = "currentPageResultsBuying";
 	public static final String attrCurrentPagesResultSelling = "currentPageResultsSelling";
+	public static final String attrCurrentPagesResultBoard = "currentPagesResultBoard";
 	public static final String attrLoginResult = "loginResult";
+	public static final String attrMyProductsList = "myProductsList";
+	public static final String attrMyBoardKey = "myBoardKey";
+	public static final String attrDataPageInBuy = "dataPageInBuy";
+	public static final String attrDataPageInSell = "dataPageInSell";
+	public static final String attrDataPageInBoard = "dataPageInBoard";
 	
 	// DD Parameter
 	public static final String paramFileUpload = "file-upload";

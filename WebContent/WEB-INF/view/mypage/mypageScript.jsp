@@ -95,6 +95,44 @@
 		fnRegisterEvent();
     }
     
+    function sellFnPagePrev(event) {
+		event.preventDefault();
+	 
+		var currentPage = response.currentPage -1;
+	
+		$.ajax({
+			type : "POST",
+			url : "setMypageListPaging",
+			data : {
+				'sellOrderKey' : '${requestScope.sellOrderKey}',
+				'dataPageInSell' : currentPage
+			},
+			success : sellFnPageSet,
+			error : function(ajaxContext) {
+			}
+		});
+		return false;
+	}
+    
+    function sellFnPageNext(event) {
+		event.preventDefault();
+	 
+		var currentPage = response.currentPage +1;
+	
+		$.ajax({
+			type : "POST",
+			url : "setMypageListPaging",
+			data : {
+				'sellOrderKey' : '${requestScope.sellOrderKey}',
+				'dataPageInSell' : currentPage
+			},
+			success : sellFnPageSet,
+			error : function(ajaxContext) {
+			}
+		});
+		return false;
+	}
+    
     function buyFnPageSet(text) {
     	response = text;
     	response = $.parseJSON(response);
@@ -140,7 +178,7 @@
 		$('.buy_table').show();
 		
 		fnRegisterEvent();
-    } 
+    }
     
     function buyFnPagePrev(event) {
 		event.preventDefault();
@@ -154,7 +192,7 @@
 				'buyOrderKey' : '${requestScope.orderKey}',
 				'data-page' : currentPage
 			},
-			success : fnPageSet,
+			success : buyFnPageSet,
 			error : function(ajaxContext) {
 			}
 		});
@@ -173,7 +211,92 @@
 				'buyOrderKey' : '${requestScope.orderKey}',
 				'data-page' : currentPage
 			},
-			success : fnPageSet,
+			success : buyFnPageSet,
+			error : function(ajaxContext) {
+			}
+		});
+		return false;
+	}
+    
+    function boardFnPageSet(text) {
+    	response = text;
+    	response = $.parseJSON(response);
+    	var boardTotalPageCount = response.boardTotalPageCount;
+    	var boardCurrentPage = response.boardCurrentPage;
+    	var boardPageDivNum = response.boardPageDivNum;
+    	
+    	var boardListHtml = '';
+    	
+    	$.each(response.currentPageInfosBoard, function(i,item) {
+    		
+    		boardListHtml += 
+    			 '<tr>'+
+		            '<td>' + item.productId + '</td>'+
+		            '<td>' + item.productName +'</td>'+
+		            '<td>' + item.productPrice + '</td>' +
+		            '<td>' + item.searchingCount + '</td>' +
+		            '<td>' + item.dateCreated + '</td>' +
+		            '<td><input type="button" value="수정"></td>' +
+		        '</tr>';
+    	});
+    	
+    	$('#board_table tbody').empty();
+    	$('#board_table tbody').append(boardListHtml);
+    	
+    	var boardBtnHtml = '';
+		if(boardCurrentPage > 1) {
+			boardBtnHtml += '<a href=\"#\" id=\"similar_item_list_prev\" class=\"movepreB\">이전 아이템</a>';
+		}
+		
+		boardBtnHtml += '<span id=\"similar_item_list_page\">';
+		boardBtnHtml += '<strong>'+ boardCurrentPage +'</strong>/' + boardTotalPageCount;
+		boardBtnHtml += '</span>'
+		
+		if(boardCurrentPage < boardTotalPageCount)
+			boardBtnHtml += '<a href=\"#\" id=\"similar_item_list_next\" class=\"movenextB\">다음 아이템</a>';
+	 
+		$('.boardMoveBtn').empty();
+		$('.boardMoveBtn').append(boardBtnHtml);
+		
+		$('.sell_table').hide();
+		$('.buy_table').hide();
+		$('.board_table').show();
+		
+		fnRegisterEvent();
+    } 
+    
+    function boardFnPagePrev(event) {
+		event.preventDefault();
+	 
+		var currentPage = response.currentPage -1;
+	
+		$.ajax({
+			type : "POST",
+			url : "setMypageListPaging",
+			data : {
+				'myBoardKey' : '${requestScope.myBoardKey}',
+				'dataPageInBoard' : currentPage
+			},
+			success : boardFnPageSet,
+			error : function(ajaxContext) {
+			}
+		});
+		return false;
+	}
+    
+    function boardFnPageNext(event) {
+		event.preventDefault();
+	 
+		var currentPage = response.currentPage +1;
+	
+		$.ajax({
+			type : "POST",
+			url : "setMypageListPaging",
+			data : {
+				'myBoardKey' : '${requestScope.myBoardKey}',
+				'dataPageInBoard' : currentPage
+			},
+			success : boardFnPageSet,
 			error : function(ajaxContext) {
 			}
 		});
@@ -187,8 +310,7 @@
     			url : "setMypageListPaging",
     			data : {
     				'buyOrderKey' : '${requestScope.buyOrderKey}',
-    				'sellOrderKey' : '${requestScope.sellOrderKey}',
-    				'data-page' : '1'
+    				'dataPageInBuy' : '1'
     			},
     			success : buyFnPageSet,
     			error : function(ajaxContext) {
@@ -201,11 +323,24 @@
 				type : "POST",
 				url : "setMypageListPaging",
 				data : {
-					'buyOrderKey' : '${requestScope.buyOrderKey}',
-    				'sellOrderKey' : '${requestScope.sellOrderKey}',
-					'data-page' : '1'
+					'sellOrderKey' : '${requestScope.sellOrderKey}',
+					'dataPageInSell' : '1'
 				},
 				success : sellFnPageSet,
+				error : function(ajaxContext) {
+				}
+			});
+		});
+    	
+    	$('#myBoardLists').unbind('click').bind('click', function (e) {
+			$.ajax({
+				type : "POST",
+				url : "setMypageListPaging",
+				data : {
+					'myBoardKey' : '${requestScope.myBoardKey}',
+					'dataPageInBoard' : '1'
+				},
+				success : boardFnPageSet,
 				error : function(ajaxContext) {
 				}
 			});
@@ -219,7 +354,10 @@
 			data : {
 				'buyOrderKey' : '${requestScope.buyOrderKey}',
 				'sellOrderKey' : '${requestScope.sellOrderKey}',
-				'data-page' : '1'
+				'myBoardKey' : '${requestScope.myBoardKey}',
+				'dataPageInBuy' : '1',
+				'dataPageInSell' : '1',
+				'dataPageInBoard' : '1'
 			},
 			success : sellFnPageSet,
 			error : function(ajaxContext) {

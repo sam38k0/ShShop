@@ -70,7 +70,7 @@
 	        </li>
 	        <li id="sell_board_list">
 	        	<div class="deal_header">
-	            	<a href="#">판매 게시물 리스트</a>
+	            	<a href="#" id="myBoardLists">판매 게시물 리스트</a>
 	            </div>
 	        </li>
 	    </ul>
@@ -138,16 +138,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var = 'product' items='${myProduct}'>
-				        	<tr>
-					            <td>${product.productId}</td>
-					            <td>${product.name}</td>
-					            <td>${product.price}</td>
-					            <td>${product.searchingCount}</td>
-					            <td>${product.dateCreated}</td>
-					            <td><input type="button" value="수정"></td>
-				        	</tr>
-			        	</c:forEach>
+						
 					</tbody>
 			    </table>
 			    <div class="graybox">
