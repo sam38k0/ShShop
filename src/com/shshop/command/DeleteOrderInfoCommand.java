@@ -10,8 +10,10 @@ import com.shshop.constant.Constant;
 import com.shshop.control.CommandResult;
 import com.shshop.domain.Address;
 import com.shshop.domain.User;
+import com.shshop.response.OrderInfo;
 import com.shshop.response.OrderViewInfo;
 import com.shshop.service.AuthenticatorService;
+import com.shshop.service.OrderService;
 
 public class DeleteOrderInfoCommand implements Command {
 
@@ -29,10 +31,17 @@ public class DeleteOrderInfoCommand implements Command {
 			return new CommandResult(Constant.textPlain, Constant.noAddress);
 		}
 
+		OrderService orderService = new OrderService();
+	
 		//직구
 		String directOrderKey = "directOrderKey_" + user.getUserId().toString();
-		OrderViewInfo directderViewInfo = (OrderViewInfo) session.getAttribute(directOrderKey);
-		if (directderViewInfo != null) {
+		OrderViewInfo directorderViewInfo = (OrderViewInfo) session.getAttribute(directOrderKey);
+		if (directorderViewInfo != null) {
+			List<OrderInfo> orderInfos =  directorderViewInfo.getOrderInfos();
+			for(OrderInfo orderInfo: orderInfos) {
+				orderService.updateCompletedOrder(orderInfo.getOrder());
+			}
+			
 			synchronized (session) {
 				session.setAttribute(directOrderKey, null);
 			}
@@ -44,6 +53,11 @@ public class DeleteOrderInfoCommand implements Command {
 
 		OrderViewInfo orderViewInfo = (OrderViewInfo) session.getAttribute(orderKey);
 		if (orderViewInfo != null) {
+			List<OrderInfo> orderInfos =  orderViewInfo.getOrderInfos();
+			for(OrderInfo orderInfo: orderInfos) {
+				orderService.updateCompletedOrder(orderInfo.getOrder());
+			}
+			
 			synchronized (session) {
 				session.setAttribute(orderKey, null);
 			}

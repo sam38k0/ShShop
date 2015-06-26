@@ -63,6 +63,24 @@ public class OrderService {
 			sqlSession.close();
 		}
 	}
+	
+
+	public void deleteOrder(Order order) {
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+
+		try {
+			OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+			orderMapper.deleteOrder(order);
+			
+		}  catch (Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		
+	}
 
 	public List<Order> getOrder(int orderId) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
@@ -394,6 +412,7 @@ public class OrderService {
 			OrderState orderState = orderStateMapper.getOrderState(order.getOrderId());
 			orderState.setSendedEmail(true);
 			orderStateMapper.updateOrderState(orderState);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			sqlSession.rollback();
@@ -462,4 +481,5 @@ public class OrderService {
 
 		return new CommandResult("/WEB-INF/view/detailView/virtualOrderJsonData.jsp");
 	}
+
 }

@@ -137,8 +137,8 @@
 		<!-- 결제정보 // -->
 		<!--// 주문버튼 -->
 		<div class=btn_area sizcache="12" sizset="322">
-			<a href="#"> <IMG alt="마이페이지로 이동" src="${adminBean.contextPath}/content/image/b_goMypage.gif"></a>
-			<a href="#"> <IMG alt="메인으로 이동" src="${adminBean.contextPath}/content/image/b_goMain.gif"></a>
+			<a href="mypage"> <IMG alt="마이페이지로 이동" src="${adminBean.contextPath}/content/image/b_goMypage.gif"></a>
+			<a href="viewMain"> <IMG alt="메인으로 이동" src="${adminBean.contextPath}/content/image/b_goMain.gif"></a>
 		</div>
 		<!-- 주문버튼 //-->
 	</DIV>
