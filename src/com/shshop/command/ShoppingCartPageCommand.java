@@ -23,13 +23,15 @@ public class ShoppingCartPageCommand implements Command {
 
 		HttpSession session = request.getSession();
 		OrderViewInfo orderViewInfo = (OrderViewInfo) session.getAttribute(orderKey);
-		orderViewInfo.setCurrentPage(Integer.parseInt(dataPage));
+		if(orderViewInfo != null) {
+			orderViewInfo.setCurrentPage(Integer.parseInt(dataPage));
 
-		List<OrderInfo> orderInfos = orderViewInfo.getCurrentPageOrderInfos();
-		
-		request.setAttribute(Constant.attrOrderViewInfo, orderViewInfo);
-		request.setAttribute(Constant.attrDataPage, dataPage);
-		request.setAttribute(Constant.attrCurrentPagesResult, orderInfos);
+			List<OrderInfo> orderInfos = orderViewInfo.getCurrentPageOrderInfos();
+			
+			request.setAttribute(Constant.attrOrderViewInfo, orderViewInfo);
+			request.setAttribute(Constant.attrDataPage, dataPage);
+			request.setAttribute(Constant.attrCurrentPagesResult, orderInfos);
+		}
 
 		return new CommandResult("/WEB-INF/view/shoppingCartView/cartListJsonData.jsp");
 	}
