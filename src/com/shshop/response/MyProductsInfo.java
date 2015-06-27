@@ -1,32 +1,33 @@
-package com.shshop.domain;
+package com.shshop.response;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.shshop.domain.Product;
 import com.shshop.helper.PageDivider;
 
-public class MypageByBoardList {
+public class MyProductsInfo {
 	private List<Product> products = new ArrayList<>();
 	private PageDivider<Product> pageDivider = null;
 	
-	public MypageByBoardList(List<Product> products, int currentPage, int pageDivNum) {
-		this.setProducts(products);
-		this.createPageDivider(currentPage, pageDivNum);
+	public MyProductsInfo(List<Product> products, int currentPage, int pageDivNum) {
+		this.setProducts(products,currentPage, pageDivNum);
 	}
 	
 	public List<Product> getProducts() {
 		return products;
 	}
 
-	public void setProducts(List<Product> products) {
+	public void setProducts(List<Product> products, int currentPage, int pageDivNum) {
 		this.products = products;
+		this.createPageDivider(currentPage, pageDivNum);
 	}
 
-	public List<Product> getCurrentPageOrderInfos() {
+	public List<Product> getCurrentPageProductsInfos() {
 		return getPageDivider().getCurrentPageData();
 	}
 
-	public void setCurrentPageOrderInfos(List<Product> newProductInfo) {
+	public void setCurrentPageProductsInfos(List<Product> newProductInfo) {
 		int currentPage = getPageDivider().getCurrentPage();
 		int pageDivNum = getPageDivider().getPageDivNum();
 		
