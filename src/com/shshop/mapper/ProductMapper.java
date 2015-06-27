@@ -11,6 +11,10 @@ import com.shshop.domain.ProductProc;
 
 public interface ProductMapper {
 	public int getProductCount();
+	
+	public int getProductCountOfUser(@Param("userId") Integer userId);
+	
+	public int getHasStockProductCountOfUser(@Param("userId") Integer userId);
 
 	public Product getProductById(@Param("productId") Integer productId);
 

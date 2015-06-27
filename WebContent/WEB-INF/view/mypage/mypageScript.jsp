@@ -345,21 +345,202 @@
 				}
 			});
 		});
+    	
+    	$('.depth3 li').unbind('click').bind('click', function (e) {
+    		 $('.depth3 li').removeClass("on");
+    		 $(this).addClass("on");
+    	});
+    	
+    	//등록현황
+    	$('#idGoodsforSelling1').unbind('click').bind('click', function (e) {
+    		$('#wrapperContent2').css("display","block");
+    		$('#wrapperContent').css("display","none");
+	   		$('.depth3 li').removeClass("on");
+			$(this).addClass("on");
+			 
+    		$.ajax({
+    			type : "POST",
+    			url : "setMypageListPaging",
+    			data : {
+    				'dataPageOfMyProducts' : '1'
+    			},
+    			success : fnMyProductsPageSet,
+    			error : function(ajaxContext) {
+    			}
+    		});
+    		
+    	});
+    	
+    	$('#idGoodsforSelling2').unbind('click').bind('click', function (e) {
+    		$('#wrapperContent2').css("display","block");
+    		$('#wrapperContent').css("display","none");
+	   		$('.depth3 li').removeClass("on");
+			$(this).addClass("on");
+			 
+    		$.ajax({
+    			type : "POST",
+    			url : "setMypageListPaging",
+    			data : {
+    				'dataPageOfMyProducts' : '1',
+    				'data-page-filter' : '1'
+    			},
+    			success : fnMyProductsPageSet,
+    			error : function(ajaxContext) {
+    			}
+    		});
+    		
+    	});
+    	
+    	$('#idGoodsforSelling3').unbind('click').bind('click', function (e) {
+    		$('#wrapperContent2').css("display","block");
+    		$('#wrapperContent').css("display","none");
+	   		$('.depth3 li').removeClass("on");
+			$(this).addClass("on");
+			 
+    		$.ajax({
+    			type : "POST",
+    			url : "setMypageListPaging",
+    			data : {
+    				'dataPageOfMyProducts' : '1',
+    				'data-page-filter' : '2'
+    			},
+    			success : fnMyProductsPageSet,
+    			error : function(ajaxContext) {
+    			}
+    		});
+    	});
+    	
+    	//배송현황
+    	$('#idGoodsforDelivery1').unbind('click').bind('click', function (e) {
+
+    	});
+    	
+    	$('#idGoodsforDelivery2').unbind('click').bind('click', function (e) {
+ 
+    	});
+    	
+    	$('#idGoodsforDelivery3').unbind('click').bind('click', function (e) {
+
+    	});
+    	
+    	//구매현황
+    	$('#idGoodsforBuying1').unbind('click').bind('click', function (e) {
+        	
+    	});
+    	
+    	$('#idGoodsforBuying2').unbind('click').bind('click', function (e) {
+        	
+    	});
+    	
+    	$('#idGoodsforBuying3').unbind('click').bind('click', function (e) {
+        	
+    	});
+    	
+    	$('#idGoodsforBuying4').unbind('click').bind('click', function (e) {
+        	
+    	});
+    	
+    	//페이징
+		$('#similar_item_list_prev2').click(fnMyProductsPagePrev);
+		$('#similar_item_list_next2').click(fnMyProductsPageNext);
     }
     
+    function fnMyProductsPageSet(text) {
+    	response = text;
+    	response = $.parseJSON(response);
+
+    	var totalPageCount = response.totalPageCount;
+    	var currentPage = response.currentPage;
+    	var pageDivNum = response.pageDivNum;
+    	
+    	var trHtml = '';
+    	
+    	$.each(response.currentPageData, function(i,item) {
+    		
+    		trHtml += 
+			'<tr>' +
+			'	<td bgcolor=\'#FFFFFF\' width=\'80\' height=\'32\' align=\'center\'><a href=\'#\'><font color=\'#1383E3\'><b>' + item.productId + '</b></font></a></td>' +
+			'	<td width=\'1\'></td>' +
+			'	<td bgcolor=\'#FFFFFF\' width=\'295\' height=\'32\' align=\'left\'>&nbsp;&nbsp;<a href=\'#\'><span class=\'txt120\'>' + item.productName + '</span></a></td>' +
+			'	<td width=\'1\'></td>' +
+			'	<td bgcolor=\'#FFFFFF\' width=\'80\' height=\'32\' align=\'center\'  class=\'price\'>' + item.productPrice +'</td>' +
+			'	<td width=\'1\'></td>' +
+			'	<td bgcolor=\'#FFFFFF\' width=\'100\' height=\'32\' align=\'center\'>' + item.searchingCount + '</td>' +
+			'	<td width=\'1\'></td>' +
+			'	<td bgcolor=\'#FFFFFF\' width=\'80\' height=\'32\' align=\'center\'>' + item.dateCreated + '</td>' +
+			'</tr>' +
+			'<tr>' +
+			'	<td bgcolor=\'#E8E8E8\' height=\'1\' colspan=\'15\'></td>' +
+			'</tr>';
+    	});
+    	
+    	$('#idMyOrderListTbl tbody').empty();
+    	$('#idMyOrderListTbl tbody').append(trHtml);
+    	
+		//Page Button
+		var btnHtml = '';
+		if(currentPage > 1) {
+			btnHtml += '<a href=\"#\" id=\"similar_item_list_prev2\" class=\"movepreB\">이전 아이템</a>';
+		}
+		
+		btnHtml += '<span id=\"similar_item_list_page\">';
+		btnHtml += '<strong>'+ currentPage +'</strong>/' + totalPageCount;
+		btnHtml += '</span>'
+		
+		if(currentPage < totalPageCount)
+			btnHtml += '<a href=\"#\" id=\"similar_item_list_next2\" class=\"movenextB\">다음 아이템</a>';
+	 
+		$('.moveBtn').empty();
+		$('.moveBtn').append(btnHtml);
+ 
+		
+		fnRegisterEvent(); 
+    }
+    
+	function fnMyProductsPagePrev(event) {
+		event.preventDefault();
+	 
+		var currentPage = response.currentPage -1;
+	
+		$.ajax({
+			type : "POST",
+			url : "setMypageListPaging",
+			data : {
+				'data-page' : currentPage,
+			},
+			success : fnMyProductsPageSet,
+			error : function(ajaxContext) {
+			}
+		});
+		return false;
+	}
+	
+	function fnMyProductsPageNext(event) {
+		event.preventDefault();
+	 
+		var currentPage = response.currentPage +1;
+	
+		$.ajax({
+			type : "POST",
+			url : "setMypageListPaging",
+			data : {
+				'data-page' : currentPage,
+			},
+			success : fnMyProductsPageSet,
+			error : function(ajaxContext) {
+			}
+		});
+		return false;
+	}
+ 
     $(document).ready(function() {
 		$.ajax({
 			type : "POST",
 			url : "setMypageListPaging",
 			data : {
-				'buyOrderKey' : '${requestScope.buyOrderKey}',
-				'sellOrderKey' : '${requestScope.sellOrderKey}',
-				'myBoardKey' : '${requestScope.myBoardKey}',
-				'dataPageInBuy' : '1',
-				'dataPageInSell' : '1',
-				'dataPageInBoard' : '1'
+				'dataPageOfMyProducts' : '1'
 			},
-			success : sellFnPageSet,
+			success : fnMyProductsPageSet,
 			error : function(ajaxContext) {
 			}
 		});

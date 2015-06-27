@@ -502,4 +502,28 @@ public class ProductService {
 		}
 		return product;
 	}
+	
+	public int getProductsCountOfUser(int userId) {
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+
+		try {
+			ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+			return productMapper.getProductCountOfUser(userId);
+		} finally {
+			sqlSession.close();
+		} 
+	}
+	
+	public int getHasStockProductCountOfUser(int userId) {
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+
+		try {
+			ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+			return productMapper.getHasStockProductCountOfUser(userId);
+		} finally {
+			sqlSession.close();
+		} 
+	}
+	
+	
 }
