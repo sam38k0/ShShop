@@ -22,6 +22,8 @@ public interface OrderMapper {
 
 	public List<Order> getSellOrder(@Param("userId") int userId);
 	
+	public int getSellOrderCount(@Param("userId") Integer userId);
+	
 	public void deleteOrder(Order order);
 
 	

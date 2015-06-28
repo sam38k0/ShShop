@@ -84,9 +84,36 @@
 				<ul id="left_menu_group" class="depth2">
 					<li class="first on">배송아이템
 						<ul class="depth3">
-							<li id="idGoodsforDelivery1"><a href="#">- 전체<span>0건</span></a></li>
-							<li id="idGoodsforDelivery2"><a href="#">- 배송할 상품<span>0건</span></a></li>
-							<li id="idGoodsforDelivery3"><a href="#">- 배송된 상품<span>0건</span></a></li>
+							<li id="idGoodsforDelivery1"><a href="#">- 전체
+							<c:choose>
+								<c:when test="${sellOrderTotalCount != null}">
+									<span>${sellOrderTotalCount}건</span>
+								</c:when>
+								<c:otherwise>
+									<span>0건</span>
+								</c:otherwise>
+							</c:choose>		
+							</a></li>
+							<li id="idGoodsforDelivery2"><a href="#">- 배송할 상품
+							<c:choose>
+								<c:when test="${sellOrderNotDeliveredCount != null}">
+									<span>${sellOrderNotDeliveredCount}건</span>
+								</c:when>
+								<c:otherwise>
+									<span>0건</span>
+								</c:otherwise>
+							</c:choose>	
+							</a></li>
+							<li id="idGoodsforDelivery3"><a href="#">- 배송된 상품
+							<c:choose>
+								<c:when test="${sellOrderDeliveredCount != null}">
+									<span>${sellOrderDeliveredCount}건</span>
+								</c:when>
+								<c:otherwise>
+									<span>0건</span>
+								</c:otherwise>
+							</c:choose>	
+							</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -194,7 +221,7 @@
 				<div style="position: relative; height: 25px;">
 					<div style="position: absolute"></div>
 				</div>
-				<table width="960" cellpadding="0" cellspacing="0" align="center">
+				<table width="960" cellpadding="0" align="center">
 					<tr>
 						<td width="187" valign="top">
 							<%-- 							
@@ -313,44 +340,31 @@
 									<td width="750" id="tdOrderList">
 										<table cellpadding='0' cellspacing='0' border='0' width='750'>
 											<tr>
-												<td colspan='2' width='750' bgcolor='#FFFFFF'>
-													<table id='MyOrderListTbl' cellpadding='0' cellspacing='0' border='0' width='750'>
+												<td colspan='2' width='750' bgcolor='#FFFFFF'> 
+													<table id='idMySellListTbl' cellpadding='0' cellspacing='0' border='0' width='750'>
+														<thead>
 														<tr>
 															<td bgcolor='#F2F2F2' width='80' height='32' align='center' class='infoGray'>주문번호</td>
 															<td background='${adminBean.contextPath}/content/image/bg_HalfGray.gif' width='2' height='32'></td>
 															<td bgcolor='#F2F2F2' width='80' height='32' align='center' class='infoGray'>주문일자</td>
 															<td background='${adminBean.contextPath}/content/image/bg_HalfGray.gif' width='2' height='32'></td>
-															<td bgcolor='#F2F2F2' width='295' height='32' align='center' class='infoGray'>주문내역</td>
+															<td bgcolor='#F2F2F2' width='200' height='32' align='center' class='infoGray'>주문내역</td>
 															<td background='${adminBean.contextPath}/content/image/bg_HalfGray.gif' width='2' height='32'></td>
 															<td bgcolor='#F2F2F2' width='100' height='32' align='center' class='infoGray'>주문금액/수량</td>
 															<td background='${adminBean.contextPath}/content/image/bg_HalfGray.gif' width='2' height='32'></td>
-															<td bgcolor='#F2F2F2' width='80' height='32' align='center' class='infoGray'>주문상태</td>
+															<td bgcolor='#F2F2F2' width='125' height='32' align='center' class='infoGray'>주문폰번호</td>
 															<td background='${adminBean.contextPath}/content/image/bg_HalfGray.gif' width='2' height='32'></td>
-															<td bgcolor='#F2F2F2' width='75' height='32' align='center' class='infoGray'>주문자</td>
+															<td bgcolor='#F2F2F2' width='125' height='32' align='center' class='infoGray'>주문주소</td>
 															<td background='${adminBean.contextPath}/content/image/bg_HalfGray.gif' width='2' height='32'></td>
 															<td bgcolor='#F2F2F2' width='75' height='32' align='center' class='infoGray'>수령자</td>
 														</tr>
 														<tr>
 															<td height='1' bgcolor='#E8E8E8' colspan='15'></td>
 														</tr>
-														<tr>
-															<td bgcolor='#FFFFFF' width='80' height='32' align='center'><a href="#"><font color='#1383E3'><b>123724421</b></font></a></td>
-															<td width='1'></td>
-															<td bgcolor='#FFFFFF' width='80' height='32' align='center'>2015.06.25</td>
-															<td width='1'></td>
-															<td bgcolor='#FFFFFF' width='295' height='32' align='left'>&nbsp;&nbsp;<a href="#"><span class='txt120'>상품이름을 여기에</span></a></td>
-															<td width='1'></td>
-															<td bgcolor='#FFFFFF' width='100' height='32' align='center'><b>95,400/</b>1</td>
-															<td width='1'></td>
-															<td bgcolor='#FFFFFF' width='80' height='32' align='center' class='price'>배송완료</td>
-															<td width='1'></td>
-															<td bgcolor='#FFFFFF' width='75' height='32' align='center'>김대웅</td>
-															<td width='1'></td>
-															<td bgcolor='#FFFFFF' width='75' height='32' align='center'>김대웅</td>
-														</tr>
-														<tr>
-															<td bgcolor='#E8E8E8' height='1' colspan='15'></td>
-														</tr>
+														</thead>
+														<tbody>
+														<!-- 여기에 배송할 상품을 표시 -->
+														</tbody>
 													</table>
 												<td>
 											</tr>
@@ -368,15 +382,8 @@
 										</table>
 									<td>
 								</tr>
-								<tr>
-									<td class="InfoGray" height="30" valign="middle">
-										<div style="margin-top: 10px;">
-											- 발송 전 주문은 <span style="color: #3A85C7;">주문취소</span>가 가능합니다. <br>
-										</div>
-										<div style="margin-top: 10px;">- 주문번호를 클릭하시면 주문상세내역을 확인하실수 있습니다.</div>
-									</td>
-								</tr>
 							</table>
+							<div class="graybox"><p class="moveBtn" id="idMoveBtnForSells"> </p></div>
 						</td>
 					</tr>
 				</table>

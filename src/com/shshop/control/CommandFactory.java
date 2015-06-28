@@ -19,6 +19,7 @@ import com.shshop.command.LoginCommand;
 import com.shshop.command.LogoutCommand;
 import com.shshop.command.MainViewCommand;
 import com.shshop.command.MyPageBuyPagingCommand;
+import com.shshop.command.MyPageSellPagingCommand;
 import com.shshop.command.MypageListPagingCommand;
 import com.shshop.command.OrderCommand;
 import com.shshop.command.MyPageCommand;
@@ -133,6 +134,9 @@ public class CommandFactory {
 			
 		case Constant.setMypageBuyPaging:
 			return new MyPageBuyPagingCommand();
+			
+		case Constant.setMypageSellingPaging:
+			return new MyPageSellPagingCommand();
 			
 		default:
 			return null;

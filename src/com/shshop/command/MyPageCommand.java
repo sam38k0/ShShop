@@ -8,11 +8,8 @@ import javax.servlet.http.HttpSession;
 
 import com.shshop.constant.Constant;
 import com.shshop.control.CommandResult;
-import com.shshop.domain.Address;
 import com.shshop.domain.Order;
-import com.shshop.domain.OrderInformation;
 import com.shshop.domain.OrderState;
-import com.shshop.domain.Product;
 import com.shshop.domain.User;
 import com.shshop.service.AuthenticatorService;
 import com.shshop.service.OrderService;
@@ -32,37 +29,6 @@ public class MyPageCommand implements Command {
 		ProductService productService = new ProductService();
 		AuthenticatorService authenticatorService = new AuthenticatorService();
 
-
-//		// 구매자 정보
-//		List<Order> sellOrder = orderService.selectSellOrder(user.getUserId());
-//		if (sellOrder != null && sellOrder.size() > 0) {
-//			OrderInfomationList sellOrderInfoList = new OrderInfomationList(1,5);
-//
-//			for (Order order : sellOrder) {
-//
-//				User buyer = authenticatorService.getUserById(order.getUserId());
-//				Product product = orderService.selectProduct(order.getProductId());
-//				String imagePath = orderService.getOrderImagePath(order);
-//				Address buyAdd = orderService.selectBuyAddress(order.getOrderId());
-//				OrderState sellState = orderService.getOrderState(order);
-//
-//				sellOrderInfoList.addOrderInformation(buyer, product, imagePath, order, sellState, buyAdd);
-//			}
-//
-//			if (sellOrderInfoList.getOrderInfos().size() > 0){
-//				String sellOrderKey = "sellOrderKey_" + user.getUserId().toString();
-//				request.setAttribute(Constant.attrSellOrderInfoList, sellOrderInfoList);
-//				request.setAttribute(Constant.attrSellOrderKey, sellOrderKey);
-//				
-//				synchronized (session) {
-//					session.setAttribute(sellOrderKey, sellOrderInfoList);
-//				}
-//			}
-//		}
-		
-		
-
- 
 		int productTotalCount = productService.getProductsCountOfUser(user.getUserId());
 		int proudctHasStockCount = productService.getHasStockProductCountOfUser(user.getUserId());
 		int proudctNoStockCount= productTotalCount - proudctHasStockCount;
@@ -81,12 +47,30 @@ public class MyPageCommand implements Command {
 			}
 		}
 		
+		int sellOrderDeliveredCount = 0;
+		int sellOrderNotDeliveredCount = 0;
+		int sellOrderTotalCount = orderService.getSellOrderCount(user.getUserId());
+		List<Order> sellOrder = orderService.getSellOrder(user.getUserId());
+		if(sellOrder != null) {
+			for (Order order : sellOrder) {
+				OrderState orderState = orderService.getOrderState(order);
+				if(orderState.getDelivered() == true) {
+					sellOrderDeliveredCount++;
+				} else {
+					sellOrderNotDeliveredCount++;
+				}
+			}
+		}
+		
 		// 개인 정보
 		request.setAttribute(Constant.attrMyProudctsItemCount, productTotalCount);
 		request.setAttribute(Constant.attrMyProudctsItemCountHasStock, proudctHasStockCount);
 		request.setAttribute(Constant.attrMyProudctsItemCountNoStock, proudctNoStockCount);
 		request.setAttribute(Constant.attrTotalOrderCount, totalOrderCount);
 		request.setAttribute(Constant.attrSendedEmailOrderCount, sendedEmailOrderCount);
+		request.setAttribute(Constant.attrSellOrderTotalCount, sellOrderTotalCount);
+		request.setAttribute(Constant.attrSellOrderDeliveredCount, sellOrderDeliveredCount);
+		request.setAttribute(Constant.attrSellOrderNotDeliveredCount, sellOrderNotDeliveredCount);
 		request.setAttribute("user", authenticatorService.getViewSingleUser(user.getUserId()));
 		request.setAttribute("address", authenticatorService.getUserAddress(user.getUserId()).get(0));
 		

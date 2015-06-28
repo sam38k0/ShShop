@@ -48,177 +48,6 @@
         }).open();
     }
     
-    function sellFnPageSet(text) {
-    	response = text;
-    	response = $.parseJSON(response);
-    	var sellTotalPageCount = response.sellTotalPageCount;
-    	var sellCurrentPage = response.sellCurrentPage;
-    	var sellPageDivNum = response.sellPageDivNum;
-    	
-    	var sellListHtml = '';
-    	
-    	$.each(response.currentPageInfosSelling, function(i,item) {
-    		
-    		sellListHtml += 
-    			 '<tr>'+
-		            '<td>' + item.orderId + '</td>'+
-		            '<td><img src="/ShShopTest' + item.imageUrl +'\"><span>' + item.productId + '</span><em>' + item.productName + '</em></td>'+
-		            '<td>' + item.orderPrice + '</td>' +
-		            '<td>' + item.basicAdd + '<br>' + item.detailAdd + '</td>' +
-		            '<td>' + item.userName + '<br>' + item.userPhone + '</td>' +
-		            '<td><span>배송 대기</span></td>' +
-		        '</tr>';
-    	});
-    	
-    	$('#sell_table tbody').empty();
-    	$('#sell_table tbody').append(sellListHtml);
-    	
-    	var sellBtnHtml = '';
-		if(sellCurrentPage > 1) {
-			sellBtnHtml += '<a href=\"#\" id=\"similar_item_list_prev\" class=\"movepreB\">이전 아이템</a>';
-		}
-		
-		sellBtnHtml += '<span id=\"similar_item_list_page\">';
-		sellBtnHtml += '<strong>'+ sellCurrentPage +'</strong>/' + sellTotalPageCount;
-		sellBtnHtml += '</span>'
-		
-		if(sellCurrentPage < sellTotalPageCount)
-			sellBtnHtml += '<a href=\"#\" id=\"similar_item_list_next\" class=\"movenextB\">다음 아이템</a>';
-	 
-		$('.sellMoveBtn').empty();
-		$('.sellMoveBtn').append(sellBtnHtml);
-		
-		$('.buy_table').hide();
-		$('.board_table').hide();
-		$('.sell_table').show();
-		
-		fnRegisterEvent();
-    }
-    
-    function sellFnPagePrev(event) {
-		event.preventDefault();
-	 
-		var currentPage = response.currentPage -1;
-	
-		$.ajax({
-			type : "POST",
-			url : "setMypageListPaging",
-			data : {
-				'sellOrderKey' : '${requestScope.sellOrderKey}',
-				'dataPageInSell' : currentPage
-			},
-			success : sellFnPageSet,
-			error : function(ajaxContext) {
-			}
-		});
-		return false;
-	}
-    
-    function sellFnPageNext(event) {
-		event.preventDefault();
-	 
-		var currentPage = response.currentPage +1;
-	
-		$.ajax({
-			type : "POST",
-			url : "setMypageListPaging",
-			data : {
-				'sellOrderKey' : '${requestScope.sellOrderKey}',
-				'dataPageInSell' : currentPage
-			},
-			success : sellFnPageSet,
-			error : function(ajaxContext) {
-			}
-		});
-		return false;
-	}
-    
-    function buyFnPageSet(text) {
-    	response = text;
-    	response = $.parseJSON(response);
-    	var buyTotalPageCount = response.buyTotalPageCount;
-    	var buyCurrentPage = response.buyCurrentPage;
-    	var buyPageDivNum = response.buyPageDivNum;
-    	
-    	var buyListHtml = '';
-    	
-    	$.each(response.currentPageInfosBuying, function(i,item) {
-    		
-    		buyListHtml += 
-    			 '<tr>'+
-		            '<td>' + item.orderId + '</td>'+
-		            '<td><img src="/ShShopTest' + item.imageUrl +'\"><span>' + item.productId + '</span><em>' + item.productName + '</em></td>'+
-		            '<td>' + item.orderPrice + '</td>' +
-		            '<td>' + item.basicAdd + '<br>' + item.detailAdd + '</td>' +
-		            '<td>' + item.userName + '<br>' + item.userPhone + '</td>' +
-		            '<td><span>배송 대기</span></td>' +
-		        '</tr>';
-    	});
-    	
-    	$('#buy_table tbody').empty();
-    	$('#buy_table tbody').append(buyListHtml);
-    	
-    	var buyBtnHtml = '';
-		if(buyCurrentPage > 1) {
-			buyBtnHtml += '<a href=\"#\" id=\"similar_item_list_prev\" class=\"movepreB\">이전 아이템</a>';
-		}
-		
-		buyBtnHtml += '<span id=\"similar_item_list_page\">';
-		buyBtnHtml += '<strong>'+ buyCurrentPage +'</strong>/' + buyTotalPageCount;
-		buyBtnHtml += '</span>'
-		
-		if(buyCurrentPage < buyTotalPageCount)
-			buyBtnHtml += '<a href=\"#\" id=\"similar_item_list_next\" class=\"movenextB\">다음 아이템</a>';
-	 
-		$('.buyMoveBtn').empty();
-		$('.buyMoveBtn').append(buyBtnHtml);
-		
-		$('.sell_table').hide();
-		$('.board_table').hide();
-		$('.buy_table').show();
-		
-		fnRegisterEvent();
-    }
-    
-    function buyFnPagePrev(event) {
-		event.preventDefault();
-	 
-		var currentPage = response.currentPage -1;
-	
-		$.ajax({
-			type : "POST",
-			url : "setMypageListPaging",
-			data : {
-				'buyOrderKey' : '${requestScope.orderKey}',
-				'data-page' : currentPage
-			},
-			success : buyFnPageSet,
-			error : function(ajaxContext) {
-			}
-		});
-		return false;
-	}
-    
-    function buyFnPageNext(event) {
-		event.preventDefault();
-	 
-		var currentPage = response.currentPage +1;
-	
-		$.ajax({
-			type : "POST",
-			url : "setMypageListPaging",
-			data : {
-				'buyOrderKey' : '${requestScope.orderKey}',
-				'data-page' : currentPage
-			},
-			success : buyFnPageSet,
-			error : function(ajaxContext) {
-			}
-		});
-		return false;
-	}
- 
-    
     function fnRegisterEvent() {
     	
     	//등록현황
@@ -365,15 +194,62 @@
     	
     	//배송현황
     	$('#idGoodsforDelivery1').unbind('click').bind('click', function (e) {
-
+    		$('#wrapperContent').css("display","none");
+    		$('#wrapperContent2').css("display","none");
+    		$('#wrapperContent3').css("display","block");
+	   		$('.depth3 li').removeClass("on");
+			$(this).addClass("on");
+			
+    		$.ajax({
+    			type : "POST",
+    			url : "setMypageSellingPaging",
+    			data : {
+    				'dataPageOfMyProducts' : '1'
+    			},
+    			success : fnMySellsPageSet,
+    			error : function(ajaxContext) {
+    			}
+    		});
     	});
     	
     	$('#idGoodsforDelivery2').unbind('click').bind('click', function (e) {
- 
+    		$('#wrapperContent').css("display","none");
+    		$('#wrapperContent2').css("display","none");
+    		$('#wrapperContent3').css("display","block");
+	   		$('.depth3 li').removeClass("on");
+			$(this).addClass("on");
+			
+    		$.ajax({
+    			type : "POST",
+    			url : "setMypageSellingPaging",
+    			data : {
+    				'dataPageOfMyProducts' : '1',
+    				'data-page-filter' : '1'
+    			},
+    			success : fnMySellsPageSet,
+    			error : function(ajaxContext) {
+    			}
+    		});
     	});
     	
     	$('#idGoodsforDelivery3').unbind('click').bind('click', function (e) {
-
+    		$('#wrapperContent').css("display","none");
+    		$('#wrapperContent2').css("display","none");
+    		$('#wrapperContent3').css("display","block");
+	   		$('.depth3 li').removeClass("on");
+			$(this).addClass("on");
+			
+    		$.ajax({
+    			type : "POST",
+    			url : "setMypageSellingPaging",
+    			data : {
+    				'dataPageOfMyProducts' : '1',
+    				'data-page-filter' : '2'
+    			},
+    			success : fnMySellsPageSet,
+    			error : function(ajaxContext) {
+    			}
+    		});
     	});
     	
     	//페이징
@@ -381,6 +257,8 @@
 		$('#similar_item_list_next1').click(fnMyOrdersPageNext);
 		$('#similar_item_list_prev2').click(fnMyProductsPagePrev);
 		$('#similar_item_list_next2').click(fnMyProductsPageNext);
+		$('#similar_item_list_prev3').click(fnMySellsPagePrev);
+		$('#similar_item_list_next3').click(fnMySellsPageNext);
     }
     
     //MyProductsPaging
@@ -561,6 +439,100 @@
 				'data-page' : currentPage,
 			},
 			success : fnMyOrdersPageSet,
+			error : function(ajaxContext) {
+			}
+		});
+		return false;
+	}
+
+	//MySellingPaging
+	function fnMySellsPageSet(text) {
+    	response = text;
+    	response = $.parseJSON(response);
+
+    	var totalPageCount = response.totalPageCount;
+    	var currentPage = response.currentPage;
+    	var pageDivNum = response.pageDivNum;
+    	
+    	var trHtml = '';
+    	
+    	$.each(response.currentPageData, function(i,item) {
+     		trHtml += 
+			'<tr>'+
+			'	<td bgcolor=\'#FFFFFF\' width=\'80\' height=\'32\' align=\'center\'><a href=\'#\'><font color=\'#1383E3\'><b>' + item.orderId + '</b></font></a></td>'+
+			'	<td width=\'1\'></td>'+
+			'	<td bgcolor=\'#FFFFFF\' width=\'80\' height=\'32\' align=\'center\'>'+ item.dateCreated +'</td>'+
+			'	<td width=\'1\'></td>'+
+			'	<td bgcolor=\'#FFFFFF\' width=\'200\' height=\'32\' align=\'left\'>&nbsp;&nbsp;<a href=\'#\'><span class=\'txt120\'>' + item.productName + '</span></a></td>'+
+			'	<td width=\'1\'></td>'+
+			'	<td bgcolor=\'#FFFFFF\' width=\'100\' height=\'32\' align=\'center\'><b>' + item.price + '/</b>'+ item.amount+'</td>'+
+			'	<td width=\'1\'></td>'+
+			'	<td bgcolor=\'#FFFFFF\' width=\'125\' height=\'32\' align=\'center\' class=\'price\'>' + item.userPhone + '</td>'+
+			'	<td width=\'1\'></td>'+
+			'	<td bgcolor=\'#FFFFFF\' width=\'125\' height=\'32\' align=\'center\'>'+ item.basicAdd +' '+ item.detailAdd +'</td>'+
+			'	<td width=\'1\'></td>'+
+            '	<td bgcolor=\'#FFFFFF\' width=\'70\' height=\'32\' align=\'center\'>'+
+            '	<a href=\'#\'>'+ item.seller + '</a>'+
+        	'	</td>'+
+			'</tr>'+
+			'<tr>'+
+			'	<td bgcolor=\'#E8E8E8\' height=\'1\' colspan=\'15\'></td>'+
+			'</tr>';
+    	});
+    	
+    	$('#idMySellListTbl tbody').empty();
+    	$('#idMySellListTbl tbody').append(trHtml);
+    	
+		//Page Button
+		var btnHtml = '';
+		if(currentPage > 1) {
+			btnHtml += '<a href=\"#\" id=\"similar_item_list_prev3\" class=\"movepreB\">이전 아이템</a>';
+		}
+		
+		btnHtml += '<span id=\"similar_item_list_page\">';
+		btnHtml += '<strong>'+ currentPage +'</strong>/' + totalPageCount;
+		btnHtml += '</span>'
+		
+		if(currentPage < totalPageCount)
+			btnHtml += '<a href=\"#\" id=\"similar_item_list_next3\" class=\"movenextB\">다음 아이템</a>';
+	 
+		$('#idMoveBtnForSells').empty();
+		$('#idMoveBtnForSells').append(btnHtml);
+ 
+		
+		fnRegisterEvent(); 
+    }
+    
+	function fnMySellsPagePrev(event) {
+		event.preventDefault();
+	 
+		var currentPage = response.currentPage -1;
+	
+		$.ajax({
+			type : "POST",
+			url : "setMypageSellingPaging",
+			data : {
+				'data-page' : currentPage,
+			},
+			success : fnMySellsPageSet,
+			error : function(ajaxContext) {
+			}
+		});
+		return false;
+	}
+	
+	function fnMySellsPageNext(event) {
+		event.preventDefault();
+	 
+		var currentPage = response.currentPage +1;
+	
+		$.ajax({
+			type : "POST",
+			url : "setMypageSellingPaging",
+			data : {
+				'data-page' : currentPage,
+			},
+			success : fnMySellsPageSet,
 			error : function(ajaxContext) {
 			}
 		});

@@ -32,6 +32,10 @@
 	<select id='getSellOrder' resultMap='Order'>
 		SELECT * FROM `or_order` WHERE `id_product` in (SELECT `id_product` FROM `ps_product` WHERE `id_user` = ${id_user})
 	</select>
+	
+	<select id='getSellOrderCount' resultType='int'>
+		SELECT COUNT(`id_order`) as count FROM `or_order` WHERE `id_product` in (SELECT `id_product` FROM `ps_product` WHERE `id_user` = ${id_user});
+	</select>
 		
 	<delete id='deleteOrder'>
 		DELETE FROM `or_order` WHERE `id_order`=${id_order}
