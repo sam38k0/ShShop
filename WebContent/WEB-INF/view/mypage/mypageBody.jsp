@@ -8,8 +8,8 @@
 	<br> <br>
 	<div id="divAjaxLoader" align="center" style="position: absolute;"></div>
 	<ul class="tabMyroom" id="tab_menu">
-		<li class="on"><a href="#">거래정보</a></li>
-		<li><a href="#">개인정보</a></li>
+		<li class="on" id="idDealInfo"><a href="#" >거래정보</a></li>
+		<li id="idPersonalInfo"><a href="#" >개인정보</a></li>
 	</ul>
 	<div class="myroomWrap2">
 		<div class="deal_left">
@@ -545,6 +545,7 @@
 	</div>
 </div>
 
+ --%>
 <div id="user_wrap">
 	<form id="user_form" class="user_form">
 		<table>
@@ -605,5 +606,3 @@
 		</div>
 	</form>
 </div>
-
- --%>

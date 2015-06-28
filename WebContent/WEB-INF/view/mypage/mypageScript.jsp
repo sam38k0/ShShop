@@ -49,9 +49,46 @@
     }
     
     function fnRegisterEvent() {
+    	$("#tab_menu li").unbind('click').bind('click', function (e) {
+	   		$('.tabMyroom li').removeClass("on");
+			$(this).addClass("on");
+			
+			var id = $(this).attr('id');
+			
+			if(id == 'idDealInfo') {
+				
+				$('.myroomWrap2').css("display","block");
+	    		$('#wrapperContent2').css("display","block");
+	    		$('#wrapperContent').css("display","none");
+	    		$('#wrapperContent3').css("display","none");
+		   		$('.depth3 li').removeClass("on");
+				$('#idGoodsforSelling1').addClass("on");
+				
+				$('#user_wrap').css("display","none");
+				
+	    		$.ajax({
+	    			type : "POST",
+	    			url : "setMypageListPaging",
+	    			data : {
+	    				'dataPageOfMyProducts' : '1'
+	    			},
+	    			success : fnMyProductsPageSet,
+	    			error : function(ajaxContext) {
+	    			}
+	    		});
+	    		
+			} else if(id == 'idPersonalInfo'){
+	    		$('#wrapperContent2').css("display","none");
+	    		$('#wrapperContent').css("display","none");
+	    		$('#wrapperContent3').css("display","none");
+	    		$('.myroomWrap2').css("display","none");
+	    		$('#user_wrap').css("display","block");
+			}
+    	});
     	
     	//등록현황
     	$('#idGoodsforSelling1').unbind('click').bind('click', function (e) {
+    		$('#user_wrap').css("display","none");
     		$('#wrapperContent2').css("display","block");
     		$('#wrapperContent').css("display","none");
     		$('#wrapperContent3').css("display","none");
@@ -72,6 +109,7 @@
     	});
     	
     	$('#idGoodsforSelling2').unbind('click').bind('click', function (e) {
+    		$('#user_wrap').css("display","none");
     		$('#wrapperContent2').css("display","block");
     		$('#wrapperContent').css("display","none");
     		$('#wrapperContent3').css("display","none");
@@ -93,6 +131,7 @@
     	});
     	
     	$('#idGoodsforSelling3').unbind('click').bind('click', function (e) {
+    		$('#user_wrap').css("display","none");
     		$('#wrapperContent2').css("display","block");
     		$('#wrapperContent').css("display","none");
     		$('#wrapperContent3').css("display","none");
@@ -114,6 +153,7 @@
     	
     	//구매현황
     	$('#idGoodsforBuying1').unbind('click').bind('click', function (e) {
+    		$('#user_wrap').css("display","none");
     		$('#wrapperContent').css("display","block");
     		$('#wrapperContent2').css("display","none");
     		$('#wrapperContent3').css("display","none");
@@ -133,6 +173,7 @@
     	});
     	
     	$('#idGoodsforBuying2').unbind('click').bind('click', function (e) {
+    		$('#user_wrap').css("display","none");
     		$('#wrapperContent').css("display","block");
     		$('#wrapperContent2').css("display","none");
     		$('#wrapperContent3').css("display","none");
@@ -153,6 +194,7 @@
     	});
     	
     	$('#idGoodsforBuying3').unbind('click').bind('click', function (e) {
+    		$('#user_wrap').css("display","none");
     		$('#wrapperContent').css("display","block");
     		$('#wrapperContent2').css("display","none");
     		$('#wrapperContent3').css("display","none");
@@ -173,6 +215,7 @@
     	});
     	
     	$('#idGoodsforBuying4').unbind('click').bind('click', function (e) {
+    		$('#user_wrap').css("display","none");
     		$('#wrapperContent').css("display","block");
     		$('#wrapperContent2').css("display","none");
     		$('#wrapperContent3').css("display","none");
@@ -194,6 +237,7 @@
     	
     	//배송현황
     	$('#idGoodsforDelivery1').unbind('click').bind('click', function (e) {
+    		$('#user_wrap').css("display","none");
     		$('#wrapperContent').css("display","none");
     		$('#wrapperContent2').css("display","none");
     		$('#wrapperContent3').css("display","block");
@@ -213,6 +257,7 @@
     	});
     	
     	$('#idGoodsforDelivery2').unbind('click').bind('click', function (e) {
+    		$('#user_wrap').css("display","none");
     		$('#wrapperContent').css("display","none");
     		$('#wrapperContent2').css("display","none");
     		$('#wrapperContent3').css("display","block");
@@ -233,6 +278,7 @@
     	});
     	
     	$('#idGoodsforDelivery3').unbind('click').bind('click', function (e) {
+    		$('#user_wrap').css("display","none");
     		$('#wrapperContent').css("display","none");
     		$('#wrapperContent2').css("display","none");
     		$('#wrapperContent3').css("display","block");
