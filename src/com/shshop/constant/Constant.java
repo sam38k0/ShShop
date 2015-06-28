@@ -36,6 +36,7 @@ public class Constant {
 	public static final String deleteOrderInfo = "/deleteOrderInfo";
 	public static final String directOrder = "/directOrder";
 	public static final String showDirectOrderView = "/showDirectOrderView";
+	public static final String setMypageBuyPaging = "/setMypageBuyPaging";
 	
 	// Attribute
 	public static final String attrUser = "user";
@@ -87,12 +88,15 @@ public class Constant {
 	public static final String attrCurrentPagesResultBoard = "currentPagesResultBoard";
 	public static final String attrLoginResult = "loginResult";
 	public static final String attrMyProductsInfo = "myProductsInfo";
+	public static final String attrMyOrderInfo = "myOrderInfo";
 	public static final String attrDataPageInBuy = "dataPageInBuy";
 	public static final String attrDataPageInSell = "dataPageInSell";
 	public static final String attrDataPageOfMyProducts = "dataPageOfMyProducts"; 
 	public static final String attrMyProudctsItemCount = "myProudctsItemCount";
 	public static final String attrMyProudctsItemCountHasStock = "myProudctsItemCountHasStock";
 	public static final String attrMyProudctsItemCountNoStock = "myProudctsItemCountNoStock";
+	public static final String attrTotalOrderCount = "totalOrderCount";
+	public static final String attrSendedEmailOrderCount = "sendedEmailOrderCount";
 	
 	// DD Parameter
 	public static final String paramFileUpload = "file-upload";

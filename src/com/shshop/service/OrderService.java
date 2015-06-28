@@ -97,6 +97,21 @@ public class OrderService {
 		}
 		return order;
 	}
+	
+	public int getOrderCount(Integer userId) {
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+
+		int orderCount = 0;
+		try {
+			OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+			orderCount = orderMapper.getOrderCount(userId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+		return orderCount;
+	}
 
 	public Address selectBuyAddress(int orderId) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();

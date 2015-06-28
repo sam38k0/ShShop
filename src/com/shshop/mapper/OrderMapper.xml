@@ -20,6 +20,10 @@
 		SELECT * FROM `or_order` WHERE `id_user` = ${id_user}
 	</select>
 	
+	<select id='getOrderCount' resultType='int'>
+		SELECT COUNT(`id_order`) as count FROM `or_order` WHERE `id_user` = ${id_user}
+	</select>
+	
 	<select id='getBuyUserAdd' resultMap='${AddressResultMap}'>
 		SELECT a.* FROM `cr_address` a inner join `or_order` o on a.`id_address` = o.`id_address`
 		WHERE o.`id_order` = ${id_order}
@@ -42,5 +46,7 @@
 		<result property='cost' column='cost' />
 		<result property='deliveryCost' column='delivery_cost' />
 		<result property='orderRequest' column='order_request' />
+		<result property='dateCreated' column='date_created' />
+		<result property='dateUpdated' column='date_updated' /> 
 	</resultMap>
 </mapper>

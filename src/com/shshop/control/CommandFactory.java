@@ -18,6 +18,7 @@ import com.shshop.command.JoinCommand;
 import com.shshop.command.LoginCommand;
 import com.shshop.command.LogoutCommand;
 import com.shshop.command.MainViewCommand;
+import com.shshop.command.MyPageBuyPagingCommand;
 import com.shshop.command.MypageListPagingCommand;
 import com.shshop.command.OrderCommand;
 import com.shshop.command.MyPageCommand;
@@ -129,6 +130,9 @@ public class CommandFactory {
 
 		case Constant.showDirectOrderView:
 			return new DirectOrderViewCommand();
+			
+		case Constant.setMypageBuyPaging:
+			return new MyPageBuyPagingCommand();
 			
 		default:
 			return null;

@@ -51,6 +51,35 @@
 						</ul>
 					</li>
 				</ul>
+				<div class="depth1">구매현황</div>
+				<ul id="left_menu_group" class="depth2">
+					<li class="first on">구매아이템
+						<ul class="depth3">
+							<li id="idGoodsforBuying1"><a href="#">- 전체
+							<c:choose>
+								<c:when test="${totalOrderCount != null}">
+									<span>${totalOrderCount}건</span>
+								</c:when>
+								<c:otherwise>
+									<span>0건</span>
+								</c:otherwise>
+							</c:choose>		
+							</a></li>
+							<li id="idGoodsforBuying2"><a href="#">- 입금완료 상품
+							<c:choose>
+								<c:when test="${sendedEmailOrderCount != null}">
+									<span>${sendedEmailOrderCount}건</span>
+								</c:when>
+								<c:otherwise>
+									<span>0건</span>
+								</c:otherwise>
+							</c:choose>		
+							</a></li>
+							<li id="idGoodsforBuying3"><a href="#">- 배송중 상품<span>0건</span></a></li>
+							<li id="idGoodsforBuying4"><a href="#">- 구매확정 상품<span>0건</span></a></li>
+						</ul>				
+					</li>
+				</ul>
 				<div class="depth1">배송현황</div>
 				<ul id="left_menu_group" class="depth2">
 					<li class="first on">배송아이템
@@ -61,21 +90,191 @@
 						</ul>
 					</li>
 				</ul>
-				<div class="depth1">구매현황</div>
-				<ul id="left_menu_group" class="depth2">
-					<li class="first on">구매아이템
-						<ul class="depth3">
-							<li id="idGoodsforBuying1"><a href="#">- 전체<span>0건</span></a></li>
-							<li id="idGoodsforBuying2"><a href="#">- 입금완료 상품<span>0건</span></a></li>
-							<li id="idGoodsforBuying3"><a href="#">- 배송중 상품<span>0건</span></a></li>
-							<li id="idGoodsforBuying4"><a href="#">- 구매확정 상품<span>0건</span></a></li>
-						</ul>
-					</li>
-				</ul>
 			</div>
 		</div>
 		<div class="deal_rigth">
 			<div id="wrapperContent" style="display:none">
+				<div style="position: relative; height: 25px;">
+					<div style="position: absolute"></div>
+				</div>
+				<table width="960" cellpadding="0" cellspacing="0" align="center">
+					<tr>
+						<td width="187" valign="top">
+							<%-- 							
+							<div class="periodBox">
+								<div class="period clearfix" id="divPeriodDefault">
+									<span class="periodBtn fl"> 
+										<a href="#"><img id="imgDefault1d" name="imgDefault" src="${adminBean.contextPath}/content/image/b_1d.gif" alt="당일"></a> 
+										<a href="#"><img id="imgDefault1w" name="imgDefault" src="${adminBean.contextPath}/content/image/b_1w.gif" alt="1주"></a> 
+										<a href="#"><img id="imgDefault2w" name="imgDefault" src="${adminBean.contextPath}/content/image/b_2w.gif" alt="2주"></a> 
+										<a href="#"><img id="imgDefault1m" name="imgDefault" src="${adminBean.contextPath}/content/image/b_1m.gif" alt="1개월"></a> 
+										<a href="#"><img id="imgDefault2m" name="imgDefault" src="${adminBean.contextPath}/content/image/b_2m.gif" alt="2개월"></a> 
+										<a href="#"><img id="imgDefault3m" name="imgDefault" src="${adminBean.contextPath}/content/image/b_3m.gif" alt="3개월"></a> 
+										<a href="#"><img id="imgDefault4m" name="imgDefault" src="${adminBean.contextPath}/content/image/b_4mOn.gif" alt="4개월"></a>
+									</span> 
+									<span class="fl">&nbsp;까지 조회 </span>
+								</div>
+							</div> <br/> 
+							--%>
+							<table cellpadding="0" border="0" width="750">
+								<tr>
+									<td width="750" height="3" bgcolor="#7CBBDE"></td>
+								</tr>
+								<tr>
+									<td width="750" height="2" bgcolor="#FFFFFF">
+									<td>
+								</tr>
+								<tr>
+									<td width="750" height="1" bgcolor="#C9C9C9">
+									<td>
+								</tr>
+								<tr>
+									<td width="750" id="tdOrderList">
+										<table cellpadding='0' border='0' width='750'>
+											<tr>
+												<td colspan='2' width='750' bgcolor='#FFFFFF'>
+													<table id='idMyOrderListTbl' cellpadding='0' cellspacing='0' border='0' width='750'>
+														<thead>
+															<tr>
+																<td bgcolor='#F2F2F2' width='80' height='32' align='center' class='infoGray'>주문번호</td>
+																<td background='${adminBean.contextPath}/content/image/bg_HalfGray.gif' width='2' height='32'></td>
+																<td bgcolor='#F2F2F2' width='80' height='32' align='center' class='infoGray'>주문일자</td>
+																<td background='${adminBean.contextPath}/content/image/bg_HalfGray.gif' width='2' height='32'></td>
+																<td bgcolor='#F2F2F2' width='295' height='32' align='center' class='infoGray'>주문내역</td>
+																<td background='${adminBean.contextPath}/content/image/bg_HalfGray.gif' width='2' height='32'></td>
+																<td bgcolor='#F2F2F2' width='100' height='32' align='center' class='infoGray'>주문금액/수량</td>
+																<td background='${adminBean.contextPath}/content/image/bg_HalfGray.gif' width='2' height='32'></td>
+																<td bgcolor='#F2F2F2' width='80' height='32' align='center' class='infoGray'>주문상태</td>
+																<td background='${adminBean.contextPath}/content/image/bg_HalfGray.gif' width='2' height='32'></td>
+																<td bgcolor='#F2F2F2' width='75' height='32' align='center' class='infoGray'>판매자</td>
+																<td background='${adminBean.contextPath}/content/image/bg_HalfGray.gif' width='1' height='32'></td>
+																<td bgcolor='#F2F2F2' width='70' height='32' align='center' class='infoGray'>배송관리</td>
+                                                            	
+															</tr>
+															<tr>
+																<td height='1' bgcolor='#E8E8E8' colspan='15'></td>
+															</tr>
+														</thead>
+														<tbody>
+															<!-- 여기에 구매한 상품 정보를 삽입 -->
+														</tbody>
+													</table>
+												<td>
+											</tr>
+											<tr>
+												<td colspan='2' width='750' height='2' bgcolor='#FFFFFF'>
+												<td>
+											</tr>
+											<tr>
+												<td colspan='2' width='750' height='1' bgcolor='#C9C9C9'>
+												<td>
+											</tr>
+											<tr>
+												<td height='10'></td>
+											</tr>
+										</table>
+									<td>
+								</tr>
+								<tr>
+									<td class="InfoGray" height="30" valign="middle">
+										<div class="graybox"><p class="moveBtn" id="idMoveBtnForOrders"> </p></div>
+										<div style="margin-top: 10px;">
+											- 발송 전 주문은 <span style="color: #3A85C7;">주문취소</span>가 가능합니다. <br>
+										</div>
+										<div style="margin-top: 10px;">- 주문번호를 클릭하시면 주문상세내역을 확인하실수 있습니다.</div>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</div>
+			
+			<div id="wrapperContent2">
+				<div style="position: relative; height: 25px;">
+					<div style="position: absolute"></div>
+				</div>
+				<table width="960" cellpadding="0" cellspacing="0" align="center">
+					<tr>
+						<td width="187" valign="top">
+							<%-- 							
+							<div class="periodBox">
+								<div class="period clearfix" id="divPeriodDefault">
+									<span class="periodBtn fl"> 
+										<a href="#"><img id="imgDefault1d" name="imgDefault" src="${adminBean.contextPath}/content/image/b_1d.gif" alt="당일"></a> 
+										<a href="#"><img id="imgDefault1w" name="imgDefault" src="${adminBean.contextPath}/content/image/b_1w.gif" alt="1주"></a> 
+										<a href="#"><img id="imgDefault2w" name="imgDefault" src="${adminBean.contextPath}/content/image/b_2w.gif" alt="2주"></a> 
+										<a href="#"><img id="imgDefault1m" name="imgDefault" src="${adminBean.contextPath}/content/image/b_1m.gif" alt="1개월"></a> 
+										<a href="#"><img id="imgDefault2m" name="imgDefault" src="${adminBean.contextPath}/content/image/b_2m.gif" alt="2개월"></a> 
+										<a href="#"><img id="imgDefault3m" name="imgDefault" src="${adminBean.contextPath}/content/image/b_3m.gif" alt="3개월"></a> 
+										<a href="#"><img id="imgDefault4m" name="imgDefault" src="${adminBean.contextPath}/content/image/b_4mOn.gif" alt="4개월"></a>
+									</span> 
+									<span class="fl">&nbsp;까지 조회 </span>
+								</div>
+							</div> <br/> 
+							--%>
+							<table cellpadding="0" border="0" width="750">
+								<tr>
+									<td width="750" height="3" bgcolor="#7CBBDE"></td>
+								</tr>
+								<tr>
+									<td width="750" height="2" bgcolor="#FFFFFF">
+									<td>
+								</tr>
+								<tr>
+									<td width="750" height="1" bgcolor="#C9C9C9">
+									<td>
+								</tr>
+								<tr>
+									<td width="750" id="tdOrderList">
+										<table cellpadding='0' border='0' width='750'>
+											<tr>
+												<td colspan='2' width='750' bgcolor='#FFFFFF'>
+													<table id='idMyProductsListTbl' cellpadding='0' cellspacing='0' border='0' width='750'>
+														<thead>
+															<tr>
+																<td bgcolor='#F2F2F2' width='80' height='32' align='center' class='infoGray'>게시번호</td>
+																<td background='${adminBean.contextPath}/content/image/bg_HalfGray.gif' width='2' height='32'></td>
+																<td bgcolor='#F2F2F2' width='295' height='32' align='center' class='infoGray'>제목</td>
+																<td background='${adminBean.contextPath}/content/image/bg_HalfGray.gif' width='2' height='32'></td>
+																<td bgcolor='#F2F2F2' width='80' height='32' align='center' class='infoGray'>가격</td>
+																<td background='${adminBean.contextPath}/content/image/bg_HalfGray.gif' width='2' height='32'></td>
+																<td bgcolor='#F2F2F2' width='100' height='32' align='center' class='infoGray'>히트수</td>
+																<td background='${adminBean.contextPath}/content/image/bg_HalfGray.gif' width='2' height='32'></td>
+																<td bgcolor='#F2F2F2' width='80' height='32' align='center' class='infoGray'>등록일</td>
+															</tr>
+															<tr>
+																<td height='1' bgcolor='#E8E8E8' colspan='15'></td>
+															</tr>
+														<thead>
+														<tbody>
+														<!-- 여기에 상품 정보를 기입 -->
+														</tbody>
+													</table>
+												<td>
+											</tr>
+											<tr>
+												<td colspan='2' width='750' height='2' bgcolor='#FFFFFF'>
+												<td>
+											</tr>
+											<tr>
+												<td colspan='2' width='750' height='1' bgcolor='#C9C9C9'>
+												<td>
+											</tr>
+											<tr>
+												<td height='10'></td>
+											</tr>
+										</table>
+									<td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+				<div class="graybox"><p class="moveBtn" id="idMoveBtnForProducts"> </p><br><br></div>
+			</div>
+			
+			<div id="wrapperContent3" style="display:none">
 				<div style="position: relative; height: 25px;">
 					<div style="position: absolute"></div>
 				</div>
@@ -183,106 +382,6 @@
 				</table>
 			</div>
 			
-			<div id="wrapperContent2">
-				<div style="position: relative; height: 25px;">
-					<div style="position: absolute"></div>
-				</div>
-				<table width="960" cellpadding="0" cellspacing="0" align="center">
-					<tr>
-						<td width="187" valign="top">
-							<%-- 							
-							<div class="periodBox">
-								<div class="period clearfix" id="divPeriodDefault">
-									<span class="periodBtn fl"> 
-										<a href="#"><img id="imgDefault1d" name="imgDefault" src="${adminBean.contextPath}/content/image/b_1d.gif" alt="당일"></a> 
-										<a href="#"><img id="imgDefault1w" name="imgDefault" src="${adminBean.contextPath}/content/image/b_1w.gif" alt="1주"></a> 
-										<a href="#"><img id="imgDefault2w" name="imgDefault" src="${adminBean.contextPath}/content/image/b_2w.gif" alt="2주"></a> 
-										<a href="#"><img id="imgDefault1m" name="imgDefault" src="${adminBean.contextPath}/content/image/b_1m.gif" alt="1개월"></a> 
-										<a href="#"><img id="imgDefault2m" name="imgDefault" src="${adminBean.contextPath}/content/image/b_2m.gif" alt="2개월"></a> 
-										<a href="#"><img id="imgDefault3m" name="imgDefault" src="${adminBean.contextPath}/content/image/b_3m.gif" alt="3개월"></a> 
-										<a href="#"><img id="imgDefault4m" name="imgDefault" src="${adminBean.contextPath}/content/image/b_4mOn.gif" alt="4개월"></a>
-									</span> 
-									<span class="fl">&nbsp;까지 조회 </span>
-								</div>
-							</div> <br/> 
-							--%>
-							<table cellpadding="0" border="0" width="750">
-								<tr>
-									<td width="750" height="3" bgcolor="#7CBBDE"></td>
-								</tr>
-								<tr>
-									<td width="750" height="2" bgcolor="#FFFFFF">
-									<td>
-								</tr>
-								<tr>
-									<td width="750" height="1" bgcolor="#C9C9C9">
-									<td>
-								</tr>
-								<tr>
-									<td width="750" id="tdOrderList">
-										<table cellpadding='0' cellspacing='0' border='0' width='750'>
-											<tr>
-												<td colspan='2' width='750' bgcolor='#FFFFFF'>
-													<table id='idMyOrderListTbl' cellpadding='0' cellspacing='0' border='0' width='750'>
-														<thead>
-															<tr>
-																<td bgcolor='#F2F2F2' width='80' height='32' align='center' class='infoGray'>게시번호</td>
-																<td background='${adminBean.contextPath}/content/image/bg_HalfGray.gif' width='2' height='32'></td>
-																<td bgcolor='#F2F2F2' width='295' height='32' align='center' class='infoGray'>제목</td>
-																<td background='${adminBean.contextPath}/content/image/bg_HalfGray.gif' width='2' height='32'></td>
-																<td bgcolor='#F2F2F2' width='80' height='32' align='center' class='infoGray'>가격</td>
-																<td background='${adminBean.contextPath}/content/image/bg_HalfGray.gif' width='2' height='32'></td>
-																<td bgcolor='#F2F2F2' width='100' height='32' align='center' class='infoGray'>히트수</td>
-																<td background='${adminBean.contextPath}/content/image/bg_HalfGray.gif' width='2' height='32'></td>
-																<td bgcolor='#F2F2F2' width='80' height='32' align='center' class='infoGray'>등록일</td>
-															</tr>
-															<tr>
-																<td height='1' bgcolor='#E8E8E8' colspan='15'></td>
-															</tr>
-														<thead>
-														<tbody>
-														<!-- 															
-															<tr>
-																<td bgcolor='#FFFFFF' width='80' height='32' align='center'><a href="#"><font color='#1383E3'><b>123724421</b></font></a></td>
-																<td width='1'></td>
-																<td bgcolor='#FFFFFF' width='80' height='32' align='center'>2015.06.25</td>
-																<td width='1'></td>
-																<td bgcolor='#FFFFFF' width='295' height='32' align='left'>&nbsp;&nbsp;<a href="#"><span class='txt120'>상품이름을 여기에</span></a></td>
-																<td width='1'></td>
-																<td bgcolor='#FFFFFF' width='100' height='32' align='center'><b>95,400/</b>1</td>
-																<td width='1'></td>
-																<td bgcolor='#FFFFFF' width='80' height='32' align='center' class='price'>배송완료</td>
-																<td width='1'></td>
-																<td bgcolor='#FFFFFF' width='75' height='32' align='center'>김대웅</td>
-															</tr>
-															<tr>
-																<td bgcolor='#E8E8E8' height='1' colspan='15'></td>
-															</tr> 
-														-->
-														</tbody>
-													</table>
-												<td>
-											</tr>
-											<tr>
-												<td colspan='2' width='750' height='2' bgcolor='#FFFFFF'>
-												<td>
-											</tr>
-											<tr>
-												<td colspan='2' width='750' height='1' bgcolor='#C9C9C9'>
-												<td>
-											</tr>
-											<tr>
-												<td height='10'></td>
-											</tr>
-										</table>
-									<td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-				</table>
-				<div class="graybox"><p class="moveBtn"> </p><br><br></div>
-			</div>
 		</div>
 	</div>
 </div>
