@@ -53,6 +53,7 @@ public class BuildSampleData {
 		inputSampleProducts("기타 여성복", "(여)바지");
 		inputSampleProducts("기타 여성복", "(여)코트");
 		inputSampleProducts("기타 여성복", "(여)패딩");
+		System.out.println("여성의류-insert completed");
 
 		// 남성의류
 		inputSampleProducts("남성 티셔츠", "(남)티셔츠");
@@ -64,6 +65,7 @@ public class BuildSampleData {
 		inputSampleProducts("기타 남성복", "(남)정장");
 		inputSampleProducts("기타 남성복", "(남)트레이닝복");
 		inputSampleProducts("기타 남성복", "(남)등산복");
+		System.out.println("남성의류-insert completed");
 
 		// 화장품
 		inputSampleProducts("메이크업", "BB크림");
@@ -72,6 +74,8 @@ public class BuildSampleData {
 		inputSampleProducts("헤어", "우루스");
 		inputSampleProducts("헤어", "비달사순");
 		inputSampleProducts("아로마", "아로마 손 청결제");
+		System.out.println("화장품-insert completed");
+
 
 		// 잡화
 		inputSampleProducts("신발", "NIKE");
@@ -79,6 +83,7 @@ public class BuildSampleData {
 		inputSampleProducts("모자", "흑간지모자");
 		inputSampleProducts("벨트", "성인용벨트");
 		inputSampleProducts("안경", "선글라스");
+		System.out.println("잡화-insert completed");
 
 		// 출산/아동
 		inputSampleProducts("유아의류", "면귀저기");
@@ -86,6 +91,7 @@ public class BuildSampleData {
 		inputSampleProducts("유아도서", "MAXIM");
 		inputSampleProducts("아동의류", "뽀로로티셔츠");
 		inputSampleProducts("완구", "뽀로로완구");
+		System.out.println("출산/아동-insert completed");
 
 		// 가구
 		inputSampleProducts("책상", "고급책상");
@@ -93,12 +99,14 @@ public class BuildSampleData {
 		inputSampleProducts("침대", "물침대");
 		inputSampleProducts("쇼파", "레이지보이");
 		inputSampleProducts("싱크대", "싱크대용품");
+		System.out.println("가구-insert completed");
 
 		// 게임
 		inputSampleProducts("닌텐도", "닌텐도DS");
 		inputSampleProducts("PSP", "PS3");
 		inputSampleProducts("Wii", "Wii");
 		inputSampleProducts("XBox", "XBox");
+		System.out.println("게임-insert completed");
 
 		// 가전
 		inputSampleProducts("TV", "홈씨어터");
@@ -107,6 +115,7 @@ public class BuildSampleData {
 		inputSampleProducts("선풍기", "휴대용선풍기");
 		inputSampleProducts("세탁기", "LG세탁기");
 		inputSampleProducts("청소기", "자동진공청소기");
+		System.out.println("가전-insert completed");
 
 		// 모바일
 		inputSampleProducts("SKT", "SKT-iPhone");
@@ -115,6 +124,7 @@ public class BuildSampleData {
 		inputSampleProducts("휴대폰주변기기", "휴대폰액세서리");
 		inputSampleProducts("휴대폰주변기기", "스마트패드");
 		inputSampleProducts("휴대폰주변기기", "스마트폰액정");
+		System.out.println("모바일-insert completed");
 
 		// 레저
 		inputSampleProducts("헬스", "헬스장갑");
@@ -122,6 +132,7 @@ public class BuildSampleData {
 		inputSampleProducts("스키", "스키용품");
 		inputSampleProducts("보드", "보드용품");
 		inputSampleProducts("등산", "등산스틱");
+		System.out.println("레저-insert completed");
 
 		// 도서
 		inputSampleProducts("외국어", "Eng대학교재");
@@ -129,6 +140,7 @@ public class BuildSampleData {
 		inputSampleProducts("문학", "소림사");
 		inputSampleProducts("수필", "김소월시집");
 		inputSampleProducts("교재", "공업수학");
+		System.out.println("도서-insert completed");
 		
 		// 자동차
 		inputSampleProducts("수입차", "폭스바겐");
@@ -136,18 +148,21 @@ public class BuildSampleData {
 		inputSampleProducts("스포츠카", "람보르기니");
 		inputSampleProducts("버스", "1t트럭");
 		inputSampleProducts("화물차", "레미콘");
+		System.out.println("자동차-insert completed");
 		
 		// 애완
 		inputSampleProducts("강아지", "푸들");
 		inputSampleProducts("고양이", "동냥이");
 		inputSampleProducts("기타애완", "햄스터");
 		inputSampleProducts("애완용품", "애견이발기"); 
+		System.out.println("애완-insert completed");
  
 		// 미술
 		inputSampleProducts("서양작품", "정물화");
 		inputSampleProducts("동양작품", "동양화");
 		inputSampleProducts("미술용품", "사인펜");
 		inputSampleProducts("기타예술", "액자"); 
+		System.out.println("미술-insert completed");
  
 		// 카메라
 		inputSampleProducts("DSLR", "니콘 D 5200");
@@ -155,6 +170,7 @@ public class BuildSampleData {
 		inputSampleProducts("필름카메라", "인스탁스");
 		inputSampleProducts("카메라렌즈", "SONY DSC-F707카메라.랜즈CIMCO");
 		inputSampleProducts("캠코더", "볼펜캠코더");
+		System.out.println("카메라-insert completed");
 		
 		// 음반
 		inputSampleProducts("수입음반", "앙드레가뇽");
@@ -162,27 +178,32 @@ public class BuildSampleData {
 		inputSampleProducts("블루레이", "맘마미아");
 		inputSampleProducts("교육콘텐츠", "공인중개사 기본서 강의");
 		inputSampleProducts("기타음반", "내셔날지오그래픽");
+		System.out.println("음반-insert completed");
 		
 		// 패션
 		inputSampleProducts("수제패션", "목걸이");
 		inputSampleProducts("수제리빙", "석고방향제");
 		inputSampleProducts("기타수제품", "달콤홍양");
+		System.out.println("패션-insert completed");
  
 		// 포장식품
 		inputSampleProducts("건강기능식품", "케어칸");
 		inputSampleProducts("기타포장식품", "당일 장어꼬리"); 
+		System.out.println("포장식품-insert completed");
 		
 		// PC
 		inputSampleProducts("데스크탑", "삼성 슬림 E6400");
 		inputSampleProducts("노트북", "12 인치 삼성넷북");
 		inputSampleProducts("모니터", "삼성전자 S27B240 무결점 LED 모니터");
 		inputSampleProducts("주변기기", "스마트 무선 광마우스");
+		System.out.println("PC-insert completed");
  
 		//침구
 		inputSampleProducts("이불", "극세사 겨울 이불");
 		inputSampleProducts("커튼", "우드블라인드");
 		inputSampleProducts("카페트", "러그 카페트");
 		inputSampleProducts("욕실용품", "려~샴푸200ml4개,린스1");
+		System.out.println("침구-insert completed");
  
 		// 묻고 답하기 코멘트 추가
 		inputSampleComment();

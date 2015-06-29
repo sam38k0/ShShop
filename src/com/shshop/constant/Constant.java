@@ -36,6 +36,8 @@ public class Constant {
 	public static final String deleteOrderInfo = "/deleteOrderInfo";
 	public static final String directOrder = "/directOrder";
 	public static final String showDirectOrderView = "/showDirectOrderView";
+	public static final String setMypageBuyPaging = "/setMypageBuyPaging";
+	public static final String setMypageSellingPaging = "/setMypageSellingPaging";
 	
 	// Attribute
 	public static final String attrUser = "user";
@@ -48,6 +50,7 @@ public class Constant {
 	public static final String attrKeywords = "keywords";
 	public static final String attrCategoryName = "categoryName";
 	public static final String attrDataPage = "data-page";
+	public static final String attrDataPageFilter = "data-page-filter";
 	public static final String attrDataPageDivNum = "data-page-divnum";
 	public static final String attrSort = "sort";
 	public static final String attrPriceFrom = "price_from";
@@ -85,11 +88,19 @@ public class Constant {
 	public static final String attrCurrentPagesResultSelling = "currentPageResultsSelling";
 	public static final String attrCurrentPagesResultBoard = "currentPagesResultBoard";
 	public static final String attrLoginResult = "loginResult";
-	public static final String attrMyProductsList = "myProductsList";
-	public static final String attrMyBoardKey = "myBoardKey";
+	public static final String attrMyProductsInfo = "myProductsInfo";
+	public static final String attrMyOrderInfo = "myOrderInfo";
 	public static final String attrDataPageInBuy = "dataPageInBuy";
 	public static final String attrDataPageInSell = "dataPageInSell";
-	public static final String attrDataPageInBoard = "dataPageInBoard";
+	public static final String attrDataPageOfMyProducts = "dataPageOfMyProducts"; 
+	public static final String attrMyProudctsItemCount = "myProudctsItemCount";
+	public static final String attrMyProudctsItemCountHasStock = "myProudctsItemCountHasStock";
+	public static final String attrMyProudctsItemCountNoStock = "myProudctsItemCountNoStock";
+	public static final String attrTotalOrderCount = "totalOrderCount";
+	public static final String attrSendedEmailOrderCount = "sendedEmailOrderCount";
+	public static final String attrSellOrderTotalCount = "sellOrderTotalCount";
+	public static final String attrSellOrderDeliveredCount = "sellOrderDeliveredCount";
+	public static final String attrSellOrderNotDeliveredCount = "sellOrderNotDeliveredCount";
 	
 	// DD Parameter
 	public static final String paramFileUpload = "file-upload";

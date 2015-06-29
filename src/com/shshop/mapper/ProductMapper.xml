@@ -8,6 +8,14 @@
 		SELECT COUNT(`id_product`) as count FROM `ps_product`;
 	</select>
 
+	<select id='getProductCountOfUser' resultType='int'>
+		SELECT COUNT(`id_product`) as count FROM `ps_product` where `id_user`=${id_user};
+	</select>
+	
+	<select id='getHasStockProductCountOfUser' resultType='int'>
+		SELECT COUNT(`id_product`) as count FROM `ps_product` where `id_user`=${id_user} and `stock`> 0;
+	</select>
+	
     <select id='getProductById' resultMap='Product'>							
 		SELECT * FROM `ps_product` WHERE `id_product` = ${id_product};				
 	</select>
@@ -68,7 +76,7 @@
 		SELECT * FROM `ps_product` ORDER BY `date_created` DESC LIMIT 0, 80;
 	</select>
 	
-	<select id='getProducts' resultMap='Product' parameterType='${UserType}'>
+	<select id='getProducts' resultMap='Product'>
 		select * from `ps_product` where `id_user`=${id_user}
 	</select>
 		

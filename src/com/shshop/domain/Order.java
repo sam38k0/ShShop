@@ -3,6 +3,8 @@ package com.shshop.domain;
 import java.io.Serializable;
 import java.sql.Date;
 
+import com.shshop.helper.Format;
+
 public class Order implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer orderId;
@@ -120,5 +122,9 @@ public class Order implements Serializable {
 
 	public void setDateUpdated(Date dateUpdated) {
 		this.dateUpdated = dateUpdated;
+	}
+	
+	public String getDateCreatedStr() {
+		return Format.getDate(dateCreated);
 	}
 }

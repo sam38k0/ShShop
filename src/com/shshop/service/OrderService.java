@@ -97,6 +97,21 @@ public class OrderService {
 		}
 		return order;
 	}
+	
+	public int getOrderCount(Integer userId) {
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+
+		int orderCount = 0;
+		try {
+			OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+			orderCount = orderMapper.getOrderCount(userId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+		return orderCount;
+	}
 
 	public Address selectBuyAddress(int orderId) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
@@ -111,7 +126,7 @@ public class OrderService {
 		return address;
 	}
 
-	public List<Order> selectSellOrder(int userId) {
+	public List<Order> getSellOrder(int userId) {
 		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 
 		List<Order> order;
@@ -122,6 +137,19 @@ public class OrderService {
 			sqlSession.close();
 		}
 		return order;
+	}
+	
+	public int getSellOrderCount(int userId) {
+		sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+
+		int orderCount = 0;
+		try {
+			OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+			orderCount = orderMapper.getSellOrderCount(userId);
+		} finally {
+			sqlSession.close();
+		}
+		return orderCount;
 	}
 
 	public Address selectSellAddress(int addressId) {
