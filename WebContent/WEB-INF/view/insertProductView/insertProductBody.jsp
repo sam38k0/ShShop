@@ -5,14 +5,13 @@
 <jsp:useBean id ="adminBean" class ="com.shshop.system.AdminBean" scope ="session"/>
 
 <div class="insertProduct_wrap">
+	<h3>상품등록</h3>
 	<form id="insertProductForm" name="insertProduct" method="post" enctype="multipart/form-data" action="insertProduct">
 		<table class="productTable">
 			<tr>
 				<th><b>카테고리선택</b></th>
-				<td align=left>
-
+				<td align=left class="product_category">
 					<div id="insertProduct_category">
-						<span>Category</span>
 						<ul class="allcategory" id="CategoryItems">
 							<%
                            		CategoryControlService categoryControlService = new CategoryControlService();
@@ -20,10 +19,10 @@
                            	%>
 						</ul>
 					</div> 
-					<!-- <input type="text" name="miniCategory" id="categoryResult" placeholder="여성의류 > 부츠/레인부츠 > 가죽롱부츠 > 로우힐" required> -->
+					<input type="text" name="miniCategory" id="categoryResult" placeholder="여성의류 > 부츠/레인부츠 > 가죽롱부츠 > 로우힐" required>
 				</td>
 			</tr>
-			<!-- <tr>
+			<tr>
 				<th><b>상품명</b></th>
 				<td align=left><input type=text name=productname></td>
 			</tr>
@@ -69,31 +68,31 @@
 				<td align=left>
 					<div class="alert alert-info">
 
-						<input type="file" accept=".gif, .jpg, .png" name="file" style="visibility: hidden;" id="fileId1" /> </br>
+						<input type="file" accept=".gif, .jpg, .png" name="file" style="visibility: hidden;" id="fileId1" />
 						<div class="input-append">
 							<input type="text" id="subfile1" class="input-xlarge"> 
 							<a class="btn" onclick="$('#fileId1').click();">Browse</a>
 						</div>
 
-						<input type="file" accept=".gif, .jpg, .png" name="file" style="visibility: hidden;" id="fileId2" /> </br>
+						<input type="file" accept=".gif, .jpg, .png" name="file" style="visibility: hidden;" id="fileId2" />
 						<div class="input-append">
 							<input type="text" id="subfile2" class="input-xlarge"> 
 							<a class="btn" onclick="$('#fileId2').click();">Browse</a>
 						</div>
 
-						<input type="file" accept=".gif, .jpg, .png" name="file" style="visibility: hidden;" id="fileId3" /> </br>
+						<input type="file" accept=".gif, .jpg, .png" name="file" style="visibility: hidden;" id="fileId3" />
 						<div class="input-append">
 							<input type="text" id="subfile3" class="input-xlarge"> 
 							<a class="btn" onclick="$('#fileId3').click();">Browse</a>
 						</div>
 
-						<input type="file" accept=".gif, .jpg, .png" name="file" style="visibility: hidden;" id="fileId4" /> </br>
+						<input type="file" accept=".gif, .jpg, .png" name="file" style="visibility: hidden;" id="fileId4" />
 						<div class="input-append">
 							<input type="text" id="subfile4" class="input-xlarge"> 
 							<a class="btn" onclick="$('#fileId4').click();">Browse</a>
 						</div>
 
-						<input type="file" accept=".gif, .jpg, .png" name="file" style="visibility: hidden;" id="fileId5" /> </br>
+						<input type="file" accept=".gif, .jpg, .png" name="file" style="visibility: hidden;" id="fileId5" />
 						<div class="input-append">
 							<input type="text" id="subfile5" class="input-xlarge"> 
 							<a class="btn" onclick="$('#fileId5').click();">Browse</a>
@@ -122,7 +121,7 @@
 				<td colspan=2 align="center">
 				<input type="button" value="Back" onClick="history.back()"> 
 				<input type="submit" value="Register"></td>
-			</tr> -->
+			</tr>
 		</table>
 	</form>
 </div>

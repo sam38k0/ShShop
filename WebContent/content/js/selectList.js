@@ -21,9 +21,11 @@ $(function() {
 		});
 	}
 	
+	// 헤더 카테고리
 	$("#category>ul>li>ul>li>ul").wrap("<div></div>");
 	
 	$("#category>ul>li>ul>li").bind('click',function() {
+		
 		if ($(this).children().next().css("display")=="block") {
 			$(this).children().next().slideUp("1000");
 		} else {

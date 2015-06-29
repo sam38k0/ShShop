@@ -282,10 +282,10 @@ $(document).ready(function() {
 
 	// Category Control
 	var i = 0, result = "";
-	$('#category a').click(function() {
+	$('#insertProduct_category a').click(function() {
 		i = 0;
 		result = '';
-		$(this).parentsUntil('#category').each(function(index) {
+		$(this).parentsUntil('#insertProduct_category>ul>li>ul').each(function(index) {
 			if (this.tagName === 'LI' && i === 0) {
 				result = $(this).children('A').text();
 				i++;
@@ -298,10 +298,5 @@ $(document).ready(function() {
 		$('#categoryResult').val(result);
 		categoryResultElem.readOnly = true;
 	});
-	
-	
-	
-	
-	
 	
 });
