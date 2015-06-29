@@ -574,9 +574,11 @@
 				<td class="user_table_line">
 					<div class="add_wrap">
 						<input type="text" id="sample6_postcode1" value='${address.postNumHeader}'> - <input type="text" id="sample6_postcode2"
-							value='${address.postNumTail}'> <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br> <input
-							type="text" id="sample6_address" placeholder="주소" name="basicAdd" value='${address.basicAdd}'> <input type="text" id="sample6_address2"
-							placeholder="상세주소" name="detailAdd" value='${address.detailAdd}'>
+							value='${address.postNumTail}'> <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+							<ul class="user_align">
+							<li><input type="text" id="sample6_address" placeholder="주소" name="basicAdd" value='${address.basicAdd}'></li>
+							<li><input type="text" id="sample6_address2" placeholder="상세주소" name="detailAdd" value='${address.detailAdd}'></li>
+							</ul>
 					</div>
 				</td>
 			</tr>

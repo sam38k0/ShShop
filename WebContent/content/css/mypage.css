@@ -315,7 +315,8 @@
 #sample6_address, #sample6_address2 {
 	margin-top: 10px
 }
-
+.add_wrap{height:80px}
+.user_align li{float:none}
 .user_table_line .p_in {
 	display: inline-block;
 	width: 100px;
@@ -329,12 +330,12 @@
 }
 
 .user_form .user_chinge {
-	float: right;
+	text-align:center;
 	margin: 30px 0px 30px
 }
 
 .user_chinge input[type="button"] {
-	width: 50px;
+	width: 70px;
 	height: 30px;
 	background-color: #600f00;
 	border: 0;
@@ -343,7 +344,7 @@
 
 .user_chinge button {
 	margin-left: 20px;
-	width: 50px;
+	width: 70px;
 	height: 30px;
 	background-color: #c11e00;
 	border: 0;
